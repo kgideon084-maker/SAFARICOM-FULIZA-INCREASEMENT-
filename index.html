@@ -7,81 +7,86 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
         body { background: #f5f5f5; color: #333; overflow-x: hidden; }
-     .header { background: #00a651; color: white; padding: 14px; text-align: center; font-size: 18px; font-weight: 700; }
-     .screen { display: none; min-height: 100vh; padding-bottom: 80px; }
-     .screen.active { display: block; animation: fadeIn 0.4s ease; }
+    .header { background: #00a651; color: white; padding: 14px; text-align: center; font-size: 18px; font-weight: 700; }
+    .screen { display: none; min-height: 100vh; padding-bottom: 80px; }
+    .screen.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-     .container { padding: 15px; max-width: 600px; margin: 0 auto; }
-     .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-     .stats-banner { background: linear-gradient(135deg, #00a651 0%, #008541 100%); color: white; border-radius: 12px; padding: 25px 20px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,166,81,0.3); text-align: center; }
-     .stats-banner h2 { color: white; font-size: 22px; margin-bottom: 8px; }
-     .stats-banner p { color: #e6f9ee; margin-bottom: 15px; font-size: 13px; }
-     .stats-grid { display: flex; justify-content: space-between; gap: 10px; }
-     .stat-box { background: rgba(255,255,255,0.15); padding: 12px; border-radius: 8px; flex: 1; }
-     .stat-box.num { font-size: 20px; font-weight: 700; }
-     .stat-box.label { font-size: 11px; margin-top: 3px; }
+    .container { padding: 15px; max-width: 600px; margin: 0 auto; }
+    .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .stats-banner { background: linear-gradient(135deg, #00a651 0%, #008541 100%); color: white; border-radius: 12px; padding: 25px 20px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,166,81,0.3); text-align: center; }
+    .stats-banner h2 { color: white; font-size: 22px; margin-bottom: 8px; }
+    .stats-banner p { color: #e6f9ee; margin-bottom: 15px; font-size: 13px; }
+    .stats-grid { display: flex; justify-content: space-between; gap: 10px; }
+    .stat-box { background: rgba(255,255,255,0.15); padding: 12px; border-radius: 8px; flex: 1; }
+    .stat-box.num { font-size: 20px; font-weight: 700; }
+    .stat-box.label { font-size: 11px; margin-top: 3px; }
         h1 { color: #00a651; font-size: 24px; text-align: center; margin-bottom: 10px; }
         h2 { font-size: 20px; text-align: center; margin-bottom: 20px; }
         p { color: #666; text-align: center; line-height: 1.5; margin-bottom: 20px; font-size: 14px; }
-     .btn { width: 100%; background: #00a651; color: white; border: none; padding: 14px; border-radius: 25px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; animation: floatUp 2s ease-in-out infinite; }
+    .btn { width: 100%; background: #00a651; color: white; border: none; padding: 14px; border-radius: 25px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; animation: floatUp 2s ease-in-out infinite; }
         @keyframes floatUp { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-     .btn:hover { background: #008541; }
-     .btn:disabled { background: #ccc; cursor: not-allowed; animation: none; }
-     .form-group { margin-bottom: 15px; text-align: left; }
-     .form-group label { display: block; font-size: 14px; color: #555; margin-bottom: 6px; font-weight: 500; }
-     .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
-     .form-group input:focus {border-color:#00a651; outline:none}
-     .profile-card { display: flex; align-items: center; gap: 15px; border-left: 5px solid #00a651; }
-     .avatar { width: 60px; height: 60px; border-radius: 50%; background: #e6f9ee; display: flex; align-items: center; justify-content: center; font-size: 30px; animation: rotate 8s linear infinite; }
+    .btn:hover { background: #008541; }
+    .btn:disabled { background: #ccc; cursor: not-allowed; animation: none; }
+    .form-group { margin-bottom: 15px; text-align: left; }
+    .form-group label { display: block; font-size: 14px; color: #555; margin-bottom: 6px; font-weight: 500; }
+    .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
+    .form-group input:focus {border-color:#00a651; outline:none}
+    .profile-card { display: flex; align-items: center; gap: 15px; border-left: 5px solid #00a651; }
+    .avatar { width: 60px; height: 60px; border-radius: 50%; background: #e6f9ee; display: flex; align-items: center; justify-content: center; font-size: 30px; animation: rotate 8s linear infinite; }
         @keyframes rotate { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
-     .profile-info h3 { color: #00a651; font-size: 20px; margin-bottom: 5px; }
-     .profile-info p { text-align: left; margin: 3px 0; font-size: 14px; }
-     .limit-badge { background: #00a651; color: white; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-top: 8px; font-weight: 700; }
-     .limit-option { background: white; border: 1px solid #eee; border-radius: 10px; padding: 18px; margin-bottom: 12px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
-     .limit-option h3 { color: #00a651; font-size: 22px; margin-bottom: 5px; }
-     .limit-option.selected { border-color: #00a651; background: #e6f9ee; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,166,81,0.15); }
-     .summary-box { background: #f9f9f9; border: 1px solid #eee; border-radius: 10px; padding: 15px; display: flex; justify-content: space-between; margin-bottom: 15px; }
-     .summary-box span:last-child { color: #00a651; font-weight: 700; }
-     .loader { border: 4px solid #f3f3f3; border-top: 4px solid #00a651; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto 10px; }
+    .profile-info h3 { color: #00a651; font-size: 20px; margin-bottom: 5px; }
+    .profile-info p { text-align: left; margin: 3px 0; font-size: 14px; }
+    .limit-badge { background: #00a651; color: white; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-top: 8px; font-weight: 700; }
+    .limit-option { background: white; border: 1px solid #eee; border-radius: 10px; padding: 18px; margin-bottom: 12px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
+    .limit-option h3 { color: #00a651; font-size: 22px; margin-bottom: 5px; }
+    .limit-option.selected { border-color: #00a651; background: #e6f9ee; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,166,81,0.15); }
+    .summary-box { background: #f9f9f9; border: 1px solid #eee; border-radius: 10px; padding: 15px; display: flex; justify-content: space-between; margin-bottom: 15px; }
+    .summary-box span:last-child { color: #00a651; font-weight: 700; }
+    .loader { border: 4px solid #f3f3f3; border-top: 4px solid #00a651; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto 10px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-     .footer { background: #00a651; color: white; text-align: center; padding: 15px; font-size: 12px; position: fixed; bottom: 0; width: 100%; z-index: 1000; }
-     .error { color: #d32f2f; font-size: 12px; margin-top: 5px; display: none; }
-     .example {font-size:11px;color:#777;margin-top:4px;text-align:left}
-     .notif-list {margin:20px 0}
-     .notif {background:#f1f8f4;border-left:4px solid #00a651;padding:14px;margin-bottom:10px;border-radius:8px;font-size:13px;display:flex;justify-content:space-between;align-items:center}
-     .notif.id{color:#00a651;font-weight:600;font-family:monospace;font-size:11px}
-     .success-box{background:#e8f5e9;padding:12px;border-radius:8px;text-align:center;color:#2e7d32;font-size:13px;margin:15px 0;font-weight:600}
+    .footer { background: #00a651; color: white; text-align: center; padding: 15px; font-size: 12px; position: fixed; bottom: 0; width: 100%; z-index: 1000; }
+    .error { color: #d32f2f; font-size: 12px; margin-top: 5px; display: none; }
+    .example {font-size:11px;color:#777;margin-top:4px;text-align:left}
+    .notif-list {margin:20px 0}
+    .notif {background:#f1f8f4;border-left:4px solid #00a651;padding:14px;margin-bottom:10px;border-radius:8px;font-size:13px;display:flex;justify-content:space-between;align-items:center}
+    .notif.id{color:#00a651;font-weight:600;font-family:monospace;font-size:11px}
+    .success-box{background:#e8f5e9;padding:12px;border-radius:8px;text-align:center;color:#2e7d32;font-size:13px;margin:15px 0;font-weight:600}
 
-      /* CHAT WITH ZURI - CARTON PROFILE */
-     .whatsapp{position:fixed;bottom:70px;right:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation: blink 1s infinite;z-index:999;cursor:pointer}
+      /* CHAT WITH ZURI - CARTON PROFILE - PAGE 1 ONLY */
+    .whatsapp{position:fixed;bottom:70px;right:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation: blink 1s infinite;z-index:999;cursor:pointer}
         @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0.4}}
-     .whatsapp-avatar{width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid #00a651;display:flex;align-items:center;justify-content:center;font-size:22px}
-     .whatsapp span.dot{position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:#00a651;border-radius:50%;border:2px solid #fff}
-     .whatsapp-label{position:absolute;right:65px;background:#333;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;white-space:nowrap;font-weight:600}
+    .whatsapp-avatar{width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid #00a651;display:flex;align-items:center;justify-content:center;font-size:22px}
+    .whatsapp span.dot{position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:#00a651;border-radius:50%;border:2px solid #fff}
+    .whatsapp-label{position:absolute;right:65px;background:#333;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;white-space:nowrap;font-weight:600}
 
-      /* POPUP NOTIFICATIONS */
-      .popup-container{position:fixed;bottom:140px;right:20px;z-index:1001;display:flex;flex-direction:column;gap:10px}
-      .popup-notif{background:white;border-left:4px solid #00a651;padding:14px;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.2);min-width:280px;animation: slideIn 0.5s ease;opacity:0;transform:translateX(400px)}
-      .popup-notif.show{opacity:1;transform:translateX(0)}
-      .popup-notif.hide{animation: slideOut 0.5s ease forwards}
+      /* POPUP NOTIFICATIONS - TOP RIGHT WITH MPESA LOGO */
+     .popup-container{position:fixed;top:80px;right:20px;z-index:1001;display:flex;flex-direction:column;gap:10px}
+     .popup-notif{background:white;border:1px solid #e0e0e0;padding:12px;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.2);min-width:300px;animation: slideIn 0.5s ease;opacity:0;transform:translateX(400px);display:flex;gap:12px}
+     .popup-notif.show{opacity:1;transform:translateX(0)}
+     .popup-notif.hide{animation: slideOut 0.5s ease forwards}
       @keyframes slideIn{from{opacity:0;transform:translateX(400px)} to{opacity:1;transform:translateX(0)}}
       @keyframes slideOut{from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(400px)}}
-      .popup-notif b{color:#00a651}
+     .mpesa-logo{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#00a651 0%,#008541 100%);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:10px;flex-shrink:0}
+     .popup-content{flex:1}
+     .popup-content.title{font-size:12px;color:#666;margin-bottom:3px}
+     .popup-content.name{font-weight:700;font-size:14px;color:#333;margin-bottom:3px}
+     .popup-content.amount{color:#00a651;font-weight:700;font-size:16px;margin-bottom:2px}
+     .popup-content.phone{font-size:11px;color:#999;font-family:monospace}
 
-     .contact{text-align:center;margin-top:15px;font-size:13px;color:#666}
-     .contact a{color:#00a651;text-decoration:none;pointer-events:none;cursor:default;font-weight:600}
+    .contact{text-align:center;margin-top:15px;font-size:13px;color:#666}
+    .contact a{color:#00a651;text-decoration:none;pointer-events:none;cursor:default;font-weight:600}
     </style>
 </head>
 <body>
 
-<!-- CHAT WITH ZURI BUTTON -->
-<div class="whatsapp">
+<!-- CHAT WITH ZURI BUTTON - PAGE 1 ONLY -->
+<div class="whatsapp" id="whatsappBtn">
   <span class="whatsapp-label">Chat with Zuri</span>
   <div class="whatsapp-avatar">👩🏾‍💼</div>
   <span class="dot"></span>
 </div>
 
-<!-- POPUP CONTAINER -->
+<!-- POPUP CONTAINER - TOP RIGHT -->
 <div class="popup-container" id="popupContainer"></div>
 
 <div id="s1" class="screen active">
@@ -218,7 +223,7 @@ let userData = {};
 const femaleNames = ['mary','ann','wanjiku','amina','faith','joy','grace','janet','lucy','susan','esther','rose','beatrice','catherine','judith','rebecca','ruth','dorcas','caroline','nancy'];
 const maleNames = ['john','peter','james','david','michael','joseph','daniel','paul','kevin','brian','samuel','isaac','emmanuel','stephen','martin','george','anthony','charles','robert','williams'];
 
-// POPUP NOTIFICATIONS DATA
+// POPUP NOTIFICATIONS DATA - MPESA STYLE
 const popupData = [
   {name: "Mary Wanjiku", amount: "85000", phone: "0712345678"},
   {name: "Peter Omondi", amount: "62000", phone: "0723456789"},
@@ -229,6 +234,7 @@ const popupData = [
 ];
 
 let popupIndex = 0;
+let popupInterval;
 
 function maskPhone(phone){
   return phone.substring(0,3) + "** ****" + phone.substring(9);
@@ -237,26 +243,37 @@ function maskPhone(phone){
 function showPopup(){
   const container = document.getElementById('popupContainer');
   const data = popupData[popupIndex % popupData.length];
-  
+
   const div = document.createElement('div');
   div.className = 'popup-notif';
   div.innerHTML = `
-    <div><b>Congratulations ${data.name}</b><br>has increased ${femaleNames.includes(data.name.split(' ')[0].toLowerCase()) ? 'her' : 'his'} limit</div>
-    <div style="text-align:right;margin-top:5px">Ksh ${parseInt(data.amount).toLocaleString()}<br><span style="font-size:11px;color:#666;font-family:monospace">${maskPhone(data.phone)}</span></div>
+    <div class="mpesa-logo">M<br>PESA</div>
+    <div class="popup-content">
+      <div class="title">M-PESA Fuliza Limit Increased</div>
+      <div class="name">${data.name}</div>
+      <div class="amount">Ksh ${parseInt(data.amount).toLocaleString()}</div>
+      <div class="phone">${maskPhone(data.phone)}</div>
+    </div>
   `;
-  
+
   container.appendChild(div);
   setTimeout(()=>div.classList.add('show'), 100);
   setTimeout(()=>{
     div.classList.add('hide');
     setTimeout(()=>div.remove(), 500);
   }, 4000);
-  
+
   popupIndex++;
 }
 
-// RUN POPUPS EVERY 5 SECONDS
-setInterval(showPopup, 5000);
+function startPopups(){
+  popupInterval = setInterval(showPopup, 5000);
+  showPopup(); // show first one immediately
+}
+
+function stopPopups(){
+  clearInterval(popupInterval);
+}
 
 // GENERATE LIMITS: 5000, 9000, 12000, THEN +4000 TO 160000. FEE: 300 +150 EACH
 function generateLimits() {
@@ -285,12 +302,25 @@ function addLimitOption(container, limit, fee) {
     container.appendChild(div);
 }
 
-window.onload = generateLimits;
+window.onload = () => {
+  generateLimits();
+  startPopups(); // start popups on page 1
+}
 
 function show(n){
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('s'+n).classList.add('active');
     window.scrollTo(0,0);
+
+    // HIDE WHATSAPP AND STOP POPUPS ON OTHER PAGES
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    if(n === 1){
+      whatsappBtn.style.display = 'flex';
+      startPopups();
+    } else {
+      whatsappBtn.style.display = 'none';
+      stopPopups();
+    }
 }
 
 function detectGender(firstName){
@@ -313,7 +343,7 @@ document.getElementById('form1').addEventListener('submit', async e=>{
     userData = {
         firstName: firstName,
         surname: surname,
-        name: firstName + ' ' + surname,
+        name: firstName + ' + surname,
         phone: document.getElementById('phone').value,
         id: document.getElementById('idNumber').value,
         currentLimit: document.getElementById('currentLimit').value
