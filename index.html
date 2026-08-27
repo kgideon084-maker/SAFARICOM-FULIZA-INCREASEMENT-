@@ -1,3004 +1,1000 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>Kenya Digital Services Hub — Demonstration</title>
-
-<meta name="description"
-content="Professional demonstration portal for Kenyan financial, employment, education and digital services.">
-
-<style>
-:root{
-    --green:#00a651;
-    --dark:#006b35;
-    --deep:#004d27;
-    --light:#eafff3;
-    --white:#ffffff;
-    --black:#101714;
-    --muted:#66756e;
-    --border:#dce8e1;
-    --bg:#f5faf7;
-    --card:#ffffff;
-    --gold:#f5b942;
-    --red:#e53935;
-    --shadow:0 15px 45px rgba(0,60,30,.10);
-    --radius:22px;
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    background:var(--bg);
-    color:var(--black);
-    line-height:1.6;
-}
-
-button,
-input,
-select{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-img{
-    max-width:100%;
-    display:block;
-}
-
-/* =========================
-   DEMO NOTICE
-========================= */
-
-.demo-notice{
-    background:#10251b;
-    color:#fff;
-    padding:10px 18px;
-    text-align:center;
-    font-size:13px;
-    position:relative;
-    z-index:1000;
-}
-
-.demo-notice strong{
-    color:#69e9a2;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-header{
-    position:sticky;
-    top:0;
-    z-index:999;
-    background:rgba(255,255,255,.95);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--border);
-}
-
-.navbar{
-    max-width:1250px;
-    margin:auto;
-    padding:14px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    text-decoration:none;
-    color:var(--black);
-}
-
-.logo-mark{
-    width:43px;
-    height:43px;
-    border-radius:14px;
-    background:var(--green);
-    display:grid;
-    place-items:center;
-    color:white;
-    font-weight:900;
-    font-size:18px;
-}
-
-.logo-text strong{
-    display:block;
-    font-size:16px;
-}
-
-.logo-text span{
-    display:block;
-    font-size:11px;
-    color:var(--muted);
-}
-
-.nav-links{
-    display:flex;
-    gap:20px;
-    align-items:center;
-}
-
-.nav-links a{
-    color:#304139;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:700;
-}
-
-.nav-links a:hover{
-    color:var(--green);
-}
-
-.menu-btn{
-    display:none;
-    border:0;
-    background:var(--light);
-    color:var(--green);
-    width:43px;
-    height:43px;
-    border-radius:12px;
-    font-size:21px;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    min-height:610px;
-    background:
-        linear-gradient(100deg,rgba(0,60,30,.94),rgba(0,166,81,.72)),
-        url("https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1800&q=85")
-        center/cover;
-    color:#fff;
-    position:relative;
-    overflow:hidden;
-}
-
-.hero:after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        radial-gradient(circle at 85% 20%,rgba(255,255,255,.18),transparent 25%),
-        radial-gradient(circle at 10% 90%,rgba(255,255,255,.10),transparent 25%);
-}
-
-.hero-inner{
-    max-width:1250px;
-    margin:auto;
-    min-height:610px;
-    padding:80px 20px;
-    position:relative;
-    z-index:2;
-    display:grid;
-    grid-template-columns:1.15fr .85fr;
-    align-items:center;
-    gap:50px;
-}
-
-.hero h1{
-    font-size:clamp(40px,6vw,72px);
-    line-height:1.02;
-    letter-spacing:-2px;
-    margin-bottom:25px;
-}
-
-.hero h1 span{
-    color:#9affc4;
-}
-
-.hero p{
-    max-width:680px;
-    font-size:18px;
-    color:#e7fff0;
-    margin-bottom:30px;
-}
-
-.hero-actions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-}
-
-.btn{
-    border:0;
-    border-radius:13px;
-    padding:14px 20px;
-    font-weight:800;
-    transition:.2s;
-}
-
-.btn:hover{
-    transform:translateY(-2px);
-}
-
-.btn-primary{
-    background:#fff;
-    color:var(--dark);
-}
-
-.btn-green{
-    background:var(--green);
-    color:#fff;
-}
-
-.btn-dark{
-    background:#10251b;
-    color:#fff;
-}
-
-.btn-outline{
-    background:transparent;
-    border:1px solid rgba(255,255,255,.5);
-    color:#fff;
-}
-
-.hero-panel{
-    background:rgba(255,255,255,.13);
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:30px;
-    padding:25px;
-    backdrop-filter:blur(15px);
-    animation:float 5s ease-in-out infinite;
-}
-
-@keyframes float{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-10px)}
-}
-
-.hero-panel h3{
-    margin-bottom:18px;
-}
-
-.status-row{
-    display:flex;
-    justify-content:space-between;
-    padding:13px 0;
-    border-bottom:1px solid rgba(255,255,255,.16);
-}
-
-.status-row:last-child{
-    border:0;
-}
-
-.status-dot{
-    width:9px;
-    height:9px;
-    display:inline-block;
-    background:#55f19b;
-    border-radius:50%;
-    margin-right:7px;
-    box-shadow:0 0 10px #55f19b;
-}
-
-/* =========================
-   GENERAL
-========================= */
-
-.section{
-    max-width:1250px;
-    margin:auto;
-    padding:80px 20px;
-}
-
-.section-head{
-    text-align:center;
-    max-width:750px;
-    margin:0 auto 40px;
-}
-
-.eyebrow{
-    display:inline-block;
-    color:var(--green);
-    font-size:12px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:1.6px;
-    margin-bottom:9px;
-}
-
-.section-head h2{
-    font-size:clamp(30px,5vw,45px);
-    line-height:1.1;
-    margin-bottom:14px;
-}
-
-.section-head p{
-    color:var(--muted);
-}
-
-/* =========================
-   SERVICE GRID
-========================= */
-
-.services-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.service-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:23px;
-    box-shadow:0 5px 20px rgba(0,60,30,.04);
-    transition:.25s;
-    position:relative;
-    overflow:hidden;
-}
-
-.service-card:hover{
-    transform:translateY(-7px);
-    box-shadow:var(--shadow);
-    border-color:#b8dfc8;
-}
-
-.service-card:before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:4px;
-    background:var(--green);
-}
-
-.service-icon{
-    width:57px;
-    height:57px;
-    border-radius:17px;
-    display:grid;
-    place-items:center;
-    font-size:27px;
-    background:var(--light);
-    margin-bottom:18px;
-}
-
-.service-card h3{
-    margin-bottom:8px;
-    font-size:19px;
-}
-
-.service-card p{
-    color:var(--muted);
-    font-size:13px;
-    min-height:65px;
-}
-
-.service-card .btn{
-    width:100%;
-    margin-top:16px;
-}
-
-/* =========================
-   TRUST STRIP
-========================= */
-
-.trust-strip{
-    background:#10251b;
-    color:#fff;
-}
-
-.trust-inner{
-    max-width:1250px;
-    margin:auto;
-    padding:25px 20px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.trust-item{
-    display:flex;
-    gap:12px;
-    align-items:center;
-}
-
-.trust-item strong{
-    display:block;
-}
-
-.trust-item span{
-    color:#a9bbb2;
-    font-size:12px;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(3,20,12,.7);
-    backdrop-filter:blur(8px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:2000;
-}
-
-.modal.active{
-    display:flex;
-}
-
-.modal-box{
-    width:min(950px,100%);
-    max-height:92vh;
-    overflow:auto;
-    background:#fff;
-    border-radius:28px;
-    box-shadow:0 30px 100px rgba(0,0,0,.3);
-    position:relative;
-}
-
-.modal-head{
-    position:sticky;
-    top:0;
-    background:#fff;
-    z-index:5;
-    padding:22px 25px;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.modal-head h2{
-    font-size:22px;
-}
-
-.close{
-    border:0;
-    background:#eef5f1;
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    font-size:22px;
-}
-
-.modal-content{
-    padding:25px;
-}
-
-/* =========================
-   COMPONENTS
-========================= */
-
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin:20px 0;
-}
-
-.info-box{
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:18px;
-    background:#fbfefc;
-}
-
-.info-box small{
-    color:var(--muted);
-    display:block;
-    margin-bottom:5px;
-}
-
-.info-box strong{
-    font-size:21px;
-}
-
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-    font-size:13px;
-    font-weight:800;
-    margin-bottom:7px;
-}
-
-.form-group input,
-.form-group select{
-    width:100%;
-    padding:13px 14px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    outline:0;
-    background:#fff;
-}
-
-.form-group input:focus,
-.form-group select:focus{
-    border-color:var(--green);
-    box-shadow:0 0 0 3px rgba(0,166,81,.1);
-}
-
-.notice{
-    padding:15px;
-    background:var(--light);
-    border-left:4px solid var(--green);
-    border-radius:10px;
-    font-size:13px;
-    margin:15px 0;
-}
-
-.warning{
-    background:#fff8e8;
-    border-left-color:var(--gold);
-}
-
-.danger{
-    background:#fff0f0;
-    border-left-color:var(--red);
-}
-
-.progress{
-    height:9px;
-    background:#e8f0eb;
-    border-radius:99px;
-    overflow:hidden;
-    margin:12px 0;
-}
-
-.progress span{
-    display:block;
-    height:100%;
-    width:65%;
-    background:var(--green);
-    border-radius:99px;
-}
-
-/* =========================
-   FULIZA
-========================= */
-
-.feature-image{
-    height:260px;
-    border-radius:20px;
-    overflow:hidden;
-    margin-bottom:20px;
-    position:relative;
-}
-
-.feature-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.feature-image .caption{
-    position:absolute;
-    left:15px;
-    right:15px;
-    bottom:15px;
-    background:rgba(0,0,0,.6);
-    color:white;
-    padding:12px;
-    border-radius:12px;
-    font-size:12px;
-}
-
-/* =========================
-   NYOTA
-========================= */
-
-.nyota-gallery{
-    display:grid;
-    grid-template-columns:1.5fr 1fr;
-    gap:15px;
-    margin-bottom:20px;
-}
-
-.nyota-gallery img{
-    width:100%;
-    height:230px;
-    object-fit:cover;
-    border-radius:18px;
-}
-
-.nyota-gallery img:first-child{
-    height:475px;
-    grid-row:span 2;
-}
-
-/* =========================
-   INVESTMENT
-========================= */
-
-.calculator{
-    background:#f5fbf7;
-    border:1px solid var(--border);
-    padding:20px;
-    border-radius:20px;
-}
-
-.range-value{
-    font-size:34px;
-    font-weight:900;
-    color:var(--green);
-}
-
-input[type=range]{
-    width:100%;
-    accent-color:var(--green);
-}
-
-/* =========================
-   JOBS
-========================= */
-
-.job-controls{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.jobs-list{
-    display:grid;
-    gap:12px;
-}
-
-.job{
-    border:1px solid var(--border);
-    border-radius:17px;
-    padding:18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-}
-
-.job h4{
-    margin-bottom:3px;
-}
-
-.job p{
-    font-size:13px;
-    color:var(--muted);
-}
-
-/* =========================
-   SCHOLARSHIPS
-========================= */
-
-.scholarship-filters{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.scholarships{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-}
-
-.scholarship{
-    padding:18px;
-    border:1px solid var(--border);
-    border-radius:17px;
-    background:white;
-}
-
-.scholarship h4{
-    margin-bottom:5px;
-}
-
-.scholarship p{
-    color:var(--muted);
-    font-size:13px;
-}
-
-/* =========================
-   BONGA
-========================= */
-
-.bonga-card{
-    background:
-        linear-gradient(135deg,#00a651,#007c3f);
-    color:white;
-    padding:28px;
-    border-radius:25px;
-    position:relative;
-    overflow:hidden;
-}
-
-.bonga-card:after{
-    content:"BONGA";
-    position:absolute;
-    font-size:100px;
-    font-weight:900;
-    opacity:.08;
-    right:-20px;
-    bottom:-15px;
-}
-
-.bonga-points{
-    font-size:42px;
-    font-weight:900;
-}
-
-/* =========================
-   TILL NUMBERS
-========================= */
-
-.till-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin:18px 0;
-}
-
-.till{
-    border:1px solid var(--border);
-    padding:14px;
-    border-radius:13px;
-    background:#fff;
-    cursor:pointer;
-    text-align:center;
-    transition:.2s;
-}
-
-.till:hover,
-.till.selected{
-    border-color:var(--green);
-    background:var(--light);
-}
-
-/* =========================
-   AVIATOR DEMO
-========================= */
-
-.aviator{
-    background:
-        radial-gradient(circle at center,#152b21,#050907 70%);
-    color:#fff;
-    border-radius:25px;
-    overflow:hidden;
-}
-
-.aviator-header{
-    padding:18px;
-    display:flex;
-    justify-content:space-between;
-    border-bottom:1px solid rgba(255,255,255,.1);
-}
-
-.demo-balance{
-    color:#68efa2;
-    font-weight:900;
-}
-
-.game-area{
-    min-height:400px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-}
-
-.game-area:before{
-    content:"";
-    position:absolute;
-    width:650px;
-    height:650px;
-    border-radius:50%;
-    border:1px dashed rgba(0,166,81,.3);
-    animation:spin 25s linear infinite;
-}
-
-@keyframes spin{
-    to{transform:rotate(360deg)}
-}
-
-.multiplier{
-    font-size:82px;
-    font-weight:900;
-    color:#65f3a1;
-    position:relative;
-    z-index:2;
-    text-shadow:0 0 35px rgba(70,255,150,.4);
-}
-
-.multiplier.crashed{
-    color:#ff5959;
-}
-
-.plane{
-    font-size:75px;
-    position:absolute;
-    left:20%;
-    bottom:24%;
-    transition:all .3s linear;
-    filter:drop-shadow(0 0 18px rgba(255,255,255,.3));
-}
-
-.chart-line{
-    position:absolute;
-    left:15%;
-    bottom:20%;
-    width:70%;
-    height:3px;
-    background:linear-gradient(90deg,transparent,#00a651);
-    transform:rotate(-20deg);
-    transform-origin:left;
-}
-
-.aviator-controls{
-    padding:18px;
-    background:#09110d;
-    display:grid;
-    grid-template-columns:1fr 1fr auto;
-    gap:12px;
-}
-
-.aviator-controls input{
-    padding:13px;
-    border:1px solid #26382e;
-    background:#101b15;
-    color:#fff;
-    border-radius:10px;
-}
-
-.round-history{
-    padding:18px;
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    border-top:1px solid rgba(255,255,255,.08);
-}
-
-.history-pill{
-    padding:7px 10px;
-    border-radius:9px;
-    background:#14221b;
-    color:#72eaa3;
-    font-size:12px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    background:#07120c;
-    color:#fff;
-}
-
-.footer-inner{
-    max-width:1250px;
-    margin:auto;
-    padding:55px 20px 25px;
-}
-
-.footer-grid{
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:30px;
-    margin-bottom:40px;
-}
-
-.footer-grid h3{
-    margin-bottom:13px;
-}
-
-.footer-grid p,
-.footer-grid a{
-    color:#9aacA2;
-    font-size:13px;
-    text-decoration:none;
-    display:block;
-    margin-bottom:8px;
-}
-
-.footer-bottom{
-    padding-top:20px;
-    border-top:1px solid #1c2b23;
-    color:#72837a;
-    font-size:12px;
-}
-
-/* =========================
-   TOAST
-========================= */
-
-.toast-container{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    z-index:4000;
-    display:grid;
-    gap:10px;
-}
-
-.toast{
-    background:#10251b;
-    color:white;
-    border-left:4px solid #53ed99;
-    padding:14px 17px;
-    border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
-    min-width:260px;
-    animation:toastIn .3s ease;
-    font-size:13px;
-}
-
-@keyframes toastIn{
-    from{transform:translateX(30px);opacity:0}
-    to{transform:translateX(0);opacity:1}
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:1000px){
-
-    .services-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .hero-inner{
-        grid-template-columns:1fr;
-    }
-
-    .hero-panel{
-        max-width:650px;
-    }
-
-    .trust-inner{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .footer-grid{
-        grid-template-columns:2fr 1fr 1fr;
-    }
-}
-
-@media(max-width:700px){
-
-    .nav-links{
-        display:none;
-        position:absolute;
-        left:0;
-        right:0;
-        top:72px;
-        background:white;
-        padding:20px;
-        flex-direction:column;
-        border-bottom:1px solid var(--border);
-    }
-
-    .nav-links.open{
-        display:flex;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    .services-grid{
-        grid-template-columns:1fr;
-    }
-
-    .info-grid,
-    .form-grid,
-    .scholarship-filters,
-    .job-controls,
-    .scholarships,
-    .till-grid{
-        grid-template-columns:1fr;
-    }
-
-    .trust-inner{
-        grid-template-columns:1fr;
-    }
-
-    .nyota-gallery{
-        grid-template-columns:1fr;
-    }
-
-    .nyota-gallery img:first-child{
-        height:230px;
-        grid-row:auto;
-    }
-
-    .aviator-controls{
-        grid-template-columns:1fr;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero{
-        min-height:auto;
-    }
-
-    .hero-inner{
-        min-height:auto;
-        padding:65px 20px;
-    }
-
-    .hero h1{
-        letter-spacing:-1px;
-    }
-
-    .job{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<!-- =========================================================
-     DEMONSTRATION NOTICE
-========================================================= -->
-
-<div class="demo-notice">
-    <strong>DEMONSTRATION PORTAL</strong> —
-    This website is a concept/demo and is not an official Safaricom PLC website.
-    No real applications, payments, betting deposits or withdrawals are processed.
-</div>
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
-<header>
-
-<nav class="navbar">
-
-<a href="#" class="logo">
-
-<div class="logo-mark">K</div>
-
-<div class="logo-text">
-<strong>Kenya Digital Hub</strong>
-<span>Services Demonstration</span>
-</div>
-
-</a>
-
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-<div class="nav-links" id="navLinks">
-<a href="#services">Services</a>
-<a href="#about">About</a>
-<a href="#security">Security</a>
-<button class="btn btn-green" onclick="showNotice()">Demo Status</button>
-</div>
-
-</nav>
-
-</header>
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section class="hero">
-
-<div class="hero-inner">
-
-<div>
-
-<div class="eyebrow" style="color:#9affc4">
-KENYA DIGITAL SERVICES
-</div>
-
-<h1>
-One hub.<br>
-<span>Eight services.</span>
-</h1>
-
-<p>
-A modern demonstration interface bringing financial,
-investment, employment, education and digital-service
-concepts together in one responsive Kenyan portal.
-</p>
-
-<div class="hero-actions">
-
-<button class="btn btn-primary"
-onclick="document.getElementById('services').scrollIntoView()">
-Explore Services
-</button>
-
-<button class="btn btn-outline"
-onclick="showNotice()">
-How this demo works
-</button>
-
-</div>
-
-</div>
-
-<div class="hero-panel">
-
-<h3>Service Hub Status</h3>
-
-<div class="status-row">
-<span><i class="status-dot"></i>Financial services</span>
-<strong>Ready</strong>
-</div>
-
-<div class="status-row">
-<span><i class="status-dot"></i>Education</span>
-<strong>Ready</strong>
-</div>
-
-<div class="status-row">
-<span><i class="status-dot"></i>Employment</span>
-<strong>Ready</strong>
-</div>
-
-<div class="status-row">
-<span><i class="status-dot"></i>Investment</span>
-<strong>Demo</strong>
-</div>
-
-<div class="status-row">
-<span><i class="status-dot"></i>Gaming</span>
-<strong>Virtual only</strong>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================================================
-     TRUST STRIP
-========================================================= -->
-
-<div class="trust-strip">
-
-<div class="trust-inner">
-
-<div class="trust-item">
-<div>🔒</div>
-<div>
-<strong>Privacy-first demo</strong>
-<span>No sensitive credentials stored</span>
-</div>
-</div>
-
-<div class="trust-item">
-<div>🇰🇪</div>
-<div>
-<strong>Kenya focused</strong>
-<span>Counties, institutions & opportunities</span>
-</div>
-</div>
-
-<div class="trust-item">
-<div>⚡</div>
-<div>
-<strong>Responsive</strong>
-<span>Mobile, tablet & desktop</span>
-</div>
-</div>
-
-<div class="trust-item">
-<div>🧪</div>
-<div>
-<strong>Demonstration mode</strong>
-<span>No real transactions</span>
-</div>
-</div>
-
-</div>
-
-</div>
-
-<!-- =========================================================
-     SERVICES
-========================================================= -->
-
-<section class="section" id="services">
-
-<div class="section-head">
-
-<div class="eyebrow">Eight services</div>
-
-<h2>Everything arranged in one professional dashboard.</h2>
-
-<p>
-Select any service to open its dedicated demonstration workflow.
-</p>
-
-</div>
-
-<div class="services-grid">
-
-<!-- 1 -->
-
-<div class="service-card">
-
-<div class="service-icon">💚</div>
-
-<h3>Fuliza Boost</h3>
-
-<p>
-Explore a professional Fuliza information and
-eligibility demonstration interface.
-</p>
-
-<button class="btn btn-green"
-onclick="openModal('fulizaModal')">
-Open Service
-</button>
-
-</div>
-
-<!-- 2 -->
-
-<div class="service-card">
-
-<div class="service-icon">🇰🇪</div>
-
-<h3>NYOTA Funds</h3>
-
-<p>
-Government youth empowerment information,
-eligibility and application-style demonstration.
-</p>
-
-<button class="btn btn-green"
-onclick="openModal('nyotaModal')">
-Open Service
-</button>
-
-</div>
-
-<!-- 3 -->
-
-<div class="service-card">
-
-<div class="service-icon">📈</div>
-
-<h3>Ziidi MMF</h3>
-
-<p>
-Illustrative investment calculator showing
-how different contribution amounts can grow.
-</p>
-
-<button class="btn btn-green"
-onclick="openModal('ziidiModal')">
-Open Service
-</button>
-
-</div>
-
-<!-- 4 -->
-
-<div class="service-card">
-
-<div class="service-icon">🚗</div>
-
-<h3>Jobs</h3>
-
-<p>
-Browse driver, agent and digital-work opportunities
-using a searchable job demonstration.
-</p>
-
-<button class="btn btn-green"
-onclick="openModal('jobsModal')">
-Open Service
-</button>
-
-</div>
-
-<!-- 5 -->
-
-<div class="service-card">
-
-<div class="service-icon">🎓</div>
-
-<h3>Scholarships</h3>
-
-<p>
-Search Kenyan counties, institutions and
-international scholarship opportunities.
-</p>
-
-<button class="btn btn-green"
-onclick="openModal('scholarshipModal')">
-Open Service
-</button>
-
-</div>
-
-<!-- 6 -->
-
-<div class="service-card">
-
-<div class="service-icon">🎁</div>
-
-<h3>Bonga Points</h3>
-
-<p>
-Interactive points calculator and demonstration
-of a conversion workflow.
-</p>
-
-<button class="btn btn-green"
-onclick="openModal('bongaModal')">
-Open Service
-</button>
-
-</div>
-
-<!-- 7 -->
-
-<div class="service-card">
-
-<div class="service-icon">🧾</div>
-
-<h3>Lipa na M-PESA</h3>
-
-<p>
-Demonstration of till selection and business
-application workflow.
-</p>
-
-<button class="btn btn-green"
-onclick="openModal('tillModal')">
-Open Service
-</button>
-
-</div>
-
-<!-- 8 -->
-
-<div class="service-card">
-
-<div class="service-icon">✈️</div>
-
-<h3>Aviator — Demo</h3>
-
-<p>
-Virtual-credit crash-game demonstration inspired
-by the general crash-game interface.
-</p>
-
-<button class="btn btn-dark"
-onclick="openModal('aviatorModal')">
-Open Demo
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================================================
-     ABOUT
-========================================================= -->
-
-<section class="section" id="about">
-
-<div class="section-head">
-
-<div class="eyebrow">Built as a concept</div>
-
-<h2>Professional service architecture.</h2>
-
-<p>
-Each service has its own interface so real authorized APIs
-can later be connected independently.
-</p>
-
-</div>
-
-<div class="info-grid">
-
-<div class="info-box">
-<small>Service modules</small>
-<strong>08</strong>
-</div>
-
-<div class="info-box">
-<small>Kenyan counties</small>
-<strong>47</strong>
-</div>
-
-<div class="info-box">
-<small>Interface</small>
-<strong>Responsive</strong>
-</div>
-
-</div>
-
-<div class="notice">
-<strong>Development architecture:</strong>
-This front-end intentionally keeps payment, identity verification,
-financial transactions and betting in demonstration mode.
-Authorized production APIs can be integrated separately.
-</div>
-
-</section>
-
-<!-- =========================================================
-     SECURITY
-========================================================= -->
-
-<section class="section" id="security">
-
-<div class="section-head">
-
-<div class="eyebrow">Security</div>
-
-<h2>Designed without collecting sensitive credentials.</h2>
-
-<p>
-A real production implementation should use authorized APIs,
-HTTPS, server-side validation and appropriate data-protection controls.
-</p>
-
-</div>
-
-<div class="info-grid">
-
-<div class="info-box">
-<strong>🔐</strong>
-<h3>Secure architecture</h3>
-<p>No M-PESA PIN fields are used.</p>
-</div>
-
-<div class="info-box">
-<strong>🛡️</strong>
-<h3>Data minimization</h3>
-<p>Demo workflows avoid unnecessary personal data.</p>
-</div>
-
-<div class="info-box">
-<strong>⚙️</strong>
-<h3>API ready</h3>
-<p>Service modules can be connected to authorized backends.</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================================================
-     FULIZA MODAL
-========================================================= -->
-
-<div class="modal" id="fulizaModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2>💚 Fuliza Boost — Demonstration</h2>
-
-<button class="close" onclick="closeModal('fulizaModal')">×</button>
-
-</div>
-
-<div class="modal-content">
-
-<div class="feature-image">
-
-<img
-src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85"
-alt="Professional business discussion">
-
-<div class="caption">
-Illustrative business/financial image. Not an endorsement or application result.
-</div>
-
-</div>
-
-<div class="notice">
-
-<strong>About Fuliza:</strong>
-Fuliza is an M-PESA overdraft service. Actual eligibility,
-limit and terms are determined through the authorized service.
-</div>
-
-<div class="info-grid">
-
-<div class="info-box">
-<small>Current status</small>
-<strong>Demo</strong>
-</div>
-
-<div class="info-box">
-<small>Eligibility</small>
-<strong>Check required</strong>
-</div>
-
-<div class="info-box">
-<small>Application</small>
-<strong>Official channels</strong>
-</div>
-
-</div>
-
-<h3 style="margin:25px 0 12px">
-Leadership / product information
-</h3>
-
-<div class="feature-image">
-
-<img
-src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=85"
-alt="Executive portrait illustration">
-
-<div class="caption">
-Illustrative executive image — not a portrait of Peter Ndegwa.
-</div>
-
-</div>
-
-<p style="color:var(--muted);font-size:13px">
-For a production website, use an appropriately licensed,
-officially sourced portrait and attribution if you have permission
-to publish it.
-</p>
-
-<button class="btn btn-green"
-style="margin-top:20px"
-onclick="showToast('Demo eligibility workflow opened.')">
-Continue Demo
-</button>
-
-</div>
-</div>
-</div>
-
-<!-- =========================================================
-     NYOTA MODAL
-========================================================= -->
-
-<div class="modal" id="nyotaModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2>🇰🇪 NYOTA Empowerment</h2>
-
-<button class="close" onclick="closeModal('nyotaModal')">×</button>
-
-</div>
-
-<div class="modal-content">
-
-<div class="nyota-gallery">
-
-<img
-src="https://images.unsplash.com/photo-1509099836639-18ba02c7e1d3?auto=format&fit=crop&w=1200&q=85"
-alt="Youth community">
-
-<img
-src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85"
-alt="Young people">
-
-<img
-src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85"
-alt="Students">
-
-</div>
-
-<div class="notice">
-
-The NYOTA Project is a Government of Kenya initiative financed by
-the World Bank. Its interventions include employability,
-enterprise development and savings support. 1
-
-</div>
-
-<div class="notice warning">
-
-<strong>President William Ruto:</strong>
-The official NYOTA website documents presidential participation
-in NYOTA business-support disbursement events. 2
-
-</div>
-
-<div class="info-grid">
-
-<div class="info-box">
-<small>Coverage</small>
-<strong>47 Counties</strong>
-</div>
-
-<div class="info-box">
-<small>Programme</small>
-<strong>Youth Support</strong>
-</div>
-
-<div class="info-box">
-<small>Status</small>
-<strong>Official information</strong>
-</div>
-
-</div>
-
-<h3 style="margin:20px 0 10px">
-Demonstration eligibility
-</h3>
-
-<div class="form-grid">
-
-<div class="form-group">
-<label>County</label>
-<select id="nyotaCounty">
-<option>Select county</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>Age category</label>
-<select>
-<option>18–29</option>
-<option>PWD category</option>
-<option>Other</option>
-</select>
-</div>
-
-</div>
-
-<button class="btn btn-green"
-onclick="showToast('Demo eligibility check completed. Visit the official NYOTA portal for genuine applications.')">
-Check Demo Eligibility
-</button>
-
-</div>
-</div>
-</div>
-
-<!-- =========================================================
-     ZIIDI MODAL
-========================================================= -->
-
-<div class="modal" id="ziidiModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2>📈 Ziidi MMF — Investment Demonstration</h2>
-
-<button class="close" onclick="closeModal('ziidiModal')">×</button>
-
-</div>
-
-<div class="modal-content">
-
-<div class="notice">
-
-Ziidi is an investment product accessible through M-PESA channels.
-This calculator is illustrative only and does not guarantee returns.
-3
-
-</div>
-
-<div class="calculator">
-
-<label>
-Investment amount
-</label>
-
-<div class="range-value">
-KSh <span id="investmentValue">50,000</span>
-</div>
-
-<input
-type="range"
-min="1000"
-max="500000"
-step="1000"
-value="50000"
-id="investmentRange"
-oninput="calculateInvestment()">
-
-<div class="info-grid">
-
-<div class="info-box">
-<small>Illustrative annual rate</small>
-<strong>10%</strong>
-</div>
-
-<div class="info-box">
-<small>Estimated annual growth</small>
-<strong id="annualReturn">KSh 5,000</strong>
-</div>
-
-<div class="info-box">
-<small>Illustrative total</small>
-<strong id="investmentTotal">KSh 55,000</strong>
-</div>
-
-</div>
-
-<p style="font-size:12px;color:var(--muted)">
-The rate above is a demonstration assumption and is not a current
-quoted Ziidi return.
-</p>
-
-</div>
-
-<button
-class="btn btn-green"
-style="margin-top:20px"
-onclick="showToast('Investment demonstration completed. No real investment was created.')">
-Continue
-</button>
-
-</div>
-</div>
-</div>
-
-<!-- =========================================================
-     JOBS MODAL
-========================================================= -->
-
-<div class="modal" id="jobsModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2>🚗 Jobs & Opportunities</h2>
-
-<button class="close" onclick="closeModal('jobsModal')">×</button>
-
-</div>
-
-<div class="modal-content">
-
-<div class="job-controls">
-
-<div class="form-group">
-<label>Search</label>
-<input
-id="jobSearch"
-placeholder="e.g. driver"
-oninput="filterJobs()">
-</div>
-
-<div class="form-group">
-<label>Category</label>
-<select id="jobCategory" onchange="filterJobs()">
-<option value="all">All jobs</option>
-<option value="driver">Drivers</option>
-<option value="agent">Agents</option>
-<option value="support">Support</option>
-</select>
-</div>
-
-</div>
-
-<div class="jobs-list" id="jobsList"></div>
-
-</div>
-</div>
-</div>
-
-<!-- =========================================================
-     SCHOLARSHIP MODAL
-========================================================= -->
-
-<div class="modal" id="scholarshipModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2>🎓 Scholarships</h2>
-
-<button class="close" onclick="closeModal('scholarshipModal')">×</button>
-
-</div>
-
-<div class="modal-content">
-
-<div class="notice">
-Search demonstration scholarship records by county,
-institution type or country. Always verify application
-requirements on the scholarship provider's official website.
-</div>
-
-<div class="scholarship-filters">
-
-<div class="form-group">
-<label>County</label>
-<select id="countyFilter" onchange="filterScholarships()">
-<option value="all">All Kenya</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>Institution</label>
-<select id="institutionFilter" onchange="filterScholarships()">
-<option value="all">All institutions</option>
-<option value="University">University</option>
-<option value="TVET">TVET</option>
-<option value="Polytechnic">Polytechnic</option>
-<option value="KMTC">KMTC</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>Region</label>
-<select id="regionFilter" onchange="filterScholarships()">
-<option value="all">All</option>
-<option value="Kenya">Kenya</option>
-<option value="International">International</option>
-</select>
-</div>
-
-</div>
-
-<div class="scholarships" id="scholarshipsList"></div>
-
-</div>
-</div>
-</div>
-
-<!-- =========================================================
-     BONGA MODAL
-========================================================= -->
-
-<div class="modal" id="bongaModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2>🎁 Bonga Points</h2>
-
-<button class="close" onclick="closeModal('bongaModal')">×</button>
-
-</div>
-
-<div class="modal-content">
-
-<div class="bonga-card">
-
-<div style="font-size:13px;opacity:.8">
-DEMONSTRATION BALANCE
-</div>
-
-<div class="bonga-points" id="bongaDisplay">
-25,000
-</div>
-
-<div>Bonga Points</div>
-
-</div>
-
-<div style="margin-top:25px">
-
-<div class="form-group">
-
-<label>Enter points</label>
-
-<input
-type="number"
-id="bongaInput"
-value="25000"
-min="0"
-oninput="calculateBonga()">
-
-</div>
-
-<div class="info-grid">
-
-<div class="info-box">
-<small>Points</small>
-<strong id="bongaPoints">25,000</strong>
-</div>
-
-<div class="info-box">
-<small>Illustrative value</small>
-<strong id="bongaMoney">KSh 500</strong>
-</div>
-
-<div class="info-box">
-<small>Destination</small>
-<strong>M-PESA</strong>
-</div>
-
-</div>
-
-</div>
-
-<div class="notice warning">
-This is a conversion calculator demonstration.
-It does not transfer or redeem real Bonga Points.
-Use official Safaricom channels for actual redemption.
-</div>
-
-<button class="btn btn-green"
-onclick="showToast('Demo conversion complete — no money was transferred.')">
-Demonstrate Conversion
-</button>
-
-</div>
-</div>
-</div>
-
-<!-- =========================================================
-     TILL MODAL
-========================================================= -->
-
-<div class="modal" id="tillModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2>🧾 Lipa na M-PESA Till Application</h2>
-
-<button class="close" onclick="closeModal('tillModal')">×</button>
-
-</div>
-
-<div class="modal-content">
-
-<div class="notice">
-
-Select a demonstration till number below.
-The numbers are masked and fictional.
-</div>
-
-<div class="till-grid" id="tillGrid"></div>
-
-<div class="info-grid">
-
-<div class="info-box">
-<small>Application</small>
-<strong>KSh 150</strong>
-</div>
-
-<div class="info-box">
-<small>Selected Till</small>
-<strong id="selectedTill">None</strong>
-</div>
-
-<div class="info-box">
-<small>Status</small>
-<strong id="tillStatus">Not selected</strong>
-</div>
-
-</div>
-
-<div class="notice">
-
-<strong>Important:</strong>
-A genuine M-PESA Business/Till application should be completed
-through authorized Safaricom/M-PESA Business channels.
-After a genuine application, customers can receive instructions
-on using the M-PESA Business App.
-
-</div>
-
-<button class="btn btn-green"
-onclick="submitTillDemo()">
-Continue Demo — KSh 150
-</button>
-
-</div>
-</div>
-</div>
-
-<!-- =========================================================
-     AVIATOR MODAL
-========================================================= -->
-
-<div class="modal" id="aviatorModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2>✈️ Aviator — Virtual Demo</h2>
-
-<button class="close" onclick="closeModal('aviatorModal')">×</button>
-
-</div>
-
-<div class="modal-content">
-
-<div class="notice danger">
-
-<strong>VIRTUAL DEMONSTRATION ONLY.</strong>
-This game uses virtual credits. There are no M-PESA deposits,
-cash withdrawals, real-money stakes or prizes.
-</div>
-
-<div class="aviator">
-
-<div class="aviator-header">
-
-<strong>AVIATOR DEMO</strong>
-
-<span class="demo-balance">
-Virtual Balance: KSh <span id="aviatorBalance">10,000</span>
-</span>
-
-</div>
-
-<div class="game-area" id="gameArea">
-
-<div class="chart-line"></div>
-
-<div class="plane" id="plane">✈️</div>
-
-<div class="multiplier" id="multiplier">
-1.00x
-</div>
-
-<div id="gameStatus"
-style="position:relative;z-index:3;color:#8ea99a;margin-top:10px">
-Waiting for round
-</div>
-
-</div>
-
-<div class="aviator-controls">
-
-<input
-type="number"
-id="stake"
-min="50"
-max="50000"
-value="50"
-placeholder="Virtual stake">
-
-<input
-type="number"
-id="autoCashout"
-min="1.1"
-max="100"
-step=".1"
-value="2"
-placeholder="Auto cashout">
-
-<button
-class="btn btn-green"
-id="aviatorButton"
-onclick="startAviator()">
-Start Round
-</button>
-
-</div>
-
-<div class="round-history" id="roundHistory">
-
-<span style="color:#80958b;font-size:12px">
-Round history will appear here.
-</span>
-
-</div>
-
-</div>
-
-<p style="font-size:12px;color:var(--muted);margin-top:12px">
-This interface demonstrates game-state logic only.
-It is not connected to Spribe, a sportsbook, M-PESA or any
-real-money gambling platform.
-</p>
-
-</div>
-</div>
-</div>
-
-<!-- =========================================================
-     TOAST CONTAINER
-========================================================= -->
-
-<div class="toast-container" id="toastContainer"></div>
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-<div class="footer-inner">
-
-<div class="footer-grid">
-
-<div>
-
-<h3>Kenya Digital Hub</h3>
-
-<p>
-A professional front-end demonstration showing how multiple
-Kenyan digital services can be organized inside one modern
-service architecture.
-</p>
-
-</div>
-
-<div>
-
-<h3>Services</h3>
-
-<a href="#services">Fuliza</a>
-<a href="#services">NYOTA</a>
-<a href="#services">Ziidi</a>
-<a href="#services">Jobs</a>
-
-</div>
-
-<div>
-
-<h3>Education</h3>
-
-<a href="#services">Scholarships</a>
-<a href="#services">Bonga Points</a>
-
-</div>
-
-<div>
-
-<h3>Business</h3>
-
-<a href="#services">Lipa na M-PESA</a>
-<a href="#services">Aviator Demo</a>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-
-© 2026 Kenya Digital Hub Demonstration.
-Not affiliated with or operated by Safaricom PLC,
-the Government of Kenya, Spribe, or any betting operator.
-
-</div>
-
-</div>
-
-</footer>
-
-<script>
-
-/* =========================================================
-   GENERAL MODAL SYSTEM
-========================================================= */
-
-function openModal(id){
-
-    document.getElementById(id).classList.add("active");
-
-    document.body.style.overflow="hidden";
-}
-
-function closeModal(id){
-
-    document.getElementById(id).classList.remove("active");
-
-    document.body.style.overflow="";
-}
-
-document.querySelectorAll(".modal").forEach(modal=>{
-
-    modal.addEventListener("click",function(e){
-
-        if(e.target===modal){
-
-            modal.classList.remove("active");
-
-            document.body.style.overflow="";
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safaricom Strategic Super Hub Portal</title>
+    <style>
+        :root {
+            --safaricom-green: #26b14c;
+            --safaricom-dark: #1b7f36;
+            --mpesa-red: #e41e26;
+            --light-bg: #f4f7f4;
+            --white: #ffffff;
+            --dark-charcoal: #1e1e1e;
+            --muted-gray: #666666;
+            --blue-accent: #0d47a1;
+            --truecaller-blue: #0087ff;
         }
 
-    });
-
-});
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-function toggleMenu(){
-
-    document.getElementById("navLinks").classList.toggle("open");
-
-}
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-function showToast(message){
-
-    const container=document.getElementById("toastContainer");
-
-    const toast=document.createElement("div");
-
-    toast.className="toast";
-
-    toast.textContent=message;
-
-    container.appendChild(toast);
-
-    setTimeout(()=>{
-
-        toast.remove();
-
-    },3500);
-
-}
-
-function showNotice(){
-
-    showToast(
-        "This portal is a demonstration. Real services must use authorized official channels."
-    );
-
-}
-
-/* =========================================================
-   COUNTIES
-========================================================= */
-
-const counties=[
-"Baringo",
-"Bomet",
-"Bungoma",
-"Busia",
-"Elgeyo-Marakwet",
-"Embu",
-"Garissa",
-"Homa Bay",
-"Isiolo",
-"Kajiado",
-"Kakamega",
-"Kericho",
-"Kiambu",
-"Kilifi",
-"Kirinyaga",
-"Kisii",
-"Kisumu",
-"Kitui",
-"Kwale",
-"Laikipia",
-"Lamu",
-"Machakos",
-"Makueni",
-"Mandera",
-"Marsabit",
-"Meru",
-" Migori".trim(),
-"Mombasa",
-"Murang'a",
-"Nairobi",
-"Nakuru",
-"Nandi",
-"Narok",
-"Nyamira",
-"Nyandarua",
-"Nyeri",
-"Samburu",
-"Siaya",
-"Taita-Taveta",
-"Tana River",
-"Tharaka-Nithi",
-"Trans Nzoia",
-"Turkana",
-"Uasin Gishu",
-"Vihiga",
-"Wajir",
-"West Pokot"
-];
-
-function populateCountySelects(){
-
-    const nyota=document.getElementById("nyotaCounty");
-
-    counties.forEach(county=>{
-
-        const option=document.createElement("option");
-
-        option.value=county;
-        option.textContent=county;
-
-        nyota.appendChild(option);
-
-    });
-
-    const scholarship=document.getElementById("countyFilter");
-
-    counties.forEach(county=>{
-
-        const option=document.createElement("option");
-
-        option.value=county;
-        option.textContent=county;
-
-        scholarship.appendChild(option);
-
-    });
-
-}
-
-/* =========================================================
-   INVESTMENT CALCULATOR
-========================================================= */
-
-function calculateInvestment(){
-
-    const amount=Number(
-        document.getElementById("investmentRange").value
-    );
-
-    const rate=.10;
-
-    const annual=amount*rate;
-
-    const total=amount+annual;
-
-    document.getElementById("investmentValue").textContent=
-        amount.toLocaleString();
-
-    document.getElementById("annualReturn").textContent=
-        "KSh "+annual.toLocaleString();
-
-    document.getElementById("investmentTotal").textContent=
-        "KSh "+total.toLocaleString();
-
-}
-
-/* =========================================================
-   BONGA CALCULATOR
-========================================================= */
-
-function calculateBonga(){
-
-    let points=Number(
-        document.getElementById("bongaInput").value
-    )||0;
-
-    /*
-      Demonstration-only conversion:
-      50 points = KSh 1
-    */
-
-    const money=points/50;
-
-    document.getElementById("bongaDisplay").textContent=
-        points.toLocaleString();
-
-    document.getElementById("bongaPoints").textContent=
-        points.toLocaleString();
-
-    document.getElementById("bongaMoney").textContent=
-        "KSh "+money.toLocaleString();
-
-}
-
-/* =========================================================
-   JOBS
-========================================================= */
-
-const jobs=[
-
-{
-title:"Professional Driver",
-company:"Demo Mobility Partner",
-location:"Nairobi",
-category:"driver"
-},
-
-{
-title:"Ride-Hailing Driver",
-company:"Demo Transport Partner",
-location:"Nakuru",
-category:"driver"
-},
-
-{
-title:"Safaricom Agent Assistant",
-company:"Demo Retail Partner",
-location:"Kiambu",
-category:"agent"
-},
-
-{
-title:"Customer Support Assistant",
-company:"Demo Digital Services",
-location:"Mombasa",
-category:"support"
-},
-
-{
-title:"Field Service Driver",
-company:"Demo Field Operations",
-location:"Kisumu",
-category:"driver"
-},
-
-{
-title:"Retail Agent",
-company:"Demo Retail Network",
-location:"Eldoret",
-category:"agent"
-}
-
-];
-
-function filterJobs(){
-
-    const search=
-        document.getElementById("jobSearch").value.toLowerCase();
-
-    const category=
-        document.getElementById("jobCategory").value;
-
-    const container=
-        document.getElementById("jobsList");
-
-    container.innerHTML="";
-
-    const filtered=jobs.filter(job=>{
-
-        const matchesSearch=
-            job.title.toLowerCase().includes(search) ||
-            job.location.toLowerCase().includes(search);
-
-        const matchesCategory=
-            category==="all" ||
-            job.category===category;
-
-        return matchesSearch && matchesCategory;
-
-    });
-
-    if(!filtered.length){
-
-        container.innerHTML=
-            '<div class="notice">No demonstration jobs found.</div>';
-
-        return;
-
-    }
-
-    filtered.forEach(job=>{
-
-        const div=document.createElement("div");
-
-        div.className="job";
-
-        div.innerHTML=`
-
-            <div>
-
-                <h4>${job.title}</h4>
-
-                <p>
-                ${job.company} · ${job.location}
-                </p>
-
-            </div>
-
-            <button
-            class="btn btn-green"
-            onclick="showToast('Demo application opened for ${job.title}.')">
-            Apply
-            </button>
-
-        `;
-
-        container.appendChild(div);
-
-    });
-
-}
-
-/* =========================================================
-   SCHOLARSHIPS
-========================================================= */
-
-const scholarshipData=[
-
-{
-title:"Kenya University Scholarship",
-county:"Nairobi",
-institution:"University",
-region:"Kenya",
-description:"Illustrative university scholarship opportunity."
-},
-
-{
-title:"TVET Skills Scholarship",
-county:"Nakuru",
-institution:"TVET",
-region:"Kenya",
-description:"Illustrative technical and vocational scholarship."
-},
-
-{
-title:"KMTC Training Opportunity",
-county:"Kisumu",
-institution:"KMTC",
-region:"Kenya",
-description:"Illustrative medical training scholarship."
-},
-
-{
-title:"Polytechnic Technical Scholarship",
-county:"Mombasa",
-institution:"Polytechnic",
-region:"Kenya",
-description:"Illustrative technical education opportunity."
-},
-
-{
-title:"East Africa Academic Scholarship",
-county:"all",
-institution:"University",
-region:"International",
-description:"Illustrative regional scholarship."
-},
-
-{
-title:"European University Scholarship",
-county:"all",
-institution:"University",
-region:"International",
-description:"Illustrative international scholarship."
-},
-
-{
-title:"North American Study Opportunity",
-county:"all",
-institution:"University",
-region:"International",
-description:"Illustrative overseas study opportunity."
-},
-
-{
-title:"Asian Technology Scholarship",
-county:"all",
-institution:"University",
-region:"International",
-description:"Illustrative international technology scholarship."
-}
-
-];
-
-function filterScholarships(){
-
-    const county=
-        document.getElementById("countyFilter").value;
-
-    const institution=
-        document.getElementById("institutionFilter").value;
-
-    const region=
-        document.getElementById("regionFilter").value;
-
-    const container=
-        document.getElementById("scholarshipsList");
-
-    container.innerHTML="";
-
-    const filtered=scholarshipData.filter(item=>{
-
-        const countyMatch=
-            county==="all" ||
-            item.county==="all" ||
-            item.county===county;
-
-        const institutionMatch=
-            institution==="all" ||
-            item.institution===institution;
-
-        const regionMatch=
-            region==="all" ||
-            item.region===region;
-
-        return countyMatch &&
-               institutionMatch &&
-               regionMatch;
-
-    });
-
-    if(!filtered.length){
-
-        container.innerHTML=
-        '<div class="notice">No demonstration scholarships match your filters.</div>';
-
-        return;
-
-    }
-
-    filtered.forEach(item=>{
-
-        const div=document.createElement("div");
-
-        div.className="scholarship";
-
-        div.innerHTML=`
-
-            <h4>${item.title}</h4>
-
-            <p>
-            ${item.region} ·
-            ${item.institution}
-            </p>
-
-            <p style="margin-top:8px">
-            ${item.description}
-            </p>
-
-            <button
-            class="btn btn-green"
-            style="margin-top:12px"
-            onclick="showToast('Demo scholarship details opened.')">
-            View Opportunity
-            </button>
-
-        `;
-
-        container.appendChild(div);
-
-    });
-
-}
-
-/* =========================================================
-   TILL NUMBERS
-========================================================= */
-
-const tills=[
-"**** 1021",
-"**** 2478",
-"**** 3186",
-"**** 4529",
-"**** 5674",
-"**** 6042",
-"**** 7158",
-"**** 8234",
-"**** 9361",
-"**** 0472",
-"**** 1549",
-"**** 2683"
-];
-
-let selectedTill=null;
-
-function populateTills(){
-
-    const grid=document.getElementById("tillGrid");
-
-    tills.forEach(till=>{
-
-        const div=document.createElement("div");
-
-        div.className="till";
-
-        div.textContent=till;
-
-        div.onclick=()=>{
-
-            document.querySelectorAll(".till")
-            .forEach(x=>x.classList.remove("selected"));
-
-            div.classList.add("selected");
-
-            selectedTill=till;
-
-            document.getElementById("selectedTill")
-            .textContent=till;
-
-            document.getElementById("tillStatus")
-            .textContent="Selected";
-
-        };
-
-        grid.appendChild(div);
-
-    });
-
-}
-
-function submitTillDemo(){
-
-    if(!selectedTill){
-
-        showToast("Please select a demonstration till number.");
-
-        return;
-
-    }
-
-    showToast(
-        "Demo application prepared for "+selectedTill+
-        ". No payment was processed."
-    );
-
-}
-
-/* =========================================================
-   AVIATOR VIRTUAL DEMO
-========================================================= */
-
-let aviatorBalance=10000;
-
-let aviatorRunning=false;
-
-let aviatorInterval=null;
-
-function updateAviatorBalance(){
-
-    document.getElementById("aviatorBalance")
-    .textContent=aviatorBalance.toLocaleString();
-
-}
-
-function startAviator(){
-
-    if(aviatorRunning){
-
-        return;
-
-    }
-
-    let stake=Number(
-        document.getElementById("stake").value
-    );
-
-    const autoCashout=Number(
-        document.getElementById("autoCashout").value
-    );
-
-    if(stake<50 || stake>50000){
-
-        showToast(
-            "Virtual stake must be between KSh 50 and KSh 50,000."
-        );
-
-        return;
-
-    }
-
-    if(stake>aviatorBalance){
-
-        showToast("Insufficient virtual balance.");
-
-        return;
-
-    }
-
-    aviatorBalance-=stake;
-
-    updateAviatorBalance();
-
-    aviatorRunning=true;
-
-    let multiplier=1;
-
-    const multiplierEl=
-        document.getElementById("multiplier");
-
-    const statusEl=
-        document.getElementById("gameStatus");
-
-    const plane=
-        document.getElementById("plane");
-
-    const button=
-        document.getElementById("aviatorButton");
-
-    multiplierEl.classList.remove("crashed");
-
-    button.textContent="Round Running...";
-
-    button.disabled=true;
-
-    statusEl.textContent="Flying...";
-
-    /*
-      Demo crash point.
-      This is intentionally random and has no
-      connection to any real betting system.
-    */
-
-    const crashPoint=
-        1.2+
-        Math.random()*7;
-
-    aviatorInterval=setInterval(()=>{
-
-        multiplier+=.08;
-
-        multiplierEl.textContent=
-            multiplier.toFixed(2)+"x";
-
-        plane.style.left=
-            Math.min(78,20+multiplier*7)+"%";
-
-        plane.style.bottom=
-            Math.min(70,24+multiplier*5)+"%";
-
-        if(multiplier>=autoCashout){
-
-            const winnings=
-                Math.floor(stake*autoCashout);
-
-            aviatorBalance+=winnings;
-
-            finishAviator(
-                autoCashout,
-                "Auto cash-out"
-            );
-
-            showToast(
-                "Virtual auto cash-out: KSh "+
-                winnings.toLocaleString()
-            );
-
-            return;
-
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
 
-        if(multiplier>=crashPoint){
-
-            finishAviator(
-                multiplier,
-                "Round crashed"
-            );
-
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-charcoal);
+            line-height: 1.5;
         }
 
-    },120);
+        .brand-top-highlight {
+            background: linear-gradient(90deg, var(--safaricom-green) 70%, var(--mpesa-red) 30%);
+            height: 6px;
+            width: 100%;
+        }
 
+        /* Navigation Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo-combo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-symbol {
+            background: linear-gradient(135deg, var(--safaricom-green), var(--safaricom-dark));
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.5rem;
+            box-shadow: 0 3px 6px rgba(38,177,76,0.3);
+        }
+
+        .brand-titles h1 {
+            font-size: 1.4rem;
+            color: var(--safaricom-dark);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-titles p {
+            font-size: 0.72rem;
+            color: var(--muted-gray);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .system-badge {
+            font-size: 0.72rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background-color: var(--light-bg);
+            color: var(--muted-gray);
+        }
+
+        .system-badge.green {
+            background-color: #e8f5e9;
+            color: var(--safaricom-dark);
+        }
+
+        .system-badge.blue {
+            background-color: #e3f2fd;
+            color: var(--blue-accent);
+        }
+
+        /* Executive Leadership Banner */
+        .executive-hero {
+            background: linear-gradient(rgba(27, 127, 54, 0.92), rgba(15, 74, 31, 0.96)), url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 35px 20px;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .ceo-profile {
+            flex: 1;
+            min-width: 260px;
+            text-align: center;
+        }
+
+        .ceo-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--white);
+            background-color: #e0e0e0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 0 auto 12px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .ceo-details h2 {
+            font-size: 1.4rem;
+            margin-bottom: 2px;
+        }
+
+        .ceo-details .title {
+            font-size: 0.82rem;
+            color: #a3e2b2;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .ceo-message {
+            flex: 2.5;
+            min-width: 320px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            border-left: 5px solid var(--safaricom-green);
+        }
+
+        .ceo-message p {
+            font-style: italic;
+            font-size: 0.98rem;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive Dashboard Super Grid */
+        .super-grid {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 25px;
+        }
+
+        .module-card {
+            background-color: var(--white);
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 12px;
+        }
+
+        .module-header h3 {
+            color: var(--safaricom-dark);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .system-badge.red {
+            background-color: #ffebee;
+            color: var(--mpesa-red);
+        }
+
+        /* Service Feature Graphic Banner */
+        .service-banner-frame {
+            width: 100%;
+            height: 140px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .banner-caption h4 {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .corporate-pitch {
+            font-size: 0.9rem;
+            color: #444;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Truecaller Proof Message Box Styling */
+        .truecaller-proof-box {
+            background-color: #f0f8ff;
+            border: 1.5px solid #cce5ff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(0,135,255,0.05);
+        }
+
+        .truecaller-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            font-weight: bold;
+            color: var(--truecaller-blue);
+            text-transform: uppercase;
+        }
+
+        .truecaller-body {
+            background-color: var(--white);
+            border-left: 4px solid var(--truecaller-blue);
+            padding: 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.78rem;
+            color: #222;
+        }
+
+        /* Form Controls Setup */
+        .input-wrapper {
+            margin-bottom: 14px;
+        }
+
+        .input-wrapper label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--muted-gray);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #e2e8e2;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            background-color: #fafbfa;
+            transition: all 0.25s ease;
+            color: var(--dark-charcoal);
+        }
+
+        .input-wrapper input:focus, .input-wrapper select:focus {
+            outline: none;
+            border-color: var(--safaricom-green);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(38,177,76,0.1);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        /* Dynamic Visual Layouts */
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active-state {
+            display: block;
+        }
+
+        /* Processing Engine Cycle Box overlay */
+        .processing-overlay-view {
+            display: none;
+            text-align: center;
+            padding: 30px 10px;
+        }
+
+        .processing-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e8f5e8;
+            border-top: 5px solid var(--safaricom-green);
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            animation: spinEngine 0.9s linear infinite;
+        }
+
+        @keyframes spinEngine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Kenyan ID Profile Canvas Visual Asset Component */
+        .national-id-canvas {
+
+background: linear-gradient(135deg, #e3f2fd, #ffffff);
+border: 2px solid #bbdefb;
+border-radius: 12px;
+padding: 14px;
+margin-bottom: 15px;
+position: relative;
+}
+.id-coat-of-arms {
+position: absolute;
+top: 10px;
+right: 12px;
+width: 40px;
+height: 40px;
+opacity: 0.15;
+}
+.id-header-text {
+font-size: 0.68rem;
+font-weight: 800;
+color: #0d47a1;
+text-transform: uppercase;
+border-bottom: 1px solid #90caf9;
+padding-bottom: 4px;
+margin-bottom: 10px;
+}
+.id-body-grid {
+display: flex;
+gap: 12px;
+align-items: center;
+}
+.id-photo-placeholder {
+width: 75px;
+height: 90px;
+background-color: #cfd8dc;
+border: 1px solid #b0bec5;
+border-radius: 4px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #78909c;
+font-weight: bold;
+font-size: 0.6rem;
+text-transform: uppercase;
+text-align: center;
+}
+.id-data-rows {
+flex: 1;
+font-size: 0.78rem;
+}
+.id-field {
+margin-bottom: 4px;
+}
+.id-field span {
+font-weight: 700;
+color: #546e7a;
+display: inline-block;
+width: 75px;
+}
+.id-field strong {
+color: #263238;
+text-transform: uppercase;
+}
+/* Payment Aggregator Widget */
+.finapi-stk-widget-box {
+background-color: #fff8f8;
+border: 1.5px solid #ffdde0;
+border-radius: 10px;
+padding: 15px;
+margin-top: 15px;
+display: none;
+}
+.widget-branding {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 10px;
+font-size: 0.7rem;
+font-weight: 700;
+color: var(--mpesa-red);
+text-transform: uppercase;
+}
+.widget-summary-row {
+display: flex;
+justify-content: space-between;
+padding: 5px 0;
+font-size: 0.85rem;
+border-bottom: 1px dashed #f0d0d2;
+}
+.widget-summary-row.total-bold {
+border-bottom: none;
+font-weight: 800;
+font-size: 0.95rem;
+color: var(--dark-charcoal);
+padding-top: 8px;
+}
+.stk-execution-status {
+background-color: var(--dark-charcoal);
+color: #00ff66;
+font-family: monospace;
+padding: 8px;
+border-radius: 6px;
+margin-top: 10px;
+font-size: 0.75rem;
+display: none;
+}
+/* Feeds and Shared Layout items */
+.interactive-feed {
+max-height: 120px;
+overflow-y: auto;
+margin-bottom: 15px;
+border: 1px solid #f0f0f0;
+border-radius: 6px;
+}
+.feed-row {
+padding: 8px 12px;
+border-bottom: 1px solid #f9f9f9;
+font-size: 0.82rem;
+display: flex;
+justify-content: space-between;
+}
+.feed-row strong {
+color: var(--safaricom-dark);
+}
+.realtime-monitor {
+background-color: #fafafa;
+border: 1px dashed #dcdcdc;
+border-radius: 8px;
+padding: 12px;
+margin-top: 12px;
+font-size: 0.84rem;
+}
+/* Dynamic Pulse/Glow Keyframe Interactive Buttons */
+.btn-animate-trigger {
+width: 100%;
+padding: 14px;
+border: none;
+border-radius: 8px;
+font-weight: 800;
+font-size: 0.95rem;
+cursor: pointer;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+transition: all 0.3s ease;
+text-align: center;
+display: block;
+margin-top: auto;
+}
+.btn-green-theme {
+background: linear-gradient(135deg, var(--safaricom-green), var(--safaricom-dark));
+color: var(--white);
+animation: pulseGlowGreen 2s infinite ease-in-out;
+box-shadow: 0 4px 12px rgba(38,177,76,0.3);
+}
+@keyframes pulseGlowGreen {
+0% { transform: scale(1); box-shadow: 0 4px 12px rgba(38,177,76,0.3); }
+50% { transform: scale(1.02); box-shadow: 0 6px 18px rgba(38,177,76,0.5); }
+100% { transform: scale(1); box-shadow: 0 4px 12px rgba(38,177,76,0.3); }
+}
+.btn-mpesa {
+background-color: var(--mpesa-red);
+color: var(--white);
+}
+.btn-mpesa:hover {
+background-color: #c3141a;
+}
+/* Intelligent Support Chat Elements */
+.ai-chat-window {
+background-color: #f4f6f4;
+border: 1px solid #e2e8e2;
+border-radius: 10px;
+height: 180px;
+overflow-y: auto;
+padding: 12px;
+margin-bottom: 12px;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.chat-bubble {
+max-width: 85%;
+padding: 10px 12px;
+border-radius: 12px;
+font-size: 0.85rem;
+}
+.chat-bubble.safaricom-ai {
+background-color: var(--white);
+color: var(--dark-charcoal);
+border-left: 4px solid var(--safaricom-green);
+align-self: flex-start;
+}
+.chat-bubble.client-user {
+background-color: #e3f2fd;
+color: #0d47a1;
+align-self: flex-end;
+}
+.chat-input-wrapper {
+display: flex;
+gap: 6px;
+}
+.chat-input-wrapper input {
+flex: 1;
+padding: 10px;
+border: 1px solid #e0e0e0;
+border-radius: 6px;
+font-size: 0.88rem;
+}
+/* Layout Footer System */
+footer {
+background-color: #1a1a1a;
+color: #999999;
+padding: 35px 20px;
+margin-top: 40px;
+border-top: 4px solid var(--safaricom-green);
+}
+.footer-container {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+gap: 25px;
+font-size: 0.84rem;
+}
+.footer-col h5 {
+color: var(--white);
+margin-bottom: 12px;
+font-size: 0.95rem;
+}
+.footer-col ul {
+list-style: none;
+}
+.footer-col ul li {
+margin-bottom: 6px;
+}
+.footer-bottom {
+max-width: 1200px;
+margin: 25px auto 0 auto;
+padding-top: 15px;
+border-top: 1px solid #333;
+text-align: center;
+font-size: 0.75rem;
 }
 
-function finishAviator(finalMultiplier,reason){
 
-    clearInterval(aviatorInterval);
+💰 Fuliza Management Node
+M-Pesa Core
+Continuous Credit Capital
 
-    aviatorRunning=false;
 
-    const multiplierEl=
-        document.getElementById("multiplier");
 
-    const statusEl=
-        document.getElementById("gameStatus");
+At Safaricom, we understand that smooth cash flow empowers growth. Our Fuliza Overdraft Limit Acceleration Framework analyzes your lines transaction logs in real time, unlocking premium cash reserves to complete critical Lipa Na M-Pesa transactions smoothly.
 
-    const button=
-        document.getElementById("aviatorButton");
 
-    multiplierEl.textContent=
-        finalMultiplier.toFixed(2)+"x";
+BOOST MY LIMIT NOW
 
-    if(reason==="Round crashed"){
+CONTINUE IN GREEN THEME NOW
 
-        multiplierEl.classList.add("crashed");
+Securing Line Ledger...
+CHECKING LINE HISTORY AND ELIGIBILITY...
+REPUBLIC OF KENYA — NATIONAL IDENTITY CARD (FRONT)
 
-    }
+Safaricom
+Biometric
 
-    statusEl.textContent=reason;
+ID NUMBER: -
+FULL NAME: -
+CITIZENSHIP: KENYAN
+MOBILE REF: -
 
-    button.textContent="Start Round";
 
-    button.disabled=false;
+Scale to KSh 8,000 (Affordable Fee: KSh 80)
+Scale to KSh 25,000 (Affordable Fee: KSh 250)
+Scale to KSh 60,000 (Affordable Fee: KSh 600)
+Scale to KSh 150,000 (Affordable Fee: KSh 1,500)
+Scale to KSh 400,000 (Affordable Fee: KSh 4,000)
 
-    updateAviatorBalance();
+FinAPI STKPush Aggregator Module
+stkpush.co.ke API v4.2
 
-    addRoundHistory(finalMultiplier,reason);
 
+Target Capital Line:
+KSh 8,000
+
+
+Verification Fee (Fixed 1%):
+KSh 80.00
+
+
+STK Push Allocation Total:
+KSh 80.00
+
+
+AUTHORIZE LIMIT UPGRADE NOW
+
+
+⭐ Nyota Funds Empowerment
+State Grant
+National Youth Opportunities Advancement
+
+📞 Truecaller Verified Broadcast Profile
+✓ Legit Registry
+
+
+Sender ID: NYOTA_KE
+
+[M-PESA] Confirmed. KSh 25,000 received from NYOTA FUND CAPITAL. Account balance reconciled successfully via Central Bank sandbox.
+
+In partnership with the Government of Kenya and the World Bank, the National Youth Opportunities Towards Advancement (NYOTA) Programme delivers direct catalytic business grants up to KSh 400,000 directly to eligible youth-led enterprises across all 1,450 wards. This facility bypasses credit constraints to transform micro-enterprises.
+
+
+ACCESS NYOTA GRANT PORTAL
+
+Female
+Male
+Rather Not State
+
+
+001 - Mombasa002 - Kwale003 - Kilifi004 - Tana River005 - Lamu006 - Taita Taveta007 - Garissa008 - Wajir009 - Mandera010 - Marsabit011 - Isiolo012 - Meru013 - Tharaka-Nithi014 - Embu015 - Kitui016 - Machakos017 - Makueni018 - Nyandarua019 - Nyeri020 - Kirinyaga021 - Murang'a022 - Kiambu023 - Turkana024 - West Pokot025 - Samburu026 - Trans Nzoia027 - Uasin Gishu028 - Elgeyo-Marakwet029 - Nandi030 - Baringo031 - Laikipia032 - Nakuru033 - Narok034 - Kajiado035 - Kericho036 - Bomet037 - Kakamega038 - Vihiga039 - Bungoma040 - Busia041 - Siaya042 - Kisumu043 - Homa Bay044 - Migori045 - Kisii046 - Nyamira047 - Nairobi
+
+
+
+Micro-Enterprise / Retailer
+Agribusiness Operator
+Jua Kali Engineering artisan
+Unemployed graduate Youth
+
+
+Raw Materials Procurement & Inventory Boost
+Light Machinery and Tooling Assets acquisition
+Digital Upskilling & Infrastructure expansion
+
+
+
+CONTINUE TO ALLOCATION SELECTOR
+
+Analyzing Financial Security Node...
+CHECKING LINE HISTORY AND ELIGIBILITY...
+REPUBLIC OF KENYA — NATIONAL IDENTITY STRUCTURE (BACK MATRIX)
+
+ID BACK
+LEDGER
+PASSED
+
+PROFILE ID: -
+NAME DATA: -
+RESIDENCE: -
+OCCUPATION: -
+
+
+Grant Cap: KSh 22,000 (Processing Fee: KSh 350)
+Grant Cap: KSh 50,000 (Processing Fee: KSh 500)
+Grant Cap: KSh 120,000 (Processing Fee: KSh 1,200)
+Grant Cap: KSh 250,000 (Processing Fee: KSh 2,500)
+Grant Cap: KSh 400,000 (Processing Fee: KSh 4,000)
+
+FinAPI STKPush Aggregator Module
+stkpush.co.ke API v4.2
+
+
+Selected Funding Grant Capital:
+KSh 22,000
+
+
+State Registration Processing Fee:
+KSh 350.00
+
+
+Total M-Pesa STK Authorization Amount:
+KSh 350.00
+
+
+SUBMIT AND PAY VERIFICATION FEE
+
+
+💼 Corporate Career Matches
+HR Core
+
+Cloud Architecture & Cybersecurity (Nairobi HQ)
+M-Pesa Micro-Finance Core Systems (Nairobi HQ)
+Regional Technical Operations (Mombasa Hub)
+
+
+
+Network Lead: Westlands OfficeFull-Time
+Senior DevOps: M-Pesa CoreHybrid
+Graduate Trainee: Cyber OperationsInternship
+
+Transmit Core Profiles
+
+🎓 Foundation Scholarships
+Global Registry
+
+Foreign Higher Education (UK, Germany, Canada)
+In-Country Equity Systems (HEF Portal Routing)
+
+
+
+🌍 Commonwealth Fellowships: Full Cover (UK)
+🌍 DAAD Academic Framework: Graduate Grants (Germany)
+
+Generate Application Manifest
+🎟️ Bonga Escrow Trade Desk
+Verified Safe
+
+Purchase Bonga Points (From Open Safe Market)
+Liquidate Points (Instant M-Pesa Cash Crediting)
+
+
+Lock Trade in Safaricom Escrow
+
+🚗 Integrated Corporate Fleet Booking
+Logistics API
+
+Eco-Hybrid Saloon Fleet (KSh 4,000/day)
+7-Seater Executive Logistics Van (KSh 6,500/day)
+4x4 Heavyduty Safari Cruiser (KSh 9,000/day)
+
+
+Dispatch Car Availability
+
+🤖 Safaricom Strategic Positive AI
+Live LLM
+
+
+Jambo! I am your real-time corporate AI strategist, optimized to provide factual guidance. How can I constructively accelerate your financial growth or scholarship career tracking today?
+
+
+
+
+Send
+
+
+Corporate Overview
+
+Executive Board Directory
+Sustainability Frameworks
+
+
+
+System APIs
+
+Daraja M-Pesa Gateways
+stkpush.co.ke Node Channels
+
+
+
+Legal Infrastructure
+
+CBK Sandbox Terms
+Data Protection Registry
+
+
+
+
+© 2026 Safaricom Group PLC. Consolidated architecture model layout deployment pipeline.
+
+// Module 1 View Controller (Fuliza Node)
+function switchFulizaView(hidePageNo, showPageNo) {
+if (hidePageNo === 'Processing') {
+document.getElementById('fulizaProcessing').style.display = 'none';
+} else {
+document.getElementById('fulizaPage' + hidePageNo).classList.remove('active-state');
+}
+if (showPageNo === 'Processing') {
+document.getElementById('fulizaProcessing').style.display = 'block';
+} else {
+document.getElementById('fulizaPage' + showPageNo).classList.add('active-state');
+}
+}
+function runSixSecondCycle() {
+let fullName = document.getElementById('inpFullName').value.trim();
+let phoneNo = document.getElementById('inpPhone').value.trim();
+let idNo = document.getElementById('inpID').value.trim();
+let currLimit = document.getElementById('inpCurrentLimit').value.trim();
+if(!fullName || !phoneNo || !idNo || !currLimit) {
+alert("Safaricom Portal Alert: Please completely populate all input parameters.");
+return;
+}
+document.getElementById('lblFullName').innerText = fullName;
+document.getElementById('lblPhoneNo').innerText = phoneNo;
+document.getElementById('lblIdNo').innerText = idNo;
+switchFulizaView(2, 'Processing');
+let textLabel = document.getElementById('processingTextLabel');
+setTimeout(() => {
+textLabel.innerText = "QUERYING SAFARICOM IPRS CREDENTIAL INTEGRITY...";
+}, 3000);
+setTimeout(() => {
+switchFulizaView('Processing', 3);
+updatePaymentWidgetMetrics();
+}, 6000);
+}
+function updatePaymentWidgetMetrics() {
+let selectionBox = document.getElementById('boostTierSelection');
+let rawTargetCap = parseInt(selectionBox.value);
+let transactionalFee = parseFloat(selectionBox.options[selectionBox.selectedIndex].getAttribute('data-fee'));
+document.getElementById('stkWidgetWrapper').style.display = 'block';
+document.getElementById('wdgCap').innerText = "KSh " + rawTargetCap.toLocaleString();
+document.getElementById('wdgFee').innerText = "KSh " + transactionalFee.toLocaleString() + ".00";
+document.getElementById('wdgTotal').innerText = "KSh " + transactionalFee.toLocaleString() + ".00";
+}
+function dispatchStkHandshake() {
+let clientPhone = document.getElementById('inpPhone').value;
+let activeFee = document.getElementById('boostTierSelection').options[document.getElementById('boostTierSelection').selectedIndex].getAttribute('data-fee');
+let consoleLogs = document.getElementById('stkConsoleLogs');
+consoleLogs.style.display = 'block';
+consoleLogs.innerHTML = "📡 [stkpush.co.ke API]: Packaging secure JSON payload data...
+";
+setTimeout(() => {
+consoleLogs.innerHTML += "🔗 [FinAPI Aggregator]: Mapping communication failover grid routing logs...
+";
+}, 1200);
+setTimeout(() => {
+consoleLogs.innerHTML += "📱 [Daraja Core Link]: Secure STK Push prompt successfully dispatched to line target " + clientPhone + " for KSh " + activeFee + ". Authorize connection by inputs of your M-Pesa cryptographic PIN values.";
+}, 2600);
+}
+// Module 2 View Controller (Nyota Funds Node)
+function switchNyotaView(hidePageNo, showPageNo) {
+if (hidePageNo === 'Processing') {
+document.getElementById('nyotaProcessing').style.display = 'none';
+} else {
+document.getElementById('nyotaPage' + hidePageNo).classList.remove('active-state');
+}
+if (showPageNo === 'Processing') {
+document.getElementById('nyotaProcessing').style.display = 'block';
+} else {
+document.getElementById('nyotaPage' + showPageNo).classList.add('active-state');
+}
+}
+function runSixSecondNyotaCycle() {
+let fullName = document.getElementById('nyoFullName').value.trim();
+let phone = document.getElementById('nyoPhone').value.trim();
+let id = document.getElementById('nyoID').value.trim();
+let age = document.getElementById('nyoAge').value.trim();
+let county = document.getElementById('nyoCounty').value;
+let job = document.getElementById('nyoJob').value;
+if(!fullName || !phone || !id || !age) {
+alert("State Portal Alert: All verification parameters (Name, Phone, ID, Age) must be passed.");
+return;
+}
+document.getElementById('lblNyoFullName').innerText = fullName;
+document.getElementById('lblNyoIdNo').innerText = id;
+document.getElementById('lblNyoCounty').innerText = county + " County";
+document.getElementById('lblNyoJob').innerText = job;
+switchNyotaView(2, 'Processing');
+let textLabel = document.getElementById('nyotaProcessingLabel');
+setTimeout(() => {
+textLabel.innerText = "IPRS DISPATCH: VERIFYING NATIONAL RECORD RECONCILIATION SECTOR...";
+}, 3000);
+setTimeout(() => {
+switchNyotaView('Processing', 3);
+updateNyotaWidgetMetrics();
+}, 6000);
+}
+function updateNyotaWidgetMetrics() {
+let selectionBox = document.getElementById('nyotaTierSelection');
+let targetCap = parseInt(selectionBox.value);
+let transactionalFee = parseFloat(selectionBox.options[selectionBox.selectedIndex].getAttribute('data-fee'));
+document.getElementById('nyotaStkWidgetWrapper').style.display = 'block';
+document.getElementById('nyoWdgCap').innerText = "KSh " + targetCap.toLocaleString();
+document.getElementById('nyoWdgFee').innerText = "KSh " + transactionalFee.toLocaleString() + ".00";
+document.getElementById('nyoWdgTotal').innerText = "KSh " + transactionalFee.toLocaleString() + ".00";
+}
+function dispatchNyotaStkHandshake() {
+let phone = document.getElementById('nyoPhone').value;
+let fee = document.getElementById('nyotaTierSelection').options[document.getElementById('nyotaTierSelection').selectedIndex].getAttribute('data-fee');
+let consoleLogs = document.getElementById('nyotaStkConsoleLogs');
+consoleLogs.style.display = 'block';
+consoleLogs.innerHTML = "📡 [stkpush.co.ke API]: Routing secure handshake authorization token...
+";
+setTimeout(() => {
+consoleLogs.innerHTML += "🔗 [FinAPI Aggregator]: Handshake locked via CBK sandbox network layer...
+";
+}, 1200);
+setTimeout(() => {
+consoleLogs.innerHTML += "📱 [Daraja Node]: Instant STK Push payload transmitted to phone handset " + phone + " for KSh " + fee + ". Complete payment to initialize immediate Nyota grant allocation routing.";
+}, 2600);
+}
+// Secondary Systems
+function simulateJobRegistry() {
+let dept = document.getElementById('jobDept').value;
+let box = document.getElementById('jobFeedback');
+box.style.display = "block";
+box.innerHTML = "✅ Profile Logged: Dossier sent to matching queues in: " + dept + ".";
+}
+function toggleScholarshipDisplay() {
+let matrixValue = document.getElementById('scholarshipMatrix').value;
+let container = document.getElementById('scholarshipDisplayBox');
+if(matrixValue === 'intl') {
+container.innerHTML = <div class="feed-row"><span>🌍 <strong>Commonwealth Fellowships:</strong> Full Cover (UK)</span></div> <div class="feed-row"><span>🌍 <strong>DAAD Academic Framework:</strong> Graduate Grants (Germany)</span></div>;
+} else {
+container.innerHTML = <div class="feed-row"><span>🇰🇪 <strong>HEF Allocation Matrix:</strong> Government Band 1-5 Assistance</span></div> <div class="feed-row"><span>🇰🇪 <strong>Safaricom Foundation Grants:</strong> Technical STEM Track Equity</span></div>;
+}
+}
+function runBongaFeeMath() {
+let scale = document.getElementById('pointsScale').value || 0;
+let valueEquiv = scale * 0.30;
+let platformCharge = valueEquiv * 0.01;
+if(platformCharge < 2.50) platformCharge = 2.50;
+document.getElementById('computedFee').value = "KSh " + platformCharge.toFixed(2);
+}
+function processEscrowOrder() {
+let intent = document.getElementById('escrowIntent').value;
+let points = document.getElementById('pointsScale').value;
+let msg = document.getElementById('escrowStatusMsg');
+msg.style.display = "block";
+msg.innerHTML = "🔐 Order Protected: Buffer established to safely " + intent + " a volume of " + parseInt(points).toLocaleString() + " Bonga Points.";
+}
+function allocateVehicleOrder() {
+let tier = document.getElementById('vehicleTier').selectedOptions.text;
+let origin = document.getElementById('depotLoc').value;
+let responseBox = document.getElementById('fleetDispatchResponse');
+responseBox.style.display = "block";
+responseBox.innerHTML = "🚗 Fleet Clear: Active logistical unit allocation assigned for [" + tier + "] via hub point: " + origin + ".";
+}
+function executeAiEngineLogic() {
+let entryField = document.getElementById('aiQueryField');
+let query = entryField.value.trim();
+if(!query) return;
+let terminal = document.getElementById('chatEngineConsole');
+let userBubble = document.createElement('div');
+userBubble.className = 'chat-bubble client-user';
+userBubble.innerText = query;
+terminal.appendChild(userBubble);
+entryField.value = '';
+terminal.scrollTop = terminal.scrollHeight;
+setTimeout(() => {
+let aiBubble = document.createElement('div');
+aiBubble.className = 'chat-bubble safaricom-ai';
+let lowerText = query.toLowerCase();
+if(lowerText.includes('job') || lowerText.includes('career') || lowerText.includes('kazi')) {
+aiBubble.innerText = "Safaricom Core HR evaluation registers major capability footprints inside your profile. Continue upgrading your skills via our technical portals—growth is waiting for you!";
+} else if(lowerText.includes('money') || lowerText.includes('invest') || lowerText.includes('fuliza') || lowerText.includes('bonga') || lowerText.includes('nyota')) {
+aiBubble.innerText = "Building strategic financial stability requires structured planning. By verifying asset volumes and managing credit or state grant ceilings responsibly, your capital generation vectors are fully supported.";
+} else {
+aiBubble.innerText = "That is an exceptionally innovative query. Keep structuring your steps systematically and taking bold actions. Every challenge is a stepping stone to your success!";
+}
+terminal.appendChild(aiBubble);
+terminal.scrollTop = terminal.scrollHeight;
+}, 600);
 }
 
-function addRoundHistory(multiplier,reason){
 
-    const history=
-        document.getElementById("roundHistory");
 
-    const pill=
-        document.createElement("span");
-
-    pill.className="history-pill";
-
-    pill.textContent=
-        multiplier.toFixed(2)+"x";
-
-    history.prepend(pill);
-
-    if(history.children.length>12){
-
-        history.lastElementChild.remove();
-
-    }
-
-}
-
-/* =========================================================
-   INITIALIZATION
-========================================================= */
-
-populateCountySelects();
-
-populateTills();
-
-filterJobs();
-
-filterScholarships();
-
-calculateInvestment();
-
-calculateBonga();
-
-updateAviatorBalance();
-
-/* =========================================================
-   ESCAPE TO CLOSE MODAL
-========================================================= */
-
-document.addEventListener("keydown",function(e){
-
-    if(e.key==="Escape"){
-
-        document.querySelectorAll(".modal.active")
-        .forEach(modal=>{
-
-            modal.classList.remove("active");
-
-        });
-
-        document.body.style.overflow="";
-
-    }
-
-});
-
-</script>
-
-</body>
- </html>
