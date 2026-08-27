@@ -2,3342 +2,3497 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Safaricom Services Hub - Financial, Education, Scholarships, Jobs, Entertainment, Transportation, NGOs and Business Services">
-<title>Safaricom Services Hub | Twaweza</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Twaweza Services Hub - financial, education, scholarships, careers, entertainment, transport and community opportunities.">
+<title>Twaweza Services Hub</title>
 
 <style>
 :root{
-    --green:#00a651;
-    --dark:#063b26;
-    --dark2:#032719;
-    --light:#f4f8f5;
-    --white:#ffffff;
-    --text:#10231b;
-    --muted:#6b7971;
-    --border:#dce8e0;
-    --shadow:0 15px 45px rgba(3,55,30,.10);
-    --danger:#c62828;
-    --gold:#d99a00;
+ --green:#00a651;
+ --green2:#008f45;
+ --dark:#053b25;
+ --dark2:#022719;
+ --light:#f3f8f5;
+ --white:#fff;
+ --text:#10251b;
+ --muted:#6d7c74;
+ --border:#dce9e1;
+ --shadow:0 18px 55px rgba(0,55,30,.12);
+ --gold:#e0a000;
+ --red:#c62828;
+ --blue:#1769aa;
 }
 
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
 }
 
 html{
-    scroll-behavior:smooth;
+ scroll-behavior:smooth;
 }
 
 body{
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    background:var(--light);
-    color:var(--text);
-    line-height:1.5;
+ font-family:Inter,Arial,Helvetica,sans-serif;
+ background:var(--light);
+ color:var(--text);
+ line-height:1.5;
 }
 
-button,
-input,
-select{
-    font:inherit;
+button,input,select,textarea{
+ font:inherit;
 }
 
 button{
-    cursor:pointer;
+ cursor:pointer;
 }
 
 a{
-    text-decoration:none;
-    color:inherit;
+ color:inherit;
+ text-decoration:none;
 }
 
-/* =========================
-   TOP BAR
-========================= */
+/* TOP */
 
 .topbar{
-    background:var(--dark2);
-    color:#dff8e9;
-    padding:9px 5%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:12px;
+ background:var(--dark2);
+ color:#d9f4e4;
+ padding:9px 5%;
+ display:flex;
+ justify-content:space-between;
+ font-size:12px;
 }
 
 .topbar-right{
-    display:flex;
-    gap:20px;
+ display:flex;
+ gap:20px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
-    height:76px;
-    background:white;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 5%;
-    position:sticky;
-    top:0;
-    z-index:1000;
+ position:sticky;
+ top:0;
+ z-index:1000;
+ min-height:76px;
+ background:#fff;
+ border-bottom:1px solid var(--border);
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:0 5%;
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:11px;
+ display:flex;
+ align-items:center;
+ gap:11px;
 }
 
 .logo{
-    width:43px;
-    height:43px;
-    background:var(--green);
-    color:white;
-    border-radius:13px;
-    display:grid;
-    place-items:center;
-    font-size:24px;
-    font-weight:1000;
+ width:44px;
+ height:44px;
+ border-radius:13px;
+ display:grid;
+ place-items:center;
+ background:var(--green);
+ color:#fff;
+ font-weight:1000;
+ font-size:23px;
 }
 
 .brand-title{
-    font-weight:900;
-    letter-spacing:.7px;
+ font-weight:950;
+ letter-spacing:.6px;
 }
 
 .brand-sub{
-    display:block;
-    color:var(--muted);
-    font-size:11px;
+ display:block;
+ color:var(--muted);
+ font-size:10px;
 }
 
 nav{
-    display:flex;
-    gap:22px;
-    align-items:center;
+ display:flex;
+ align-items:center;
+ gap:20px;
 }
 
 nav a{
-    font-size:13px;
-    font-weight:750;
+ font-size:13px;
+ font-weight:800;
 }
 
 nav a:hover{
-    color:var(--green);
+ color:var(--green);
 }
 
 .menu{
-    display:none;
-    border:0;
-    background:none;
-    font-size:25px;
+ display:none;
+ border:0;
+ background:none;
+ font-size:26px;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
-    padding:75px 5%;
-    min-height:570px;
-    display:grid;
-    grid-template-columns:1.15fr .85fr;
-    gap:55px;
-    align-items:center;
-    background:
-        radial-gradient(circle at 80% 20%,rgba(0,166,81,.14),transparent 30%),
-        linear-gradient(135deg,#eafff1,#ffffff);
+ min-height:600px;
+ padding:75px 5%;
+ display:grid;
+ grid-template-columns:1.1fr .9fr;
+ gap:55px;
+ align-items:center;
+ background:
+ radial-gradient(circle at 85% 15%,rgba(0,166,81,.16),transparent 28%),
+ linear-gradient(135deg,#eafff1,#fff);
 }
 
 .eyebrow{
-    color:var(--green);
-    font-weight:950;
-    font-size:11px;
-    letter-spacing:2px;
+ color:var(--green);
+ font-size:10px;
+ letter-spacing:2px;
+ font-weight:950;
 }
 
 .hero h1{
-    font-size:clamp(42px,6vw,76px);
-    line-height:.98;
-    letter-spacing:-4px;
-    margin:15px 0 23px;
+ font-size:clamp(43px,6vw,76px);
+ line-height:.98;
+ letter-spacing:-4px;
+ margin:15px 0 25px;
 }
 
 .hero h1 span{
-    color:var(--green);
+ color:var(--green);
 }
 
 .hero p{
-    max-width:720px;
-    color:var(--muted);
-    font-size:18px;
-    line-height:1.75;
+ max-width:720px;
+ color:var(--muted);
+ font-size:18px;
+ line-height:1.75;
 }
 
 .hero-buttons{
-    display:flex;
-    gap:12px;
-    margin-top:30px;
-    flex-wrap:wrap;
+ display:flex;
+ flex-wrap:wrap;
+ gap:12px;
+ margin-top:30px;
 }
 
 .btn{
-    border:0;
-    border-radius:12px;
-    padding:14px 20px;
-    font-weight:850;
-    transition:.2s;
+ border:0;
+ border-radius:12px;
+ padding:14px 20px;
+ font-weight:900;
+ transition:.2s;
 }
 
 .btn:hover{
-    transform:translateY(-2px);
+ transform:translateY(-2px);
 }
 
 .btn-primary{
-    background:var(--green);
-    color:white;
+ background:var(--green);
+ color:#fff;
 }
 
-.btn-secondary{
-    background:white;
-    border:1px solid var(--border);
+.btn-dark{
+ background:var(--dark);
+ color:#fff;
+}
+
+.btn-light{
+ background:#fff;
+ border:1px solid var(--border);
 }
 
 .twaweza{
-    margin-top:32px;
-    font-size:40px;
-    letter-spacing:5px;
-    font-weight:1000;
-    color:var(--dark);
+ margin-top:30px;
+ font-size:38px;
+ letter-spacing:6px;
+ font-weight:1000;
+ color:var(--dark);
 }
 
-.hero-dashboard{
-    background:var(--dark);
-    border-radius:30px;
-    padding:25px;
-    color:white;
-    box-shadow:var(--shadow);
+/* HERO PANEL */
+
+.hero-panel{
+ background:var(--dark);
+ color:#fff;
+ padding:25px;
+ border-radius:30px;
+ box-shadow:var(--shadow);
 }
 
-.hero-main-card{
-    background:rgba(255,255,255,.08);
-    border-radius:20px;
-    padding:25px;
+.hero-image{
+ height:230px;
+ border-radius:21px;
+ overflow:hidden;
+ margin-bottom:14px;
 }
 
-.hero-main-card strong{
-    display:block;
-    font-size:58px;
+.hero-image img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
 }
 
-.hero-main-card span{
-    color:#b9d8c7;
+.hero-main{
+ background:rgba(255,255,255,.08);
+ padding:23px;
+ border-radius:20px;
+}
+
+.hero-main strong{
+ display:block;
+ font-size:53px;
+}
+
+.hero-main span{
+ color:#bad7c8;
 }
 
 .hero-stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:12px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+ margin-top:12px;
 }
 
 .hero-stat{
-    background:rgba(255,255,255,.07);
-    padding:20px;
-    border-radius:18px;
+ padding:18px;
+ border-radius:17px;
+ background:rgba(255,255,255,.07);
 }
 
 .hero-stat b{
-    display:block;
-    font-size:22px;
+ display:block;
+ font-size:22px;
 }
 
-.hero-stat small{
-    color:#b9d8c7;
-}
-
-/* =========================
-   QUICK CATEGORIES
-========================= */
+/* QUICK */
 
 .quick{
-    background:white;
-    padding:20px 5%;
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-    border-bottom:1px solid var(--border);
+ padding:18px 5%;
+ background:#fff;
+ border-bottom:1px solid var(--border);
+ display:flex;
+ gap:9px;
+ overflow:auto;
 }
 
 .quick button{
-    white-space:nowrap;
-    border:1px solid var(--border);
-    background:white;
-    border-radius:50px;
-    padding:11px 17px;
-    font-weight:700;
+ white-space:nowrap;
+ border:1px solid var(--border);
+ background:#fff;
+ padding:10px 16px;
+ border-radius:50px;
+ font-weight:800;
 }
 
 .quick button:hover{
-    color:var(--green);
-    border-color:var(--green);
+ border-color:var(--green);
+ color:var(--green);
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* SECTION */
 
 .section{
-    padding:70px 5%;
+ padding:70px 5%;
 }
 
 .section-heading{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    gap:25px;
-    margin-bottom:28px;
+ display:flex;
+ justify-content:space-between;
+ align-items:end;
+ gap:25px;
+ margin-bottom:28px;
 }
 
 .section-heading h2{
-    font-size:37px;
-    letter-spacing:-1.5px;
-    margin-top:6px;
+ font-size:36px;
+ letter-spacing:-1.5px;
+ margin-top:7px;
 }
 
 .section-heading p{
-    color:var(--muted);
-    max-width:650px;
-    margin-top:8px;
+ color:var(--muted);
+ margin-top:7px;
+ max-width:700px;
 }
 
 .controls{
-    display:flex;
-    gap:10px;
+ display:flex;
+ gap:10px;
 }
 
 input,
-select{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:11px;
-    padding:13px 14px;
-    outline:none;
-    min-width:210px;
+select,
+textarea{
+ border:1px solid var(--border);
+ background:#fff;
+ border-radius:11px;
+ padding:13px 14px;
+ outline:none;
+ width:100%;
 }
 
 input:focus,
-select:focus{
-    border-color:var(--green);
+select:focus,
+textarea:focus{
+ border-color:var(--green);
 }
 
-/* =========================
-   CARDS
-========================= */
+textarea{
+ min-height:100px;
+ resize:vertical;
+}
+
+/* SERVICE GRID */
 
 .grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:17px;
 }
 
 .card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:19px;
-    padding:20px;
-    min-height:260px;
-    box-shadow:0 4px 15px rgba(0,0,0,.025);
-    transition:.2s;
-    display:flex;
-    flex-direction:column;
+ background:#fff;
+ border:1px solid var(--border);
+ border-radius:20px;
+ overflow:hidden;
+ display:flex;
+ flex-direction:column;
+ min-height:370px;
+ transition:.2s;
 }
 
 .card:hover{
-    transform:translateY(-4px);
-    box-shadow:var(--shadow);
+ transform:translateY(-4px);
+ box-shadow:var(--shadow);
 }
 
-.card-logo{
-    width:55px;
-    height:55px;
-    border-radius:15px;
-    background:#e8f7ed;
-    color:var(--green);
-    display:grid;
-    place-items:center;
-    font-size:19px;
-    font-weight:950;
-    margin-bottom:15px;
-    overflow:hidden;
+.card-image{
+ width:100%;
+ height:155px;
+ overflow:hidden;
+ background:#e7f5ec;
 }
 
-.card-logo img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
+.card-image img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ display:block;
+}
+
+.card-body{
+ padding:18px;
+ display:flex;
+ flex-direction:column;
+ flex:1;
 }
 
 .tag{
-    color:var(--green);
-    font-size:10px;
-    letter-spacing:1.2px;
-    text-transform:uppercase;
-    font-weight:950;
+ color:var(--green);
+ font-size:10px;
+ text-transform:uppercase;
+ letter-spacing:1.2px;
+ font-weight:950;
 }
 
 .card h3{
-    margin:7px 0;
-    font-size:18px;
+ font-size:18px;
+ margin:6px 0;
 }
 
 .card p{
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.6;
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.6;
 }
 
 .card-bottom{
-    margin-top:auto;
+ margin-top:auto;
 }
 
 .pills{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    margin-top:14px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:6px;
+ margin-top:13px;
 }
 
 .pill{
-    padding:6px 9px;
-    border-radius:50px;
-    background:#f0f5f2;
-    font-size:10px;
-    font-weight:700;
+ background:#f0f5f2;
+ border-radius:50px;
+ padding:6px 9px;
+ font-size:9px;
+ font-weight:800;
 }
 
-.card-action{
-    width:100%;
-    margin-top:14px;
-    border:0;
-    border-radius:10px;
-    padding:11px;
-    background:var(--dark);
-    color:white;
-    font-weight:850;
+.card-buttons{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:7px;
+ margin-top:13px;
 }
 
-.card-action:hover{
-    background:var(--green);
+.card-buttons button{
+ border:0;
+ border-radius:10px;
+ padding:11px 7px;
+ font-size:11px;
+ font-weight:900;
 }
 
-/* =========================
-   FEATURE BAND
-========================= */
+.details-btn{
+ background:#edf3ef;
+ color:var(--dark);
+}
+
+.apply-btn{
+ background:var(--green);
+ color:#fff;
+}
+
+/* FEATURE */
 
 .feature{
-    margin:0 5% 30px;
-    padding:50px;
-    border-radius:28px;
-    background:var(--green);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:30px;
+ margin:0 5% 35px;
+ border-radius:28px;
+ padding:45px;
+ background:var(--green);
+ color:#fff;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:30px;
+ overflow:hidden;
+}
+
+.feature-image{
+ width:270px;
+ height:170px;
+ border-radius:18px;
+ overflow:hidden;
+ flex-shrink:0;
+}
+
+.feature-image img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
 }
 
 .feature h2{
-    font-size:36px;
-    margin:8px 0;
+ font-size:35px;
+ margin:7px 0;
 }
 
 .feature p{
-    max-width:700px;
-    color:#e8fff0;
+ color:#e9fff2;
+ max-width:700px;
 }
 
-/* =========================
-   REQUIREMENTS
-========================= */
+/* APPLICATION CENTER */
 
-.requirements{
-    margin:25px 5% 70px;
-    padding:45px;
-    border-radius:28px;
-    background:var(--dark);
-    color:white;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:35px;
+.application-center{
+ background:#fff;
+ border-top:1px solid var(--border);
+ border-bottom:1px solid var(--border);
+ padding:70px 5%;
 }
 
-.requirements p{
-    color:#c8dfd2;
-    margin-top:10px;
+.application-layout{
+ display:grid;
+ grid-template-columns:300px 1fr;
+ gap:25px;
 }
 
-.requirement-list{
-    background:rgba(255,255,255,.07);
-    border-radius:20px;
-    padding:25px;
+.profile-card{
+ background:var(--dark);
+ color:#fff;
+ border-radius:22px;
+ padding:25px;
+ height:max-content;
 }
 
-.requirement-list div{
-    padding:12px 0;
-    border-bottom:1px solid rgba(255,255,255,.1);
-    color:#d7ebdf;
-    font-size:13px;
+.avatar{
+ width:95px;
+ height:95px;
+ border-radius:50%;
+ overflow:hidden;
+ margin-bottom:15px;
+ border:4px solid rgba(255,255,255,.25);
+ background:#fff;
 }
 
-.requirement-list div:last-child{
-    border-bottom:0;
+.avatar img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
 }
 
-/* =========================
-   MODAL
-========================= */
+.profile-card small{
+ color:#b8d3c4;
+}
+
+.profile-actions{
+ display:grid;
+ gap:8px;
+ margin-top:20px;
+}
+
+.profile-actions button{
+ border:0;
+ border-radius:10px;
+ padding:11px;
+ background:rgba(255,255,255,.09);
+ color:#fff;
+ text-align:left;
+ font-weight:800;
+}
+
+.application-list{
+ display:grid;
+ gap:12px;
+}
+
+.application-item{
+ border:1px solid var(--border);
+ border-radius:16px;
+ padding:17px;
+ background:#fff;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:20px;
+}
+
+.status{
+ display:inline-block;
+ padding:6px 9px;
+ border-radius:50px;
+ background:#e8f7ed;
+ color:var(--green);
+ font-size:10px;
+ font-weight:900;
+}
+
+/* INSTITUTIONS */
+
+.institution-card{
+ min-height:300px;
+}
+
+/* MODAL */
 
 .modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.62);
-    display:grid;
-    place-items:center;
-    padding:20px;
-    z-index:2000;
+ position:fixed;
+ inset:0;
+ z-index:3000;
+ background:rgba(0,0,0,.65);
+ display:grid;
+ place-items:center;
+ padding:18px;
 }
 
-.modal.hidden{
-    display:none;
+.hidden{
+ display:none!important;
 }
 
 .modal-content{
-    background:white;
-    width:min(760px,100%);
-    max-height:92vh;
-    overflow:auto;
-    border-radius:25px;
-    padding:30px;
-    position:relative;
+ background:#fff;
+ width:min(900px,100%);
+ max-height:94vh;
+ overflow:auto;
+ border-radius:25px;
+ padding:30px;
+ position:relative;
 }
 
 .close{
-    position:absolute;
-    top:16px;
-    right:17px;
-    width:38px;
-    height:38px;
-    border:0;
-    border-radius:50%;
-    background:#eef3f0;
-    font-size:24px;
+ position:absolute;
+ top:15px;
+ right:15px;
+ width:39px;
+ height:39px;
+ border:0;
+ border-radius:50%;
+ background:#eef3f0;
+ font-size:23px;
 }
 
-.detail-logo{
-    width:75px;
-    height:75px;
-    background:#e8f7ed;
-    color:var(--green);
-    border-radius:20px;
-    display:grid;
-    place-items:center;
-    font-weight:950;
-    font-size:27px;
-    margin-bottom:15px;
+.modal-header{
+ padding-right:45px;
+ margin-bottom:23px;
 }
 
-.detail-description{
-    color:var(--muted);
-    line-height:1.7;
-    margin:10px 0 22px;
+.modal-header h2{
+ font-size:30px;
+ margin-top:5px;
+}
+
+.modal-header p{
+ color:var(--muted);
 }
 
 .detail-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
 }
 
 .detail-box{
-    padding:17px;
-    background:#f5f8f6;
-    border-radius:14px;
+ background:#f5f8f6;
+ padding:16px;
+ border-radius:14px;
 }
 
 .detail-box label{
-    display:block;
-    color:var(--muted);
-    font-size:10px;
-    text-transform:uppercase;
-    font-weight:900;
-    margin-bottom:5px;
+ display:block;
+ color:var(--muted);
+ font-size:9px;
+ text-transform:uppercase;
+ font-weight:950;
+ margin-bottom:4px;
 }
 
 .detail-box strong{
-    font-size:14px;
+ font-size:14px;
 }
 
 .modal-section{
-    margin-top:25px;
+ margin-top:25px;
 }
 
 .modal-section h3{
-    margin-bottom:10px;
+ margin-bottom:10px;
 }
 
-.modal-section ul{
-    padding-left:20px;
-    color:var(--muted);
-    line-height:1.9;
+.requirements-list{
+ padding-left:20px;
+ color:var(--muted);
+ line-height:1.9;
 }
 
-.fee{
-    font-size:30px;
-    font-weight:950;
-    color:var(--green);
+.form-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:15px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.form-group{
+ margin-bottom:15px;
+}
+
+.form-group label{
+ display:block;
+ font-size:11px;
+ font-weight:900;
+ margin-bottom:6px;
+}
+
+.form-group small{
+ display:block;
+ color:var(--muted);
+ font-size:10px;
+ margin-top:4px;
+}
+
+.form-full{
+ grid-column:1/-1;
+}
+
+.fee-display{
+ background:#eaf8ef;
+ color:var(--green);
+ border-radius:14px;
+ padding:17px;
+ font-weight:900;
+ margin:15px 0;
+}
+
+.application-steps{
+ display:flex;
+ gap:8px;
+ margin-bottom:25px;
+ overflow:auto;
+}
+
+.step{
+ white-space:nowrap;
+ padding:8px 13px;
+ border-radius:50px;
+ background:#edf3ef;
+ font-size:10px;
+ font-weight:900;
+}
+
+.step.active{
+ background:var(--green);
+ color:#fff;
+}
+
+/* IMAGE GALLERY */
+
+.gallery{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:12px;
+ margin-top:20px;
+}
+
+.gallery-item{
+ height:170px;
+ border-radius:17px;
+ overflow:hidden;
+ position:relative;
+}
+
+.gallery-item img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+
+.gallery-label{
+ position:absolute;
+ left:10px;
+ bottom:10px;
+ background:rgba(0,0,0,.65);
+ color:#fff;
+ border-radius:8px;
+ padding:6px 9px;
+ font-size:10px;
+ font-weight:800;
+}
+
+/* FOOTER */
 
 footer{
-    background:var(--dark2);
-    color:white;
-    padding:50px 5%;
+ background:var(--dark2);
+ color:#fff;
+ padding:50px 5%;
 }
 
 .footer-top{
-    display:flex;
-    justify-content:space-between;
-    gap:40px;
+ display:flex;
+ justify-content:space-between;
+ gap:30px;
 }
 
 .footer-links{
-    display:flex;
-    flex-wrap:wrap;
-    gap:22px;
-    color:#b8d0c2;
-    font-size:13px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:20px;
+ color:#b9d1c3;
+ font-size:12px;
 }
 
 footer p{
-    margin-top:30px;
-    color:#789889;
-    font-size:11px;
+ color:#799487;
+ font-size:10px;
+ margin-top:30px;
+ max-width:1000px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* TOAST */
+
+.toast-container{
+ position:fixed;
+ right:20px;
+ bottom:20px;
+ z-index:5000;
+ display:grid;
+ gap:10px;
+}
+
+.toast{
+ background:var(--dark);
+ color:#fff;
+ padding:14px 18px;
+ border-radius:12px;
+ box-shadow:var(--shadow);
+ font-size:12px;
+ animation:toastIn .25s ease;
+}
+
+@keyframes toastIn{
+ from{
+  opacity:0;
+  transform:translateY(15px);
+ }
+ to{
+  opacity:1;
+  transform:translateY(0);
+ }
+}
+
+/* MOBILE */
 
 @media(max-width:1100px){
-    .grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    nav{
-        gap:12px;
-    }
+ .grid{
+  grid-template-columns:repeat(3,1fr);
+ }
 }
 
-@media(max-width:800px){
-    .hero{
-        grid-template-columns:1fr;
-        padding:50px 5%;
-    }
+@media(max-width:850px){
+ nav{
+  display:none;
+ }
 
-    .grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+ .menu{
+  display:block;
+ }
 
-    .requirements{
-        grid-template-columns:1fr;
-    }
+ .hero{
+  grid-template-columns:1fr;
+ }
 
-    .section-heading{
-        flex-direction:column;
-        align-items:stretch;
-    }
+ .application-layout{
+  grid-template-columns:1fr;
+ }
 
-    .controls{
-        flex-direction:column;
-    }
+ .grid{
+  grid-template-columns:repeat(2,1fr);
+ }
 
-    input,
-    select{
-        width:100%;
-    }
+ .section-heading{
+  flex-direction:column;
+  align-items:stretch;
+ }
 
-    .feature{
-        flex-direction:column;
-        align-items:flex-start;
-        padding:35px;
-    }
+ .controls{
+  flex-direction:column;
+ }
 
-    nav{
-        display:none;
-    }
+ .feature{
+  flex-direction:column;
+  align-items:flex-start;
+ }
 
-    .menu{
-        display:block;
-    }
+ .feature-image{
+  width:100%;
+ }
 }
 
-@media(max-width:560px){
-    .grid{
-        grid-template-columns:1fr;
-    }
+@media(max-width:570px){
+ .topbar{
+  display:none;
+ }
 
-    .topbar{
-        display:none;
-    }
+ .grid{
+  grid-template-columns:1fr;
+ }
 
-    .hero h1{
-        font-size:45px;
-    }
+ .hero{
+  padding:50px 5%;
+ }
 
-    .hero p{
-        font-size:15px;
-    }
+ .hero h1{
+  font-size:44px;
+ }
 
-    .section{
-        padding:50px 5%;
-    }
+ .hero p{
+  font-size:15px;
+ }
 
-    .section-heading h2{
-        font-size:30px;
-    }
+ .section{
+  padding:50px 5%;
+ }
 
-    .detail-grid{
-        grid-template-columns:1fr;
-    }
+ .form-grid,
+ .detail-grid{
+  grid-template-columns:1fr;
+ }
 
-    .hero-stats{
-        grid-template-columns:1fr 1fr;
-    }
+ .gallery{
+  grid-template-columns:1fr;
+ }
 
-    .requirements{
-        padding:30px;
-    }
+ .card-buttons{
+  grid-template-columns:1fr;
+ }
+
+ .feature{
+  margin-left:5%;
+  margin-right:5%;
+  padding:30px;
+ }
+
+ .application-item{
+  flex-direction:column;
+  align-items:flex-start;
+ }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================================================
-     TOP BAR
-========================================================= -->
+<!-- TOP BAR -->
 
 <div class="topbar">
-    <div>Digital Services Directory</div>
-
-    <div class="topbar-right">
-        <span>Help Centre</span>
-        <span>Requirements</span>
-        <span>Applications</span>
-    </div>
+ <span>TWAWAZA DIGITAL SERVICES HUB</span>
+ <div class="topbar-right">
+  <span>Service Directory</span>
+  <span>Applications</span>
+  <span>Help</span>
+ </div>
 </div>
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
+<!-- HEADER -->
 
 <header>
 
-    <a href="#" class="brand">
+ <a class="brand" href="#">
+  <div class="logo">T</div>
+  <div>
+   <div class="brand-title">TWAWEZA</div>
+   <span class="brand-sub">Financial & Digital Services Hub</span>
+  </div>
+ </a>
 
-        <div class="logo">S</div>
+ <nav>
+  <a href="#services">Services</a>
+  <a href="#scholarships">Scholarships</a>
+  <a href="#institutions">Institutions</a>
+  <a href="#jobs">Jobs</a>
+  <a href="#applications">Applications</a>
+ </nav>
 
-        <div>
-            <div class="brand-title">SAFARICOM</div>
-            <span class="brand-sub">Services Hub</span>
-        </div>
-
-    </a>
-
-    <nav>
-        <a href="#services">Services</a>
-        <a href="#scholarships">Scholarships</a>
-        <a href="#institutions">Institutions</a>
-        <a href="#jobs">Jobs</a>
-        <a href="#ngo">NGOs</a>
-        <a href="#transport">Transport</a>
-    </nav>
-
-    <button class="menu">☰</button>
+ <button class="menu" onclick="scrollToSection('services')">☰</button>
 
 </header>
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+<!-- HERO -->
 
 <section class="hero">
 
-    <div>
+ <div>
 
-        <span class="eyebrow">ONE DIGITAL SERVICES DIRECTORY</span>
+  <span class="eyebrow">ONE DIGITAL SERVICES DIRECTORY</span>
 
-        <h1>
-            Everything you need,
-            <span>in one place.</span>
-        </h1>
+  <h1>
+   Everything you need,
+   <span>in one place.</span>
+  </h1>
 
-        <p>
-            Explore financial services, M-PESA resources, education,
-            scholarships, jobs, recruitment, entertainment,
-            transportation, NGOs, business services, communication,
-            internet and many other digital opportunities.
-        </p>
+  <p>
+   Browse financial services, education, scholarships,
+   student financing, employment, recruitment, entertainment,
+   transport, NGOs, business opportunities and digital services.
+  </p>
 
-        <div class="hero-buttons">
+  <div class="hero-buttons">
 
-            <a href="#services" class="btn btn-primary">
-                Explore Services
-            </a>
+   <button class="btn btn-primary"
+           onclick="scrollToSection('services')">
+    Explore Services
+   </button>
 
-            <button class="btn btn-secondary" onclick="focusSearch()">
-                Search Everything
-            </button>
+   <button class="btn btn-light"
+           onclick="openProfile()">
+    Create Profile
+   </button>
 
-        </div>
+   <button class="btn btn-dark"
+           onclick="scrollToSection('applications')">
+    My Applications
+   </button>
 
-        <div class="twaweza">
-            TWAWEZA
-        </div>
+  </div>
 
-    </div>
+  <div class="twaweza">TWAWEZA</div>
 
+ </div>
 
-    <div class="hero-dashboard">
+ <div class="hero-panel">
 
-        <div class="hero-main-card">
+  <div class="hero-image">
+   <img
+    src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85"
+    alt="Digital financial services">
+  </div>
 
-            <strong id="totalServices">
-                100+
-            </strong>
+  <div class="hero-main">
+   <strong id="serviceCounter">100+</strong>
+   <span>service catalogue records</span>
+  </div>
 
-            <span>
-                service records in the directory
-            </span>
+  <div class="hero-stats">
 
-        </div>
+   <div class="hero-stat">
+    <b>Education</b>
+    <small>Scholarships & institutions</small>
+   </div>
 
-        <div class="hero-stats">
+   <div class="hero-stat">
+    <b>Careers</b>
+    <small>Jobs & recruitment</small>
+   </div>
 
-            <div class="hero-stat">
-                <b>269+</b>
-                <small>Kenyan institution capacity</small>
-            </div>
+   <div class="hero-stat">
+    <b>Finance</b>
+    <small>Financial services</small>
+   </div>
 
-            <div class="hero-stat">
-                <b>5+</b>
-                <small>International regions</small>
-            </div>
+   <div class="hero-stat">
+    <b>Community</b>
+    <small>NGOs & programs</small>
+   </div>
 
-            <div class="hero-stat">
-                <b>Jobs</b>
-                <small>Career opportunities</small>
-            </div>
+  </div>
 
-            <div class="hero-stat">
-                <b>NGOs</b>
-                <small>Community opportunities</small>
-            </div>
-
-        </div>
-
-    </div>
+ </div>
 
 </section>
 
-<!-- =========================================================
-     QUICK CATEGORY BAR
-========================================================= -->
+<!-- QUICK NAV -->
 
 <div class="quick">
 
-    <button onclick="quickCategory('Financial')">
-        💳 Financial
-    </button>
-
-    <button onclick="quickCategory('Education')">
-        🎓 Education
-    </button>
-
-    <button onclick="quickCategory('Scholarships')">
-        🎓 Scholarships
-    </button>
-
-    <button onclick="quickCategory('Jobs')">
-        💼 Jobs
-    </button>
-
-    <button onclick="quickCategory('Entertainment')">
-        🎵 Entertainment
-    </button>
-
-    <button onclick="quickCategory('Transport')">
-        🚕 Transport
-    </button>
-
-    <button onclick="quickCategory('NGOs')">
-        🤝 NGOs
-    </button>
-
-    <button onclick="quickCategory('Business')">
-        🏪 Business
-    </button>
-
-    <button onclick="quickCategory('Communication')">
-        📱 Communication
-    </button>
+ <button onclick="filterCategory('Financial')">💳 Financial</button>
+ <button onclick="filterCategory('Education')">🎓 Education</button>
+ <button onclick="filterCategory('Scholarships')">🎓 Scholarships</button>
+ <button onclick="filterCategory('Jobs')">💼 Jobs</button>
+ <button onclick="filterCategory('Entertainment')">🎮 Entertainment</button>
+ <button onclick="filterCategory('Transport')">🚕 Transport</button>
+ <button onclick="filterCategory('NGOs')">🤝 NGOs</button>
+ <button onclick="filterCategory('Business')">🏪 Business</button>
+ <button onclick="filterCategory('Communication')">📱 Communication</button>
 
 </div>
 
-<!-- =========================================================
-     SERVICES
-========================================================= -->
+<!-- SERVICES -->
 
 <section class="section" id="services">
 
-    <div class="section-heading">
+ <div class="section-heading">
 
-        <div>
-            <span class="eyebrow">
-                SERVICE DIRECTORY
-            </span>
+  <div>
+   <span class="eyebrow">SERVICE DIRECTORY</span>
+   <h2>Browse services</h2>
+   <p>
+    Select any service to read its requirements,
+    charges, eligibility information and application procedure.
+   </p>
+  </div>
 
-            <h2>
-                Browse all services
-            </h2>
+  <div class="controls">
 
-            <p>
-                Search and filter the complete service catalogue.
-            </p>
-        </div>
+   <input
+    id="serviceSearch"
+    type="search"
+    placeholder="Search services..."
+    oninput="renderServices()">
 
-        <div class="controls">
+   <select id="categoryFilter"
+           onchange="renderServices()">
 
-            <input
-                id="search"
-                type="search"
-                placeholder="Search services..."
-            >
+    <option value="All">All categories</option>
 
-            <select id="category">
+   </select>
 
-                <option value="All">
-                    All categories
-                </option>
+  </div>
 
-            </select>
+ </div>
 
-        </div>
-
-    </div>
-
-    <div id="serviceGrid" class="grid"></div>
+ <div class="grid" id="serviceGrid"></div>
 
 </section>
 
-<!-- =========================================================
-     SCHOLARSHIP FEATURE
-========================================================= -->
+<!-- FEATURE -->
 
 <section class="feature" id="scholarships">
 
-    <div>
+ <div>
+  <span class="eyebrow" style="color:#e4ffed">
+   EDUCATION OPPORTUNITIES
+  </span>
 
-        <span class="eyebrow" style="color:#dffff0">
-            EDUCATION & SCHOLARSHIPS
-        </span>
+  <h2>Scholarships & study opportunities</h2>
 
-        <h2>
-            Find your next opportunity.
-        </h2>
+  <p>
+   Explore Kenyan and international institutions,
+   scholarship opportunities, admission information,
+   study requirements and application procedures.
+  </p>
 
-        <p>
-            Browse Kenyan and international education opportunities,
-            scholarships, institutions, study programs and
-            application information.
-        </p>
+  <button class="btn btn-light"
+          style="margin-top:20px"
+          onclick="scrollToSection('institutions')">
+   Browse Institutions
+  </button>
+ </div>
 
-    </div>
-
-    <a href="#institutions" class="btn" style="background:white;color:#063b26">
-        Explore Education
-    </a>
+ <div class="feature-image">
+  <img
+   src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=85"
+   alt="Students at a university">
+ </div>
 
 </section>
 
-<!-- =========================================================
-     INSTITUTIONS
-========================================================= -->
+<!-- INSTITUTIONS -->
 
 <section class="section" id="institutions">
 
-    <div class="section-heading">
+ <div class="section-heading">
 
-        <div>
+  <div>
+   <span class="eyebrow">EDUCATION DIRECTORY</span>
+   <h2>Institutions</h2>
+   <p>
+    Browse Kenyan and international institutions and open
+    an institution profile for additional information.
+   </p>
+  </div>
 
-            <span class="eyebrow">
-                EDUCATION DIRECTORY
-            </span>
+  <input
+   id="institutionSearch"
+   placeholder="Search institutions..."
+   oninput="renderInstitutions()">
 
-            <h2>
-                Kenyan & International Institutions
-            </h2>
+ </div>
 
-            <p>
-                Search institutions by country, type and location.
-            </p>
-
-        </div>
-
-        <input
-            id="institutionSearch"
-            placeholder="Search institution..."
-        >
-
-    </div>
-
-    <div id="institutionGrid" class="grid"></div>
+ <div class="grid" id="institutionGrid"></div>
 
 </section>
 
-<!-- =========================================================
-     JOBS
-========================================================= -->
+<!-- JOBS -->
 
 <section class="section" id="jobs">
 
-    <div class="section-heading">
+ <div class="section-heading">
 
-        <div>
+  <div>
+   <span class="eyebrow">CAREERS</span>
+   <h2>Jobs & recruitment</h2>
+   <p>
+    Employment, internships, graduate programmes,
+    recruitment and career resources.
+   </p>
+  </div>
 
-            <span class="eyebrow">
-                CAREERS
-            </span>
+ </div>
 
-            <h2>
-                Jobs & Recruitment
-            </h2>
-
-            <p>
-                Browse employment, internships, graduate programs
-                and career opportunities.
-            </p>
-
-        </div>
-
-    </div>
-
-    <div id="jobGrid" class="grid"></div>
+ <div class="grid" id="jobGrid"></div>
 
 </section>
 
-<!-- =========================================================
-     NGO
-========================================================= -->
+<!-- APPLICATION CENTER -->
 
-<section class="section" id="ngo">
+<section class="application-center" id="applications">
 
-    <div class="section-heading">
+ <div class="section-heading">
 
-        <div>
+  <div>
+   <span class="eyebrow">APPLICATION CENTRE</span>
+   <h2>My applications</h2>
+   <p>
+    Applications created on this browser appear here.
+   </p>
+  </div>
 
-            <span class="eyebrow">
-                COMMUNITY
-            </span>
+  <button class="btn btn-primary"
+          onclick="openProfile()">
+   Profile
+  </button>
 
-            <h2>
-                NGOs, Grants & Programs
-            </h2>
+ </div>
 
-            <p>
-                Discover community, education, youth,
-                entrepreneurship and development programs.
-            </p>
+ <div class="application-layout">
 
-        </div>
+  <div class="profile-card">
 
-    </div>
+   <div class="avatar">
+    <img id="profileAvatar"
+         src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80"
+         alt="Profile avatar">
+   </div>
 
-    <div id="ngoGrid" class="grid"></div>
+   <h3 id="profileName">
+    Guest Applicant
+   </h3>
 
-</section>
+   <small id="profilePhone">
+    Create a profile to begin.
+   </small>
 
-<!-- =========================================================
-     TRANSPORT
-========================================================= -->
+   <div class="profile-actions">
 
-<section class="section" id="transport">
+    <button onclick="openProfile()">
+     👤 Edit Profile
+    </button>
 
-    <div class="section-heading">
+    <button onclick="clearApplications()">
+     🗑 Clear Local Applications
+    </button>
 
-        <div>
+   </div>
 
-            <span class="eyebrow">
-                TRAVEL & DELIVERY
-            </span>
+  </div>
 
-            <h2>
-                Transportation
-            </h2>
+  <div id="applicationList"
+       class="application-list">
 
-            <p>
-                Browse transport, travel, courier and logistics resources.
-            </p>
+  </div>
 
-        </div>
-
-    </div>
-
-    <div id="transportGrid" class="grid"></div>
-
-</section>
-
-<!-- =========================================================
-     REQUIREMENTS
-========================================================= -->
-
-<section class="requirements">
-
-    <div>
-
-        <span class="eyebrow" style="color:#78e5aa">
-            SERVICE INFORMATION
-        </span>
-
-        <h2 style="font-size:36px;margin-top:8px">
-            Requirements & Fees
-        </h2>
-
-        <p>
-            Every service profile is designed to contain its
-            eligibility, requirements, documents, fees,
-            provider information and application instructions.
-        </p>
-
-    </div>
-
-    <div class="requirement-list">
-
-        <div>
-            ✓ Eligibility requirements
-        </div>
-
-        <div>
-            ✓ Required documents
-        </div>
-
-        <div>
-            ✓ Application / processing fee
-        </div>
-
-        <div>
-            ✓ Provider-specific charges
-        </div>
-
-        <div>
-            ✓ Application procedure
-        </div>
-
-        <div>
-            ✓ Official provider information
-        </div>
-
-    </div>
+ </div>
 
 </section>
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
+<!-- NGO / COMMUNITY -->
+
+<section class="section">
+
+ <div class="section-heading">
+
+  <div>
+   <span class="eyebrow">COMMUNITY OPPORTUNITIES</span>
+   <h2>NGOs, youth programmes & funds</h2>
+   <p>
+    Community programmes, youth opportunities,
+    entrepreneurship initiatives, grants and development resources.
+   </p>
+  </div>
+
+ </div>
+
+ <div class="gallery">
+
+  <div class="gallery-item">
+   <img
+    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85"
+    alt="Young people working together">
+   <span class="gallery-label">Youth Programmes</span>
+  </div>
+
+  <div class="gallery-item">
+   <img
+    src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=85"
+    alt="Community group">
+   <span class="gallery-label">Community Development</span>
+  </div>
+
+  <div class="gallery-item">
+   <img
+    src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85"
+    alt="Entrepreneurs collaborating">
+   <span class="gallery-label">Entrepreneurship</span>
+  </div>
+
+ </div>
+
+</section>
+
+<!-- NYOTA -->
+
+<section class="section">
+
+ <div class="section-heading">
+
+  <div>
+   <span class="eyebrow">YOUTH & ENTERPRISE</span>
+   <h2>NYOTA opportunity centre</h2>
+   <p>
+    Dedicated interface for viewing programme information,
+    eligibility, application requirements and application status.
+   </p>
+  </div>
+
+  <button class="btn btn-primary"
+          onclick="startApplicationByName('NYOTA Youth Opportunity')">
+   Start Application
+  </button>
+
+ </div>
+
+ <div class="gallery">
+
+  <div class="gallery-item">
+   <img
+    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85"
+    alt="Young professionals">
+   <span class="gallery-label">
+    Youth Enterprise
+   </span>
+  </div>
+
+  <div class="gallery-item">
+   <img
+    src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=85"
+    alt="Business training">
+   <span class="gallery-label">
+    Business Training
+   </span>
+  </div>
+
+  <div class="gallery-item">
+   <img
+    src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=85"
+    alt="Entrepreneurship workshop">
+   <span class="gallery-label">
+    Entrepreneurship
+   </span>
+  </div>
+
+ </div>
+
+ <p style="
+  color:var(--muted);
+  font-size:11px;
+  margin-top:15px;
+ ">
+  Images on this demonstration page are illustrative and are not
+  presented as evidence of individual beneficiaries or disbursements.
+  Production programme information should be connected to the
+  verified programme source.
+ </p>
+
+</section>
+
+<!-- FOOTER -->
 
 <footer>
 
-    <div class="footer-top">
+ <div class="footer-top">
 
-        <div class="brand">
+  <div class="brand">
 
-            <div class="logo">S</div>
+   <div class="logo">T</div>
 
-            <div>
-                <strong>SAFARICOM SERVICES HUB</strong>
-                <span class="brand-sub" style="color:#a9c6b6">
-                    TWAWEZA
-                </span>
-            </div>
+   <div>
+    <strong>TWAWEZA SERVICES HUB</strong>
+    <span class="brand-sub" style="color:#9fc3ae">
+     Financial • Education • Careers • Community
+    </span>
+   </div>
 
-        </div>
+  </div>
 
-        <div class="footer-links">
+  <div class="footer-links">
+   <a href="#services">Services</a>
+   <a href="#scholarships">Scholarships</a>
+   <a href="#institutions">Institutions</a>
+   <a href="#jobs">Jobs</a>
+   <a href="#applications">Applications</a>
+  </div>
 
-            <a href="#services">Services</a>
-            <a href="#scholarships">Scholarships</a>
-            <a href="#institutions">Institutions</a>
-            <a href="#jobs">Jobs</a>
-            <a href="#ngo">NGOs</a>
-            <a href="#transport">Transport</a>
+ </div>
 
-        </div>
-
-    </div>
-
-    <p>
-        Service-information and discovery interface.
-        Safaricom and other trademarks belong to their respective owners.
-        Replace catalogue placeholders with verified provider,
-        institution and opportunity data before production.
-    </p>
+ <p>
+  This interface is a service-discovery and application front end.
+  Provider names, fees, eligibility criteria, logos, application
+  endpoints and programme information should be verified before
+  production deployment. Safaricom, M-PESA and other trademarks
+  belong to their respective owners.
+ </p>
 
 </footer>
 
-<!-- =========================================================
-     SERVICE MODAL
-========================================================= -->
+<!-- MODAL -->
 
-<div id="modal" class="modal hidden">
+<div class="modal hidden" id="modal">
 
-    <div class="modal-content">
+ <div class="modal-content">
 
-        <button
-            class="close"
-            onclick="closeModal()">
-            ×
-        </button>
+  <button class="close"
+          onclick="closeModal()">×</button>
 
-        <div id="modalBody"></div>
+  <div id="modalBody"></div>
 
-    </div>
+ </div>
 
 </div>
 
+<div class="toast-container" id="toastContainer"></div>
+
 <script>
 
-/* =========================================================
+/* ==========================================================
+   IMAGE LIBRARY
+   Replace these with licensed/authorized assets in production.
+========================================================== */
+
+const IMAGES = {
+
+ financial:
+ "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85",
+
+ fuliza:
+ "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1000&q=85",
+
+ education:
+ "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=85",
+
+ scholarship:
+ "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?auto=format&fit=crop&w=1000&q=85",
+
+ helb:
+ "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=85",
+
+ gaming:
+ "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=85",
+
+ entertainment:
+ "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=85",
+
+ jobs:
+ "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85",
+
+ ngo:
+ "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1000&q=85",
+
+ transport:
+ "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=85",
+
+ business:
+ "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85",
+
+ communication:
+ "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85",
+
+ youth:
+ "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85",
+
+ travel:
+ "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1000&q=85"
+
+};
+
+
+/* ==========================================================
    SERVICE DATABASE
-========================================================= */
+========================================================== */
 
 const SERVICES = [
 
-/* FINANCIAL */
-
 {
-    name:"M-PESA",
-    category:"Financial",
-    icon:"MP",
-    provider:"M-PESA",
-    description:"Mobile money services including transfers, payments and everyday transactions.",
-    requirements:["Active eligible mobile account","Provider-defined identification requirements"],
-    fee:"Applicable transaction fee",
-    type:"Financial service"
+ name:"M-PESA",
+ category:"Financial",
+ provider:"M-PESA",
+ type:"Mobile Money",
+ image:IMAGES.financial,
+ fee:"Provider-defined",
+ description:"Mobile money services including transfers, payments and supported transactions.",
+ requirements:[
+  "Active eligible mobile account",
+  "Valid customer identification where required",
+  "Correct recipient or merchant information"
+ ]
 },
 
 {
-    name:"Fuliza",
-    category:"Financial",
-    icon:"FU",
-    provider:"M-PESA",
-    description:"M-PESA overdraft service information, eligibility and repayment guidance.",
-    requirements:["Eligible M-PESA account","Provider-defined eligibility criteria"],
-    fee:"Provider-defined applicable charges",
-    type:"Credit service"
+ name:"Fuliza",
+ category:"Financial",
+ provider:"M-PESA",
+ type:"Credit / Overdraft",
+ image:IMAGES.fuliza,
+ fee:"Provider-defined",
+ description:"M-PESA overdraft service information, eligibility and repayment guidance.",
+ requirements:[
+  "Eligible M-PESA account",
+  "Provider-defined eligibility",
+  "Account must satisfy current service criteria",
+  "Repayment terms must be reviewed before acceptance"
+ ]
 },
 
 {
-    name:"M-Shwari",
-    category:"Financial",
-    icon:"MS",
-    provider:"NCBA / Safaricom",
-    description:"Savings and credit service information.",
-    requirements:["Eligible account","Provider-defined requirements"],
-    fee:"Provider-defined",
-    type:"Financial service"
+ name:"Fuliza Information & Eligibility",
+ category:"Financial",
+ provider:"M-PESA",
+ type:"Eligibility",
+ image:IMAGES.fuliza,
+ fee:"Provider-defined",
+ description:"Information centre for understanding Fuliza eligibility, limits, charges and repayment.",
+ requirements:[
+  "Eligible account",
+  "Customer verification where required",
+  "Review current terms before applying"
+ ]
 },
 
 {
-    name:"KCB M-PESA",
-    category:"Financial",
-    icon:"KB",
-    provider:"KCB / Safaricom",
-    description:"Savings and credit services available through the M-PESA ecosystem.",
-    requirements:["Eligible customer","Provider-defined requirements"],
-    fee:"Provider-defined",
-    type:"Financial service"
+ name:"M-Shwari",
+ category:"Financial",
+ provider:"NCBA / M-PESA",
+ type:"Savings & Credit",
+ image:IMAGES.financial,
+ fee:"Provider-defined",
+ description:"Savings and financial service information.",
+ requirements:[
+  "Eligible account",
+  "Provider-defined eligibility"
+ ]
 },
 
 {
-    name:"Send Money",
-    category:"Financial",
-    icon:"SM",
-    provider:"M-PESA",
-    description:"Send money to supported recipients.",
-    requirements:["Active account","Recipient information"],
-    fee:"Applicable transaction fee",
-    type:"Money transfer"
+ name:"KCB M-PESA",
+ category:"Financial",
+ provider:"KCB / M-PESA",
+ type:"Savings & Credit",
+ image:IMAGES.financial,
+ fee:"Provider-defined",
+ description:"Savings and credit service information.",
+ requirements:[
+  "Eligible customer account",
+  "Provider-defined requirements"
+ ]
 },
 
 {
-    name:"Withdraw",
-    category:"Financial",
-    icon:"WD",
-    provider:"M-PESA",
-    description:"Cash withdrawal through supported channels.",
-    requirements:["Active account","Valid transaction authentication"],
-    fee:"Applicable withdrawal fee",
-    type:"Money service"
+ name:"Send Money",
+ category:"Financial",
+ provider:"M-PESA",
+ type:"Transfer",
+ image:IMAGES.financial,
+ fee:"Transaction-dependent",
+ description:"Send money to supported recipients.",
+ requirements:[
+  "Active account",
+  "Recipient details",
+  "Transaction authentication"
+ ]
 },
 
 {
-    name:"Buy Goods",
-    category:"Financial",
-    icon:"BG",
-    provider:"M-PESA",
-    description:"Pay participating merchants.",
-    requirements:["Active M-PESA account","Merchant till information"],
-    fee:"Applicable transaction fee",
-    type:"Payment"
+ name:"Withdraw Cash",
+ category:"Financial",
+ provider:"M-PESA",
+ type:"Withdrawal",
+ image:IMAGES.financial,
+ fee:"Transaction-dependent",
+ description:"Cash withdrawal through supported channels.",
+ requirements:[
+  "Active account",
+  "Valid authentication",
+  "Supported withdrawal channel"
+ ]
 },
 
 {
-    name:"PayBill",
-    category:"Financial",
-    icon:"PB",
-    provider:"M-PESA",
-    description:"Pay participating organizations and service providers.",
-    requirements:["Active M-PESA account","Correct PayBill details"],
-    fee:"Provider/transaction-specific",
-    type:"Payment"
+ name:"Buy Goods",
+ category:"Financial",
+ provider:"M-PESA",
+ type:"Merchant Payment",
+ image:IMAGES.business,
+ fee:"Transaction-dependent",
+ description:"Pay participating merchants using supported payment channels.",
+ requirements:[
+  "Active account",
+  "Correct merchant details"
+ ]
 },
 
 {
-    name:"Savings",
-    category:"Financial",
-    icon:"SV",
-    provider:"Multiple providers",
-    description:"Savings products and financial education directory.",
-    requirements:["Provider-specific eligibility"],
-    fee:"Provider-specific",
-    type:"Savings"
+ name:"PayBill",
+ category:"Financial",
+ provider:"M-PESA",
+ type:"Bill Payment",
+ image:IMAGES.financial,
+ fee:"Transaction-dependent",
+ description:"Pay participating organizations and service providers.",
+ requirements:[
+  "Active account",
+  "Correct PayBill information",
+  "Account/reference number where required"
+ ]
 },
 
 {
-    name:"Investments",
-    category:"Financial",
-    icon:"IN",
-    provider:"Multiple providers",
-    description:"Investment information and financial education.",
-    requirements:["Provider-specific requirements"],
-    fee:"Provider-specific",
-    type:"Investment"
+ name:"Savings",
+ category:"Financial",
+ provider:"Multiple providers",
+ type:"Savings",
+ image:IMAGES.financial,
+ fee:"Provider-dependent",
+ description:"Savings products and financial education.",
+ requirements:[
+  "Provider eligibility",
+  "Identification where required"
+ ]
 },
 
 {
-    name:"International Money",
-    category:"Financial",
-    icon:"IM",
-    provider:"Multiple providers",
-    description:"Information about supported international sending and receiving services.",
-    requirements:["Valid identification","Provider-specific requirements"],
-    fee:"Provider-specific transfer fee",
-    type:"International transfer"
-},
-
-/* COMMUNICATION */
-
-{
-    name:"Voice Services",
-    category:"Communication",
-    icon:"VO",
-    provider:"Safaricom",
-    description:"Mobile voice and calling services.",
-    requirements:["Compatible active line"],
-    fee:"Plan-dependent",
-    type:"Communication"
+ name:"Investments",
+ category:"Financial",
+ provider:"Multiple providers",
+ type:"Investment",
+ image:IMAGES.financial,
+ fee:"Provider-dependent",
+ description:"Investment information and investment-service directory.",
+ requirements:[
+  "Provider eligibility",
+  "Identity verification where required",
+  "Investment risk information should be reviewed"
+ ]
 },
 
 {
-    name:"SMS Services",
-    category:"Communication",
-    icon:"SM",
-    provider:"Safaricom",
-    description:"SMS and messaging services.",
-    requirements:["Compatible active line"],
-    fee:"Plan-dependent",
-    type:"Communication"
+ name:"International Money",
+ category:"Financial",
+ provider:"Supported providers",
+ type:"International Transfer",
+ image:IMAGES.financial,
+ fee:"Provider-dependent",
+ description:"International sending and receiving service information.",
+ requirements:[
+  "Valid identification",
+  "Sender information",
+  "Recipient information",
+  "Provider-supported country"
+ ]
 },
 
 {
-    name:"Data Bundles",
-    category:"Communication",
-    icon:"DB",
-    provider:"Safaricom",
-    description:"Mobile data and internet bundle information.",
-    requirements:["Compatible active line"],
-    fee:"Plan-dependent",
-    type:"Data"
+ name:"Data Bundles",
+ category:"Communication",
+ provider:"Mobile Network",
+ type:"Internet",
+ image:IMAGES.communication,
+ fee:"Bundle-dependent",
+ description:"Mobile data and internet bundle information.",
+ requirements:[
+  "Compatible active line",
+  "Compatible device"
+ ]
 },
 
 {
-    name:"Roaming",
-    category:"Communication",
-    icon:"RO",
-    provider:"Safaricom",
-    description:"International mobile connectivity information.",
-    requirements:["Eligible line","Supported destination"],
-    fee:"Plan-dependent",
-    type:"Roaming"
+ name:"Voice Services",
+ category:"Communication",
+ provider:"Mobile Network",
+ type:"Voice",
+ image:IMAGES.communication,
+ fee:"Plan-dependent",
+ description:"Voice and calling service information.",
+ requirements:[
+  "Compatible active line"
+ ]
 },
 
 {
-    name:"International Calling",
-    category:"Communication",
-    icon:"IC",
-    provider:"Safaricom",
-    description:"International calling resources.",
-    requirements:["Active line","Supported destination"],
-    fee:"Plan-dependent",
-    type:"Calling"
-},
-
-/* INTERNET */
-
-{
-    name:"Home Internet",
-    category:"Internet",
-    icon:"HI",
-    provider:"Safaricom",
-    description:"Home connectivity and internet-plan information.",
-    requirements:["Serviceable location","Provider requirements"],
-    fee:"Plan-dependent",
-    type:"Internet"
+ name:"SMS Services",
+ category:"Communication",
+ provider:"Mobile Network",
+ type:"SMS",
+ image:IMAGES.communication,
+ fee:"Plan-dependent",
+ description:"SMS and messaging services.",
+ requirements:[
+  "Compatible active line"
+ ]
 },
 
 {
-    name:"Fibre Internet",
-    category:"Internet",
-    icon:"FI",
-    provider:"Safaricom",
-    description:"Fibre broadband information.",
-    requirements:["Serviceable location","Installation requirements"],
-    fee:"Plan-dependent",
-    type:"Internet"
+ name:"Roaming",
+ category:"Communication",
+ provider:"Mobile Network",
+ type:"Roaming",
+ image:IMAGES.travel,
+ fee:"Destination-dependent",
+ description:"International mobile connectivity information.",
+ requirements:[
+  "Eligible mobile line",
+  "Supported destination"
+ ]
 },
 
 {
-    name:"4G / 5G",
-    category:"Internet",
-    icon:"5G",
-    provider:"Safaricom",
-    description:"Mobile network and connectivity information.",
-    requirements:["Compatible device","Network coverage"],
-    fee:"Plan-dependent",
-    type:"Connectivity"
-},
-
-/* BUSINESS */
-
-{
-    name:"M-PESA Business",
-    category:"Business",
-    icon:"MB",
-    provider:"Safaricom",
-    description:"Business payment and merchant-service information.",
-    requirements:["Business information","Provider eligibility requirements"],
-    fee:"Provider-defined",
-    type:"Business"
+ name:"International Calling",
+ category:"Communication",
+ provider:"Mobile Network",
+ type:"Calling",
+ image:IMAGES.communication,
+ fee:"Destination-dependent",
+ description:"International calling resources.",
+ requirements:[
+  "Active line",
+  "Supported destination"
+ ]
 },
 
 {
-    name:"Till Services",
-    category:"Business",
-    icon:"TI",
-    provider:"Safaricom",
-    description:"Merchant collection and payment information.",
-    requirements:["Business information","Provider requirements"],
-    fee:"Provider-defined",
-    type:"Merchant service"
+ name:"Home Internet",
+ category:"Internet",
+ provider:"Internet Provider",
+ type:"Broadband",
+ image:IMAGES.communication,
+ fee:"Plan-dependent",
+ description:"Home connectivity and internet plan information.",
+ requirements:[
+  "Serviceable location",
+  "Installation requirements",
+  "Customer information"
+ ]
 },
 
 {
-    name:"PayBill for Business",
-    category:"Business",
-    icon:"BP",
-    provider:"Safaricom",
-    description:"Business payment-collection information.",
-    requirements:["Business documentation","Provider requirements"],
-    fee:"Provider-defined",
-    type:"Business"
+ name:"Fibre Internet",
+ category:"Internet",
+ provider:"Internet Provider",
+ type:"Fibre",
+ image:IMAGES.communication,
+ fee:"Plan-dependent",
+ description:"Fibre broadband information.",
+ requirements:[
+  "Serviceable location",
+  "Installation requirements"
+ ]
 },
 
 {
-    name:"Enterprise Services",
-    category:"Business",
-    icon:"ES",
-    provider:"Safaricom",
-    description:"Business connectivity and enterprise-service information.",
-    requirements:["Organization details","Provider requirements"],
-    fee:"Plan-dependent",
-    type:"Enterprise"
-},
-
-/* ENTERTAINMENT */
-
-{
-    name:"Music",
-    category:"Entertainment",
-    icon:"MU",
-    provider:"Multiple providers",
-    description:"Music and digital entertainment resources.",
-    requirements:["Compatible device/account"],
-    fee:"Provider-specific",
-    type:"Entertainment"
+ name:"4G / 5G",
+ category:"Internet",
+ provider:"Mobile Network",
+ type:"Connectivity",
+ image:IMAGES.communication,
+ fee:"Plan-dependent",
+ description:"Mobile connectivity and compatible-device information.",
+ requirements:[
+  "Compatible device",
+  "Network coverage"
+ ]
 },
 
 {
-    name:"Video & Streaming",
-    category:"Entertainment",
-    icon:"VI",
-    provider:"Multiple providers",
-    description:"Streaming and video-service directory.",
-    requirements:["Compatible device/account"],
-    fee:"Subscription-specific",
-    type:"Entertainment"
+ name:"M-PESA Business",
+ category:"Business",
+ provider:"M-PESA",
+ type:"Merchant",
+ image:IMAGES.business,
+ fee:"Provider-defined",
+ description:"Business payment and merchant service information.",
+ requirements:[
+  "Business information",
+  "Owner identification",
+  "Provider eligibility"
+ ]
 },
 
 {
-    name:"Sports Entertainment",
-    category:"Entertainment",
-    icon:"SP",
-    provider:"Multiple providers",
-    description:"Sports content and entertainment resources.",
-    requirements:["Provider-specific"],
-    fee:"Provider-specific",
-    type:"Entertainment"
+ name:"Till Services",
+ category:"Business",
+ provider:"M-PESA",
+ type:"Merchant",
+ image:IMAGES.business,
+ fee:"Provider-defined",
+ description:"Merchant collection and payment information.",
+ requirements:[
+  "Business information",
+  "Identification",
+  "Provider requirements"
+ ]
 },
 
 {
-    name:"Gaming",
-    category:"Entertainment",
-    icon:"GA",
-    provider:"Multiple providers",
-    description:"Gaming and digital entertainment services.",
-    requirements:["Compatible device/account"],
-    fee:"Provider-specific",
-    type:"Entertainment"
-},
-
-/* EDUCATION */
-
-{
-    name:"Scholarships",
-    category:"Education",
-    icon:"SC",
-    provider:"Multiple organizations",
-    description:"Search scholarship opportunities by country, study level and field.",
-    requirements:["Academic documents","Eligibility requirements","Supporting documents"],
-    fee:"Opportunity-specific",
-    type:"Scholarship"
+ name:"Business PayBill",
+ category:"Business",
+ provider:"M-PESA",
+ type:"Payment Collection",
+ image:IMAGES.business,
+ fee:"Provider-defined",
+ description:"Business payment-collection services.",
+ requirements:[
+  "Business documentation",
+  "Authorized representative information"
+ ]
 },
 
 {
-    name:"Foreign Scholarships",
-    category:"Scholarships",
-    icon:"FS",
-    provider:"International institutions",
-    description:"International scholarship and study opportunities.",
-    requirements:["Academic qualifications","Passport/identity documents","Institution-specific requirements"],
-    fee:"Application service fee where applicable",
-    type:"International education"
+ name:"Enterprise Services",
+ category:"Business",
+ provider:"Enterprise Provider",
+ type:"Enterprise",
+ image:IMAGES.business,
+ fee:"Plan-dependent",
+ description:"Enterprise connectivity and business-service information.",
+ requirements:[
+  "Organization information",
+  "Authorized contact"
+ ]
 },
 
 {
-    name:"Kenya Scholarships",
-    category:"Scholarships",
-    icon:"KS",
-    provider:"Kenyan institutions and organizations",
-    description:"Scholarship and education opportunities available in Kenya.",
-    requirements:["Academic qualifications","Supporting documents"],
-    fee:"Application service fee where applicable",
-    type:"Kenyan education"
+ name:"Gaming",
+ category:"Entertainment",
+ provider:"Entertainment Providers",
+ type:"Gaming",
+ image:IMAGES.gaming,
+ fee:"Provider-dependent",
+ description:"Gaming and digital entertainment services.",
+ requirements:[
+  "Compatible device",
+  "Supported account",
+  "Provider terms"
+ ]
 },
 
 {
-    name:"HELB Information",
-    category:"Education",
-    icon:"HE",
-    provider:"HELB",
-    description:"Student-financing information and application guidance.",
-    requirements:["Student eligibility","Required academic/personal information"],
-    fee:"Provider-defined",
-    type:"Student financing"
+ name:"Music",
+ category:"Entertainment",
+ provider:"Entertainment Providers",
+ type:"Music",
+ image:IMAGES.entertainment,
+ fee:"Subscription-dependent",
+ description:"Music and digital entertainment resources.",
+ requirements:[
+  "Compatible device",
+  "Supported account"
+ ]
 },
 
 {
-    name:"University Directory",
-    category:"Education",
-    icon:"UN",
-    provider:"Multiple institutions",
-    description:"Search universities and higher-education institutions.",
-    requirements:["Institution-specific"],
-    fee:"Institution-specific",
-    type:"Education"
+ name:"Video & Streaming",
+ category:"Entertainment",
+ provider:"Entertainment Providers",
+ type:"Streaming",
+ image:IMAGES.entertainment,
+ fee:"Subscription-dependent",
+ description:"Video and streaming service directory.",
+ requirements:[
+  "Compatible device",
+  "Supported subscription"
+ ]
 },
 
 {
-    name:"TVET Directory",
-    category:"Education",
-    icon:"TV",
-    provider:"Multiple institutions",
-    description:"Technical and vocational institution directory.",
-    requirements:["Institution-specific"],
-    fee:"Institution-specific",
-    type:"Education"
+ name:"Sports Entertainment",
+ category:"Entertainment",
+ provider:"Entertainment Providers",
+ type:"Sports",
+ image:IMAGES.entertainment,
+ fee:"Provider-dependent",
+ description:"Sports content and entertainment resources.",
+ requirements:[
+  "Supported device",
+  "Provider account where applicable"
+ ]
 },
 
 {
-    name:"Online Learning",
-    category:"Education",
-    icon:"OL",
-    provider:"Multiple providers",
-    description:"Online courses and digital-learning resources.",
-    requirements:["Provider-specific"],
-    fee:"Provider-specific",
-    type:"Education"
-},
-
-/* JOBS */
-
-{
-    name:"Jobs",
-    category:"Jobs",
-    icon:"JB",
-    provider:"Multiple employers",
-    description:"Employment opportunity directory.",
-    requirements:["Employer-specific qualifications","CV/resume where required"],
-    fee:"Employer/application-specific",
-    type:"Employment"
+ name:"Foreign Scholarships",
+ category:"Scholarships",
+ provider:"International Institutions",
+ type:"International Education",
+ image:IMAGES.scholarship,
+ fee:"Institution/application dependent",
+ description:"International study and scholarship opportunities.",
+ requirements:[
+  "Academic records",
+  "Valid identification/passport where applicable",
+  "Proof of language proficiency where required",
+  "Recommendation/supporting documents",
+  "Institution-specific requirements"
+ ]
 },
 
 {
-    name:"Internships",
-    category:"Jobs",
-    icon:"IN",
-    provider:"Multiple employers",
-    description:"Internship and attachment opportunities.",
-    requirements:["Education requirements","Employer-specific documents"],
-    fee:"Employer/application-specific",
-    type:"Internship"
+ name:"Kenya Scholarships",
+ category:"Scholarships",
+ provider:"Kenyan Institutions & Organizations",
+ type:"Scholarship",
+ image:IMAGES.scholarship,
+ fee:"Opportunity-specific",
+ description:"Scholarship opportunities available through Kenyan institutions and organizations.",
+ requirements:[
+  "Academic documents",
+  "Identification",
+  "Eligibility evidence",
+  "Supporting documents"
+ ]
 },
 
 {
-    name:"Graduate Programs",
-    category:"Jobs",
-    icon:"GP",
-    provider:"Multiple employers",
-    description:"Graduate trainee and early-career opportunities.",
-    requirements:["Degree/qualification","Employer-specific requirements"],
-    fee:"Employer-specific",
-    type:"Graduate program"
+ name:"HELB Information & Applications",
+ category:"Education",
+ provider:"HELB",
+ type:"Student Financing",
+ image:IMAGES.helb,
+ fee:"Provider-defined",
+ description:"Student-financing information and application workflow.",
+ requirements:[
+  "Student identification",
+  "Academic information",
+  "Institution information",
+  "Required supporting documents",
+  "Current HELB eligibility requirements"
+ ]
 },
 
 {
-    name:"Remote Jobs",
-    category:"Jobs",
-    icon:"RJ",
-    provider:"Multiple employers",
-    description:"Remote employment opportunity directory.",
-    requirements:["Employer-specific"],
-    fee:"Employer-specific",
-    type:"Employment"
+ name:"University Applications",
+ category:"Education",
+ provider:"Universities",
+ type:"Admissions",
+ image:IMAGES.education,
+ fee:"Institution-dependent",
+ description:"University admissions information and application preparation.",
+ requirements:[
+  "Academic qualifications",
+  "Identification",
+  "Programme selection",
+  "Institution-specific documents"
+ ]
 },
 
 {
-    name:"Recruitment",
-    category:"Jobs",
-    icon:"RC",
-    provider:"Multiple employers",
-    description:"Recruitment and career resources for employers and job seekers.",
-    requirements:["Profile/CV","Employer requirements"],
-    fee:"Provider-specific",
-    type:"Recruitment"
-},
-
-/* NGOs */
-
-{
-    name:"NGO Directory",
-    category:"NGOs",
-    icon:"NG",
-    provider:"Multiple organizations",
-    description:"Directory of NGOs and community organizations.",
-    requirements:["Organization/program-specific"],
-    fee:"Program-specific",
-    type:"NGO"
+ name:"TVET Applications",
+ category:"Education",
+ provider:"TVET Institutions",
+ type:"Technical Education",
+ image:IMAGES.education,
+ fee:"Institution-dependent",
+ description:"Technical and vocational education opportunities.",
+ requirements:[
+  "Academic documents",
+  "Identification",
+  "Programme requirements"
+ ]
 },
 
 {
-    name:"Youth Programs",
-    category:"NGOs",
-    icon:"YP",
-    provider:"Multiple organizations",
-    description:"Youth development and opportunity programs.",
-    requirements:["Program-specific eligibility"],
-    fee:"Program-specific",
-    type:"Program"
+ name:"Online Learning",
+ category:"Education",
+ provider:"Learning Providers",
+ type:"Digital Learning",
+ image:IMAGES.education,
+ fee:"Provider-dependent",
+ description:"Online courses and digital-learning resources.",
+ requirements:[
+  "Provider account",
+  "Course-specific eligibility"
+ ]
 },
 
 {
-    name:"Women Empowerment",
-    category:"NGOs",
-    icon:"WE",
-    provider:"Multiple organizations",
-    description:"Women empowerment and development opportunities.",
-    requirements:["Program-specific eligibility"],
-    fee:"Program-specific",
-    type:"Program"
+ name:"Jobs",
+ category:"Jobs",
+ provider:"Multiple Employers",
+ type:"Employment",
+ image:IMAGES.jobs,
+ fee:"Employer/application dependent",
+ description:"Employment opportunity directory.",
+ requirements:[
+  "Relevant qualifications",
+  "CV/resume where required",
+  "Employer-specific documents"
+ ]
 },
 
 {
-    name:"Education NGOs",
-    category:"NGOs",
-    icon:"EN",
-    provider:"Multiple organizations",
-    description:"Organizations supporting education and learning.",
-    requirements:["Program-specific"],
-    fee:"Program-specific",
-    type:"NGO"
+ name:"Internships",
+ category:"Jobs",
+ provider:"Multiple Employers",
+ type:"Internship",
+ image:IMAGES.jobs,
+ fee:"Employer-dependent",
+ description:"Internship and industrial attachment opportunities.",
+ requirements:[
+  "Academic information",
+  "CV where required",
+  "Employer-specific documents"
+ ]
 },
 
 {
-    name:"Community Grants",
-    category:"NGOs",
-    icon:"CG",
-    provider:"Multiple organizations",
-    description:"Community grant opportunity directory.",
-    requirements:["Grant-specific eligibility","Supporting documents"],
-    fee:"Opportunity-specific",
-    type:"Grant"
-},
-
-/* TRANSPORT */
-
-{
-    name:"Ride Hailing",
-    category:"Transport",
-    icon:"RH",
-    provider:"Multiple providers",
-    description:"Ride-hailing service directory.",
-    requirements:["Provider account where required","Pickup/destination"],
-    fee:"Provider-specific",
-    type:"Transport"
+ name:"Graduate Programmes",
+ category:"Jobs",
+ provider:"Multiple Employers",
+ type:"Graduate Programme",
+ image:IMAGES.jobs,
+ fee:"Employer-dependent",
+ description:"Graduate trainee and early-career opportunities.",
+ requirements:[
+  "Degree or qualification",
+  "Academic records",
+  "CV",
+  "Employer requirements"
+ ]
 },
 
 {
-    name:"Taxi",
-    category:"Transport",
-    icon:"TX",
-    provider:"Multiple providers",
-    description:"Taxi service directory.",
-    requirements:["Provider-specific"],
-    fee:"Provider-specific",
-    type:"Transport"
+ name:"Remote Jobs",
+ category:"Jobs",
+ provider:"Multiple Employers",
+ type:"Remote Employment",
+ image:IMAGES.jobs,
+ fee:"Employer-dependent",
+ description:"Remote employment opportunity directory.",
+ requirements:[
+  "Relevant qualifications",
+  "CV",
+  "Employer-specific requirements"
+ ]
 },
 
 {
-    name:"Bus Services",
-    category:"Transport",
-    icon:"BS",
-    provider:"Multiple providers",
-    description:"Bus operators and travel information.",
-    requirements:["Travel information"],
-    fee:"Provider-specific",
-    type:"Transport"
+ name:"Recruitment",
+ category:"Jobs",
+ provider:"Multiple Employers",
+ type:"Recruitment",
+ image:IMAGES.jobs,
+ fee:"Provider-dependent",
+ description:"Recruitment resources for employers and job seekers.",
+ requirements:[
+  "Profile",
+  "CV/resume",
+  "Relevant qualifications"
+ ]
 },
 
 {
-    name:"Rail Travel",
-    category:"Transport",
-    icon:"RL",
-    provider:"Rail operators",
-    description:"Rail travel information and booking resources.",
-    requirements:["Passenger information","Travel details"],
-    fee:"Provider-specific",
-    type:"Travel"
+ name:"NGO Directory",
+ category:"NGOs",
+ provider:"Multiple Organizations",
+ type:"NGO",
+ image:IMAGES.ngo,
+ fee:"Programme-dependent",
+ description:"NGO and community-organization directory.",
+ requirements:[
+  "Programme-specific eligibility",
+  "Identification where required"
+ ]
 },
 
 {
-    name:"Air Travel",
-    category:"Transport",
-    icon:"AT",
-    provider:"Multiple providers",
-    description:"Airline and airport information.",
-    requirements:["Travel documents","Provider-specific requirements"],
-    fee:"Provider-specific",
-    type:"Travel"
+ name:"Youth Programmes",
+ category:"NGOs",
+ provider:"Multiple Organizations",
+ type:"Youth",
+ image:IMAGES.youth,
+ fee:"Programme-dependent",
+ description:"Youth development and opportunity programmes.",
+ requirements:[
+  "Age/programme eligibility",
+  "Identification",
+  "Programme-specific documents"
+ ]
 },
 
 {
-    name:"Courier",
-    category:"Transport",
-    icon:"CO",
-    provider:"Multiple providers",
-    description:"Courier and parcel-delivery directory.",
-    requirements:["Sender/recipient information"],
-    fee:"Provider-specific",
-    type:"Delivery"
-},
-
-/* GOVERNMENT */
-
-{
-    name:"Government Services",
-    category:"Government",
-    icon:"GV",
-    provider:"Government agencies",
-    description:"Directory of public digital services.",
-    requirements:["Service-specific"],
-    fee:"Government/provider-specific",
-    type:"Government"
+ name:"Women Empowerment",
+ category:"NGOs",
+ provider:"Multiple Organizations",
+ type:"Community",
+ image:IMAGES.ngo,
+ fee:"Programme-dependent",
+ description:"Women empowerment and enterprise opportunities.",
+ requirements:[
+  "Programme eligibility",
+  "Identification",
+  "Supporting documents"
+ ]
 },
 
 {
-    name:"eCitizen",
-    category:"Government",
-    icon:"EC",
-    provider:"Government",
-    description:"Government digital-service information.",
-    requirements:["Service-specific identification"],
-    fee:"Service-specific",
-    type:"Government"
+ name:"Community Grants",
+ category:"NGOs",
+ provider:"Multiple Organizations",
+ type:"Grant",
+ image:IMAGES.ngo,
+ fee:"Opportunity-dependent",
+ description:"Community grant opportunity directory.",
+ requirements:[
+  "Grant eligibility",
+  "Project information",
+  "Supporting documents"
+ ]
 },
 
 {
-    name:"KRA",
-    category:"Government",
-    icon:"KR",
-    provider:"KRA",
-    description:"Tax and revenue-service information.",
-    requirements:["Taxpayer-specific information"],
-    fee:"Service-specific",
-    type:"Government"
+ name:"NYOTA Youth Opportunity",
+ category:"NGOs",
+ provider:"NYOTA Programme",
+ type:"Youth Opportunity",
+ image:IMAGES.youth,
+ fee:"Programme-defined",
+ description:"Youth opportunity information, eligibility and application centre.",
+ requirements:[
+  "Programme eligibility",
+  "Identification",
+  "Required programme information",
+  "Supporting documents where applicable"
+ ]
 },
 
 {
-    name:"NTSA",
-    category:"Government",
-    icon:"NT",
-    provider:"NTSA",
-    description:"Transport and vehicle-service information.",
-    requirements:["Service-specific documents"],
-    fee:"Service-specific",
-    type:"Government"
+ name:"Ride Services",
+ category:"Transport",
+ provider:"Transport Providers",
+ type:"Ride",
+ image:IMAGES.transport,
+ fee:"Provider-dependent",
+ description:"Ride service directory.",
+ requirements:[
+  "Pickup location",
+  "Destination",
+  "Passenger information where required"
+ ]
 },
 
 {
-    name:"NSSF",
-    category:"Government",
-    icon:"NS",
-    provider:"NSSF",
-    description:"Social-security service information.",
-    requirements:["Member-specific requirements"],
-    fee:"Service-specific",
-    type:"Government"
-},
-
-/* INSURANCE */
-
-{
-    name:"Insurance Directory",
-    category:"Insurance",
-    icon:"IS",
-    provider:"Multiple insurers",
-    description:"Insurance products and provider directory.",
-    requirements:["Provider-specific information"],
-    fee:"Policy-specific",
-    type:"Insurance"
+ name:"Bus Travel",
+ category:"Transport",
+ provider:"Bus Operators",
+ type:"Bus",
+ image:IMAGES.transport,
+ fee:"Operator-dependent",
+ description:"Bus travel and operator information.",
+ requirements:[
+  "Passenger details",
+  "Travel date",
+  "Destination"
+ ]
 },
 
 {
-    name:"Health Insurance",
-    category:"Insurance",
-    icon:"HI",
-    provider:"Multiple providers",
-    description:"Health insurance information.",
-    requirements:["Provider-specific"],
-    fee:"Policy-specific",
-    type:"Insurance"
+ name:"Rail Travel",
+ category:"Transport",
+ provider:"Rail Operators",
+ type:"Rail",
+ image:IMAGES.transport,
+ fee:"Operator-dependent",
+ description:"Rail travel information.",
+ requirements:[
+  "Passenger details",
+  "Travel date",
+  "Travel route"
+ ]
 },
 
 {
-    name:"Motor Insurance",
-    category:"Insurance",
-    icon:"MI",
-    provider:"Multiple providers",
-    description:"Motor insurance provider directory.",
-    requirements:["Vehicle information","Provider requirements"],
-    fee:"Policy-specific",
-    type:"Insurance"
+ name:"Air Travel",
+ category:"Transport",
+ provider:"Airlines",
+ type:"Air Travel",
+ image:IMAGES.travel,
+ fee:"Airline-dependent",
+ description:"Airline and airport information.",
+ requirements:[
+  "Passenger information",
+  "Travel documents",
+  "Destination"
+ ]
 },
 
 {
-    name:"Life Insurance",
-    category:"Insurance",
-    icon:"LI",
-    provider:"Multiple providers",
-    description:"Life insurance information.",
-    requirements:["Provider-specific"],
-    fee:"Policy-specific",
-    type:"Insurance"
-},
-
-/* SUPPORT */
-
-{
-    name:"Customer Support",
-    category:"Support",
-    icon:"CS",
-    provider:"Service providers",
-    description:"Centralized customer-support directory.",
-    requirements:["Service/account information where required"],
-    fee:"Usually provider-specific",
-    type:"Support"
-},
-
-{
-    name:"Fraud Awareness",
-    category:"Support",
-    icon:"FA",
-    provider:"Support resources",
-    description:"Security and fraud-awareness information.",
-    requirements:["None"],
-    fee:"Free",
-    type:"Security"
-},
-
-{
-    name:"SIM Services",
-    category:"Support",
-    icon:"SI",
-    provider:"Safaricom",
-    description:"SIM-related service information.",
-    requirements:["Provider identity requirements"],
-    fee:"Provider-defined",
-    type:"Support"
-},
-
-{
-    name:"Lost Phone Help",
-    category:"Support",
-    icon:"LP",
-    provider:"Support resources",
-    description:"Guidance for securing accounts after losing a device.",
-    requirements:["Account information","Identity verification where required"],
-    fee:"Provider-defined",
-    type:"Support"
+ name:"Courier Services",
+ category:"Transport",
+ provider:"Courier Providers",
+ type:"Courier",
+ image:IMAGES.transport,
+ fee:"Provider-dependent",
+ description:"Parcel and courier-service directory.",
+ requirements:[
+  "Sender details",
+  "Recipient details",
+  "Parcel information"
+ ]
 }
 
 ];
 
-/* =========================================================
-   GENERATE EXTRA SERVICE RECORDS
-   Makes the directory scalable while keeping each record
-   independently identifiable.
-========================================================= */
 
-const EXTRA_SERVICES = [
+/* ==========================================================
+   ADDITIONAL CATALOGUE RECORDS
+========================================================== */
 
-"Mobile App Services",
-"Digital Content",
-"Business Internet",
-"SME Resources",
-"Merchant Payments",
-"Enterprise Connectivity",
-"Financial Education",
-"Financial Calculators",
-"International Roaming",
-"International Calling",
-"Learning Resources",
-"Digital Skills",
-"Certifications",
-"Study Abroad",
-"International Education",
-"Career Guidance",
-"Apprenticeships",
-"Freelance Opportunities",
-"CV Resources",
-"Business Directory",
-"Logistics",
-"Parking",
-"Vehicle Services",
-"Matatu Information",
-"Parcel Delivery",
-"Humanitarian Programs",
-"Agriculture Programs",
-"Health NGOs",
-"Donation Directory",
-"Community Development",
-"Scholarship Search",
-"University Applications",
-"College Directory",
-"International Institutions",
-"Kenyan Institutions",
-"Student Resources",
-"Training Programs",
-"Professional Courses",
-"Events",
-"TV & Content",
-"Gaming Subscriptions",
-"Sports Content",
-"Music Services",
-"Internet Support",
-"Network Support",
-"M-PESA Support",
-"Application Centre",
-"Service Help Centre"
+const EXTRA = [
+
+["Financial Education","Financial","Financial education and money-management resources.",IMAGES.financial],
+["Financial Calculators","Financial","Financial planning and calculation tools.",IMAGES.financial],
+["Merchant Payments","Business","Merchant payment resources.",IMAGES.business],
+["SME Resources","Business","Small-business information and resources.",IMAGES.business],
+["Enterprise Connectivity","Business","Enterprise connectivity resources.",IMAGES.business],
+["Business Directory","Business","Business discovery directory.",IMAGES.business],
+["Digital Skills","Education","Digital skills and training resources.",IMAGES.education],
+["Professional Courses","Education","Professional training opportunities.",IMAGES.education],
+["Certifications","Education","Professional certification resources.",IMAGES.education],
+["Study Abroad","Scholarships","Study-abroad opportunities.",IMAGES.scholarship],
+["International Institutions","Scholarships","International institution directory.",IMAGES.scholarship],
+["Student Resources","Education","Student support resources.",IMAGES.education],
+["Career Guidance","Jobs","Career guidance resources.",IMAGES.jobs],
+["Apprenticeships","Jobs","Apprenticeship opportunities.",IMAGES.jobs],
+["Freelance Opportunities","Jobs","Freelance opportunity directory.",IMAGES.jobs],
+["CV Resources","Jobs","CV and career preparation resources.",IMAGES.jobs],
+["Agriculture Programmes","NGOs","Agriculture and livelihood programmes.",IMAGES.ngo],
+["Health NGO Directory","NGOs","Health and community NGO directory.",IMAGES.ngo],
+["Donation Directory","NGOs","Verified donation and community-support directory.",IMAGES.ngo],
+["Community Development","NGOs","Community development opportunities.",IMAGES.ngo],
+["Humanitarian Programmes","NGOs","Humanitarian programme information.",IMAGES.ngo],
+["Youth Enterprise","NGOs","Youth enterprise resources.",IMAGES.youth],
+["Training Programmes","Education","Training and skills programmes.",IMAGES.education],
+["College Directory","Education","College directory.",IMAGES.education],
+["Kenyan Institutions","Education","Kenyan education institution directory.",IMAGES.education],
+["International Education","Scholarships","International education opportunities.",IMAGES.scholarship],
+["Scholarship Search","Scholarships","Search scholarship opportunities.",IMAGES.scholarship],
+["University Directory","Education","University directory.",IMAGES.education],
+["Gaming Subscriptions","Entertainment","Gaming subscription information.",IMAGES.gaming],
+["Digital Games","Entertainment","Digital gaming resources.",IMAGES.gaming],
+["Sports Content","Entertainment","Sports entertainment resources.",IMAGES.entertainment],
+["TV & Content","Entertainment","Digital TV and content resources.",IMAGES.entertainment],
+["Events","Entertainment","Entertainment and event directory.",IMAGES.entertainment],
+["Internet Support","Internet","Internet-support resources.",IMAGES.communication],
+["Network Support","Internet","Connectivity-support resources.",IMAGES.communication],
+["SIM Services","Communication","SIM-related service information.",IMAGES.communication],
+["M-PESA Support","Support","M-PESA support resources.",IMAGES.financial],
+["Customer Support","Support","Customer-service resources.",IMAGES.communication],
+["Fraud Awareness","Support","Security and fraud-awareness resources.",IMAGES.communication],
+["Lost Phone Help","Support","Guidance for securing an account after device loss.",IMAGES.communication],
+["Government Services Directory","Government","Government service information.",IMAGES.education],
+["KRA Information","Government","Tax-service information.",IMAGES.business],
+["NTSA Services","Government","Transport and vehicle-service information.",IMAGES.transport],
+["NSSF Information","Government","Social-security service information.",IMAGES.business],
+["Insurance Directory","Insurance","Insurance-provider directory.",IMAGES.business],
+["Health Insurance","Insurance","Health-insurance information.",IMAGES.business],
+["Motor Insurance","Insurance","Motor-insurance information.",IMAGES.transport],
+["Life Insurance","Insurance","Life-insurance information.",IMAGES.business],
+["Logistics Directory","Transport","Logistics provider information.",IMAGES.transport],
+["Vehicle Services","Transport","Vehicle-service information.",IMAGES.transport],
+["Parcel Delivery","Transport","Parcel delivery information.",IMAGES.transport],
+["Travel Resources","Transport","Travel planning resources.",IMAGES.travel],
+["Parking Services","Transport","Parking service information.",IMAGES.transport],
+["Matatu Information","Transport","Public transport information.",IMAGES.transport],
+["Mobile App Services","Communication","Mobile application resources.",IMAGES.communication],
+["Digital Content","Entertainment","Digital content services.",IMAGES.entertainment],
+["Sports Services","Entertainment","Sports content resources.",IMAGES.entertainment],
+["Music Services","Entertainment","Music resources.",IMAGES.entertainment],
+["Video Services","Entertainment","Video resources.",IMAGES.entertainment],
+["Learning Resources","Education","Learning resources.",IMAGES.education],
+["Education Directory","Education","Education-service directory.",IMAGES.education],
+["International Scholarships","Scholarships","International scholarship information.",IMAGES.scholarship],
+["Kenya Scholarships","Scholarships","Kenyan scholarship information.",IMAGES.scholarship],
+["Student Financing","Education","Student-financing information.",IMAGES.helb],
+["Admission Centre","Education","Education admission resources.",IMAGES.education],
+["Recruitment Centre","Jobs","Recruitment resources.",IMAGES.jobs],
+["Internship Centre","Jobs","Internship resources.",IMAGES.jobs],
+["Graduate Careers","Jobs","Graduate career resources.",IMAGES.jobs],
+["Remote Employment","Jobs","Remote employment resources.",IMAGES.jobs],
+["NGO Opportunities","NGOs","NGO opportunity directory.",IMAGES.ngo],
+["Grant Opportunities","NGOs","Grant-opportunity directory.",IMAGES.ngo],
+["Youth Grants","NGOs","Youth grant resources.",IMAGES.youth],
+["Community Programmes","NGOs","Community programme resources.",IMAGES.ngo],
+["Entrepreneurship Programmes","Business","Entrepreneurship resources.",IMAGES.business],
+["SME Training","Business","SME training resources.",IMAGES.business],
+["Business Registration Information","Business","Business registration information.",IMAGES.business],
+["Transport Directory","Transport","Transport provider directory.",IMAGES.transport],
+["Taxi Directory","Transport","Taxi information.",IMAGES.transport],
+["Courier Directory","Transport","Courier information.",IMAGES.transport],
+["Rail Information","Transport","Rail information.",IMAGES.transport],
+["Air Travel Directory","Transport","Air-travel information.",IMAGES.travel],
+["Tourism Resources","Transport","Tourism information.",IMAGES.travel],
+["Accommodation Directory","Transport","Accommodation information.",IMAGES.travel],
+["Communication Services","Communication","Communication-service directory.",IMAGES.communication],
+["SMS Resources","Communication","Messaging resources.",IMAGES.communication],
+["Voice Resources","Communication","Voice-service resources.",IMAGES.communication],
+["Data Resources","Communication","Data-service resources.",IMAGES.communication],
+["Roaming Resources","Communication","Roaming resources.",IMAGES.travel],
+["International Calling","Communication","International calling resources.",IMAGES.communication],
+["Home Internet","Internet","Home internet resources.",IMAGES.communication],
+["Fibre Internet","Internet","Fibre internet resources.",IMAGES.communication],
+["Mobile Internet","Internet","Mobile internet resources.",IMAGES.communication],
+["4G Services","Internet","4G resources.",IMAGES.communication],
+["5G Services","Internet","5G resources.",IMAGES.communication],
+["Business Internet","Business","Business internet resources.",IMAGES.business],
+["Enterprise Internet","Business","Enterprise internet resources.",IMAGES.business]
 
 ];
 
-EXTRA_SERVICES.forEach((name,index)=>{
+EXTRA.forEach(item=>{
 
-    if(!SERVICES.some(x=>x.name===name)){
+ if(!SERVICES.some(s=>s.name===item[0])){
 
-        SERVICES.push({
+  SERVICES.push({
+   name:item[0],
+   category:item[1],
+   provider:"Multiple / Verified Provider",
+   type:item[1]+" Service",
+   image:item[3],
+   fee:"Provider/service dependent",
+   description:item[2],
+   requirements:[
+    "Check current provider eligibility",
+    "Provide required identification where applicable",
+    "Provide service-specific supporting documents",
+    "Review current terms before submitting"
+   ]
+  });
 
-            name:name,
-
-            category:
-                name.includes("Job") ||
-                name.includes("Career") ||
-                name.includes("CV") ||
-                name.includes("Apprent") ||
-                name.includes("Freelance")
-                ? "Jobs"
-                :
-                name.includes("Scholar") ||
-                name.includes("University") ||
-                name.includes("College") ||
-                name.includes("Study") ||
-                name.includes("Education") ||
-                name.includes("Learning") ||
-                name.includes("Training") ||
-                name.includes("Course") ||
-                name.includes("Student")
-                ? "Education"
-                :
-                name.includes("NGO") ||
-                name.includes("Community") ||
-                name.includes("Agriculture") ||
-                name.includes("Humanitarian") ||
-                name.includes("Donation")
-                ? "NGOs"
-                :
-                name.includes("Internet") ||
-                name.includes("Network")
-                ? "Internet"
-                :
-                name.includes("Music") ||
-                name.includes("Gaming") ||
-                name.includes("Sports") ||
-                name.includes("TV") ||
-                name.includes("Content") ||
-                name.includes("Events")
-                ? "Entertainment"
-                :
-                name.includes("Transport") ||
-                name.includes("Logistics") ||
-                name.includes("Parking") ||
-                name.includes("Vehicle") ||
-                name.includes("Matatu") ||
-                name.includes("Parcel")
-                ? "Transport"
-                :
-                name.includes("Business") ||
-                name.includes("Merchant") ||
-                name.includes("SME") ||
-                name.includes("Enterprise")
-                ? "Business"
-                :
-                "Services",
-
-            icon:name.substring(0,2).toUpperCase(),
-
-            provider:"Multiple providers",
-
-            description:
-                "Professional service directory record. Open the service to view eligibility, requirements, fees and provider information.",
-
-            requirements:[
-                "Eligibility depends on the selected provider",
-                "Required documents depend on the service",
-                "Check current provider requirements before application"
-            ],
-
-            fee:"Provider/service specific",
-
-            type:"Service"
-
-        });
-
-    }
+ }
 
 });
 
-/* =========================================================
+
+/* ==========================================================
    INSTITUTIONS
-========================================================= */
+========================================================== */
 
 const INSTITUTIONS = [
 
-{
-    name:"University of Nairobi",
-    country:"Kenya",
-    location:"Nairobi",
-    type:"University"
-},
-
-{
-    name:"Kenyatta University",
-    country:"Kenya",
-    location:"Kiambu",
-    type:"University"
-},
-
-{
-    name:"Jomo Kenyatta University of Agriculture and Technology",
-    country:"Kenya",
-    location:"Kiambu",
-    type:"University"
-},
-
-{
-    name:"Moi University",
-    country:"Kenya",
-    location:"Uasin Gishu",
-    type:"University"
-},
-
-{
-    name:"Egerton University",
-    country:"Kenya",
-    location:"Nakuru",
-    type:"University"
-},
-
-{
-    name:"Technical University of Kenya",
-    country:"Kenya",
-    location:"Nairobi",
-    type:"University"
-},
-
-{
-    name:"Strathmore University",
-    country:"Kenya",
-    location:"Nairobi",
-    type:"University"
-},
-
-{
-    name:"Kenya Universities Directory",
-    country:"Kenya",
-    location:"Multiple counties",
-    type:"Directory"
-},
-
-{
-    name:"USA Institutions Directory",
-    country:"USA",
-    location:"Multiple states",
-    type:"International"
-},
-
-{
-    name:"UK Institutions Directory",
-    country:"United Kingdom",
-    location:"England, Wales, Scotland & Northern Ireland",
-    type:"International"
-},
-
-{
-    name:"Scottish Institutions Directory",
-    country:"Scotland",
-    location:"Multiple locations",
-    type:"International"
-},
-
-{
-    name:"Canada Institutions Directory",
-    country:"Canada",
-    location:"Multiple provinces and territories",
-    type:"International"
-},
-
-{
-    name:"Germany Institutions Directory",
-    country:"Germany",
-    location:"Multiple regions",
-    type:"International"
-}
+["University of Nairobi","Kenya","Nairobi","University",IMAGES.education],
+["Kenyatta University","Kenya","Kiambu","University",IMAGES.education],
+["Jomo Kenyatta University of Agriculture and Technology","Kenya","Kiambu","University",IMAGES.education],
+["Moi University","Kenya","Uasin Gishu","University",IMAGES.education],
+["Egerton University","Kenya","Nakuru","University",IMAGES.education],
+["Technical University of Kenya","Kenya","Nairobi","University",IMAGES.education],
+["Strathmore University","Kenya","Nairobi","University",IMAGES.education],
+["United States Institutions Directory","USA","Multiple States","International",IMAGES.scholarship],
+["United Kingdom Institutions Directory","UK","England, Scotland, Wales & Northern Ireland","International",IMAGES.scholarship],
+["Canadian Institutions Directory","Canada","Multiple Provinces","International",IMAGES.scholarship],
+["German Institutions Directory","Germany","Multiple Regions","International",IMAGES.scholarship],
+["Scottish Institutions Directory","Scotland","Multiple Locations","International",IMAGES.scholarship]
 
 ];
 
-/* =========================================================
+
+/* ==========================================================
    JOBS
-========================================================= */
+========================================================== */
 
 const JOBS=[
 
-{
-    title:"Software Engineer",
-    company:"Technology Employer",
-    location:"Nairobi",
-    type:"Full-time"
-},
-
-{
-    title:"Graduate Trainee",
-    company:"Corporate Employer",
-    location:"Kenya",
-    type:"Graduate Program"
-},
-
-{
-    title:"Customer Experience Associate",
-    company:"Service Employer",
-    location:"Kenya",
-    type:"Full-time"
-},
-
-{
-    title:"Data Analyst",
-    company:"Technology Employer",
-    location:"Remote",
-    type:"Full-time"
-},
-
-{
-    title:"Marketing Intern",
-    company:"Corporate Employer",
-    location:"Nairobi",
-    type:"Internship"
-},
-
-{
-    title:"Field Operations Assistant",
-    company:"Operations Employer",
-    location:"Kenya",
-    type:"Full-time"
-}
+["Software Engineer","Technology Employer","Nairobi","Full-time"],
+["Graduate Trainee","Corporate Employer","Kenya","Graduate Programme"],
+["Customer Experience Associate","Service Employer","Kenya","Full-time"],
+["Data Analyst","Technology Employer","Remote","Full-time"],
+["Marketing Intern","Corporate Employer","Nairobi","Internship"],
+["Field Operations Assistant","Operations Employer","Kenya","Full-time"],
+["Finance Assistant","Business Employer","Nairobi","Full-time"],
+["Human Resources Intern","Corporate Employer","Kenya","Internship"]
 
 ];
 
-/* =========================================================
-   NGO DIRECTORY
-========================================================= */
 
-const NGOS=[
-
-{
-    name:"Education Opportunity Directory",
-    focus:"Education",
-    description:"Education, scholarship and learning opportunities."
-},
-
-{
-    name:"Youth Development Directory",
-    focus:"Youth",
-    description:"Youth development and entrepreneurship programs."
-},
-
-{
-    name:"Women Empowerment Directory",
-    focus:"Women",
-    description:"Women empowerment and enterprise opportunities."
-},
-
-{
-    name:"Community Development Directory",
-    focus:"Community",
-    description:"Community development and support programs."
-},
-
-{
-    name:"Agriculture Opportunity Directory",
-    focus:"Agriculture",
-    description:"Agriculture and livelihood opportunities."
-},
-
-{
-    name:"Humanitarian Services Directory",
-    focus:"Humanitarian",
-    description:"Humanitarian and community-support resources."
-}
-
-];
-
-/* =========================================================
-   TRANSPORT
-========================================================= */
-
-const TRANSPORT=[
-
-{
-    name:"Ride Services Directory",
-    type:"Ride-hailing",
-    description:"Ride-hailing provider information."
-},
-
-{
-    name:"Bus Operator Directory",
-    type:"Bus",
-    description:"Bus operators and route information."
-},
-
-{
-    name:"Rail Travel Directory",
-    type:"Rail",
-    description:"Rail travel information."
-},
-
-{
-    name:"Air Travel Directory",
-    type:"Air",
-    description:"Airline and airport information."
-},
-
-{
-    name:"Courier Directory",
-    type:"Courier",
-    description:"Parcel and delivery services."
-},
-
-{
-    name:"Logistics Directory",
-    type:"Logistics",
-    description:"Logistics and freight resources."
-}
-
-];
-
-/* =========================================================
+/* ==========================================================
    CATEGORY FILTER
-========================================================= */
+========================================================== */
 
-const categories=[
+const categories=[...new Set(SERVICES.map(s=>s.category))].sort();
 
-...new Set(
-    SERVICES.map(service=>service.category)
-)
+const categoryFilter=document.getElementById("categoryFilter");
 
-].sort();
+categories.forEach(c=>{
 
-const categorySelect=document.getElementById("category");
+ const option=document.createElement("option");
 
-categories.forEach(category=>{
+ option.value=c;
+ option.textContent=c;
 
-    const option=document.createElement("option");
-
-    option.value=category;
-    option.textContent=category;
-
-    categorySelect.appendChild(option);
+ categoryFilter.appendChild(option);
 
 });
 
-/* =========================================================
-   CARD CREATOR
-========================================================= */
 
-function initials(text){
+/* ==========================================================
+   SERVICE CARDS
+========================================================== */
 
-    return text
-        .split(" ")
-        .map(word=>word[0])
-        .join("")
-        .substring(0,2)
-        .toUpperCase();
+function renderServices(){
 
-}
+ const q=document
+  .getElementById("serviceSearch")
+  .value
+  .toLowerCase()
+  .trim();
 
-function serviceCard(service,index){
+ const category=categoryFilter.value;
 
-    return `
+ const list=SERVICES.filter(s=>{
 
-    <article class="card">
+  const searchable=
+   `${s.name} ${s.category} ${s.provider} ${s.description} ${s.type}`
+   .toLowerCase();
 
-        <div class="card-logo">
-            ${service.logo
-                ? `<img src="${service.logo}" alt="${service.name} logo">`
-                : initials(service.icon || service.name)
-            }
-        </div>
+  return searchable.includes(q) &&
+   (category==="All" || s.category===category);
 
-        <span class="tag">
-            ${service.category}
-        </span>
+ });
 
-        <h3>
-            ${service.name}
-        </h3>
+ const grid=document.getElementById("serviceGrid");
 
-        <p>
-            ${service.description}
-        </p>
+ if(!list.length){
 
-        <div class="card-bottom">
+  grid.innerHTML=`
+   <div style="
+    grid-column:1/-1;
+    padding:40px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    text-align:center;
+    color:var(--muted)
+   ">
+    No matching service found.
+   </div>
+  `;
 
-            <div class="pills">
+  return;
+ }
 
-                <span class="pill">
-                    ${service.provider}
-                </span>
+ grid.innerHTML=list.map((s,index)=>{
 
-                <span class="pill">
-                    ${service.type}
-                </span>
+  const realIndex=SERVICES.indexOf(s);
 
-            </div>
+  return `
 
-            <button
-                class="card-action"
-                onclick="openService(${index})">
+  <article class="card">
 
-                View Details
+   <div class="card-image">
+    <img
+     src="${s.image}"
+     alt="${escapeHTML(s.name)} service">
+   </div>
 
-            </button>
+   <div class="card-body">
 
-        </div>
+    <span class="tag">
+     ${escapeHTML(s.category)}
+    </span>
 
-    </article>
+    <h3>
+     ${escapeHTML(s.name)}
+    </h3>
 
-    `;
+    <p>
+     ${escapeHTML(s.description)}
+    </p>
 
-}
+    <div class="pills">
 
-/* =========================================================
-   RENDER SERVICES
-========================================================= */
+     <span class="pill">
+      ${escapeHTML(s.provider)}
+     </span>
 
-function renderServices(list=SERVICES){
+     <span class="pill">
+      ${escapeHTML(s.type)}
+     </span>
 
-    const grid=document.getElementById("serviceGrid");
+    </div>
 
-    if(!list.length){
+    <div class="card-bottom">
 
-        grid.innerHTML=`
+     <div class="card-buttons">
 
-        <div style="
-            grid-column:1/-1;
-            background:white;
-            border:1px solid var(--border);
-            border-radius:20px;
-            padding:40px;
-            text-align:center;
-            color:var(--muted);
-        ">
+      <button
+       class="details-btn"
+       onclick="openService(${realIndex})">
+       View Details
+      </button>
 
-            No matching service found.
+      <button
+       class="apply-btn"
+       onclick="startApplication(${realIndex})">
+       Apply
+      </button>
 
-        </div>
+     </div>
 
-        `;
+    </div>
 
-        return;
+   </div>
 
-    }
+  </article>
 
-    grid.innerHTML=list
-        .map(service=>{
+  `;
 
-            const originalIndex=SERVICES.indexOf(service);
-
-            return serviceCard(service,originalIndex);
-
-        })
-        .join("");
-
-}
-
-/* =========================================================
-   SERVICE SEARCH
-========================================================= */
-
-function filterServices(){
-
-    const query=document
-        .getElementById("search")
-        .value
-        .toLowerCase()
-        .trim();
-
-    const category=document
-        .getElementById("category")
-        .value;
-
-    const filtered=SERVICES.filter(service=>{
-
-        const searchable=`
-
-            ${service.name}
-            ${service.category}
-            ${service.provider}
-            ${service.description}
-            ${service.type}
-
-        `.toLowerCase();
-
-        const matchesSearch=
-            searchable.includes(query);
-
-        const matchesCategory=
-            category==="All" ||
-            service.category===category;
-
-        return matchesSearch && matchesCategory;
-
-    });
-
-    renderServices(filtered);
+ }).join("");
 
 }
 
-document
-.getElementById("search")
-.addEventListener("input",filterServices);
 
-categorySelect
-.addEventListener("change",filterServices);
-
-/* =========================================================
-   QUICK CATEGORY
-========================================================= */
-
-function quickCategory(category){
-
-    categorySelect.value=
-        categories.includes(category)
-        ? category
-        : "All";
-
-    filterServices();
-
-    document
-        .getElementById("services")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
-}
-
-/* =========================================================
-   SERVICE MODAL
-========================================================= */
+/* ==========================================================
+   SERVICE DETAILS
+========================================================== */
 
 function openService(index){
 
-    const service=SERVICES[index];
+ const s=SERVICES[index];
 
-    const requirements=
-        service.requirements
-        .map(requirement=>`
-            <li>${requirement}</li>
-        `)
-        .join("");
+ document.getElementById("modalBody").innerHTML=`
 
-    document.getElementById("modalBody").innerHTML=`
+  <div class="modal-header">
 
-        <div class="detail-logo">
-            ${initials(service.icon || service.name)}
-        </div>
+   <span class="eyebrow">
+    ${escapeHTML(s.category)}
+   </span>
 
-        <span class="tag">
-            ${service.category}
-        </span>
+   <h2>
+    ${escapeHTML(s.name)}
+   </h2>
 
-        <h2 style="margin-top:6px">
-            ${service.name}
-        </h2>
+   <p>
+    ${escapeHTML(s.description)}
+   </p>
 
-        <p class="detail-description">
-            ${service.description}
-        </p>
+  </div>
 
-        <div class="detail-grid">
+  <img
+   src="${s.image}"
+   alt="${escapeHTML(s.name)}"
+   style="
+    width:100%;
+    height:240px;
+    object-fit:cover;
+    border-radius:18px;
+    margin-bottom:20px
+   ">
 
-            <div class="detail-box">
-                <label>Provider</label>
-                <strong>${service.provider}</strong>
-            </div>
+  <div class="detail-grid">
 
-            <div class="detail-box">
-                <label>Service Type</label>
-                <strong>${service.type}</strong>
-            </div>
+   <div class="detail-box">
+    <label>Provider</label>
+    <strong>${escapeHTML(s.provider)}</strong>
+   </div>
 
-            <div class="detail-box">
-                <label>Status</label>
-                <strong>Directory Record</strong>
-            </div>
+   <div class="detail-box">
+    <label>Service Type</label>
+    <strong>${escapeHTML(s.type)}</strong>
+   </div>
 
-            <div class="detail-box">
-                <label>Fee</label>
-                <strong>${service.fee}</strong>
-            </div>
+   <div class="detail-box">
+    <label>Application / Service Fee</label>
+    <strong>${escapeHTML(s.fee)}</strong>
+   </div>
 
-        </div>
+   <div class="detail-box">
+    <label>Status</label>
+    <strong>Information & application centre</strong>
+   </div>
 
-        <div class="modal-section">
+  </div>
 
-            <h3>
-                Requirements
-            </h3>
+  <div class="modal-section">
 
-            <ul>
-                ${requirements}
-            </ul>
+   <h3>Requirements</h3>
 
-        </div>
+   <ul class="requirements-list">
 
-        <div class="modal-section">
+    ${s.requirements.map(r=>
+     `<li>${escapeHTML(r)}</li>`
+    ).join("")}
 
-            <h3>
-                Fees & Charges
-            </h3>
+   </ul>
 
-            <div class="fee">
-                ${service.fee}
-            </div>
+  </div>
 
-            <p style="
-                color:var(--muted);
-                font-size:13px;
-                margin-top:8px;
-            ">
-                The production database should contain the exact
-                current charge, fee type, provider and effective date
-                for this service.
-            </p>
+  <div class="fee-display">
 
-        </div>
+   Fee information:
+   ${escapeHTML(s.fee)}
 
-        <div class="modal-section">
+  </div>
 
-            <h3>
-                Application / Access
-            </h3>
+  <button
+   class="btn btn-primary"
+   onclick="startApplication(${index})">
 
-            <p style="
-                color:var(--muted);
-                line-height:1.7;
-            ">
-                Connect this button to the verified provider or
-                institution application/access endpoint in the
-                production backend.
-            </p>
+   Start Application
 
-            <button
-                class="btn btn-primary"
-                style="margin-top:15px"
-                onclick="applicationMessage()">
+  </button>
 
-                Continue
+ `;
 
-            </button>
-
-        </div>
-
-    `;
-
-    document
-        .getElementById("modal")
-        .classList
-        .remove("hidden");
+ document.getElementById("modal").classList.remove("hidden");
 
 }
+
+
+/* ==========================================================
+   APPLICATION PAGE
+========================================================== */
+
+function startApplication(index){
+
+ const s=SERVICES[index];
+
+ const profile=getProfile();
+
+ document.getElementById("modalBody").innerHTML=`
+
+  <div class="modal-header">
+
+   <div class="application-steps">
+
+    <span class="step active">1 Applicant</span>
+    <span class="step">2 Requirements</span>
+    <span class="step">3 Documents</span>
+    <span class="step">4 Review</span>
+    <span class="step">5 Submit</span>
+
+   </div>
+
+   <span class="eyebrow">
+    APPLICATION CENTRE
+   </span>
+
+   <h2>
+    ${escapeHTML(s.name)}
+   </h2>
+
+   <p>
+    Complete the application form below.
+   </p>
+
+  </div>
+
+  <img
+   src="${s.image}"
+   alt="${escapeHTML(s.name)}"
+   style="
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:17px;
+    margin-bottom:20px
+   ">
+
+  <div class="fee-display">
+   Applicable fee:
+   ${escapeHTML(s.fee)}
+  </div>
+
+  <form id="applicationForm">
+
+   <input type="hidden"
+          name="service"
+          value="${escapeHTML(s.name)}">
+
+   <div class="form-grid">
+
+    <div class="form-group">
+     <label>Full Name *</label>
+     <input
+      required
+      name="fullName"
+      value="${escapeHTML(profile.name||"")}"
+      placeholder="Enter full name">
+    </div>
+
+    <div class="form-group">
+     <label>Phone Number *</label>
+     <input
+      required
+      name="phone"
+      value="${escapeHTML(profile.phone||"")}"
+      placeholder="07XXXXXXXX">
+    </div>
+
+    <div class="form-group">
+     <label>Email Address</label>
+     <input
+      type="email"
+      name="email"
+      value="${escapeHTML(profile.email||"")}"
+      placeholder="you@example.com">
+    </div>
+
+    <div class="form-group">
+     <label>National ID / Passport</label>
+     <input
+      name="identity"
+      placeholder="Enter identification number">
+    </div>
+
+    <div class="form-group">
+     <label>Date of Birth</label>
+     <input
+      type="date"
+      name="dob">
+    </div>
+
+    <div class="form-group">
+     <label>County / Location</label>
+     <input
+      name="location"
+      placeholder="County or location">
+    </div>
+
+    <div class="form-group form-full">
+     <label>Service-specific information</label>
+
+     <textarea
+      name="details"
+      placeholder="Enter information relevant to this application"></textarea>
+
+     <small>
+      Requirements may vary by provider or institution.
+     </small>
+    </div>
+
+    <div class="form-group form-full">
+
+     <label>
+      Supporting Documents
+     </label>
+
+     <input
+      type="file"
+      name="documents"
+      multiple>
+
+     <small>
+      Selected files are used only by this browser in this
+      demonstration. Connect secure server-side document storage
+      before accepting real applications.
+     </small>
+
+    </div>
+
+    <div class="form-group form-full">
+
+     <label class="pill"
+            style="
+             display:flex;
+             gap:8px;
+             align-items:center;
+             padding:12px;
+             border-radius:12px;
+            ">
+
+      <input
+       required
+       type="checkbox"
+       name="declaration"
+       style="width:auto">
+
+      I confirm that the information provided is accurate.
+
+     </label>
+
+    </div>
+
+   </div>
+
+   <div style="
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:10px;
+   ">
+
+    <button
+     type="button"
+     class="btn btn-light"
+     onclick="openService(${index})">
+     Back
+    </button>
+
+    <button
+     type="submit"
+     class="btn btn-primary">
+     Review & Submit
+    </button>
+
+   </div>
+
+  </form>
+ `;
+
+ document
+  .getElementById("applicationForm")
+  .addEventListener(
+   "submit",
+   function(e){
+    e.preventDefault();
+    reviewApplication(index);
+   }
+  );
+
+ document.getElementById("modal").classList.remove("hidden");
+
+}
+
+
+/* ==========================================================
+   REVIEW APPLICATION
+========================================================== */
+
+function reviewApplication(index){
+
+ const form=document.getElementById("applicationForm");
+
+ if(!form.reportValidity()) return;
+
+ const s=SERVICES[index];
+
+ const data=Object.fromEntries(
+  new FormData(form).entries()
+ );
+
+ document.getElementById("modalBody").innerHTML=`
+
+  <div class="modal-header">
+
+   <div class="application-steps">
+
+    <span class="step">1 Applicant</span>
+    <span class="step">2 Requirements</span>
+    <span class="step">3 Documents</span>
+    <span class="step active">4 Review</span>
+    <span class="step">5 Submit</span>
+
+   </div>
+
+   <span class="eyebrow">
+    REVIEW APPLICATION
+   </span>
+
+   <h2>
+    Check your information
+   </h2>
+
+   <p>
+    Review the information before creating the application record.
+   </p>
+
+  </div>
+
+  <div class="detail-grid">
+
+   <div class="detail-box">
+    <label>Service</label>
+    <strong>${escapeHTML(s.name)}</strong>
+   </div>
+
+   <div class="detail-box">
+    <label>Applicant</label>
+    <strong>${escapeHTML(data.fullName)}</strong>
+   </div>
+
+   <div class="detail-box">
+    <label>Phone</label>
+    <strong>${escapeHTML(data.phone)}</strong>
+   </div>
+
+   <div class="detail-box">
+    <label>Email</label>
+    <strong>${escapeHTML(data.email||"Not provided")}</strong>
+   </div>
+
+   <div class="detail-box">
+    <label>Identification</label>
+    <strong>${escapeHTML(data.identity||"Not provided")}</strong>
+   </div>
+
+   <div class="detail-box">
+    <label>Location</label>
+    <strong>${escapeHTML(data.location||"Not provided")}</strong>
+   </div>
+
+  </div>
+
+  <div class="modal-section">
+
+   <h3>
+    Application Requirements
+   </h3>
+
+   <ul class="requirements-list">
+
+    ${s.requirements.map(r=>
+     `<li>${escapeHTML(r)}</li>`
+    ).join("")}
+
+   </ul>
+
+  </div>
+
+  <div class="fee-display">
+   ${escapeHTML(s.fee)}
+  </div>
+
+  <div style="
+   display:flex;
+   gap:10px;
+   flex-wrap:wrap;
+   margin-top:20px;
+  ">
+
+   <button
+    class="btn btn-light"
+    onclick="startApplication(${index})">
+    Edit
+   </button>
+
+   <button
+    class="btn btn-primary"
+    onclick='submitApplication(${index},${JSON.stringify(data)})'>
+    Submit Application
+   </button>
+
+  </div>
+
+ `;
+
+}
+
+
+/* ==========================================================
+   SUBMIT APPLICATION
+========================================================== */
+
+function submitApplication(index,data){
+
+ const service=SERVICES[index];
+
+ const reference=
+  "TWA-"+new Date().getFullYear()+"-"+Math.random()
+  .toString(36)
+  .substring(2,8)
+  .toUpperCase();
+
+ const application={
+
+  reference,
+
+  service:service.name,
+
+  category:service.category,
+
+  applicant:data.fullName,
+
+  phone:data.phone,
+
+  email:data.email||"",
+
+  location:data.location||"",
+
+  submittedAt:new Date().toISOString(),
+
+  status:"Application Created",
+
+  fee:service.fee
+
+ };
+
+ const applications=
+  JSON.parse(
+   localStorage.getItem("twawezaApplications")||"[]"
+  );
+
+ applications.unshift(application);
+
+ localStorage.setItem(
+  "twawezaApplications",
+  JSON.stringify(applications)
+ );
+
+ document.getElementById("modalBody").innerHTML=`
+
+  <div style="
+   text-align:center;
+   padding:25px 5px;
+  ">
+
+   <div style="
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#e6f7ed;
+    color:var(--green);
+    display:grid;
+    place-items:center;
+    font-size:40px;
+    margin:0 auto 20px;
+   ">
+    ✓
+   </div>
+
+   <span class="eyebrow">
+    APPLICATION CREATED
+   </span>
+
+   <h2 style="margin:7px 0">
+    Application received
+   </h2>
+
+   <p style="
+    color:var(--muted);
+    max-width:600px;
+    margin:auto;
+   ">
+    Your application has been created in this browser.
+    Use the reference number below when connecting the application
+    to your production backend.
+   </p>
+
+   <div style="
+    background:#f3f8f5;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    margin:25px 0;
+   ">
+
+    <small style="
+     color:var(--muted);
+     display:block;
+    ">
+     APPLICATION REFERENCE
+    </small>
+
+    <strong style="
+     font-size:28px;
+     letter-spacing:2px;
+     color:var(--green);
+    ">
+     ${reference}
+    </strong>
+
+   </div>
+
+   <div class="detail-grid"
+        style="text-align:left">
+
+    <div class="detail-box">
+     <label>Service</label>
+     <strong>${escapeHTML(service.name)}</strong>
+    </div>
+
+    <div class="detail-box">
+     <label>Status</label>
+     <strong>Application Created</strong>
+    </div>
+
+    <div class="detail-box">
+     <label>Applicant</label>
+     <strong>${escapeHTML(data.fullName)}</strong>
+    </div>
+
+    <div class="detail-box">
+     <label>Fee Information</label>
+     <strong>${escapeHTML(service.fee)}</strong>
+    </div>
+
+   </div>
+
+   <button
+    class="btn btn-primary"
+    style="margin-top:22px"
+    onclick="closeModal();renderApplications();scrollToSection('applications')">
+
+    Open My Applications
+
+   </button>
+
+  </div>
+
+ `;
+
+ showToast("Application created successfully.");
+
+}
+
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+function getProfile(){
+
+ return JSON.parse(
+  localStorage.getItem("twawezaProfile") ||
+  '{"name":"","phone":"","email":""}'
+ );
+
+}
+
+function openProfile(){
+
+ const profile=getProfile();
+
+ document.getElementById("modalBody").innerHTML=`
+
+  <div class="modal-header">
+
+   <span class="eyebrow">
+    USER PROFILE
+   </span>
+
+   <h2>Create your profile</h2>
+
+   <p>
+    Your profile information can be automatically inserted
+    into future application forms.
+   </p>
+
+  </div>
+
+  <form id="profileForm">
+
+   <div class="form-grid">
+
+    <div class="form-group">
+     <label>Full Name *</label>
+     <input
+      required
+      name="name"
+      value="${escapeHTML(profile.name||"")}"
+      placeholder="Full name">
+    </div>
+
+    <div class="form-group">
+     <label>Phone *</label>
+     <input
+      required
+      name="phone"
+      value="${escapeHTML(profile.phone||"")}"
+      placeholder="07XXXXXXXX">
+    </div>
+
+    <div class="form-group">
+     <label>Email</label>
+     <input
+      type="email"
+      name="email"
+      value="${escapeHTML(profile.email||"")}"
+      placeholder="Email address">
+    </div>
+
+    <div class="form-group">
+     <label>County</label>
+     <input
+      name="county"
+      value="${escapeHTML(profile.county||"")}"
+      placeholder="County">
+    </div>
+
+    <div class="form-group form-full">
+
+     <label>Profile Avatar</label>
+
+     <input
+      type="file"
+      accept="image/*"
+      id="avatarInput">
+
+     <small>
+      Select a profile picture. It will be stored locally
+      in this demonstration.
+     </small>
+
+    </div>
+
+   </div>
+
+   <button
+    type="submit"
+    class="btn btn-primary">
+    Save Profile
+   </button>
+
+  </form>
+ `;
+
+ document.getElementById("modal").classList.remove("hidden");
+
+ document
+  .getElementById("profileForm")
+  .addEventListener("submit",function(e){
+
+   e.preventDefault();
+
+   const data=Object.fromEntries(
+    new FormData(this).entries()
+   );
+
+   const file=
+    document.getElementById("avatarInput").files[0];
+
+   if(file){
+
+    const reader=new FileReader();
+
+    reader.onload=function(){
+
+     data.avatar=reader.result;
+
+     localStorage.setItem(
+      "twawezaProfile",
+      JSON.stringify(data)
+     );
+
+     updateProfileUI();
+
+     closeModal();
+
+     showToast("Profile saved.");
+
+    };
+
+    reader.readAsDataURL(file);
+
+   }else{
+
+    localStorage.setItem(
+     "twawezaProfile",
+     JSON.stringify(data)
+    );
+
+    updateProfileUI();
+
+    closeModal();
+
+    showToast("Profile saved.");
+
+   }
+
+  });
+
+}
+
+
+/* ==========================================================
+   PROFILE UI
+========================================================== */
+
+function updateProfileUI(){
+
+ const profile=getProfile();
+
+ document.getElementById("profileName").textContent=
+  profile.name || "Guest Applicant";
+
+ document.getElementById("profilePhone").textContent=
+  profile.phone || "Create a profile to begin.";
+
+ if(profile.avatar){
+
+  document.getElementById("profileAvatar").src=
+   profile.avatar;
+
+ }
+
+}
+
+
+/* ==========================================================
+   APPLICATION LIST
+========================================================== */
+
+function renderApplications(){
+
+ const applications=
+  JSON.parse(
+   localStorage.getItem("twawezaApplications")||"[]"
+  );
+
+ const container=
+  document.getElementById("applicationList");
+
+ if(!applications.length){
+
+  container.innerHTML=`
+
+   <div style="
+    padding:35px;
+    border:1px dashed var(--border);
+    border-radius:20px;
+    text-align:center;
+    color:var(--muted);
+   ">
+
+    <strong style="
+     display:block;
+     color:var(--text);
+     margin-bottom:5px;
+    ">
+     No applications yet
+    </strong>
+
+    Select a service above and choose
+    <b>Apply</b> to start.
+
+   </div>
+
+  `;
+
+  return;
+ }
+
+ container.innerHTML=
+  applications.map(app=>`
+
+   <div class="application-item">
+
+    <div>
+
+     <span class="eyebrow">
+      ${escapeHTML(app.category)}
+     </span>
+
+     <h3>
+      ${escapeHTML(app.service)}
+     </h3>
+
+     <small style="color:var(--muted)">
+      ${escapeHTML(app.reference)}
+     </small>
+
+    </div>
+
+    <div style="text-align:right">
+
+     <span class="status">
+      ${escapeHTML(app.status)}
+     </span>
+
+     <small style="
+      display:block;
+      color:var(--muted);
+      margin-top:6px;
+     ">
+      ${new Date(app.submittedAt).toLocaleString()}
+     </small>
+
+    </div>
+
+   </div>
+
+  `).join("");
+
+}
+
+
+/* ==========================================================
+   QUICK CATEGORY
+========================================================== */
+
+function filterCategory(category){
+
+ categoryFilter.value=
+  categories.includes(category)
+  ? category
+  : "All";
+
+ document.getElementById("serviceSearch").value="";
+
+ renderServices();
+
+ scrollToSection("services");
+
+}
+
+
+/* ==========================================================
+   START APPLICATION BY NAME
+========================================================== */
+
+function startApplicationByName(name){
+
+ const index=
+  SERVICES.findIndex(
+   s=>s.name.toLowerCase()===name.toLowerCase()
+  );
+
+ if(index>=0){
+
+  startApplication(index);
+
+ }else{
+
+  showToast("Service application is not configured.");
+
+ }
+
+}
+
+
+/* ==========================================================
+   UTILITY
+========================================================== */
 
 function closeModal(){
 
-    document
-        .getElementById("modal")
-        .classList
-        .add("hidden");
-
-}
-
-function applicationMessage(){
-
-    alert(
-        "Connect this action to the verified service application endpoint in your production backend."
-    );
+ document
+  .getElementById("modal")
+  .classList
+  .add("hidden");
 
 }
 
 document
-.getElementById("modal")
-.addEventListener("click",event=>{
+ .getElementById("modal")
+ .addEventListener("click",function(e){
 
-    if(event.target.id==="modal"){
+  if(e.target===this){
+   closeModal();
+  }
 
-        closeModal();
+ });
 
-    }
+function scrollToSection(id){
 
-});
-
-/* =========================================================
-   INSTITUTIONS
-========================================================= */
-
-function institutionCard(institution,index){
-
-    return `
-
-    <article class="card">
-
-        <div class="card-logo">
-            ${initials(institution.name)}
-        </div>
-
-        <span class="tag">
-            ${institution.type}
-        </span>
-
-        <h3>
-            ${institution.name}
-        </h3>
-
-        <p>
-            ${institution.location},
-            ${institution.country}
-        </p>
-
-        <div class="card-bottom">
-
-            <div class="pills">
-
-                <span class="pill">
-                    ${institution.country}
-                </span>
-
-                <span class="pill">
-                    ${institution.type}
-                </span>
-
-            </div>
-
-            <button
-                class="card-action"
-                onclick="openInstitution(${index})">
-
-                Read More
-
-            </button>
-
-        </div>
-
-    </article>
-
-    `;
+ document
+  .getElementById(id)
+  .scrollIntoView({
+   behavior:"smooth"
+  });
 
 }
 
-function renderInstitutions(list=INSTITUTIONS){
+function clearApplications(){
 
-    document
-        .getElementById("institutionGrid")
-        .innerHTML=list
-        .map(institution=>{
+ if(!confirm(
+  "Delete all locally stored application records?"
+ )) return;
 
-            const index=
-                INSTITUTIONS.indexOf(institution);
+ localStorage.removeItem(
+  "twawezaApplications"
+ );
 
-            return institutionCard(
-                institution,
-                index
-            );
+ renderApplications();
 
-        })
-        .join("");
+ showToast("Local applications cleared.");
 
 }
 
-document
-.getElementById("institutionSearch")
-.addEventListener("input",function(){
+function showToast(message){
 
-    const q=this.value
-        .toLowerCase()
-        .trim();
+ const container=
+  document.getElementById("toastContainer");
 
-    renderInstitutions(
+ const toast=
+  document.createElement("div");
 
-        INSTITUTIONS.filter(institution=>
+ toast.className="toast";
 
-            `${institution.name}
-             ${institution.country}
-             ${institution.location}
-             ${institution.type}`
-            .toLowerCase()
-            .includes(q)
+ toast.textContent=message;
 
-        )
+ container.appendChild(toast);
 
-    );
-
-});
-
-function openInstitution(index){
-
-    const institution=
-        INSTITUTIONS[index];
-
-    document
-        .getElementById("modalBody")
-        .innerHTML=`
-
-        <div class="detail-logo">
-            ${initials(institution.name)}
-        </div>
-
-        <span class="tag">
-            ${institution.type}
-        </span>
-
-        <h2 style="margin-top:6px">
-            ${institution.name}
-        </h2>
-
-        <p class="detail-description">
-            Institution profile for
-            ${institution.name},
-            located in
-            ${institution.location},
-            ${institution.country}.
-        </p>
-
-        <div class="detail-grid">
-
-            <div class="detail-box">
-                <label>Country</label>
-                <strong>${institution.country}</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Location</label>
-                <strong>${institution.location}</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Institution Type</label>
-                <strong>${institution.type}</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Application Fee</label>
-                <strong>Institution-specific</strong>
-            </div>
-
-        </div>
-
-        <div class="modal-section">
-
-            <h3>
-                Information
-            </h3>
-
-            <ul>
-
-                <li>Available programs</li>
-
-                <li>Entry requirements</li>
-
-                <li>International student requirements where applicable</li>
-
-                <li>Application deadlines</li>
-
-                <li>Scholarship opportunities</li>
-
-                <li>Tuition and accommodation information</li>
-
-                <li>Official application source</li>
-
-            </ul>
-
-        </div>
-
-        <button
-            class="btn btn-primary"
-            style="margin-top:20px"
-            onclick="applicationMessage()">
-
-            View Application Information
-
-        </button>
-
-        `;
-
-    document
-        .getElementById("modal")
-        .classList
-        .remove("hidden");
+ setTimeout(()=>{
+  toast.remove();
+ },3500);
 
 }
 
-/* =========================================================
-   JOBS
-========================================================= */
+function escapeHTML(value){
 
-function renderJobs(){
-
-    document
-        .getElementById("jobGrid")
-        .innerHTML=JOBS
-        .map((job,index)=>`
-
-        <article class="card">
-
-            <div class="card-logo">
-                ${initials(job.title)}
-            </div>
-
-            <span class="tag">
-                ${job.type}
-            </span>
-
-            <h3>
-                ${job.title}
-            </h3>
-
-            <p>
-                ${job.company}
-                ·
-                ${job.location}
-            </p>
-
-            <div class="card-bottom">
-
-                <div class="pills">
-
-                    <span class="pill">
-                        ${job.location}
-                    </span>
-
-                    <span class="pill">
-                        ${job.type}
-                    </span>
-
-                </div>
-
-                <button
-                    class="card-action"
-                    onclick="openJob(${index})">
-
-                    View Job
-
-                </button>
-
-            </div>
-
-        </article>
-
-        `)
-        .join("");
+ return String(value||"")
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
 
 }
 
-function openJob(index){
 
-    const job=JOBS[index];
+/* ==========================================================
+   INITIALIZATION
+========================================================== */
 
-    document
-        .getElementById("modalBody")
-        .innerHTML=`
-
-        <div class="detail-logo">
-            ${initials(job.title)}
-        </div>
-
-        <span class="tag">
-            ${job.type}
-        </span>
-
-        <h2>
-            ${job.title}
-        </h2>
-
-        <p class="detail-description">
-            ${job.company} —
-            ${job.location}
-        </p>
-
-        <div class="detail-grid">
-
-            <div class="detail-box">
-                <label>Employer</label>
-                <strong>${job.company}</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Location</label>
-                <strong>${job.location}</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Employment Type</label>
-                <strong>${job.type}</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Application Fee</label>
-                <strong>Employer-specific</strong>
-            </div>
-
-        </div>
-
-        <div class="modal-section">
-
-            <h3>
-                Requirements
-            </h3>
-
-            <ul>
-
-                <li>Relevant qualifications</li>
-
-                <li>Employer-specific experience requirements</li>
-
-                <li>CV/resume where required</li>
-
-                <li>Supporting documents where required</li>
-
-            </ul>
-
-        </div>
-
-        <button
-            class="btn btn-primary"
-            style="margin-top:20px"
-            onclick="applicationMessage()">
-
-            Apply / View Official Listing
-
-        </button>
-
-        `;
-
-    document
-        .getElementById("modal")
-        .classList
-        .remove("hidden");
-
-}
-
-/* =========================================================
-   NGO
-========================================================= */
-
-function renderNGOs(){
-
-    document
-        .getElementById("ngoGrid")
-        .innerHTML=NGOS
-        .map((ngo,index)=>`
-
-        <article class="card">
-
-            <div class="card-logo">
-                ${initials(ngo.name)}
-            </div>
-
-            <span class="tag">
-                ${ngo.focus}
-            </span>
-
-            <h3>
-                ${ngo.name}
-            </h3>
-
-            <p>
-                ${ngo.description}
-            </p>
-
-            <div class="card-bottom">
-
-                <div class="pills">
-                    <span class="pill">
-                        ${ngo.focus}
-                    </span>
-                </div>
-
-                <button
-                    class="card-action"
-                    onclick="openNGO(${index})">
-
-                    View Program
-
-                </button>
-
-            </div>
-
-        </article>
-
-        `)
-        .join("");
-
-}
-
-function openNGO(index){
-
-    const ngo=NGOS[index];
-
-    document
-        .getElementById("modalBody")
-        .innerHTML=`
-
-        <div class="detail-logo">
-            ${initials(ngo.name)}
-        </div>
-
-        <span class="tag">
-            ${ngo.focus}
-        </span>
-
-        <h2>
-            ${ngo.name}
-        </h2>
-
-        <p class="detail-description">
-            ${ngo.description}
-        </p>
-
-        <div class="detail-grid">
-
-            <div class="detail-box">
-                <label>Focus</label>
-                <strong>${ngo.focus}</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Eligibility</label>
-                <strong>Program-specific</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Requirements</label>
-                <strong>Program-specific</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Fees</label>
-                <strong>Program-specific</strong>
-            </div>
-
-        </div>
-
-        <div class="modal-section">
-
-            <h3>
-                Requirements
-            </h3>
-
-            <ul>
-
-                <li>Program-specific eligibility</li>
-
-                <li>Required identification where applicable</li>
-
-                <li>Supporting documentation where required</li>
-
-                <li>Organization-specific application requirements</li>
-
-            </ul>
-
-        </div>
-
-        <button
-            class="btn btn-primary"
-            style="margin-top:20px"
-            onclick="applicationMessage()">
-
-            View Program
-
-        </button>
-
-        `;
-
-    document
-        .getElementById("modal")
-        .classList
-        .remove("hidden");
-
-}
-
-/* =========================================================
-   TRANSPORT
-========================================================= */
-
-function renderTransport(){
-
-    document
-        .getElementById("transportGrid")
-        .innerHTML=TRANSPORT
-        .map((transport,index)=>`
-
-        <article class="card">
-
-            <div class="card-logo">
-                ${initials(transport.name)}
-            </div>
-
-            <span class="tag">
-                ${transport.type}
-            </span>
-
-            <h3>
-                ${transport.name}
-            </h3>
-
-            <p>
-                ${transport.description}
-            </p>
-
-            <div class="card-bottom">
-
-                <div class="pills">
-
-                    <span class="pill">
-                        ${transport.type}
-                    </span>
-
-                </div>
-
-                <button
-                    class="card-action"
-                    onclick="openTransport(${index})">
-
-                    View Details
-
-                </button>
-
-            </div>
-
-        </article>
-
-        `)
-        .join("");
-
-}
-
-function openTransport(index){
-
-    const transport=TRANSPORT[index];
-
-    document
-        .getElementById("modalBody")
-        .innerHTML=`
-
-        <div class="detail-logo">
-            ${initials(transport.name)}
-        </div>
-
-        <span class="tag">
-            ${transport.type}
-        </span>
-
-        <h2>
-            ${transport.name}
-        </h2>
-
-        <p class="detail-description">
-            ${transport.description}
-        </p>
-
-        <div class="detail-grid">
-
-            <div class="detail-box">
-                <label>Category</label>
-                <strong>${transport.type}</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Requirements</label>
-                <strong>Provider-specific</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Fees</label>
-                <strong>Provider-specific</strong>
-            </div>
-
-            <div class="detail-box">
-                <label>Availability</label>
-                <strong>Provider/location dependent</strong>
-            </div>
-
-        </div>
-
-        <button
-            class="btn btn-primary"
-            style="margin-top:20px"
-            onclick="applicationMessage()">
-
-            Continue
-
-        </button>
-
-        `;
-
-    document
-        .getElementById("modal")
-        .classList
-        .remove("hidden");
-
-}
-
-/* =========================================================
-   SEARCH FOCUS
-========================================================= */
-
-function focusSearch(){
-
-    document
-        .getElementById("services")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
-    setTimeout(()=>{
-
-        document
-            .getElementById("search")
-            .focus();
-
-    },500);
-
-}
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-document
-.getElementById("totalServices")
-.textContent=
-SERVICES.length+"+";
+document.getElementById("serviceCounter").textContent=
+ SERVICES.length+"+";
 
 renderServices();
 
@@ -3345,9 +3500,319 @@ renderInstitutions();
 
 renderJobs();
 
-renderNGOs();
+renderApplications();
 
-renderTransport();
+updateProfileUI();
+
+
+/* ==========================================================
+   INSTITUTIONS
+========================================================== */
+
+function renderInstitutions(){
+
+ const q=
+  document
+   .getElementById("institutionSearch")
+   .value
+   .toLowerCase()
+   .trim();
+
+ const list=
+  INSTITUTIONS.filter(i=>
+   i.join(" ").toLowerCase().includes(q)
+  );
+
+ document.getElementById("institutionGrid").innerHTML=
+  list.map((i,index)=>`
+
+   <article class="card institution-card">
+
+    <div class="card-image">
+     <img
+      src="${i[4]}"
+      alt="${escapeHTML(i[0])}">
+    </div>
+
+    <div class="card-body">
+
+     <span class="tag">
+      ${escapeHTML(i[3])}
+     </span>
+
+     <h3>
+      ${escapeHTML(i[0])}
+     </h3>
+
+     <p>
+      ${escapeHTML(i[2])},
+      ${escapeHTML(i[1])}
+     </p>
+
+     <div class="card-bottom">
+
+      <div class="pills">
+       <span class="pill">
+        ${escapeHTML(i[1])}
+       </span>
+
+       <span class="pill">
+        ${escapeHTML(i[3])}
+       </span>
+      </div>
+
+      <button
+       class="card-action"
+       style="
+        width:100%;
+        margin-top:13px;
+        border:0;
+        border-radius:10px;
+        padding:11px;
+        background:var(--dark);
+        color:#fff;
+        font-weight:900
+       "
+       onclick="institutionDetails(${index})">
+
+       Read More
+
+      </button>
+
+     </div>
+
+    </div>
+
+   </article>
+
+  `).join("");
+
+}
+
+function institutionDetails(index){
+
+ const i=INSTITUTIONS[index];
+
+ document.getElementById("modalBody").innerHTML=`
+
+  <div class="modal-header">
+
+   <span class="eyebrow">
+    ${escapeHTML(i[3])}
+   </span>
+
+   <h2>${escapeHTML(i[0])}</h2>
+
+   <p>
+    ${escapeHTML(i[2])}, ${escapeHTML(i[1])}
+   </p>
+
+  </div>
+
+  <img
+   src="${i[4]}"
+   alt="${escapeHTML(i[0])}"
+   style="
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    border-radius:18px;
+   ">
+
+  <div class="detail-grid"
+       style="margin-top:20px">
+
+   <div class="detail-box">
+    <label>Country</label>
+    <strong>${escapeHTML(i[1])}</strong>
+   </div>
+
+   <div class="detail-box">
+    <label>Location</label>
+    <strong>${escapeHTML(i[2])}</strong>
+   </div>
+
+   <div class="detail-box">
+    <label>Type</label>
+    <strong>${escapeHTML(i[3])}</strong>
+   </div>
+
+   <div class="detail-box">
+    <label>Application</label>
+    <strong>Institution-specific</strong>
+   </div>
+
+  </div>
+
+  <div class="modal-section">
+
+   <h3>Information to display</h3>
+
+   <ul class="requirements-list">
+
+    <li>Available programmes</li>
+    <li>Admission requirements</li>
+    <li>Application deadlines</li>
+    <li>Tuition information</li>
+    <li>Scholarship opportunities</li>
+    <li>International-student requirements where applicable</li>
+    <li>Official institution application source</li>
+
+   </ul>
+
+  </div>
+
+  <button
+   class="btn btn-primary"
+   style="margin-top:20px"
+   onclick="closeModal()">
+
+   Close
+
+  </button>
+
+ `;
+
+ document.getElementById("modal").classList.remove("hidden");
+
+}
+
+
+/* ==========================================================
+   JOBS
+========================================================== */
+
+function renderJobs(){
+
+ document.getElementById("jobGrid").innerHTML=
+  JOBS.map((job,index)=>`
+
+   <article class="card">
+
+    <div class="card-image">
+
+     <img
+      src="${IMAGES.jobs}"
+      alt="${escapeHTML(job[0])}">
+
+    </div>
+
+    <div class="card-body">
+
+     <span class="tag">
+      ${escapeHTML(job[3])}
+     </span>
+
+     <h3>
+      ${escapeHTML(job[0])}
+     </h3>
+
+     <p>
+      ${escapeHTML(job[1])}
+      ·
+      ${escapeHTML(job[2])}
+     </p>
+
+     <div class="card-bottom">
+
+      <div class="pills">
+       <span class="pill">
+        ${escapeHTML(job[2])}
+       </span>
+
+       <span class="pill">
+        ${escapeHTML(job[3])}
+       </span>
+      </div>
+
+      <button
+       class="card-action"
+       style="
+        width:100%;
+        margin-top:13px;
+        border:0;
+        border-radius:10px;
+        padding:11px;
+        background:var(--green);
+        color:white;
+        font-weight:900
+       "
+       onclick="jobDetails(${index})">
+
+       View Job
+
+      </button>
+
+     </div>
+
+    </div>
+
+   </article>
+
+  `).join("");
+
+}
+
+function jobDetails(index){
+
+ const job=JOBS[index];
+
+ document.getElementById("modalBody").innerHTML=`
+
+  <div class="modal-header">
+
+   <span class="eyebrow">
+    ${escapeHTML(job[3])}
+   </span>
+
+   <h2>${escapeHTML(job[0])}</h2>
+
+   <p>
+    ${escapeHTML(job[1])} · ${escapeHTML(job[2])}
+   </p>
+
+  </div>
+
+  <img
+   src="${IMAGES.jobs}"
+   alt="Career opportunity"
+   style="
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    border-radius:18px;
+   ">
+
+  <div class="modal-section">
+
+   <h3>Application requirements</h3>
+
+   <ul class="requirements-list">
+
+    <li>Relevant qualifications</li>
+    <li>CV/resume where required</li>
+    <li>Supporting documents where required</li>
+    <li>Employer-specific eligibility</li>
+    <li>Official job description and deadline</li>
+
+   </ul>
+
+  </div>
+
+  <button
+   class="btn btn-primary"
+   style="margin-top:20px"
+   onclick="closeModal();showToast('Connect this listing to the verified employer application endpoint.')">
+
+   Apply / View Listing
+
+  </button>
+
+ `;
+
+ document.getElementById("modal").classList.remove("hidden");
+
+}
 
 </script>
 
