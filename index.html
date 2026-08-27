@@ -1,1542 +1,3355 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safaricom & Kenyan Digital Services Portal | Unified Services Architecture</title>
-    <style>
-        :root {
-            --safaricom-green: #00a651;
-            --safaricom-dark-green: #007a3b;
-            --safaricom-red: #e11b22;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --bg-light: #f8fafc;
-            --surface: #ffffff;
-            --border: #cbd5e1;
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
-            --header-bg: #ffffff;
-            --card-bg: #ffffff;
-            --chat-bg: #f1f5f9;
-            --error-red: #dc2626;
-            --success-green: #16a34a;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Safaricom Services Hub - Financial, Education, Scholarships, Jobs, Entertainment, Transportation, NGOs and Business Services">
+<title>Safaricom Services Hub | Twaweza</title>
 
-        [data-theme="dark"] {
-            --text-dark: #f8fafc;
-            --text-muted: #94a3b8;
-            --bg-light: #0f172a;
-            --surface: #1e293b;
-            --border: #334155;
-            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
-            --header-bg: #1e293b;
-            --card-bg: #1e293b;
-            --chat-bg: #0f172a;
-        }
+<style>
+:root{
+    --green:#00a651;
+    --dark:#063b26;
+    --dark2:#032719;
+    --light:#f4f8f5;
+    --white:#ffffff;
+    --text:#10231b;
+    --muted:#6b7971;
+    --border:#dce8e0;
+    --shadow:0 15px 45px rgba(3,55,30,.10);
+    --danger:#c62828;
+    --gold:#d99a00;
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-light); color: var(--text-dark); display: flex; flex-direction: column; min-height: 100vh; font-size: 14px; transition: background-color 0.3s, color 0.3s; }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-        .brand-header { background: var(--header-bg); border-bottom: 1px solid var(--border); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 90; box-shadow: var(--shadow); }
-        .logo-container { display: flex; align-items: center; gap: 12px; }
-        .brand-logo { font-size: 22px; font-weight: 800; color: var(--safaricom-green); letter-spacing: -0.5px; display: flex; align-items: center; gap: 4px; }
-        .brand-badge { background: #e6f7ed; color: var(--safaricom-dark-green); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid #b3e6c8; }
-        .header-nav { display: flex; gap: 16px; align-items: center; font-size: 13px; font-weight: 600; color: var(--text-muted); }
-        .theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text-dark); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+html{
+    scroll-behavior:smooth;
+}
 
-        .main-container { flex: 1; max-width: 1300px; width: 100%; margin: 24px auto; padding: 0 20px; }
-        
-        .greeting-banner { background: linear-gradient(135deg, var(--safaricom-green), var(--safaricom-dark-green)); color: #ffffff; padding: 28px; border-radius: var(--radius-md); margin-bottom: 24px; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-        .greeting-content { flex: 1; }
-        .greeting-banner h3 { font-size: 22px; margin-bottom: 6px; }
-        .greeting-banner p { font-size: 14px; opacity: 0.95; }
+body{
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    background:var(--light);
+    color:var(--text);
+    line-height:1.5;
+}
 
-        .ceo-portrait-card { display: flex; align-items: center; gap: 16px; background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(8px); padding: 12px 18px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.25); flex-shrink: 0; }
-        .ceo-portrait-img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
-        .ceo-info { display: flex; flex-direction: column; text-align: left; }
-        .ceo-name { font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.2; }
-        .ceo-title { font-size: 11px; font-weight: 700; color: #e6f7ed; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-        .ceo-badge { background: #ffffff; color: var(--safaricom-dark-green); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 6px; align-self: flex-start; }
+button,
+input,
+select{
+    font:inherit;
+}
 
-        @media (max-width: 768px) {
-            .greeting-banner { flex-direction: column; text-align: center; }
-            .ceo-portrait-card { width: 100%; justify-content: center; }
-            .ceo-info { text-align: left; }
-        }
+button{
+    cursor:pointer;
+}
 
-        .search-bar-wrapper { margin: 16px 0 20px 0; display: flex; gap: 12px; }
-        .search-input { flex: 1; padding: 16px 22px; border: 1px solid var(--border); border-radius: 30px; font-size: 15px; outline: none; background: var(--surface); color: var(--text-dark); box-shadow: var(--shadow); }
-        .search-input:focus { border-color: var(--safaricom-green); }
+a{
+    text-decoration:none;
+    color:inherit;
+}
 
-        .category-filter-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 24px; scrollbar-width: none; }
-        .category-filter-scroll::-webkit-scrollbar { display: none; }
-        .filter-chip { padding: 10px 20px; border-radius: 24px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); font-size: 13px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.2s; }
-        .filter-chip.active, .filter-chip:hover { background: var(--safaricom-green); color: #ffffff; border-color: var(--safaricom-green); }
+/* =========================
+   TOP BAR
+========================= */
 
-        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 16px; }
-        @media (max-width: 768px) { 
-            .services-grid { grid-template-columns: 1fr; } 
-        }
+.topbar{
+    background:var(--dark2);
+    color:#dff8e9;
+    padding:9px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:12px;
+}
 
-        .service-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.25s ease; box-shadow: var(--shadow); position: relative; }
-        .service-card:hover { transform: translateY(-4px); border-color: var(--safaricom-green); }
-        .service-card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
-        .service-icon { width: 56px; height: 56px; border-radius: 14px; background: #e6f7ed; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
-        .service-badge { background: var(--chat-bg); color: var(--text-muted); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 12px; text-transform: uppercase; }
+.topbar-right{
+    display:flex;
+    gap:20px;
+}
 
-        .btn-animated { 
-            width: 100%; 
-            background: linear-gradient(135deg, #00d26a 0%, var(--safaricom-green) 50%, var(--safaricom-dark-green) 100%);
-            background-size: 200% 200%; color: #ffffff; border: none; padding: 16px 24px; border-radius: 30px; font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; animation: pulseGlow 2.5s infinite ease-in-out; transition: all 0.3s ease; margin-top: 16px; text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        .btn-animated:hover:not(:disabled) { transform: translateY(-2px) scale(1.01); filter: brightness(1.1); }
-        .btn-animated:disabled { background: #94a3b8; animation: none; cursor: not-allowed; opacity: 0.6; }
+/* =========================
+   HEADER
+========================= */
 
-        @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.4); } 50% { box-shadow: 0 0 0 12px rgba(0, 166, 81, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0); } }
+header{
+    height:76px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
 
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 16px; }
-        .modal-overlay.active { display: flex; }
-        .modal-box { background: var(--card-bg); border-radius: var(--radius-md); border: 1px solid var(--border); max-width: 850px; width: 100%; max-height: 92vh; overflow-y: auto; padding: 28px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3); position: relative; }
-        .modal-close-btn { position: absolute; top: 18px; right: 18px; background: var(--chat-bg); border: none; font-size: 22px; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; color: var(--text-muted); display:flex; align-items:center; justify-content:center; }
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
 
-        /* MULTI-STEP FLOW STYLES */
-        .step-progress-bar { display: flex; justify-content: space-between; position: relative; margin: 16px 0 24px 0; }
-        .step-progress-bar::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: var(--border); transform: translateY(-50%); z-index: 1; }
-        .step-item { position: relative; z-index: 2; background: var(--surface); border: 2px solid var(--border); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; color: var(--text-muted); }
-        .step-item.active { border-color: var(--safaricom-green); color: var(--safaricom-green); background: #e6f7ed; }
-        .step-item.completed { border-color: var(--safaricom-green); background: var(--safaricom-green); color: #fff; }
+.logo{
+    width:43px;
+    height:43px;
+    background:var(--green);
+    color:white;
+    border-radius:13px;
+    display:grid;
+    place-items:center;
+    font-size:24px;
+    font-weight:1000;
+}
 
-        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
-        .form-group { margin-bottom: 14px; text-align: left; position: relative; }
-        .form-group.full-width { grid-column: 1 / -1; }
-        .form-group label { display: block; font-weight: 700; font-size: 12px; margin-bottom: 6px; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.4px; }
-        .form-group input, .form-group select { width: 100%; padding: 13px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; outline: none; background: var(--surface); color: var(--text-dark); transition: border-color 0.2s; }
-        .form-group input:focus, .form-group select:focus { border-color: var(--safaricom-green); }
+.brand-title{
+    font-weight:900;
+    letter-spacing:.7px;
+}
 
-        /* REAL-TIME VALIDATION STYLES */
-        .form-group.valid input, .form-group.valid select { border-color: var(--success-green) !important; background-color: rgba(22, 163, 74, 0.03); }
-        .form-group.invalid input, .form-group.invalid select { border-color: var(--error-red) !important; background-color: rgba(220, 38, 38, 0.03); }
-        .val-msg { font-size: 11px; margin-top: 4px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
-        .val-msg.valid-text { color: var(--success-green); }
-        .val-msg.invalid-text { color: var(--error-red); }
+.brand-sub{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+}
 
-        .user-profile-card { background: var(--chat-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 18px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 13px; }
-        .profile-item { display: flex; flex-direction: column; }
-        .profile-label { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; }
-        .profile-value { font-weight: 800; color: var(--safaricom-dark-green); font-size: 14px; }
+nav{
+    display:flex;
+    gap:22px;
+    align-items:center;
+}
 
-        .upload-box { border: 2px dashed var(--safaricom-green); border-radius: var(--radius-sm); padding: 16px; text-align: center; background: rgba(0, 166, 81, 0.04); cursor: pointer; margin-top: 4px; }
-        .upload-box input[type="file"] { display: none; }
-        .upload-box label { cursor: pointer; color: var(--safaricom-dark-green); font-size: 13px; font-weight: 700; }
+nav a{
+    font-size:13px;
+    font-weight:750;
+}
 
-        .tier-card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 14px 0; }
-        @media (max-width: 500px) { .tier-card-grid { grid-template-columns: 1fr; } }
-        .tier-card { border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 16px; background: var(--surface); cursor: pointer; transition: all 0.2s ease; text-align: left; position: relative; }
-        .tier-card:hover { border-color: var(--safaricom-green); background: #f0fdf4; }
-        .tier-card.selected { border-color: var(--safaricom-green); background: #e6f7ed; }
-        .tier-card.selected::after { content: "✓ Selected"; position: absolute; top: 12px; right: 12px; font-size: 10px; font-weight: 800; color: var(--safaricom-dark-green); background: #ffffff; padding: 3px 8px; border-radius: 12px; border: 1px solid var(--safaricom-green); }
+nav a:hover{
+    color:var(--green);
+}
 
-        .guarantee-note { background: #fff8f8; border: 1px solid #fecaca; border-left: 4px solid var(--safaricom-red); padding: 12px 16px; border-radius: var(--radius-sm); font-size: 12px; color: #7f1d1d; margin: 14px 0; }
-        .success-note { background: #f0fdf4; border: 1px solid #b3e6c8; border-left: 4px solid var(--safaricom-green); padding: 12px 16px; border-radius: var(--radius-sm); font-size: 12px; color: #064e3b; margin: 14px 0; }
+.menu{
+    display:none;
+    border:0;
+    background:none;
+    font-size:25px;
+}
 
-        .loading-view { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; }
-        .spinner { width: 54px; height: 54px; border: 5px solid var(--border); border-top: 5px solid var(--safaricom-green); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+/* =========================
+   HERO
+========================= */
 
-        .analytics-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 16px; }
-        .analytics-header { font-size: 13px; font-weight: 700; color: var(--safaricom-dark-green); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
-        
-        .history-table-wrapper { overflow-x: auto; margin-bottom: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
-        .history-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: center; }
-        .history-table th { background: var(--chat-bg); color: var(--text-dark); padding: 10px 8px; font-weight: 700; border-bottom: 1px solid var(--border); white-space: nowrap; }
-        .history-table td { padding: 9px 8px; border-bottom: 1px solid var(--border); color: var(--text-dark); }
-        .history-table tr:last-child td { border-bottom: none; }
-        .history-table tr:hover { background: rgba(0, 166, 81, 0.04); }
+.hero{
+    padding:75px 5%;
+    min-height:570px;
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:55px;
+    align-items:center;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(0,166,81,.14),transparent 30%),
+        linear-gradient(135deg,#eafff1,#ffffff);
+}
 
-        .calc-output-box { background: var(--surface); border: 1px solid var(--safaricom-green); border-radius: var(--radius-sm); padding: 14px; text-align: center; margin-top: 12px; }
-        .calc-highlight { font-size: 24px; font-weight: 800; color: var(--safaricom-dark-green); }
-        .calc-subtext { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.eyebrow{
+    color:var(--green);
+    font-weight:950;
+    font-size:11px;
+    letter-spacing:2px;
+}
 
-        .zuri-float-btn { position: fixed; bottom: 24px; right: 24px; width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--safaricom-green), var(--safaricom-dark-green)); color: #fff; font-size: 28px; border: none; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,0.3); z-index: 999; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
-        .zuri-float-btn:hover { transform: scale(1.08); }
-        .zuri-chat-window { position: fixed; bottom: 98px; right: 24px; width: 380px; height: 530px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 1000; display: none; flex-direction: column; overflow: hidden; }
-        .zuri-chat-window.active { display: flex; }
-        .zuri-chat-header { background: var(--safaricom-green); color: #fff; padding: 14px 18px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
-        .zuri-chat-body { flex: 1; padding: 14px; overflow-y: auto; background: var(--chat-bg); font-size: 13px; display: flex; flex-direction: column; gap: 12px; }
-        .zuri-msg { padding: 12px 16px; border-radius: 14px; max-width: 85%; word-wrap: break-word; line-height: 1.4; }
-        .zuri-msg.bot { background: var(--surface); color: var(--text-dark); border: 1px solid var(--border); align-self: flex-start; }
-        .zuri-msg.user { background: var(--safaricom-green); color: #fff; align-self: flex-end; }
-        
-        .zuri-faq-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-        .zuri-faq-btn { background: var(--surface); border: 1px solid var(--safaricom-green); color: var(--safaricom-dark-green); padding: 10px 14px; border-radius: 8px; text-align: left; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-        .zuri-faq-btn:hover { background: var(--safaricom-green); color: #ffffff; }
+.hero h1{
+    font-size:clamp(42px,6vw,76px);
+    line-height:.98;
+    letter-spacing:-4px;
+    margin:15px 0 23px;
+}
 
-        footer { background: #0f172a; color: #94a3b8; padding: 40px 20px 20px; margin-top: auto; font-size: 12px; }
-        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 24px; }
-        .footer-col h4 { color: #ffffff; font-size: 14px; margin-bottom: 12px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 8px; }
-        .footer-col ul li a { color: #94a3b8; text-decoration: none; }
+.hero h1 span{
+    color:var(--green);
+}
 
-        .aviator-screen { background: #121212; border: 2px solid #e11b22; border-radius: 12px; padding: 20px; color: #fff; text-align: center; position: relative; overflow: hidden; min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .aviator-multiplier { font-size: 48px; font-weight: 900; color: #e11b22; margin: 15px 0; text-shadow: 0 0 10px rgba(225, 27, 34, 0.5); }
-        .plane-anim { font-size: 40px; transition: all 0.1s ease; display: inline-block; }
-        .game-btn { background: var(--safaricom-green); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; margin: 5px; }
-        .cashout-btn { background: #ff9800; color: #000; font-size: 18px; padding: 12px 30px; border-radius: 25px; border: none; font-weight: 800; cursor: pointer; animation: pulseGlow 1s infinite; }
-        
-        .uber-car-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
-        .uber-car-card { border: 2px solid var(--border); border-radius: 8px; overflow: hidden; cursor: pointer; text-align: center; background: var(--surface); }
-        .uber-car-card img { width: 100%; height: 90px; object-fit: cover; }
-        .uber-car-card.selected { border-color: var(--safaricom-green); background: #e6f7ed; }
-    </style>
+.hero p{
+    max-width:720px;
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.75;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+    border-radius:12px;
+    padding:14px 20px;
+    font-weight:850;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:var(--green);
+    color:white;
+}
+
+.btn-secondary{
+    background:white;
+    border:1px solid var(--border);
+}
+
+.twaweza{
+    margin-top:32px;
+    font-size:40px;
+    letter-spacing:5px;
+    font-weight:1000;
+    color:var(--dark);
+}
+
+.hero-dashboard{
+    background:var(--dark);
+    border-radius:30px;
+    padding:25px;
+    color:white;
+    box-shadow:var(--shadow);
+}
+
+.hero-main-card{
+    background:rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:25px;
+}
+
+.hero-main-card strong{
+    display:block;
+    font-size:58px;
+}
+
+.hero-main-card span{
+    color:#b9d8c7;
+}
+
+.hero-stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:12px;
+}
+
+.hero-stat{
+    background:rgba(255,255,255,.07);
+    padding:20px;
+    border-radius:18px;
+}
+
+.hero-stat b{
+    display:block;
+    font-size:22px;
+}
+
+.hero-stat small{
+    color:#b9d8c7;
+}
+
+/* =========================
+   QUICK CATEGORIES
+========================= */
+
+.quick{
+    background:white;
+    padding:20px 5%;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    border-bottom:1px solid var(--border);
+}
+
+.quick button{
+    white-space:nowrap;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:50px;
+    padding:11px 17px;
+    font-weight:700;
+}
+
+.quick button:hover{
+    color:var(--green);
+    border-color:var(--green);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+    padding:70px 5%;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:25px;
+    margin-bottom:28px;
+}
+
+.section-heading h2{
+    font-size:37px;
+    letter-spacing:-1.5px;
+    margin-top:6px;
+}
+
+.section-heading p{
+    color:var(--muted);
+    max-width:650px;
+    margin-top:8px;
+}
+
+.controls{
+    display:flex;
+    gap:10px;
+}
+
+input,
+select{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:11px;
+    padding:13px 14px;
+    outline:none;
+    min-width:210px;
+}
+
+input:focus,
+select:focus{
+    border-color:var(--green);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:19px;
+    padding:20px;
+    min-height:260px;
+    box-shadow:0 4px 15px rgba(0,0,0,.025);
+    transition:.2s;
+    display:flex;
+    flex-direction:column;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow);
+}
+
+.card-logo{
+    width:55px;
+    height:55px;
+    border-radius:15px;
+    background:#e8f7ed;
+    color:var(--green);
+    display:grid;
+    place-items:center;
+    font-size:19px;
+    font-weight:950;
+    margin-bottom:15px;
+    overflow:hidden;
+}
+
+.card-logo img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+.tag{
+    color:var(--green);
+    font-size:10px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    font-weight:950;
+}
+
+.card h3{
+    margin:7px 0;
+    font-size:18px;
+}
+
+.card p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+}
+
+.card-bottom{
+    margin-top:auto;
+}
+
+.pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:14px;
+}
+
+.pill{
+    padding:6px 9px;
+    border-radius:50px;
+    background:#f0f5f2;
+    font-size:10px;
+    font-weight:700;
+}
+
+.card-action{
+    width:100%;
+    margin-top:14px;
+    border:0;
+    border-radius:10px;
+    padding:11px;
+    background:var(--dark);
+    color:white;
+    font-weight:850;
+}
+
+.card-action:hover{
+    background:var(--green);
+}
+
+/* =========================
+   FEATURE BAND
+========================= */
+
+.feature{
+    margin:0 5% 30px;
+    padding:50px;
+    border-radius:28px;
+    background:var(--green);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.feature h2{
+    font-size:36px;
+    margin:8px 0;
+}
+
+.feature p{
+    max-width:700px;
+    color:#e8fff0;
+}
+
+/* =========================
+   REQUIREMENTS
+========================= */
+
+.requirements{
+    margin:25px 5% 70px;
+    padding:45px;
+    border-radius:28px;
+    background:var(--dark);
+    color:white;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+}
+
+.requirements p{
+    color:#c8dfd2;
+    margin-top:10px;
+}
+
+.requirement-list{
+    background:rgba(255,255,255,.07);
+    border-radius:20px;
+    padding:25px;
+}
+
+.requirement-list div{
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    color:#d7ebdf;
+    font-size:13px;
+}
+
+.requirement-list div:last-child{
+    border-bottom:0;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.62);
+    display:grid;
+    place-items:center;
+    padding:20px;
+    z-index:2000;
+}
+
+.modal.hidden{
+    display:none;
+}
+
+.modal-content{
+    background:white;
+    width:min(760px,100%);
+    max-height:92vh;
+    overflow:auto;
+    border-radius:25px;
+    padding:30px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    top:16px;
+    right:17px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:#eef3f0;
+    font-size:24px;
+}
+
+.detail-logo{
+    width:75px;
+    height:75px;
+    background:#e8f7ed;
+    color:var(--green);
+    border-radius:20px;
+    display:grid;
+    place-items:center;
+    font-weight:950;
+    font-size:27px;
+    margin-bottom:15px;
+}
+
+.detail-description{
+    color:var(--muted);
+    line-height:1.7;
+    margin:10px 0 22px;
+}
+
+.detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.detail-box{
+    padding:17px;
+    background:#f5f8f6;
+    border-radius:14px;
+}
+
+.detail-box label{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    text-transform:uppercase;
+    font-weight:900;
+    margin-bottom:5px;
+}
+
+.detail-box strong{
+    font-size:14px;
+}
+
+.modal-section{
+    margin-top:25px;
+}
+
+.modal-section h3{
+    margin-bottom:10px;
+}
+
+.modal-section ul{
+    padding-left:20px;
+    color:var(--muted);
+    line-height:1.9;
+}
+
+.fee{
+    font-size:30px;
+    font-weight:950;
+    color:var(--green);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:var(--dark2);
+    color:white;
+    padding:50px 5%;
+}
+
+.footer-top{
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+}
+
+.footer-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    color:#b8d0c2;
+    font-size:13px;
+}
+
+footer p{
+    margin-top:30px;
+    color:#789889;
+    font-size:11px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1100px){
+    .grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    nav{
+        gap:12px;
+    }
+}
+
+@media(max-width:800px){
+    .hero{
+        grid-template-columns:1fr;
+        padding:50px 5%;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .requirements{
+        grid-template-columns:1fr;
+    }
+
+    .section-heading{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .controls{
+        flex-direction:column;
+    }
+
+    input,
+    select{
+        width:100%;
+    }
+
+    .feature{
+        flex-direction:column;
+        align-items:flex-start;
+        padding:35px;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .menu{
+        display:block;
+    }
+}
+
+@media(max-width:560px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .section{
+        padding:50px 5%;
+    }
+
+    .section-heading h2{
+        font-size:30px;
+    }
+
+    .detail-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .requirements{
+        padding:30px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <header class="brand-header">
-        <div class="logo-container">
-            <div class="brand-logo"><span style="color:var(--safaricom-red);">S</span>Safaricom</div>
-            <span class="brand-badge">Financial, Transport & Government Portal</span>
-        </div>
-        <nav class="header-nav">
-            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
-        </nav>
-    </header>
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
 
-    <main class="main-container">
-        <div class="greeting-banner">
-            <div class="greeting-content">
-                <h3 id="greetingText">Welcome to Safaricom Digital Services Portal</h3>
-                <p>Complete multi-service digital portal for loans, Bonga Points, Uber driver recruitment, eCitizen services, NTSA licensing, Global Connections, and Gaming.</p>
-            </div>
-            
-            <div class="ceo-portrait-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Peter_Ndegwa_at_WEF_2024.png" alt="Peter Ndegwa - CEO Safaricom PLC" class="ceo-portrait-img">
-                <div class="ceo-info">
-                    <span class="ceo-name">Peter Ndegwa</span>
-                    <span class="ceo-title">CEO, Safaricom PLC</span>
-                    <span class="ceo-badge">Official Portal Leader</span>
-                </div>
-            </div>
-        </div>
+<div class="topbar">
+    <div>Digital Services Directory</div>
 
-        <div class="search-bar-wrapper">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search facilities (Fuliza Offer, Bonga Points, Global Connection, Matatu Fares, Uber Jobs, eCitizen, NTSA)..." oninput="renderServicesGrid()">
+    <div class="topbar-right">
+        <span>Help Centre</span>
+        <span>Requirements</span>
+        <span>Applications</span>
+    </div>
+</div>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <a href="#" class="brand">
+
+        <div class="logo">S</div>
+
+        <div>
+            <div class="brand-title">SAFARICOM</div>
+            <span class="brand-sub">Services Hub</span>
         </div>
 
-        <div class="category-filter-scroll" id="filterContainer">
-            <button class="filter-chip active" onclick="setCategoryFilter('all', this)">All Facilities (16)</button>
-            <button class="filter-chip" onclick="setCategoryFilter('loans', this)">Loans & Offers</button>
-            <button class="filter-chip" onclick="setCategoryFilter('bonga', this)">Bonga Points</button>
-            <button class="filter-chip" onclick="setCategoryFilter('transport', this)">Matatu & Bus Fares</button>
-            <button class="filter-chip" onclick="setCategoryFilter('jobs', this)">Uber & Employment</button>
-            <button class="filter-chip" onclick="setCategoryFilter('government', this)">eCitizen & NTSA</button>
-            <button class="filter-chip" onclick="setCategoryFilter('gaming', this)">🎮 Gaming & Aviator</button>
-            <button class="filter-chip" onclick="setCategoryFilter('education', this)">Scholarships & HELB</button>
-            <button class="filter-chip" onclick="setCategoryFilter('youth', this)">Youth Programs</button>
-            <button class="filter-chip" onclick="setCategoryFilter('payments', this)">Payments & Tills</button>
-            <button class="filter-chip" onclick="setCategoryFilter('utilities', this)">Utilities & Power</button>
-            <button class="filter-chip" onclick="setCategoryFilter('global', this)">Global Connection</button>
+    </a>
+
+    <nav>
+        <a href="#services">Services</a>
+        <a href="#scholarships">Scholarships</a>
+        <a href="#institutions">Institutions</a>
+        <a href="#jobs">Jobs</a>
+        <a href="#ngo">NGOs</a>
+        <a href="#transport">Transport</a>
+    </nav>
+
+    <button class="menu">☰</button>
+
+</header>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div>
+
+        <span class="eyebrow">ONE DIGITAL SERVICES DIRECTORY</span>
+
+        <h1>
+            Everything you need,
+            <span>in one place.</span>
+        </h1>
+
+        <p>
+            Explore financial services, M-PESA resources, education,
+            scholarships, jobs, recruitment, entertainment,
+            transportation, NGOs, business services, communication,
+            internet and many other digital opportunities.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#services" class="btn btn-primary">
+                Explore Services
+            </a>
+
+            <button class="btn btn-secondary" onclick="focusSearch()">
+                Search Everything
+            </button>
+
         </div>
 
-        <div class="services-grid" id="servicesGrid"></div>
-    </main>
+        <div class="twaweza">
+            TWAWEZA
+        </div>
 
-    <button class="zuri-float-btn" onclick="toggleZuriChat()">🤖</button>
-    <div class="zuri-chat-window" id="zuriChatWindow">
-        <div class="zuri-chat-header">
-            <span>🟢 Zuri Smart Portal AI</span>
-            <button style="background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer;" onclick="toggleZuriChat()">&times;</button>
-        </div>
-        <div class="zuri-chat-body" id="zuriChatBody">
-            <div class="zuri-msg bot">Hello! I am Zuri, your dedicated Safaricom Assistant. Select any service to ask contextual questions or choose a topic below!</div>
-            <div class="zuri-faq-list" id="zuriFaqContainer"></div>
-        </div>
     </div>
 
-    <div class="modal-overlay" id="serviceModal">
-        <div class="modal-box">
-            <button class="modal-close-btn" onclick="closeModal()">&times;</button>
-            <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
-                <div class="service-icon" id="modalIcon">📱</div>
-                <div>
-                    <span class="service-badge" id="modalCategory">Category</span>
-                    <h2 id="modalTitle" style="font-size: 20px; color: var(--text-dark); font-weight:800;">Service Title</h2>
-                    <div style="font-size: 12px; color: var(--text-muted);" id="modalProvider">Provider</div>
-                </div>
+
+    <div class="hero-dashboard">
+
+        <div class="hero-main-card">
+
+            <strong id="totalServices">
+                100+
+            </strong>
+
+            <span>
+                service records in the directory
+            </span>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div class="hero-stat">
+                <b>269+</b>
+                <small>Kenyan institution capacity</small>
             </div>
 
-            <div id="modalDynamicBody"></div>
+            <div class="hero-stat">
+                <b>5+</b>
+                <small>International regions</small>
+            </div>
+
+            <div class="hero-stat">
+                <b>Jobs</b>
+                <small>Career opportunities</small>
+            </div>
+
+            <div class="hero-stat">
+                <b>NGOs</b>
+                <small>Community opportunities</small>
+            </div>
+
         </div>
+
     </div>
 
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-col">
-                <h4>Services & Facilities</h4>
-                <ul>
-                    <li><a href="#" onclick="triggerModalById('fuliza')">Fuliza Limit Boost Offer</a></li>
-                    <li><a href="#" onclick="triggerModalById('bonga_points')">Bonga Points Cash Market</a></li>
-                    <li><a href="#" onclick="triggerModalById('matatu_fares')">National Matatu Fare Portal</a></li>
-                    <li><a href="#" onclick="triggerModalById('uber_jobs')">Uber Kenya Driver Recruitment</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Government & Financial</h4>
-                <ul>
-                    <li><a href="#" onclick="triggerModalById('ecitizen')">eCitizen Portal & Tourist Fees</a></li>
-                    <li><a href="#" onclick="triggerModalById('ntsa')">NTSA Smart License & Logbook</a></li>
-                    <li><a href="#" onclick="triggerModalById('nyota')">NYOTA 47-County Youth Grants</a></li>
-                    <li><a href="#" onclick="triggerModalById('ziidi')">Ziidi MMF High Yield Savings</a></li>
-                    <li><a href="#" onclick="triggerModalById('global_connection')">Global Connection Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Guarantee & Security</h4>
-                <ul>
-                    <li>🔒 256-Bit End-to-End SSL Encrypted</li>
-                    <li>🛡️ 100% Instant M-PESA Refund Guarantee</li>
-                    <li>⚡ Validated Real-Time Credentials</li>
-                </ul>
-            </div>
+</section>
+
+<!-- =========================================================
+     QUICK CATEGORY BAR
+========================================================= -->
+
+<div class="quick">
+
+    <button onclick="quickCategory('Financial')">
+        💳 Financial
+    </button>
+
+    <button onclick="quickCategory('Education')">
+        🎓 Education
+    </button>
+
+    <button onclick="quickCategory('Scholarships')">
+        🎓 Scholarships
+    </button>
+
+    <button onclick="quickCategory('Jobs')">
+        💼 Jobs
+    </button>
+
+    <button onclick="quickCategory('Entertainment')">
+        🎵 Entertainment
+    </button>
+
+    <button onclick="quickCategory('Transport')">
+        🚕 Transport
+    </button>
+
+    <button onclick="quickCategory('NGOs')">
+        🤝 NGOs
+    </button>
+
+    <button onclick="quickCategory('Business')">
+        🏪 Business
+    </button>
+
+    <button onclick="quickCategory('Communication')">
+        📱 Communication
+    </button>
+
+</div>
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section class="section" id="services">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="eyebrow">
+                SERVICE DIRECTORY
+            </span>
+
+            <h2>
+                Browse all services
+            </h2>
+
+            <p>
+                Search and filter the complete service catalogue.
+            </p>
         </div>
-        <div style="text-align: center; border-top: 1px solid #334155; padding-top: 16px;">
-            <p>© 2026 Safaricom PLC & Kenyan Financial Directory. Authorized Unified Portal.</p>
+
+        <div class="controls">
+
+            <input
+                id="search"
+                type="search"
+                placeholder="Search services..."
+            >
+
+            <select id="category">
+
+                <option value="All">
+                    All categories
+                </option>
+
+            </select>
+
         </div>
-    </footer>
 
-    <script>
-        const FINAPI_KEY = "sk_test_a1f9663668ca4e5fbb5644142039967b";
+    </div>
 
-        let currentFilter = 'all';
-        let activeServiceObj = null;
-        let selectedUberCar = 'Toyota Vitz / Demio';
-        let userProfileData = {};
-        let currentStep = 1;
-        
-        let aviatorBalance = 0;
-        let aviatorMultiplier = 1.00;
-        let aviatorInterval = null;
-        let isAviatorFlying = false;
+    <div id="serviceGrid" class="grid"></div>
 
-        const kenyanCounties = [
-            "Mombasa", "Kwale", "Kilifi", "Tana River", "Lamu", "Taita-Taveta", "Garissa", "Wajir", "Mandera", "Marsabit",
-            "Isiolo", "Meru", "Tharaka-Nithi", "Embu", "Kitui", "Machakos", "Makueni", "Nyandarua", "Nyeri", "Kirinyaga",
-            "Murang'a", "Kiambu", "Turkana", "West Pokot", "Samburu", "Trans-Nzoia", "Uasin Gishu", "Elgeyo-Marakwet", "Nandi",
-            "Baringo", "Laikipia", "Nakuru", "Narok", "Kajiado", "Kericho", "Bomet", "Kakamega", "Vihiga", "Bungoma", "Busia",
-            "Siaya", "Kisumu", "Homa Bay", "Migori", "Kisii", "Nyamira", "Nairobi"
-        ];
+</section>
 
-        const globalDestinations = {
-            "Africa": ["Kenya", "Nigeria", "South Africa", "Egypt", "Ghana", "Ethiopia", "Tanzania", "Uganda", "Rwanda", "Morocco"],
-            "Europe": ["United Kingdom", "Germany", "France", "Italy", "Spain", "Netherlands", "Switzerland", "Sweden", "Turkey", "Belgium"],
-            "Asia": ["China", "India", "Japan", "South Korea", "United Arab Emirates", "Saudi Arabia", "Qatar", "Singapore", "Malaysia", "Thailand"],
-            "North America": ["United States", "Canada", "Mexico"],
-            "South America": ["Brazil", "Argentina", "Colombia", "Chile", "Peru"],
-            "Australia / Oceania": ["Australia", "New Zealand", "Fiji"]
-        };
+<!-- =========================================================
+     SCHOLARSHIP FEATURE
+========================================================= -->
 
-        const busCompanies = [
-            { name: "Tahmeed Coach" },
-            { name: "Guardian Angel" },
-            { name: "Easy Coach" },
-            { name: "ENA Coach" },
-            { name: "Transline Classic" },
-            { name: "Climax Travels" },
-            { name: "Super Metro" },
-            { name: "Modern Coast" }
-        ];
+<section class="feature" id="scholarships">
 
-        const servicesData = [
-            {
-                id: 'fuliza',
-                title: 'Fuliza Limit Boost Offer',
-                provider: 'Safaricom PLC & NCBA / KCB',
-                category: 'loans',
-                categoryLabel: 'Loans & Offers',
-                icon: '⚡',
-                desc: 'Line history analysis. Every line registered >3 months gets guaranteed KSh 67,000 offer for KSh 500 activation fee.',
-                faqs: [
-                    { q: "How is the Fuliza limit boost verified?", a: "The system runs an automated line history check to confirm line registration age and active usage." },
-                    { q: "When is the new limit applied?", a: "Immediately upon successful activation fee verification via M-PESA." }
-                ]
-            },
-            {
-                id: 'bonga_points',
-                title: 'Bonga Points Service Hub',
-                provider: 'Safaricom Bonga Portal',
-                category: 'bonga',
-                categoryLabel: 'Bonga Points',
-                icon: '🪙',
-                desc: 'Sell, donate, request, or buy Bonga Points. Dynamic conversion calculation with instant settlement.',
-                faqs: [
-                    { q: "What is the fee for selling Bonga Points?", a: "Cash activation fee is KSh 100 for selling points. Buying points carries a KSh 75 prompt fee." },
-                    { q: "How are cash payouts delivered?", a: "Directly to your registered M-PESA line upon confirmation." }
-                ]
-            },
-            {
-                id: 'global_connection',
-                title: 'Global Connection Service',
-                provider: 'Safaricom Global Hub',
-                category: 'global',
-                categoryLabel: 'Global Connection',
-                icon: '🌐',
-                desc: 'Send & receive money internationally, view live exchange rates, and configure global roaming passes.',
-                faqs: [
-                    { q: "Which countries are supported?", a: "Over 40 countries across Africa, Europe, Asia, North America, South America, and Oceania." },
-                    { q: "How is the exchange rate calculated?", a: "Rates are updated dynamically based on real-time market data." }
-                ]
-            },
-            {
-                id: 'matatu_fares',
-                title: 'National Matatu & Bus Fare Pay',
-                provider: 'National Transport Hub & Safaricom',
-                category: 'transport',
-                categoryLabel: 'Matatu & Bus Fares',
-                icon: '🚌',
-                desc: 'Pay direct fares for Tahmeed, Guardian Angel, Easy Coach, ENA Coach, and more across all 47 counties.',
-                faqs: [
-                    { q: "How do I receive my bus ticket?", a: "An instant SMS booking reference is sent directly to your mobile phone." }
-                ]
-            },
-            {
-                id: 'uber_jobs',
-                title: 'Uber Driver Application Portal',
-                provider: 'Uber Kenya & Safaricom Careers',
-                category: 'jobs',
-                categoryLabel: 'Uber & Employment',
-                icon: '🚗',
-                desc: 'Apply for Uber driver opportunities. Multi-step onboarding, vehicle selection, and document verification.',
-                faqs: [
-                    { q: "What documents are required?", a: "National ID/Passport, Valid Driving License, PSV License (if applicable), and Good Conduct slip." },
-                    { q: "Can I apply without owning a vehicle?", a: "Yes, you can register as a driver for partner fleet owners." }
-                ]
-            },
-            {
-                id: 'ecitizen',
-                title: 'eCitizen Services Hub',
-                provider: 'Government of Kenya & eCitizen',
-                category: 'government',
-                categoryLabel: 'eCitizen Services',
-                icon: '🏛️',
-                desc: 'Unified access to Good Conduct certificates, business registration, immigration, land search, and tourist venue fees.',
-                faqs: [
-                    { q: "How long does Good Conduct processing take?", a: "Verification is initiated instantly upon document upload and payment confirmation." }
-                ]
-            },
-            {
-                id: 'ntsa',
-                title: 'NTSA Smart Driver Portal',
-                provider: 'National Transport and Safety Authority',
-                category: 'government',
-                categoryLabel: 'NTSA Hub',
-                icon: '🪪',
-                desc: 'Apply for new Driving Licenses, Renew Smart DLs, request license replacement, and logbook services.',
-                faqs: [
-                    { q: "What is needed for Smart DL renewal?", a: "Existing License Number, National ID copy, and passport-size photo." }
-                ]
-            },
-            {
-                id: 'nyota',
-                title: 'NYOTA 47-County Youth Grants',
-                provider: 'National Youth Empowerment Program',
-                category: 'youth',
-                categoryLabel: 'Youth Grants',
-                icon: '🌟',
-                desc: 'County youth capital allocation (KSh 22,000 - KSh 250,000) with dynamic tier selection.',
-                faqs: [
-                    { q: "Who is eligible?", a: "Kenyan youth aged 18-35 residing in any of the 47 counties." }
-                ]
-            },
-            {
-                id: 'aviator',
-                title: 'Aviator Interactive Gaming',
-                provider: 'Spribe Gaming & Safaricom',
-                category: 'gaming',
-                categoryLabel: 'Gaming & Betting',
-                icon: '✈️',
-                desc: 'Interactive multiplier experience with instant M-PESA deposits, real balance tracking, and responsible play controls.',
-                faqs: [
-                    { q: "How are funds credited after cash-out?", a: "Funds are credited directly to your portal wallet balance and can be withdrawn via M-PESA." },
-                    { q: "Are game outcomes guaranteed?", a: "No. Outcomes depend on a random multiplier curve. Play responsibly." }
-                ]
-            },
-            {
-                id: 'kids_games',
-                title: 'Children Arcade & 1GB Data',
-                provider: 'Safaricom Kids Zone',
-                category: 'gaming',
-                categoryLabel: 'Gaming & Fun',
-                icon: '🎮',
-                desc: 'Access 3 kids games + 1GB Data allocation for KSh 25 subscription.',
-                faqs: [ { q: "How long is the pass valid?", a: "24 hours from time of payment." } ]
-            },
-            {
-                id: 'konami',
-                title: 'Konami Multiplayer Arena',
-                provider: 'Konami Gaming & Safaricom',
-                category: 'gaming',
-                categoryLabel: 'Multiplayer',
-                icon: '🕹️',
-                desc: 'Battle live in multiplayer action classics. KSh 99 pass unlocks full access.',
-                faqs: [ { q: "Does it support mobile web?", a: "Yes, fully optimized for mobile touch controls." } ]
-            },
-            {
-                id: 'scholarships',
-                title: 'Safaricom Foundation Scholarships',
-                provider: 'Safaricom Foundation',
-                category: 'education',
-                categoryLabel: 'Scholarships',
-                icon: '🌍',
-                desc: 'Full scholarships across 47 Kenyan counties and foreign study options.',
-                faqs: [ { q: "What documents are required?", a: "Academic certificates, ID/Birth Certificate, and recommendation letter." } ]
-            },
-            {
-                id: 'helb',
-                title: 'HELB Smart Portal',
-                provider: 'Higher Education Loans Board',
-                category: 'education',
-                categoryLabel: 'Education Loans',
-                icon: '🎓',
-                desc: 'Undergraduate, TVET loan applications, and instant digital compliance clearance certificates.',
-                faqs: [ { q: "How do I get compliance clearance?", a: "Submit ID and KRA PIN to generate an instant digital certificate." } ]
-            },
-            {
-                id: 'mpesa_till',
-                title: 'Lipa Na M-PESA Till Registration',
-                provider: 'Safaricom Merchant Services',
-                category: 'payments',
-                categoryLabel: 'Payments & Tills',
-                icon: '💼',
-                desc: 'Register dedicated Buy Goods Till numbers for your business with instant line allocation.',
-                faqs: [ { q: "What is needed for merchant registration?", a: "Business name, owner ID, and KRA PIN." } ]
-            },
-            {
-                id: 'kplc',
-                title: 'KPLC Tokens & Power Settlement',
-                provider: 'Kenya Power & Lighting Co.',
-                category: 'utilities',
-                categoryLabel: 'Utilities',
-                icon: '💡',
-                desc: 'Instant prepaid token purchase and postpaid bill settlement via Safaricom STK Push.',
-                faqs: [ { q: "Where is the token delivered?", a: "Via instant SMS and displayed on screen after payment." } ]
-            },
-            {
-                id: 'ziidi',
-                title: 'Ziidi MMF High Yield Savings',
-                provider: 'Safaricom / CMA Managers',
-                category: 'investments',
-                categoryLabel: 'Investments',
-                icon: '📈',
-                desc: 'High-yield Money Market Fund with record performance across Safaricom, KCB, and ABSA.',
-                faqs: [ { q: "What is the minimum investment?", a: "Start investing from as low as KSh 100." } ]
-            }
-        ];
+    <div>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderServicesGrid();
-            updateGreeting();
-            initZuriFaqs();
+        <span class="eyebrow" style="color:#dffff0">
+            EDUCATION & SCHOLARSHIPS
+        </span>
+
+        <h2>
+            Find your next opportunity.
+        </h2>
+
+        <p>
+            Browse Kenyan and international education opportunities,
+            scholarships, institutions, study programs and
+            application information.
+        </p>
+
+    </div>
+
+    <a href="#institutions" class="btn" style="background:white;color:#063b26">
+        Explore Education
+    </a>
+
+</section>
+
+<!-- =========================================================
+     INSTITUTIONS
+========================================================= -->
+
+<section class="section" id="institutions">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                EDUCATION DIRECTORY
+            </span>
+
+            <h2>
+                Kenyan & International Institutions
+            </h2>
+
+            <p>
+                Search institutions by country, type and location.
+            </p>
+
+        </div>
+
+        <input
+            id="institutionSearch"
+            placeholder="Search institution..."
+        >
+
+    </div>
+
+    <div id="institutionGrid" class="grid"></div>
+
+</section>
+
+<!-- =========================================================
+     JOBS
+========================================================= -->
+
+<section class="section" id="jobs">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                CAREERS
+            </span>
+
+            <h2>
+                Jobs & Recruitment
+            </h2>
+
+            <p>
+                Browse employment, internships, graduate programs
+                and career opportunities.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div id="jobGrid" class="grid"></div>
+
+</section>
+
+<!-- =========================================================
+     NGO
+========================================================= -->
+
+<section class="section" id="ngo">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                COMMUNITY
+            </span>
+
+            <h2>
+                NGOs, Grants & Programs
+            </h2>
+
+            <p>
+                Discover community, education, youth,
+                entrepreneurship and development programs.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div id="ngoGrid" class="grid"></div>
+
+</section>
+
+<!-- =========================================================
+     TRANSPORT
+========================================================= -->
+
+<section class="section" id="transport">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                TRAVEL & DELIVERY
+            </span>
+
+            <h2>
+                Transportation
+            </h2>
+
+            <p>
+                Browse transport, travel, courier and logistics resources.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div id="transportGrid" class="grid"></div>
+
+</section>
+
+<!-- =========================================================
+     REQUIREMENTS
+========================================================= -->
+
+<section class="requirements">
+
+    <div>
+
+        <span class="eyebrow" style="color:#78e5aa">
+            SERVICE INFORMATION
+        </span>
+
+        <h2 style="font-size:36px;margin-top:8px">
+            Requirements & Fees
+        </h2>
+
+        <p>
+            Every service profile is designed to contain its
+            eligibility, requirements, documents, fees,
+            provider information and application instructions.
+        </p>
+
+    </div>
+
+    <div class="requirement-list">
+
+        <div>
+            ✓ Eligibility requirements
+        </div>
+
+        <div>
+            ✓ Required documents
+        </div>
+
+        <div>
+            ✓ Application / processing fee
+        </div>
+
+        <div>
+            ✓ Provider-specific charges
+        </div>
+
+        <div>
+            ✓ Application procedure
+        </div>
+
+        <div>
+            ✓ Official provider information
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-top">
+
+        <div class="brand">
+
+            <div class="logo">S</div>
+
+            <div>
+                <strong>SAFARICOM SERVICES HUB</strong>
+                <span class="brand-sub" style="color:#a9c6b6">
+                    TWAWEZA
+                </span>
+            </div>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#services">Services</a>
+            <a href="#scholarships">Scholarships</a>
+            <a href="#institutions">Institutions</a>
+            <a href="#jobs">Jobs</a>
+            <a href="#ngo">NGOs</a>
+            <a href="#transport">Transport</a>
+
+        </div>
+
+    </div>
+
+    <p>
+        Service-information and discovery interface.
+        Safaricom and other trademarks belong to their respective owners.
+        Replace catalogue placeholders with verified provider,
+        institution and opportunity data before production.
+    </p>
+
+</footer>
+
+<!-- =========================================================
+     SERVICE MODAL
+========================================================= -->
+
+<div id="modal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <button
+            class="close"
+            onclick="closeModal()">
+            ×
+        </button>
+
+        <div id="modalBody"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   SERVICE DATABASE
+========================================================= */
+
+const SERVICES = [
+
+/* FINANCIAL */
+
+{
+    name:"M-PESA",
+    category:"Financial",
+    icon:"MP",
+    provider:"M-PESA",
+    description:"Mobile money services including transfers, payments and everyday transactions.",
+    requirements:["Active eligible mobile account","Provider-defined identification requirements"],
+    fee:"Applicable transaction fee",
+    type:"Financial service"
+},
+
+{
+    name:"Fuliza",
+    category:"Financial",
+    icon:"FU",
+    provider:"M-PESA",
+    description:"M-PESA overdraft service information, eligibility and repayment guidance.",
+    requirements:["Eligible M-PESA account","Provider-defined eligibility criteria"],
+    fee:"Provider-defined applicable charges",
+    type:"Credit service"
+},
+
+{
+    name:"M-Shwari",
+    category:"Financial",
+    icon:"MS",
+    provider:"NCBA / Safaricom",
+    description:"Savings and credit service information.",
+    requirements:["Eligible account","Provider-defined requirements"],
+    fee:"Provider-defined",
+    type:"Financial service"
+},
+
+{
+    name:"KCB M-PESA",
+    category:"Financial",
+    icon:"KB",
+    provider:"KCB / Safaricom",
+    description:"Savings and credit services available through the M-PESA ecosystem.",
+    requirements:["Eligible customer","Provider-defined requirements"],
+    fee:"Provider-defined",
+    type:"Financial service"
+},
+
+{
+    name:"Send Money",
+    category:"Financial",
+    icon:"SM",
+    provider:"M-PESA",
+    description:"Send money to supported recipients.",
+    requirements:["Active account","Recipient information"],
+    fee:"Applicable transaction fee",
+    type:"Money transfer"
+},
+
+{
+    name:"Withdraw",
+    category:"Financial",
+    icon:"WD",
+    provider:"M-PESA",
+    description:"Cash withdrawal through supported channels.",
+    requirements:["Active account","Valid transaction authentication"],
+    fee:"Applicable withdrawal fee",
+    type:"Money service"
+},
+
+{
+    name:"Buy Goods",
+    category:"Financial",
+    icon:"BG",
+    provider:"M-PESA",
+    description:"Pay participating merchants.",
+    requirements:["Active M-PESA account","Merchant till information"],
+    fee:"Applicable transaction fee",
+    type:"Payment"
+},
+
+{
+    name:"PayBill",
+    category:"Financial",
+    icon:"PB",
+    provider:"M-PESA",
+    description:"Pay participating organizations and service providers.",
+    requirements:["Active M-PESA account","Correct PayBill details"],
+    fee:"Provider/transaction-specific",
+    type:"Payment"
+},
+
+{
+    name:"Savings",
+    category:"Financial",
+    icon:"SV",
+    provider:"Multiple providers",
+    description:"Savings products and financial education directory.",
+    requirements:["Provider-specific eligibility"],
+    fee:"Provider-specific",
+    type:"Savings"
+},
+
+{
+    name:"Investments",
+    category:"Financial",
+    icon:"IN",
+    provider:"Multiple providers",
+    description:"Investment information and financial education.",
+    requirements:["Provider-specific requirements"],
+    fee:"Provider-specific",
+    type:"Investment"
+},
+
+{
+    name:"International Money",
+    category:"Financial",
+    icon:"IM",
+    provider:"Multiple providers",
+    description:"Information about supported international sending and receiving services.",
+    requirements:["Valid identification","Provider-specific requirements"],
+    fee:"Provider-specific transfer fee",
+    type:"International transfer"
+},
+
+/* COMMUNICATION */
+
+{
+    name:"Voice Services",
+    category:"Communication",
+    icon:"VO",
+    provider:"Safaricom",
+    description:"Mobile voice and calling services.",
+    requirements:["Compatible active line"],
+    fee:"Plan-dependent",
+    type:"Communication"
+},
+
+{
+    name:"SMS Services",
+    category:"Communication",
+    icon:"SM",
+    provider:"Safaricom",
+    description:"SMS and messaging services.",
+    requirements:["Compatible active line"],
+    fee:"Plan-dependent",
+    type:"Communication"
+},
+
+{
+    name:"Data Bundles",
+    category:"Communication",
+    icon:"DB",
+    provider:"Safaricom",
+    description:"Mobile data and internet bundle information.",
+    requirements:["Compatible active line"],
+    fee:"Plan-dependent",
+    type:"Data"
+},
+
+{
+    name:"Roaming",
+    category:"Communication",
+    icon:"RO",
+    provider:"Safaricom",
+    description:"International mobile connectivity information.",
+    requirements:["Eligible line","Supported destination"],
+    fee:"Plan-dependent",
+    type:"Roaming"
+},
+
+{
+    name:"International Calling",
+    category:"Communication",
+    icon:"IC",
+    provider:"Safaricom",
+    description:"International calling resources.",
+    requirements:["Active line","Supported destination"],
+    fee:"Plan-dependent",
+    type:"Calling"
+},
+
+/* INTERNET */
+
+{
+    name:"Home Internet",
+    category:"Internet",
+    icon:"HI",
+    provider:"Safaricom",
+    description:"Home connectivity and internet-plan information.",
+    requirements:["Serviceable location","Provider requirements"],
+    fee:"Plan-dependent",
+    type:"Internet"
+},
+
+{
+    name:"Fibre Internet",
+    category:"Internet",
+    icon:"FI",
+    provider:"Safaricom",
+    description:"Fibre broadband information.",
+    requirements:["Serviceable location","Installation requirements"],
+    fee:"Plan-dependent",
+    type:"Internet"
+},
+
+{
+    name:"4G / 5G",
+    category:"Internet",
+    icon:"5G",
+    provider:"Safaricom",
+    description:"Mobile network and connectivity information.",
+    requirements:["Compatible device","Network coverage"],
+    fee:"Plan-dependent",
+    type:"Connectivity"
+},
+
+/* BUSINESS */
+
+{
+    name:"M-PESA Business",
+    category:"Business",
+    icon:"MB",
+    provider:"Safaricom",
+    description:"Business payment and merchant-service information.",
+    requirements:["Business information","Provider eligibility requirements"],
+    fee:"Provider-defined",
+    type:"Business"
+},
+
+{
+    name:"Till Services",
+    category:"Business",
+    icon:"TI",
+    provider:"Safaricom",
+    description:"Merchant collection and payment information.",
+    requirements:["Business information","Provider requirements"],
+    fee:"Provider-defined",
+    type:"Merchant service"
+},
+
+{
+    name:"PayBill for Business",
+    category:"Business",
+    icon:"BP",
+    provider:"Safaricom",
+    description:"Business payment-collection information.",
+    requirements:["Business documentation","Provider requirements"],
+    fee:"Provider-defined",
+    type:"Business"
+},
+
+{
+    name:"Enterprise Services",
+    category:"Business",
+    icon:"ES",
+    provider:"Safaricom",
+    description:"Business connectivity and enterprise-service information.",
+    requirements:["Organization details","Provider requirements"],
+    fee:"Plan-dependent",
+    type:"Enterprise"
+},
+
+/* ENTERTAINMENT */
+
+{
+    name:"Music",
+    category:"Entertainment",
+    icon:"MU",
+    provider:"Multiple providers",
+    description:"Music and digital entertainment resources.",
+    requirements:["Compatible device/account"],
+    fee:"Provider-specific",
+    type:"Entertainment"
+},
+
+{
+    name:"Video & Streaming",
+    category:"Entertainment",
+    icon:"VI",
+    provider:"Multiple providers",
+    description:"Streaming and video-service directory.",
+    requirements:["Compatible device/account"],
+    fee:"Subscription-specific",
+    type:"Entertainment"
+},
+
+{
+    name:"Sports Entertainment",
+    category:"Entertainment",
+    icon:"SP",
+    provider:"Multiple providers",
+    description:"Sports content and entertainment resources.",
+    requirements:["Provider-specific"],
+    fee:"Provider-specific",
+    type:"Entertainment"
+},
+
+{
+    name:"Gaming",
+    category:"Entertainment",
+    icon:"GA",
+    provider:"Multiple providers",
+    description:"Gaming and digital entertainment services.",
+    requirements:["Compatible device/account"],
+    fee:"Provider-specific",
+    type:"Entertainment"
+},
+
+/* EDUCATION */
+
+{
+    name:"Scholarships",
+    category:"Education",
+    icon:"SC",
+    provider:"Multiple organizations",
+    description:"Search scholarship opportunities by country, study level and field.",
+    requirements:["Academic documents","Eligibility requirements","Supporting documents"],
+    fee:"Opportunity-specific",
+    type:"Scholarship"
+},
+
+{
+    name:"Foreign Scholarships",
+    category:"Scholarships",
+    icon:"FS",
+    provider:"International institutions",
+    description:"International scholarship and study opportunities.",
+    requirements:["Academic qualifications","Passport/identity documents","Institution-specific requirements"],
+    fee:"Application service fee where applicable",
+    type:"International education"
+},
+
+{
+    name:"Kenya Scholarships",
+    category:"Scholarships",
+    icon:"KS",
+    provider:"Kenyan institutions and organizations",
+    description:"Scholarship and education opportunities available in Kenya.",
+    requirements:["Academic qualifications","Supporting documents"],
+    fee:"Application service fee where applicable",
+    type:"Kenyan education"
+},
+
+{
+    name:"HELB Information",
+    category:"Education",
+    icon:"HE",
+    provider:"HELB",
+    description:"Student-financing information and application guidance.",
+    requirements:["Student eligibility","Required academic/personal information"],
+    fee:"Provider-defined",
+    type:"Student financing"
+},
+
+{
+    name:"University Directory",
+    category:"Education",
+    icon:"UN",
+    provider:"Multiple institutions",
+    description:"Search universities and higher-education institutions.",
+    requirements:["Institution-specific"],
+    fee:"Institution-specific",
+    type:"Education"
+},
+
+{
+    name:"TVET Directory",
+    category:"Education",
+    icon:"TV",
+    provider:"Multiple institutions",
+    description:"Technical and vocational institution directory.",
+    requirements:["Institution-specific"],
+    fee:"Institution-specific",
+    type:"Education"
+},
+
+{
+    name:"Online Learning",
+    category:"Education",
+    icon:"OL",
+    provider:"Multiple providers",
+    description:"Online courses and digital-learning resources.",
+    requirements:["Provider-specific"],
+    fee:"Provider-specific",
+    type:"Education"
+},
+
+/* JOBS */
+
+{
+    name:"Jobs",
+    category:"Jobs",
+    icon:"JB",
+    provider:"Multiple employers",
+    description:"Employment opportunity directory.",
+    requirements:["Employer-specific qualifications","CV/resume where required"],
+    fee:"Employer/application-specific",
+    type:"Employment"
+},
+
+{
+    name:"Internships",
+    category:"Jobs",
+    icon:"IN",
+    provider:"Multiple employers",
+    description:"Internship and attachment opportunities.",
+    requirements:["Education requirements","Employer-specific documents"],
+    fee:"Employer/application-specific",
+    type:"Internship"
+},
+
+{
+    name:"Graduate Programs",
+    category:"Jobs",
+    icon:"GP",
+    provider:"Multiple employers",
+    description:"Graduate trainee and early-career opportunities.",
+    requirements:["Degree/qualification","Employer-specific requirements"],
+    fee:"Employer-specific",
+    type:"Graduate program"
+},
+
+{
+    name:"Remote Jobs",
+    category:"Jobs",
+    icon:"RJ",
+    provider:"Multiple employers",
+    description:"Remote employment opportunity directory.",
+    requirements:["Employer-specific"],
+    fee:"Employer-specific",
+    type:"Employment"
+},
+
+{
+    name:"Recruitment",
+    category:"Jobs",
+    icon:"RC",
+    provider:"Multiple employers",
+    description:"Recruitment and career resources for employers and job seekers.",
+    requirements:["Profile/CV","Employer requirements"],
+    fee:"Provider-specific",
+    type:"Recruitment"
+},
+
+/* NGOs */
+
+{
+    name:"NGO Directory",
+    category:"NGOs",
+    icon:"NG",
+    provider:"Multiple organizations",
+    description:"Directory of NGOs and community organizations.",
+    requirements:["Organization/program-specific"],
+    fee:"Program-specific",
+    type:"NGO"
+},
+
+{
+    name:"Youth Programs",
+    category:"NGOs",
+    icon:"YP",
+    provider:"Multiple organizations",
+    description:"Youth development and opportunity programs.",
+    requirements:["Program-specific eligibility"],
+    fee:"Program-specific",
+    type:"Program"
+},
+
+{
+    name:"Women Empowerment",
+    category:"NGOs",
+    icon:"WE",
+    provider:"Multiple organizations",
+    description:"Women empowerment and development opportunities.",
+    requirements:["Program-specific eligibility"],
+    fee:"Program-specific",
+    type:"Program"
+},
+
+{
+    name:"Education NGOs",
+    category:"NGOs",
+    icon:"EN",
+    provider:"Multiple organizations",
+    description:"Organizations supporting education and learning.",
+    requirements:["Program-specific"],
+    fee:"Program-specific",
+    type:"NGO"
+},
+
+{
+    name:"Community Grants",
+    category:"NGOs",
+    icon:"CG",
+    provider:"Multiple organizations",
+    description:"Community grant opportunity directory.",
+    requirements:["Grant-specific eligibility","Supporting documents"],
+    fee:"Opportunity-specific",
+    type:"Grant"
+},
+
+/* TRANSPORT */
+
+{
+    name:"Ride Hailing",
+    category:"Transport",
+    icon:"RH",
+    provider:"Multiple providers",
+    description:"Ride-hailing service directory.",
+    requirements:["Provider account where required","Pickup/destination"],
+    fee:"Provider-specific",
+    type:"Transport"
+},
+
+{
+    name:"Taxi",
+    category:"Transport",
+    icon:"TX",
+    provider:"Multiple providers",
+    description:"Taxi service directory.",
+    requirements:["Provider-specific"],
+    fee:"Provider-specific",
+    type:"Transport"
+},
+
+{
+    name:"Bus Services",
+    category:"Transport",
+    icon:"BS",
+    provider:"Multiple providers",
+    description:"Bus operators and travel information.",
+    requirements:["Travel information"],
+    fee:"Provider-specific",
+    type:"Transport"
+},
+
+{
+    name:"Rail Travel",
+    category:"Transport",
+    icon:"RL",
+    provider:"Rail operators",
+    description:"Rail travel information and booking resources.",
+    requirements:["Passenger information","Travel details"],
+    fee:"Provider-specific",
+    type:"Travel"
+},
+
+{
+    name:"Air Travel",
+    category:"Transport",
+    icon:"AT",
+    provider:"Multiple providers",
+    description:"Airline and airport information.",
+    requirements:["Travel documents","Provider-specific requirements"],
+    fee:"Provider-specific",
+    type:"Travel"
+},
+
+{
+    name:"Courier",
+    category:"Transport",
+    icon:"CO",
+    provider:"Multiple providers",
+    description:"Courier and parcel-delivery directory.",
+    requirements:["Sender/recipient information"],
+    fee:"Provider-specific",
+    type:"Delivery"
+},
+
+/* GOVERNMENT */
+
+{
+    name:"Government Services",
+    category:"Government",
+    icon:"GV",
+    provider:"Government agencies",
+    description:"Directory of public digital services.",
+    requirements:["Service-specific"],
+    fee:"Government/provider-specific",
+    type:"Government"
+},
+
+{
+    name:"eCitizen",
+    category:"Government",
+    icon:"EC",
+    provider:"Government",
+    description:"Government digital-service information.",
+    requirements:["Service-specific identification"],
+    fee:"Service-specific",
+    type:"Government"
+},
+
+{
+    name:"KRA",
+    category:"Government",
+    icon:"KR",
+    provider:"KRA",
+    description:"Tax and revenue-service information.",
+    requirements:["Taxpayer-specific information"],
+    fee:"Service-specific",
+    type:"Government"
+},
+
+{
+    name:"NTSA",
+    category:"Government",
+    icon:"NT",
+    provider:"NTSA",
+    description:"Transport and vehicle-service information.",
+    requirements:["Service-specific documents"],
+    fee:"Service-specific",
+    type:"Government"
+},
+
+{
+    name:"NSSF",
+    category:"Government",
+    icon:"NS",
+    provider:"NSSF",
+    description:"Social-security service information.",
+    requirements:["Member-specific requirements"],
+    fee:"Service-specific",
+    type:"Government"
+},
+
+/* INSURANCE */
+
+{
+    name:"Insurance Directory",
+    category:"Insurance",
+    icon:"IS",
+    provider:"Multiple insurers",
+    description:"Insurance products and provider directory.",
+    requirements:["Provider-specific information"],
+    fee:"Policy-specific",
+    type:"Insurance"
+},
+
+{
+    name:"Health Insurance",
+    category:"Insurance",
+    icon:"HI",
+    provider:"Multiple providers",
+    description:"Health insurance information.",
+    requirements:["Provider-specific"],
+    fee:"Policy-specific",
+    type:"Insurance"
+},
+
+{
+    name:"Motor Insurance",
+    category:"Insurance",
+    icon:"MI",
+    provider:"Multiple providers",
+    description:"Motor insurance provider directory.",
+    requirements:["Vehicle information","Provider requirements"],
+    fee:"Policy-specific",
+    type:"Insurance"
+},
+
+{
+    name:"Life Insurance",
+    category:"Insurance",
+    icon:"LI",
+    provider:"Multiple providers",
+    description:"Life insurance information.",
+    requirements:["Provider-specific"],
+    fee:"Policy-specific",
+    type:"Insurance"
+},
+
+/* SUPPORT */
+
+{
+    name:"Customer Support",
+    category:"Support",
+    icon:"CS",
+    provider:"Service providers",
+    description:"Centralized customer-support directory.",
+    requirements:["Service/account information where required"],
+    fee:"Usually provider-specific",
+    type:"Support"
+},
+
+{
+    name:"Fraud Awareness",
+    category:"Support",
+    icon:"FA",
+    provider:"Support resources",
+    description:"Security and fraud-awareness information.",
+    requirements:["None"],
+    fee:"Free",
+    type:"Security"
+},
+
+{
+    name:"SIM Services",
+    category:"Support",
+    icon:"SI",
+    provider:"Safaricom",
+    description:"SIM-related service information.",
+    requirements:["Provider identity requirements"],
+    fee:"Provider-defined",
+    type:"Support"
+},
+
+{
+    name:"Lost Phone Help",
+    category:"Support",
+    icon:"LP",
+    provider:"Support resources",
+    description:"Guidance for securing accounts after losing a device.",
+    requirements:["Account information","Identity verification where required"],
+    fee:"Provider-defined",
+    type:"Support"
+}
+
+];
+
+/* =========================================================
+   GENERATE EXTRA SERVICE RECORDS
+   Makes the directory scalable while keeping each record
+   independently identifiable.
+========================================================= */
+
+const EXTRA_SERVICES = [
+
+"Mobile App Services",
+"Digital Content",
+"Business Internet",
+"SME Resources",
+"Merchant Payments",
+"Enterprise Connectivity",
+"Financial Education",
+"Financial Calculators",
+"International Roaming",
+"International Calling",
+"Learning Resources",
+"Digital Skills",
+"Certifications",
+"Study Abroad",
+"International Education",
+"Career Guidance",
+"Apprenticeships",
+"Freelance Opportunities",
+"CV Resources",
+"Business Directory",
+"Logistics",
+"Parking",
+"Vehicle Services",
+"Matatu Information",
+"Parcel Delivery",
+"Humanitarian Programs",
+"Agriculture Programs",
+"Health NGOs",
+"Donation Directory",
+"Community Development",
+"Scholarship Search",
+"University Applications",
+"College Directory",
+"International Institutions",
+"Kenyan Institutions",
+"Student Resources",
+"Training Programs",
+"Professional Courses",
+"Events",
+"TV & Content",
+"Gaming Subscriptions",
+"Sports Content",
+"Music Services",
+"Internet Support",
+"Network Support",
+"M-PESA Support",
+"Application Centre",
+"Service Help Centre"
+
+];
+
+EXTRA_SERVICES.forEach((name,index)=>{
+
+    if(!SERVICES.some(x=>x.name===name)){
+
+        SERVICES.push({
+
+            name:name,
+
+            category:
+                name.includes("Job") ||
+                name.includes("Career") ||
+                name.includes("CV") ||
+                name.includes("Apprent") ||
+                name.includes("Freelance")
+                ? "Jobs"
+                :
+                name.includes("Scholar") ||
+                name.includes("University") ||
+                name.includes("College") ||
+                name.includes("Study") ||
+                name.includes("Education") ||
+                name.includes("Learning") ||
+                name.includes("Training") ||
+                name.includes("Course") ||
+                name.includes("Student")
+                ? "Education"
+                :
+                name.includes("NGO") ||
+                name.includes("Community") ||
+                name.includes("Agriculture") ||
+                name.includes("Humanitarian") ||
+                name.includes("Donation")
+                ? "NGOs"
+                :
+                name.includes("Internet") ||
+                name.includes("Network")
+                ? "Internet"
+                :
+                name.includes("Music") ||
+                name.includes("Gaming") ||
+                name.includes("Sports") ||
+                name.includes("TV") ||
+                name.includes("Content") ||
+                name.includes("Events")
+                ? "Entertainment"
+                :
+                name.includes("Transport") ||
+                name.includes("Logistics") ||
+                name.includes("Parking") ||
+                name.includes("Vehicle") ||
+                name.includes("Matatu") ||
+                name.includes("Parcel")
+                ? "Transport"
+                :
+                name.includes("Business") ||
+                name.includes("Merchant") ||
+                name.includes("SME") ||
+                name.includes("Enterprise")
+                ? "Business"
+                :
+                "Services",
+
+            icon:name.substring(0,2).toUpperCase(),
+
+            provider:"Multiple providers",
+
+            description:
+                "Professional service directory record. Open the service to view eligibility, requirements, fees and provider information.",
+
+            requirements:[
+                "Eligibility depends on the selected provider",
+                "Required documents depend on the service",
+                "Check current provider requirements before application"
+            ],
+
+            fee:"Provider/service specific",
+
+            type:"Service"
+
         });
 
-        function toggleTheme() {
-            const html = document.documentElement;
-            const themeBtn = document.getElementById('themeBtn');
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                themeBtn.innerText = '🌙 Dark Mode';
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                themeBtn.innerText = '☀️ Light Mode';
+    }
+
+});
+
+/* =========================================================
+   INSTITUTIONS
+========================================================= */
+
+const INSTITUTIONS = [
+
+{
+    name:"University of Nairobi",
+    country:"Kenya",
+    location:"Nairobi",
+    type:"University"
+},
+
+{
+    name:"Kenyatta University",
+    country:"Kenya",
+    location:"Kiambu",
+    type:"University"
+},
+
+{
+    name:"Jomo Kenyatta University of Agriculture and Technology",
+    country:"Kenya",
+    location:"Kiambu",
+    type:"University"
+},
+
+{
+    name:"Moi University",
+    country:"Kenya",
+    location:"Uasin Gishu",
+    type:"University"
+},
+
+{
+    name:"Egerton University",
+    country:"Kenya",
+    location:"Nakuru",
+    type:"University"
+},
+
+{
+    name:"Technical University of Kenya",
+    country:"Kenya",
+    location:"Nairobi",
+    type:"University"
+},
+
+{
+    name:"Strathmore University",
+    country:"Kenya",
+    location:"Nairobi",
+    type:"University"
+},
+
+{
+    name:"Kenya Universities Directory",
+    country:"Kenya",
+    location:"Multiple counties",
+    type:"Directory"
+},
+
+{
+    name:"USA Institutions Directory",
+    country:"USA",
+    location:"Multiple states",
+    type:"International"
+},
+
+{
+    name:"UK Institutions Directory",
+    country:"United Kingdom",
+    location:"England, Wales, Scotland & Northern Ireland",
+    type:"International"
+},
+
+{
+    name:"Scottish Institutions Directory",
+    country:"Scotland",
+    location:"Multiple locations",
+    type:"International"
+},
+
+{
+    name:"Canada Institutions Directory",
+    country:"Canada",
+    location:"Multiple provinces and territories",
+    type:"International"
+},
+
+{
+    name:"Germany Institutions Directory",
+    country:"Germany",
+    location:"Multiple regions",
+    type:"International"
+}
+
+];
+
+/* =========================================================
+   JOBS
+========================================================= */
+
+const JOBS=[
+
+{
+    title:"Software Engineer",
+    company:"Technology Employer",
+    location:"Nairobi",
+    type:"Full-time"
+},
+
+{
+    title:"Graduate Trainee",
+    company:"Corporate Employer",
+    location:"Kenya",
+    type:"Graduate Program"
+},
+
+{
+    title:"Customer Experience Associate",
+    company:"Service Employer",
+    location:"Kenya",
+    type:"Full-time"
+},
+
+{
+    title:"Data Analyst",
+    company:"Technology Employer",
+    location:"Remote",
+    type:"Full-time"
+},
+
+{
+    title:"Marketing Intern",
+    company:"Corporate Employer",
+    location:"Nairobi",
+    type:"Internship"
+},
+
+{
+    title:"Field Operations Assistant",
+    company:"Operations Employer",
+    location:"Kenya",
+    type:"Full-time"
+}
+
+];
+
+/* =========================================================
+   NGO DIRECTORY
+========================================================= */
+
+const NGOS=[
+
+{
+    name:"Education Opportunity Directory",
+    focus:"Education",
+    description:"Education, scholarship and learning opportunities."
+},
+
+{
+    name:"Youth Development Directory",
+    focus:"Youth",
+    description:"Youth development and entrepreneurship programs."
+},
+
+{
+    name:"Women Empowerment Directory",
+    focus:"Women",
+    description:"Women empowerment and enterprise opportunities."
+},
+
+{
+    name:"Community Development Directory",
+    focus:"Community",
+    description:"Community development and support programs."
+},
+
+{
+    name:"Agriculture Opportunity Directory",
+    focus:"Agriculture",
+    description:"Agriculture and livelihood opportunities."
+},
+
+{
+    name:"Humanitarian Services Directory",
+    focus:"Humanitarian",
+    description:"Humanitarian and community-support resources."
+}
+
+];
+
+/* =========================================================
+   TRANSPORT
+========================================================= */
+
+const TRANSPORT=[
+
+{
+    name:"Ride Services Directory",
+    type:"Ride-hailing",
+    description:"Ride-hailing provider information."
+},
+
+{
+    name:"Bus Operator Directory",
+    type:"Bus",
+    description:"Bus operators and route information."
+},
+
+{
+    name:"Rail Travel Directory",
+    type:"Rail",
+    description:"Rail travel information."
+},
+
+{
+    name:"Air Travel Directory",
+    type:"Air",
+    description:"Airline and airport information."
+},
+
+{
+    name:"Courier Directory",
+    type:"Courier",
+    description:"Parcel and delivery services."
+},
+
+{
+    name:"Logistics Directory",
+    type:"Logistics",
+    description:"Logistics and freight resources."
+}
+
+];
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
+const categories=[
+
+...new Set(
+    SERVICES.map(service=>service.category)
+)
+
+].sort();
+
+const categorySelect=document.getElementById("category");
+
+categories.forEach(category=>{
+
+    const option=document.createElement("option");
+
+    option.value=category;
+    option.textContent=category;
+
+    categorySelect.appendChild(option);
+
+});
+
+/* =========================================================
+   CARD CREATOR
+========================================================= */
+
+function initials(text){
+
+    return text
+        .split(" ")
+        .map(word=>word[0])
+        .join("")
+        .substring(0,2)
+        .toUpperCase();
+
+}
+
+function serviceCard(service,index){
+
+    return `
+
+    <article class="card">
+
+        <div class="card-logo">
+            ${service.logo
+                ? `<img src="${service.logo}" alt="${service.name} logo">`
+                : initials(service.icon || service.name)
             }
-        }
-
-        function updateGreeting() {
-            const hour = new Date().getHours();
-            let g = "Good Morning";
-            if (hour >= 12 && hour < 17) g = "Good Afternoon";
-            else if (hour >= 17) g = "Good Evening";
-            document.getElementById('greetingText').innerText = `${g}, Welcome to Safaricom Digital Services Portal`;
-        }
-
-        function setCategoryFilter(cat, btn) {
-            currentFilter = cat;
-            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-            btn.classList.add('active');
-            renderServicesGrid();
-        }
-
-        function renderServicesGrid() {
-            const grid = document.getElementById('servicesGrid');
-            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
-            grid.innerHTML = '';
-
-            const filtered = servicesData.filter(item => {
-                const matchesCat = (currentFilter === 'all') || (item.category === currentFilter);
-                const matchesSearch = item.title.toLowerCase().includes(searchVal) || item.desc.toLowerCase().includes(searchVal);
-                return matchesCat && matchesSearch;
-            });
-
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'service-card';
-                card.innerHTML = `
-                    <div>
-                        <div class="service-card-header">
-                            <div class="service-icon">${item.icon}</div>
-                            <div>
-                                <span class="service-badge">${item.categoryLabel}</span>
-                                <h3 style="font-size: 16px; color: var(--text-dark); margin-top:3px; font-weight:800;">${item.title}</h3>
-                            </div>
-                        </div>
-                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">${item.desc}</p>
-                    </div>
-                    <button class="btn-animated" onclick="triggerModalById('${item.id}')">Access ${item.title} &rarr;</button>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function getMoneyBackGuaranteeNotice() {
-            return `
-                <div class="guarantee-note">
-                    <strong>🛡️ 100% Full Refund Guarantee:</strong> If your application or request fails to process successfully for any reason, your payment will be automatically refunded immediately with zero deductions.
-                </div>
-            `;
-        }
-
-        function triggerModalById(id) {
-            const item = servicesData.find(s => s.id === id);
-            if (!item) return;
-            activeServiceObj = item;
-            currentStep = 1;
-
-            document.getElementById('modalIcon').innerText = item.icon;
-            document.getElementById('modalTitle').innerText = item.title;
-            document.getElementById('modalCategory').innerText = item.categoryLabel;
-            document.getElementById('modalProvider').innerText = `Official Provider: ${item.provider}`;
-
-            renderServiceIntro(item);
-            document.getElementById('serviceModal').classList.add('active');
-        }
-
-        function closeModal() {
-            if (aviatorInterval) clearInterval(aviatorInterval);
-            isAviatorFlying = false;
-            document.getElementById('serviceModal').classList.remove('active');
-        }
-
-        /* ---------------- STEP 1: UNIVERSAL SERVICE INTRODUCTION ---------------- */
-        function renderServiceIntro(item) {
-            const container = document.getElementById('modalDynamicBody');
-            
-            let faqHtml = (item.faqs || []).map(f => `
-                <div style="background:var(--chat-bg); padding:10px 14px; border-radius:8px; margin-bottom:8px;">
-                    <div style="font-weight:700; color:var(--text-dark);">Q: ${f.q}</div>
-                    <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">A: ${f.a}</div>
-                </div>
-            `).join('');
-
-            container.innerHTML = `
-                <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px; margin-bottom:16px;">
-                    <h4 style="font-size:14px; font-weight:800; color:var(--safaricom-dark-green); margin-bottom:6px;">Service Overview</h4>
-                    <p style="font-size:13px; color:var(--text-dark); line-height:1.5;">${item.desc}</p>
-                </div>
-
-                <div class="form-grid" style="margin-bottom:16px;">
-                    <div style="background:var(--chat-bg); padding:12px; border-radius:var(--radius-sm);">
-                        <strong style="font-size:11px; text-transform:uppercase; color:var(--text-muted);">Who Can Use It</strong>
-                        <div style="font-weight:700; color:var(--text-dark); margin-top:4px;">Kenyan Citizens & Registered Residents</div>
-                    </div>
-                    <div style="background:var(--chat-bg); padding:12px; border-radius:var(--radius-sm);">
-                        <strong style="font-size:11px; text-transform:uppercase; color:var(--text-muted);">Processing Time</strong>
-                        <div style="font-weight:700; color:var(--safaricom-dark-green); margin-top:4px;">Instant Real-Time Verification</div>
-                    </div>
-                </div>
-
-                ${faqHtml ? `<h4 style="font-size:13px; font-weight:800; margin-bottom:8px;">Frequently Asked Questions</h4>${faqHtml}` : ''}
-
-                <div style="display:flex; gap:10px; margin-top:20px;">
-                    <button type="button" style="background:var(--chat-bg); border:1px solid var(--border); padding:14px; border-radius:25px; font-weight:700; cursor:pointer;" onclick="toggleZuriChat()">Ask Zuri AI 🤖</button>
-                    <button type="button" class="btn-animated" style="margin-top:0; flex:1;" onclick="startServiceApplication('${item.id}')">Start Application &rarr;</button>
-                </div>
-            `;
-        }
-
-        function startServiceApplication(id) {
-            const container = document.getElementById('modalDynamicBody');
-            container.innerHTML = '';
-
-            if (id === 'fuliza') renderFulizaStep1(container);
-            else if (id === 'bonga_points') renderBongaPointsPortal(container);
-            else if (id === 'global_connection') renderGlobalConnectionPortal(container);
-            else if (id === 'matatu_fares') renderMatatuFarePortal(container);
-            else if (id === 'uber_jobs') renderUberJobsPortal(container);
-            else if (id === 'ecitizen') renderEcitizenPortal(container);
-            else if (id === 'ntsa') renderNtsaPortal(container);
-            else if (id === 'nyota') renderNyotaStep1(container);
-            else if (id === 'aviator') renderAviatorLobby(container);
-            else if (id === 'kids_games') renderGenericServiceForm(container, 25, 'Kids Arcade 1GB Pass');
-            else if (id === 'konami') renderGenericServiceForm(container, 99, 'Konami Multiplayer Day Pass');
-            else if (id === 'scholarships') renderGenericServiceForm(container, 0, 'Safaricom Foundation Scholarship Application');
-            else if (id === 'helb') renderGenericServiceForm(container, 0, 'HELB Compliance Clearance & Loan Portal');
-            else if (id === 'mpesa_till') renderGenericServiceForm(container, 200, 'Buy Goods Till Registration');
-            else if (id === 'kplc') renderGenericServiceForm(container, 500, 'KPLC Token Purchase');
-            else if (id === 'ziidi') renderGenericServiceForm(container, 100, 'Ziidi MMF Investment Deposit');
-        }
-
-        /* ---------------- REAL-TIME INPUT VALIDATOR ENGINE ---------------- */
-        function validateInput(input, type) {
-            const group = input.closest('.form-group');
-            if (!group) return false;
-
-            let msgEl = group.querySelector('.val-msg');
-            if (!msgEl) {
-                msgEl = document.createElement('div');
-                msgEl.className = 'val-msg';
-                group.appendChild(msgEl);
-            }
-
-            const val = input.value.trim();
-            let isValid = false;
-            let errorMsg = '';
-
-            if (type === 'phone') {
-                isValid = /^(07|01|254)[0-9]{8}$/.test(val);
-                errorMsg = 'Wrong phone details provided. Please check and try again.';
-            } else if (type === 'id') {
-                isValid = /^[0-9]{7,9}$/.test(val);
-                errorMsg = 'Invalid ID document/details. Please check details and try again.';
-            } else if (type === 'name') {
-                isValid = val.length >= 3 && val.includes(' ');
-                errorMsg = 'Wrong information provided. Provide full legal name.';
-            } else if (type === 'kra') {
-                if (val === '') { isValid = true; } 
-                else {
-                    isValid = /^[A-Z][0-9]{9}[A-Z]$/i.test(val);
-                    errorMsg = 'Invalid KRA PIN format (e.g. A012345678Z)';
-                }
-            } else if (type === 'file') {
-                isValid = input.files && input.files.length > 0;
-                errorMsg = 'Invalid document. Please upload required file.';
-            } else if (type === 'text') {
-                isValid = val.length >= 2;
-                errorMsg = 'Field incomplete. Please provide required details.';
-            }
-
-            if (isValid) {
-                group.classList.remove('invalid');
-                group.classList.add('valid');
-                msgEl.className = 'val-msg valid-text';
-                msgEl.innerHTML = '✓ Requirement completed successfully.';
-            } else {
-                group.classList.remove('valid');
-                group.classList.add('invalid');
-                msgEl.className = 'val-msg invalid-text';
-                msgEl.innerHTML = `✕ ${errorMsg}`;
-            }
-
-            checkFormValidity(input.form);
-            return isValid;
-        }
-
-        function showFileName(input, targetId) {
-            const lbl = document.getElementById(targetId);
-            if (lbl && input.files && input.files[0]) {
-                lbl.innerText = `✓ File Selected: ${input.files[0].name}`;
-                lbl.style.color = "var(--success-green)";
-            }
-        }
-
-        function checkFormValidity(form) {
-            if (!form) return;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            if (!submitBtn) return;
-
-            const inputs = form.querySelectorAll('input[required], select[required]');
-            let allValid = true;
-
-            inputs.forEach(inp => {
-                const group = inp.closest('.form-group');
-                if (!group || !group.classList.contains('valid')) {
-                    allValid = false;
-                }
-            });
-
-            submitBtn.disabled = !allValid;
-        }
-
-        function run6SecLoader(targetTitle, callback) {
-            const container = document.getElementById('modalDynamicBody');
-            container.innerHTML = `
-                <div class="loading-view">
-                    <div class="spinner"></div>
-                    <h3 style="font-size:17px; margin-bottom:8px; font-weight:800;">${targetTitle}</h3>
-                    <p style="font-size:13px; color:var(--text-muted);">Verifying details and processing requirements... (6 Seconds)</p>
-                </div>
-            `;
-            setTimeout(() => {
-                callback();
-            }, 6000);
-        }
-
-        /* ---------------- FIN API PAYMENT & CHECKOUT WIDGET INTEGRATION ---------------- */
-        function renderFinapiWidget(amount, buttonText, wrapperId, phone) {
-            const container = document.getElementById(wrapperId);
-            if (!container) return;
-
-            const refNum = 'REF-' + Math.floor(100000 + Math.random() * 900000);
-
-            container.innerHTML = `
-                <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px; margin-top:14px;">
-                    <h4 style="font-size:13px; font-weight:800; color:var(--text-dark); margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:6px;">UNIVERSAL CHECKOUT SUMMARY</h4>
-                    <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:12px;">
-                        <span>Service / Option:</span>
-                        <strong>${activeServiceObj ? activeServiceObj.title : 'Digital Service'}</strong>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:12px;">
-                        <span>Reference Number:</span>
-                        <strong style="color:var(--safaricom-dark-green);">${refNum}</strong>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:12px;">
-                        <span>Payment Method:</span>
-                        <strong>M-PESA STK Push</strong>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:800; border-top:1px dashed var(--border); padding-top:8px; margin-top:6px; color:var(--safaricom-dark-green);">
-                        <span>Total Amount Due:</span>
-                        <span>KSh ${amount.toLocaleString()}</span>
-                    </div>
-                </div>
-
-                <div style="margin-top:14px;" id="finapi-embed-area">
-                    <button type="button" class="btn-animated" onclick="triggerStkPushPrompt(${amount}, '${phone}', '${refNum}', '${wrapperId}')">${buttonText}</button>
-                </div>
-            `;
-        }
-
-        function triggerStkPushPrompt(amount, phone, refNum, wrapperId) {
-            const embedArea = document.getElementById(wrapperId);
-            if (!embedArea) return;
-
-            embedArea.innerHTML = `
-                <div class="loading-view" style="padding:20px;">
-                    <div class="spinner"></div>
-                    <h4 style="font-size:15px; font-weight:800;">M-PESA STK Push Initiated</h4>
-                    <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">Please check phone handset (${phone}) and enter M-PESA PIN to complete payment of KSh ${amount}.</p>
-                </div>
-            `;
-
-            setTimeout(() => {
-                renderApplicationStatusScreen(wrapperId, refNum, amount);
-            }, 5000);
-        }
-
-        function renderApplicationStatusScreen(wrapperId, refNum, amount) {
-            const container = document.getElementById('modalDynamicBody');
-            container.innerHTML = `
-                <div style="text-align:center; padding:20px 10px;">
-                    <div style="font-size:48px; color:var(--success-green); margin-bottom:10px;">✓</div>
-                    <h3 style="font-size:18px; font-weight:800; color:var(--safaricom-dark-green);">Payment Confirmed & Application Submitted</h3>
-                    <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">Reference No: <strong>${refNum}</strong></p>
-                </div>
-
-                <div class="user-profile-card">
-                    <div class="profile-item">
-                        <span class="profile-label">Service</span>
-                        <span class="profile-value">${activeServiceObj ? activeServiceObj.title : 'Digital Portal'}</span>
-                    </div>
-                    <div class="profile-item">
-                        <span class="profile-label">Amount Paid</span>
-                        <span class="profile-value">KSh ${amount.toLocaleString()}</span>
-                    </div>
-                    <div class="profile-item">
-                        <span class="profile-label">Payment Status</span>
-                        <span class="profile-value" style="color:var(--success-green);">Confirmed ✓</span>
-                    </div>
-                    <div class="profile-item">
-                        <span class="profile-label">Application Status</span>
-                        <span class="profile-value" style="color:var(--safaricom-dark-green);">Under Processing</span>
-                    </div>
-                </div>
-
-                <div class="success-note">
-                    <strong>📱 SMS Confirmation Sent:</strong> An official SMS notification containing your status updates and application reference has been dispatched to your mobile number.
-                </div>
-
-                <button type="button" class="btn-animated" onclick="closeModal()">DONE / CLOSE PORTAL &rarr;</button>
-            `;
-        }
-
-        /* ---------------- BONGA POINTS SERVICE ---------------- */
-        function renderBongaPointsPortal(container) {
-            container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">BONGA POINTS SERVICE DASHBOARD</div>
-                <form onsubmit="handleBongaSubmit(event)">
-                    <div class="form-grid">
-                        <div class="form-group full-width">
-                            <label>Select Bonga Action *</label>
-                            <select id="bongaAction" required onchange="updateBongaFeeNote(this.value)">
-                                <option value="convert">Sell Bonga Points (KSh 100 Activation Fee)</option>
-                                <option value="buy">Buy Bonga Points (KSh 75 Request Fee)</option>
-                                <option value="donate">Donate Bonga Points to Charity / Community</option>
-                                <option value="request">Request Bonga Points</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Points Quantity *</label>
-                            <input type="number" id="bongaPointsQty" required placeholder="e.g. 5000" min="100" oninput="recalcBongaValue(); validateInput(this, 'text')">
-                        </div>
-                        <div class="form-group">
-                            <label>Applicant Line Number *</label>
-                            <input type="tel" id="bongaPhone" required placeholder="07XXXXXXXX" oninput="validateInput(this, 'phone')">
-                        </div>
-                        <div class="form-group">
-                            <label>National ID Number *</label>
-                            <input type="text" id="bongaId" required placeholder="National ID" oninput="validateInput(this, 'id')">
-                        </div>
-                        <div class="form-group">
-                            <label>Recipient / Detail (If applicable)</label>
-                            <input type="text" id="bongaRecipient" placeholder="Recipient Phone or Reason">
-                        </div>
-                    </div>
-
-                    <div class="calc-output-box" style="margin-bottom:14px;">
-                        <div style="font-size:11px; color:var(--text-muted); font-weight:700;">CALCULATED TRANSACTION VALUE</div>
-                        <div class="calc-highlight" id="bongaCalculatedVal">KSh 1,000 Cash Value</div>
-                        <div class="calc-subtext" id="bongaFeeSubtext">Service / Submission Fee: KSh 100 included at checkout</div>
-                    </div>
-
-                    ${getMoneyBackGuaranteeNotice()}
-                    <button type="submit" class="btn-animated" disabled>CONTINUE TO CHECKOUT &rarr;</button>
-                </form>
-                <div id="widget-wrapper-bonga" style="margin-top:10px;"></div>
-            `;
-            recalcBongaValue();
-        }
-
-        function recalcBongaValue() {
-            const qty = parseInt(document.getElementById('bongaPointsQty')?.value || 5000);
-            const cashVal = Math.floor(qty * 0.2);
-            const calcEl = document.getElementById('bongaCalculatedVal');
-            if (calcEl) calcEl.innerText = `KSh ${cashVal.toLocaleString()} Value`;
-        }
-
-        function updateBongaFeeNote(val) {
-            const sub = document.getElementById('bongaFeeSubtext');
-            if (!sub) return;
-            if (val === 'convert') sub.innerText = "Service / Submission Fee: KSh 100 included at checkout";
-            else if (val === 'buy') sub.innerText = "Prompt Request Fee: KSh 75 included at checkout";
-            else sub.innerText = "Direct Point Transfer - Standard processing rules apply";
-        }
-
-        function handleBongaSubmit(e) {
-            e.preventDefault();
-            const action = document.getElementById('bongaAction').value;
-            const phone = document.getElementById('bongaPhone').value;
-            const fee = (action === 'convert') ? 100 : (action === 'buy' ? 75 : 100);
-
-            renderFinapiWidget(fee, `PAY KSH ${fee} BONGA SUBMISSION FEE`, 'widget-wrapper-bonga', phone);
-        }
-
-        /* ---------------- UBER DRIVER APPLICATION PORTAL ---------------- */
-        function renderUberJobsPortal(container) {
-            let countyOptions = kenyanCounties.map(c => `<option value="${c}">${c} County</option>`).join('');
-
-            container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">UBER DRIVER JOB APPLICATION</div>
-                <form onsubmit="handleUberSubmit(event)">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Full Name *</label>
-                            <input type="text" id="uberName" required placeholder="Full Name" oninput="validateInput(this, 'name')">
-                        </div>
-                        <div class="form-group">
-                            <label>National ID / Passport *</label>
-                            <input type="text" id="uberId" required placeholder="National ID" oninput="validateInput(this, 'id')">
-                        </div>
-                        <div class="form-group">
-                            <label>Phone Number *</label>
-                            <input type="tel" id="uberPhone" required placeholder="07XXXXXXXX" oninput="validateInput(this, 'phone')">
-                        </div>
-                        <div class="form-group">
-                            <label>Driving License Number *</label>
-                            <input type="text" id="uberDl" required placeholder="License No." oninput="validateInput(this, 'text')">
-                        </div>
-                        <div class="form-group">
-                            <label>Preferred Operating County *</label>
-                            <select id="uberCounty" required>${countyOptions}</select>
-                        </div>
-                        <div class="form-group">
-                            <label>Vehicle Ownership Status *</label>
-                            <select id="uberVehicleStatus" required onchange="toggleUberVehicleUploads(this.value)">
-                                <option value="fleet">Apply to drive Partner Fleet (No Vehicle Required)</option>
-                                <option value="own">Provide My Own Vehicle</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div id="uberVehicleUploadSection" style="display:none; background:var(--chat-bg); padding:14px; border-radius:var(--radius-sm); margin-bottom:14px;">
-                        <h4 style="font-size:12px; font-weight:800; margin-bottom:10px;">VEHICLE DOCUMENTS & PHOTOGRAPHS</h4>
-                        <div class="uber-car-gallery">
-                            <div class="uber-car-card selected" onclick="selectUberCar(this, 'Toyota Vitz / Demio')">
-                                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=400&q=80" alt="ChapChap">
-                                <div style="font-size:11px; font-weight:800; padding:4px;">ChapChap Class</div>
-                            </div>
-                            <div class="uber-car-card" onclick="selectUberCar(this, 'Toyota Corolla / Axio')">
-                                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=400&q=80" alt="UberX">
-                                <div style="font-size:11px; font-weight:800; padding:4px;">UberX Comfort</div>
-                            </div>
-                        </div>
-                        <div class="form-grid" style="margin-top:10px;">
-                            <div class="form-group">
-                                <label>Upload Front Vehicle Photo</label>
-                                <input type="file" onchange="validateInput(this, 'file')">
-                            </div>
-                            <div class="form-group">
-                                <label>Upload Rear Vehicle Photo</label>
-                                <input type="file" onchange="validateInput(this, 'file')">
-                            </div>
-                            <div class="form-group">
-                                <label>Upload Side View Photo</label>
-                                <input type="file" onchange="validateInput(this, 'file')">
-                            </div>
-                            <div class="form-group">
-                                <label>Upload Interior Photo</label>
-                                <input type="file" onchange="validateInput(this, 'file')">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label>Upload Personal DL & Good Conduct Slip *</label>
-                        <div class="upload-box">
-                            <label for="file_uber">📁 Drag & Drop or Tap to Attach Documents</label>
-                            <input type="file" id="file_uber" required onchange="showFileName(this, 'lbl_uber'); validateInput(this, 'file');">
-                            <div id="lbl_uber" style="font-size:11px; margin-top:4px; color:var(--text-muted);">No document attached</div>
-                        </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label>Fee Selection & Equipment Options *</label>
-                        <select id="uberFeeType" required onchange="recalcUberFee()">
-                            <option value="500">Application & Processing Fee - KSh 500</option>
-                            <option value="1200">Application + Uber Driver Uniform & Badge Package - KSh 1,200</option>
-                        </select>
-                    </div>
-
-                    <div class="calc-output-box" style="margin-bottom:14px;">
-                        <div style="font-size:11px; color:var(--text-muted); font-weight:700;">TOTAL DUE AT CHECKOUT</div>
-                        <div class="calc-highlight" id="uberTotalFee">KSh 500</div>
-                    </div>
-
-                    ${getMoneyBackGuaranteeNotice()}
-                    <button type="submit" class="btn-animated" disabled>SUBMIT APPLICATION & PAY &rarr;</button>
-                </form>
-                <div id="widget-wrapper-uber" style="margin-top:10px;"></div>
-            `;
-        }
-
-        function toggleUberVehicleUploads(val) {
-            const sec = document.getElementById('uberVehicleUploadSection');
-            if (sec) sec.style.display = (val === 'own') ? 'block' : 'none';
-        }
-
-        function selectUberCar(el, carName) {
-            document.querySelectorAll('.uber-car-card').forEach(c => c.classList.remove('selected'));
-            el.classList.add('selected');
-            selectedUberCar = carName;
-        }
-
-        function recalcUberFee() {
-            const val = document.getElementById('uberFeeType')?.value || 500;
-            const feeEl = document.getElementById('uberTotalFee');
-            if (feeEl) feeEl.innerText = `KSh ${parseInt(val).toLocaleString()}`;
-        }
-
-        function handleUberSubmit(e) {
-            e.preventDefault();
-            const fee = parseFloat(document.getElementById('uberFeeType').value);
-            const phone = document.getElementById('uberPhone').value;
-            renderFinapiWidget(fee, `PAY KSH ${fee} UBER APPLICATION FEE`, 'widget-wrapper-uber', phone);
-        }
-
-        /* ---------------- NTSA SMART DRIVER PORTAL ---------------- */
-        function renderNtsaPortal(container) {
-            container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">NTSA SMART DRIVER PORTAL</div>
-                <form onsubmit="handleNtsaSubmit(event)">
-                    <div class="form-grid">
-                        <div class="form-group full-width">
-                            <label>Select NTSA Service Workflow *</label>
-                            <select id="ntsaService" required onchange="updateNtsaWorkflow(this.value)">
-                                <option value="3050">Renew Driving License (Smart DL) - KSh 3,050</option>
-                                <option value="750">Apply for New Driving License / Interim - KSh 750</option>
-                                <option value="1200">License Replacement / Duplicate - KSh 1,200</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Applicant Full Name *</label>
-                            <input type="text" id="ntsaName" required placeholder="Full Name" oninput="validateInput(this, 'name')">
-                        </div>
-                        <div class="form-group">
-                            <label>National ID / Passport *</label>
-                            <input type="text" id="ntsaId" required placeholder="National ID" oninput="validateInput(this, 'id')">
-                        </div>
-                        <div class="form-group">
-                            <label>Existing License Number (If Renewal/Replacement)</label>
-                            <input type="text" id="ntsaDlNum" placeholder="e.g. DL192837" oninput="validateInput(this, 'text')">
-                        </div>
-                        <div class="form-group">
-                            <label>License Category *</label>
-                            <select required>
-                                <option value="B">Category B (Light Vehicle)</option>
-                                <option value="A">Category A (Motorcycle)</option>
-                                <option value="C">Category C (Commercial / PSV)</option>
-                            </select>
-                        </div>
-                        <div class="form-group full-width">
-                            <label>Upload Supporting Documents / Passport Photo *</label>
-                            <div class="upload-box">
-                                <label for="file_ntsa">📁 Attach Documents PDF/JPG</label>
-                                <input type="file" id="file_ntsa" required onchange="showFileName(this, 'lbl_ntsa'); validateInput(this, 'file');">
-                                <div id="lbl_ntsa" style="font-size:11px; margin-top:4px; color:var(--text-muted);">No document attached</div>
-                            </div>
-                        </div>
-                        <div class="form-group full-width">
-                            <label>Phone Line for Payment *</label>
-                            <input type="tel" id="ntsaPhone" required placeholder="07XXXXXXXX" oninput="validateInput(this, 'phone')">
-                        </div>
-                    </div>
-
-                    <div class="calc-output-box" style="margin-bottom:14px;">
-                        <div style="font-size:11px; color:var(--text-muted); font-weight:700;">NTSA APPLICABLE FEE</div>
-                        <div class="calc-highlight" id="ntsaTotal">KSh 3,050</div>
-                    </div>
-
-                    ${getMoneyBackGuaranteeNotice()}
-                    <button type="submit" class="btn-animated" disabled>PROCEED TO PAY NTSA FEE &rarr;</button>
-                </form>
-                <div id="widget-wrapper-ntsa" style="margin-top:10px;"></div>
-            `;
-        }
-
-        function updateNtsaWorkflow(val) {
-            const el = document.getElementById('ntsaTotal');
-            if (el) el.innerText = `KSh ${parseFloat(val).toLocaleString()}`;
-        }
-
-        function handleNtsaSubmit(e) {
-            e.preventDefault();
-            const totalText = document.getElementById('ntsaTotal').innerText.replace(/[^0-9]/g, '');
-            const phone = document.getElementById('ntsaPhone').value;
-            renderFinapiWidget(parseFloat(totalText), `PAY KSH ${totalText} NTSA FEE`, 'widget-wrapper-ntsa', phone);
-        }
-
-        /* ---------------- eCITIZEN SERVICES HUB ---------------- */
-        function renderEcitizenPortal(container) {
-            container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">eCITIZEN DIGITAL GOVERNMENT HUB</div>
-                <form onsubmit="handleEcitizenSubmit(event)">
-                    <div class="form-grid">
-                        <div class="form-group full-width">
-                            <label>eCitizen Category & Service *</label>
-                            <select id="ecitizenService" required onchange="recalcEcitizen()">
-                                <option value="1050">Civil: Certificate of Good Conduct (DCI) - KSh 1,050</option>
-                                <option value="3000">Immigration: Passport Application / Renewal - KSh 3,000</option>
-                                <option value="2500">Business: Company Registration & Search - KSh 2,500</option>
-                                <option value="1000">Land: Land Search & Title Certificate - KSh 1,000</option>
-                                <option value="500">Tourism: National Park / Tourist Site Booking - KSh 500</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Applicant Full Legal Name *</label>
-                            <input type="text" id="ecitName" required placeholder="Full Name" oninput="validateInput(this, 'name')">
-                        </div>
-                        <div class="form-group">
-                            <label>National ID Number *</label>
-                            <input type="text" id="ecitId" required placeholder="National ID" oninput="validateInput(this, 'id')">
-                        </div>
-                        <div class="form-group">
-                            <label>Number of Applications / Visitors *</label>
-                            <input type="number" id="ecitQty" value="1" min="1" required onchange="recalcEcitizen()">
-                        </div>
-                        <div class="form-group full-width">
-                            <label>Safaricom Line for Payment *</label>
-                            <input type="tel" id="ecitPhone" required placeholder="07XXXXXXXX" oninput="validateInput(this, 'phone')">
-                        </div>
-                    </div>
-
-                    <div class="calc-output-box" style="margin-bottom:14px;">
-                        <div style="font-size:11px; color:var(--text-muted); font-weight:700;">TOTAL ECITIZEN CHARGE</div>
-                        <div class="calc-highlight" id="ecitTotal">KSh 1,050</div>
-                    </div>
-
-                    ${getMoneyBackGuaranteeNotice()}
-                    <button type="submit" class="btn-animated" disabled>PROCEED TO PAY ECITIZEN FEE &rarr;</button>
-                </form>
-                <div id="widget-wrapper-ecitizen" style="margin-top:10px;"></div>
-            `;
-        }
-
-        function recalcEcitizen() {
-            const base = parseFloat(document.getElementById('ecitizenService')?.value || 1050);
-            const qty = parseInt(document.getElementById('ecitQty')?.value || 1);
-            const total = base * qty;
-            const el = document.getElementById('ecitTotal');
-            if (el) el.innerText = `KSh ${total.toLocaleString()}`;
-        }
-
-        function handleEcitizenSubmit(e) {
-            e.preventDefault();
-            const totalText = document.getElementById('ecitTotal').innerText.replace(/[^0-9]/g, '');
-            const phone = document.getElementById('ecitPhone').value;
-            renderFinapiWidget(parseFloat(totalText), `PAY KSH ${totalText} ECITIZEN FEE`, 'widget-wrapper-ecitizen', phone);
-        }
-
-        /* ---------------- GLOBAL CONNECTION HUB ---------------- */
-        function renderGlobalConnectionPortal(container) {
-            let continentOptions = Object.keys(globalDestinations).map(c => `<option value="${c}">${c}</option>`).join('');
-
-            container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">GLOBAL CONNECTION & REMITTANCE HUB</div>
-                <form onsubmit="handleGlobalConnectionSubmit(event)">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Transfer Type *</label>
-                            <select id="globalMode" required onchange="recalcGlobalFee()">
-                                <option value="send">Send Money Abroad</option>
-                                <option value="receive">Receive Money International</option>
-                                <option value="roaming">Activate Global Roaming Pass</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Target Region / Continent *</label>
-                            <select id="globalContinent" required onchange="updateGlobalPlaces(this.value)">
-                                ${continentOptions}
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Target Destination / Country *</label>
-                            <select id="globalPlace" required onchange="recalcGlobalFee()"></select>
-                        </div>
-                        <div class="form-group">
-                            <label>Amount (KES Equivalent) *</label>
-                            <input type="number" id="globalAmount" value="1000" min="100" required oninput="recalcGlobalFee(); validateInput(this, 'text')">
-                        </div>
-                        <div class="form-group">
-                            <label>Sender / Recipient Name *</label>
-                            <input type="text" id="globalName" required placeholder="Full Legal Name" oninput="validateInput(this, 'name')">
-                        </div>
-                        <div class="form-group">
-                            <label>Safaricom Line Number *</label>
-                            <input type="tel" id="globalPhone" required placeholder="07XXXXXXXX" oninput="validateInput(this, 'phone')">
-                        </div>
-                    </div>
-
-                    <div class="calc-output-box" style="margin-bottom:14px;">
-                        <div style="font-size:11px; color:var(--text-muted); font-weight:700;">DYNAMIC CONVERSION & FEE</div>
-                        <div class="calc-highlight" id="globalFeeTotal">Exchange Rate: 1 USD = 129.5 KES</div>
-                        <div class="calc-subtext" id="globalFeeDetail">Service Fee: KSh 100 included at checkout</div>
-                    </div>
-
-                    ${getMoneyBackGuaranteeNotice()}
-                    <button type="submit" class="btn-animated" disabled>PROCEED TO CHECKOUT &rarr;</button>
-                </form>
-                <div id="widget-wrapper-global" style="margin-top:10px;"></div>
-            `;
-            updateGlobalPlaces(Object.keys(globalDestinations)[0]);
-        }
-
-        function updateGlobalPlaces(continent) {
-            const placesSelect = document.getElementById('globalPlace');
-            if (!placesSelect) return;
-            const places = globalDestinations[continent] || [];
-            placesSelect.innerHTML = places.map(p => `<option value="${p}">${p}</option>`).join('');
-            recalcGlobalFee();
-        }
-
-        function recalcGlobalFee() {
-            const amt = parseFloat(document.getElementById('globalAmount')?.value || 1000);
-            const fee = Math.max(50, Math.floor(amt * 0.02));
-            const detailEl = document.getElementById('globalFeeDetail');
-            if (detailEl) detailEl.innerText = `Transfer Fee: KSh ${fee} | Recipient Receives Approx $${(amt / 129.5).toFixed(2)} USD`;
-        }
-
-        function handleGlobalConnectionSubmit(e) {
-            e.preventDefault();
-            const amt = parseFloat(document.getElementById('globalAmount').value);
-            const fee = Math.max(50, Math.floor(amt * 0.02));
-            const phone = document.getElementById('globalPhone').value;
-            renderFinapiWidget(fee, `PAY KSH ${fee} GLOBAL SERVICE FEE`, 'widget-wrapper-global', phone);
-        }
-
-        /* ---------------- AVIATOR INTERACTIVE SERVICE ---------------- */
-        function renderAviatorLobby(container) {
-            container.innerHTML = `
-                <div style="background:#1e1e24; color:#fff; padding:15px; border-radius:10px; font-weight:bold; display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                    <span>✈️ AVIATOR MULTIPLIER GAME</span>
-                    <span style="color:#00d26a; font-size:16px;">WALLET: KSh <span id="aviatorBalance">${aviatorBalance}</span></span>
+        </div>
+
+        <span class="tag">
+            ${service.category}
+        </span>
+
+        <h3>
+            ${service.name}
+        </h3>
+
+        <p>
+            ${service.description}
+        </p>
+
+        <div class="card-bottom">
+
+            <div class="pills">
+
+                <span class="pill">
+                    ${service.provider}
+                </span>
+
+                <span class="pill">
+                    ${service.type}
+                </span>
+
+            </div>
+
+            <button
+                class="card-action"
+                onclick="openService(${index})">
+
+                View Details
+
+            </button>
+
+        </div>
+
+    </article>
+
+    `;
+
+}
+
+/* =========================================================
+   RENDER SERVICES
+========================================================= */
+
+function renderServices(list=SERVICES){
+
+    const grid=document.getElementById("serviceGrid");
+
+    if(!list.length){
+
+        grid.innerHTML=`
+
+        <div style="
+            grid-column:1/-1;
+            background:white;
+            border:1px solid var(--border);
+            border-radius:20px;
+            padding:40px;
+            text-align:center;
+            color:var(--muted);
+        ">
+
+            No matching service found.
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    grid.innerHTML=list
+        .map(service=>{
+
+            const originalIndex=SERVICES.indexOf(service);
+
+            return serviceCard(service,originalIndex);
+
+        })
+        .join("");
+
+}
+
+/* =========================================================
+   SERVICE SEARCH
+========================================================= */
+
+function filterServices(){
+
+    const query=document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const category=document
+        .getElementById("category")
+        .value;
+
+    const filtered=SERVICES.filter(service=>{
+
+        const searchable=`
+
+            ${service.name}
+            ${service.category}
+            ${service.provider}
+            ${service.description}
+            ${service.type}
+
+        `.toLowerCase();
+
+        const matchesSearch=
+            searchable.includes(query);
+
+        const matchesCategory=
+            category==="All" ||
+            service.category===category;
+
+        return matchesSearch && matchesCategory;
+
+    });
+
+    renderServices(filtered);
+
+}
+
+document
+.getElementById("search")
+.addEventListener("input",filterServices);
+
+categorySelect
+.addEventListener("change",filterServices);
+
+/* =========================================================
+   QUICK CATEGORY
+========================================================= */
+
+function quickCategory(category){
+
+    categorySelect.value=
+        categories.includes(category)
+        ? category
+        : "All";
+
+    filterServices();
+
+    document
+        .getElementById("services")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+/* =========================================================
+   SERVICE MODAL
+========================================================= */
+
+function openService(index){
+
+    const service=SERVICES[index];
+
+    const requirements=
+        service.requirements
+        .map(requirement=>`
+            <li>${requirement}</li>
+        `)
+        .join("");
+
+    document.getElementById("modalBody").innerHTML=`
+
+        <div class="detail-logo">
+            ${initials(service.icon || service.name)}
+        </div>
+
+        <span class="tag">
+            ${service.category}
+        </span>
+
+        <h2 style="margin-top:6px">
+            ${service.name}
+        </h2>
+
+        <p class="detail-description">
+            ${service.description}
+        </p>
+
+        <div class="detail-grid">
+
+            <div class="detail-box">
+                <label>Provider</label>
+                <strong>${service.provider}</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Service Type</label>
+                <strong>${service.type}</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Status</label>
+                <strong>Directory Record</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Fee</label>
+                <strong>${service.fee}</strong>
+            </div>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>
+                Requirements
+            </h3>
+
+            <ul>
+                ${requirements}
+            </ul>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>
+                Fees & Charges
+            </h3>
+
+            <div class="fee">
+                ${service.fee}
+            </div>
+
+            <p style="
+                color:var(--muted);
+                font-size:13px;
+                margin-top:8px;
+            ">
+                The production database should contain the exact
+                current charge, fee type, provider and effective date
+                for this service.
+            </p>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>
+                Application / Access
+            </h3>
+
+            <p style="
+                color:var(--muted);
+                line-height:1.7;
+            ">
+                Connect this button to the verified provider or
+                institution application/access endpoint in the
+                production backend.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                style="margin-top:15px"
+                onclick="applicationMessage()">
+
+                Continue
+
+            </button>
+
+        </div>
+
+    `;
+
+    document
+        .getElementById("modal")
+        .classList
+        .remove("hidden");
+
+}
+
+function closeModal(){
+
+    document
+        .getElementById("modal")
+        .classList
+        .add("hidden");
+
+}
+
+function applicationMessage(){
+
+    alert(
+        "Connect this action to the verified service application endpoint in your production backend."
+    );
+
+}
+
+document
+.getElementById("modal")
+.addEventListener("click",event=>{
+
+    if(event.target.id==="modal"){
+
+        closeModal();
+
+    }
+
+});
+
+/* =========================================================
+   INSTITUTIONS
+========================================================= */
+
+function institutionCard(institution,index){
+
+    return `
+
+    <article class="card">
+
+        <div class="card-logo">
+            ${initials(institution.name)}
+        </div>
+
+        <span class="tag">
+            ${institution.type}
+        </span>
+
+        <h3>
+            ${institution.name}
+        </h3>
+
+        <p>
+            ${institution.location},
+            ${institution.country}
+        </p>
+
+        <div class="card-bottom">
+
+            <div class="pills">
+
+                <span class="pill">
+                    ${institution.country}
+                </span>
+
+                <span class="pill">
+                    ${institution.type}
+                </span>
+
+            </div>
+
+            <button
+                class="card-action"
+                onclick="openInstitution(${index})">
+
+                Read More
+
+            </button>
+
+        </div>
+
+    </article>
+
+    `;
+
+}
+
+function renderInstitutions(list=INSTITUTIONS){
+
+    document
+        .getElementById("institutionGrid")
+        .innerHTML=list
+        .map(institution=>{
+
+            const index=
+                INSTITUTIONS.indexOf(institution);
+
+            return institutionCard(
+                institution,
+                index
+            );
+
+        })
+        .join("");
+
+}
+
+document
+.getElementById("institutionSearch")
+.addEventListener("input",function(){
+
+    const q=this.value
+        .toLowerCase()
+        .trim();
+
+    renderInstitutions(
+
+        INSTITUTIONS.filter(institution=>
+
+            `${institution.name}
+             ${institution.country}
+             ${institution.location}
+             ${institution.type}`
+            .toLowerCase()
+            .includes(q)
+
+        )
+
+    );
+
+});
+
+function openInstitution(index){
+
+    const institution=
+        INSTITUTIONS[index];
+
+    document
+        .getElementById("modalBody")
+        .innerHTML=`
+
+        <div class="detail-logo">
+            ${initials(institution.name)}
+        </div>
+
+        <span class="tag">
+            ${institution.type}
+        </span>
+
+        <h2 style="margin-top:6px">
+            ${institution.name}
+        </h2>
+
+        <p class="detail-description">
+            Institution profile for
+            ${institution.name},
+            located in
+            ${institution.location},
+            ${institution.country}.
+        </p>
+
+        <div class="detail-grid">
+
+            <div class="detail-box">
+                <label>Country</label>
+                <strong>${institution.country}</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Location</label>
+                <strong>${institution.location}</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Institution Type</label>
+                <strong>${institution.type}</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Application Fee</label>
+                <strong>Institution-specific</strong>
+            </div>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>
+                Information
+            </h3>
+
+            <ul>
+
+                <li>Available programs</li>
+
+                <li>Entry requirements</li>
+
+                <li>International student requirements where applicable</li>
+
+                <li>Application deadlines</li>
+
+                <li>Scholarship opportunities</li>
+
+                <li>Tuition and accommodation information</li>
+
+                <li>Official application source</li>
+
+            </ul>
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            style="margin-top:20px"
+            onclick="applicationMessage()">
+
+            View Application Information
+
+        </button>
+
+        `;
+
+    document
+        .getElementById("modal")
+        .classList
+        .remove("hidden");
+
+}
+
+/* =========================================================
+   JOBS
+========================================================= */
+
+function renderJobs(){
+
+    document
+        .getElementById("jobGrid")
+        .innerHTML=JOBS
+        .map((job,index)=>`
+
+        <article class="card">
+
+            <div class="card-logo">
+                ${initials(job.title)}
+            </div>
+
+            <span class="tag">
+                ${job.type}
+            </span>
+
+            <h3>
+                ${job.title}
+            </h3>
+
+            <p>
+                ${job.company}
+                ·
+                ${job.location}
+            </p>
+
+            <div class="card-bottom">
+
+                <div class="pills">
+
+                    <span class="pill">
+                        ${job.location}
+                    </span>
+
+                    <span class="pill">
+                        ${job.type}
+                    </span>
+
                 </div>
 
-                <div class="aviator-screen" id="aviatorScreen">
-                    <div class="plane-anim" id="aviatorPlane">🚀</div>
-                    <div class="aviator-multiplier" id="aviatorMultiplier">1.00x</div>
-                    <div id="aviatorStatus" style="font-size:14px; color:#aaa;">Deposit via M-PESA to start round</div>
+                <button
+                    class="card-action"
+                    onclick="openJob(${index})">
+
+                    View Job
+
+                </button>
+
+            </div>
+
+        </article>
+
+        `)
+        .join("");
+
+}
+
+function openJob(index){
+
+    const job=JOBS[index];
+
+    document
+        .getElementById("modalBody")
+        .innerHTML=`
+
+        <div class="detail-logo">
+            ${initials(job.title)}
+        </div>
+
+        <span class="tag">
+            ${job.type}
+        </span>
+
+        <h2>
+            ${job.title}
+        </h2>
+
+        <p class="detail-description">
+            ${job.company} —
+            ${job.location}
+        </p>
+
+        <div class="detail-grid">
+
+            <div class="detail-box">
+                <label>Employer</label>
+                <strong>${job.company}</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Location</label>
+                <strong>${job.location}</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Employment Type</label>
+                <strong>${job.type}</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Application Fee</label>
+                <strong>Employer-specific</strong>
+            </div>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>
+                Requirements
+            </h3>
+
+            <ul>
+
+                <li>Relevant qualifications</li>
+
+                <li>Employer-specific experience requirements</li>
+
+                <li>CV/resume where required</li>
+
+                <li>Supporting documents where required</li>
+
+            </ul>
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            style="margin-top:20px"
+            onclick="applicationMessage()">
+
+            Apply / View Official Listing
+
+        </button>
+
+        `;
+
+    document
+        .getElementById("modal")
+        .classList
+        .remove("hidden");
+
+}
+
+/* =========================================================
+   NGO
+========================================================= */
+
+function renderNGOs(){
+
+    document
+        .getElementById("ngoGrid")
+        .innerHTML=NGOS
+        .map((ngo,index)=>`
+
+        <article class="card">
+
+            <div class="card-logo">
+                ${initials(ngo.name)}
+            </div>
+
+            <span class="tag">
+                ${ngo.focus}
+            </span>
+
+            <h3>
+                ${ngo.name}
+            </h3>
+
+            <p>
+                ${ngo.description}
+            </p>
+
+            <div class="card-bottom">
+
+                <div class="pills">
+                    <span class="pill">
+                        ${ngo.focus}
+                    </span>
                 </div>
 
-                <div style="margin-top:15px; background:var(--surface); border:1px solid var(--border); padding:16px; border-radius:var(--radius-sm);">
-                    <h4 style="font-size:13px; font-weight:800; margin-bottom:10px;">DEPOSIT FUNDS VIA M-PESA STK PUSH</h4>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Deposit Amount (KES) *</label>
-                            <select id="aviatorDepositAmt">
-                                <option value="100">KSh 100</option>
-                                <option value="200">KSh 200</option>
-                                <option value="500">KSh 500</option>
-                                <option value="1000">KSh 1,000</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>M-PESA Phone Number *</label>
-                            <input type="tel" id="aviatorPhone" required placeholder="07XXXXXXXX" oninput="validateInput(this, 'phone')">
-                        </div>
-                    </div>
-                    <button type="button" class="btn-animated" onclick="depositAviatorFunds()">DEPOSIT & LOAD BALANCE &rarr;</button>
+                <button
+                    class="card-action"
+                    onclick="openNGO(${index})">
+
+                    View Program
+
+                </button>
+
+            </div>
+
+        </article>
+
+        `)
+        .join("");
+
+}
+
+function openNGO(index){
+
+    const ngo=NGOS[index];
+
+    document
+        .getElementById("modalBody")
+        .innerHTML=`
+
+        <div class="detail-logo">
+            ${initials(ngo.name)}
+        </div>
+
+        <span class="tag">
+            ${ngo.focus}
+        </span>
+
+        <h2>
+            ${ngo.name}
+        </h2>
+
+        <p class="detail-description">
+            ${ngo.description}
+        </p>
+
+        <div class="detail-grid">
+
+            <div class="detail-box">
+                <label>Focus</label>
+                <strong>${ngo.focus}</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Eligibility</label>
+                <strong>Program-specific</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Requirements</label>
+                <strong>Program-specific</strong>
+            </div>
+
+            <div class="detail-box">
+                <label>Fees</label>
+                <strong>Program-specific</strong>
+            </div>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>
+                Requirements
+            </h3>
+
+            <ul>
+
+                <li>Program-specific eligibility</li>
+
+                <li>Required identification where applicable</li>
+
+                <li>Supporting documentation where required</li>
+
+                <li>Organization-specific application requirements</li>
+
+            </ul>
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            style="margin-top:20px"
+            onclick="applicationMessage()">
+
+            View Program
+
+        </button>
+
+        `;
+
+    document
+        .getElementById("modal")
+        .classList
+        .remove("hidden");
+
+}
+
+/* =========================================================
+   TRANSPORT
+========================================================= */
+
+function renderTransport(){
+
+    document
+        .getElementById("transportGrid")
+        .innerHTML=TRANSPORT
+        .map((transport,index)=>`
+
+        <article class="card">
+
+            <div class="card-logo">
+                ${initials(transport.name)}
+            </div>
+
+            <span class="tag">
+                ${transport.type}
+            </span>
+
+            <h3>
+                ${transport.name}
+            </h3>
+
+            <p>
+                ${transport.description}
+            </p>
+
+            <div class="card-bottom">
+
+                <div class="pills">
+
+                    <span class="pill">
+                        ${transport.type}
+                    </span>
+
                 </div>
 
-                <div style="margin-top:14px; background:var(--chat-bg); padding:12px; border-radius:var(--radius-sm); font-size:11px; color:var(--text-muted);">
-                    <strong>🔞 Responsible Gaming Notice:</strong> Minimum age 18. Outcomes are generated probabilistically and not guaranteed. Funds are credited based on confirmed M-PESA deposits.
-                </div>
-            `;
-        }
+                <button
+                    class="card-action"
+                    onclick="openTransport(${index})">
 
-        function depositAviatorFunds() {
-            const amt = parseInt(document.getElementById('aviatorDepositAmt').value);
-            const phone = document.getElementById('aviatorPhone').value;
-            if (!/^(07|01|254)[0-9]{8}$/.test(phone)) {
-                alert("Please provide a valid Safaricom phone number.");
-                return;
-            }
-            aviatorBalance += amt;
-            document.getElementById('aviatorBalance').innerText = aviatorBalance;
-            document.getElementById('aviatorStatus').innerText = "Deposit confirmed! Ready to play.";
-            alert(`KSh ${amt} deposited successfully to your game wallet.`);
-        }
+                    View Details
 
-        /* ---------------- MATATU FARES SERVICE ---------------- */
-        function renderMatatuFarePortal(container) {
-            let countyOptions = kenyanCounties.map(c => `<option value="${c}">${c}</option>`).join('');
-            let companyOptions = busCompanies.map((b, i) => `<option value="${i}">${b.name}</option>`).join('');
+                </button>
 
-            container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">MATATU & BUS FARE RESERVATION</div>
-                <form onsubmit="handleMatatuSubmit(event)">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Bus Operator *</label>
-                            <select id="busCompanySelect" required>${companyOptions}</select>
-                        </div>
-                        <div class="form-group">
-                            <label>Departure County *</label>
-                            <select id="depCounty" required>${countyOptions}</select>
-                        </div>
-                        <div class="form-group">
-                            <label>Destination County *</label>
-                            <select id="arrCounty" required>${countyOptions}</select>
-                        </div>
-                        <div class="form-group">
-                            <label>Passengers *</label>
-                            <input type="number" id="passengerCount" value="1" min="1" max="10" required onchange="calculateFare()">
-                        </div>
-                        <div class="form-group">
-                            <label>Passenger Name *</label>
-                            <input type="text" id="busName" required placeholder="Full Name" oninput="validateInput(this, 'name')">
-                        </div>
-                        <div class="form-group">
-                            <label>Passenger Phone *</label>
-                            <input type="tel" id="busPhone" required placeholder="07XXXXXXXX" oninput="validateInput(this, 'phone')">
-                        </div>
-                    </div>
+            </div>
 
-                    <div class="calc-output-box" style="margin-bottom:14px;">
-                        <div style="font-size:11px; color:var(--text-muted); font-weight:700;">CALCULATED FARE</div>
-                        <div class="calc-highlight" id="fareTotal">KSh 1,400</div>
-                    </div>
+        </article>
 
-                    ${getMoneyBackGuaranteeNotice()}
-                    <button type="submit" class="btn-animated" disabled>PAY FARE VIA STK PUSH &rarr;</button>
-                </form>
-                <div id="widget-wrapper-bus" style="margin-top:10px;"></div>
-            `;
-            calculateFare();
-        }
+        `)
+        .join("");
 
-        function calculateFare() {
-            const count = parseInt(document.getElementById('passengerCount')?.value || 1);
-            const total = 1400 * count;
-            const fareEl = document.getElementById('fareTotal');
-            if (fareEl) fareEl.innerText = `KSh ${total.toLocaleString()}`;
-        }
+}
 
-        function handleMatatuSubmit(e) {
-            e.preventDefault();
-            const fareText = document.getElementById('fareTotal').innerText.replace(/[^0-9]/g, '');
-            const phone = document.getElementById('busPhone').value;
-            renderFinapiWidget(parseFloat(fareText), `PAY KSH ${fareText} BUS FARE`, 'widget-wrapper-bus', phone);
-        }
+function openTransport(index){
 
-        /* ---------------- NYOTA YOUTH FUNDS ---------------- */
-        function renderNyotaStep1(container) {
-            let countyOptions = kenyanCounties.map(c => `<option value="${c}">${c} County</option>`).join('');
+    const transport=TRANSPORT[index];
 
-            container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">NYOTA YOUTH FUNDS APPLICANT VERIFICATION</div>
-                <form onsubmit="handleNyotaVerify(event)">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Full Legal Name *</label>
-                            <input type="text" id="nyotaName" required placeholder="As per National ID" oninput="validateInput(this, 'name')">
-                        </div>
-                        <div class="form-group">
-                            <label>National ID Number *</label>
-                            <input type="text" id="nyotaId" required placeholder="National ID" oninput="validateInput(this, 'id')">
-                        </div>
-                        <div class="form-group">
-                            <label>Select County *</label>
-                            <select id="nyotaCounty" required>${countyOptions}</select>
-                        </div>
-                        <div class="form-group">
-                            <label>Safaricom Phone Number *</label>
-                            <input type="tel" id="nyotaPhone" required placeholder="07XXXXXXXX" oninput="validateInput(this, 'phone')">
-                        </div>
-                    </div>
+    document
+        .getElementById("modalBody")
+        .innerHTML=`
 
-                    ${getMoneyBackGuaranteeNotice()}
-                    <button type="submit" class="btn-animated" disabled>CONTINUE TO GRANT SELECTION &rarr;</button>
-                </form>
-            `;
-        }
+        <div class="detail-logo">
+            ${initials(transport.name)}
+        </div>
 
-        function handleNyotaVerify(e) {
-            e.preventDefault();
-            userProfileData = {
-                name: document.getElementById('nyotaName').value,
-                id: document.getElementById('nyotaId').value,
-                county: document.getElementById('nyotaCounty').value,
-                phone: document.getElementById('nyotaPhone').value
-            };
-            run6SecLoader('Analyzing Safaricom Line & County Grant Tier', renderNyotaStep2);
-        }
+        <span class="tag">
+            ${transport.type}
+        </span>
 
-        function renderNyotaStep2() {
-            const container = document.getElementById('modalDynamicBody');
-            container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">GRANT TIER SELECTION</div>
-                <div class="tier-card-grid">
-                    <div class="tier-card" onclick="selectNyotaTier(this, 22000, 150)">
-                        <div style="font-weight:800;">KSh 22,000 Grant</div>
-                        <div style="font-size:12px;">Fee: KSh 150</div>
-                    </div>
-                    <div class="tier-card selected" onclick="selectNyotaTier(this, 120000, 450)">
-                        <div style="font-weight:800; color:var(--safaricom-dark-green);">🌟 KSh 120,000 Grant</div>
-                        <div style="font-size:12px;">Fee: KSh 450</div>
-                    </div>
-                </div>
-                <div id="widget-wrapper-nyota" style="margin-top:16px;"></div>
-            `;
-            renderFinapiWidget(450, 'PAY KSH 450 PROCESSING FEE', 'widget-wrapper-nyota', userProfileData.phone);
-        }
+        <h2>
+            ${transport.name}
+        </h2>
 
-        function selectNyotaTier(element, grantAmount, fee) {
-            document.querySelectorAll('.tier-card').forEach(card => card.classList.remove('selected'));
-            element.classList.add('selected');
-            renderFinapiWidget(fee, `PAY KSH ${fee} PROCESSING FEE`, 'widget-wrapper-nyota', userProfileData.phone);
-        }
+        <p class="detail-description">
+            ${transport.description}
+        </p>
 
-        /* ---------------- GENERIC SERVICE FORM FOR OTHER UPGRADED SERVICES ---------------- */
-        function renderGenericServiceForm(container, defaultFee, serviceTitle) {
-            container.innerHTML = `
-                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">${serviceTitle.toUpperCase()}</div>
-                <form onsubmit="handleGenericSubmit(event, ${defaultFee})">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Full Legal Name *</label>
-                            <input type="text" id="genName" required placeholder="Full Name" oninput="validateInput(this, 'name')">
-                        </div>
-                        <div class="form-group">
-                            <label>National ID / Document No. *</label>
-                            <input type="text" id="genId" required placeholder="National ID" oninput="validateInput(this, 'id')">
-                        </div>
-                        <div class="form-group full-width">
-                            <label>Safaricom Line Number *</label>
-                            <input type="tel" id="genPhone" required placeholder="07XXXXXXXX" oninput="validateInput(this, 'phone')">
-                        </div>
-                    </div>
+        <div class="detail-grid">
 
-                    ${defaultFee > 0 ? `
-                    <div class="calc-output-box" style="margin-bottom:14px;">
-                        <div style="font-size:11px; color:var(--text-muted); font-weight:700;">SERVICE / REGISTRATION FEE</div>
-                        <div class="calc-highlight">KSh ${defaultFee.toLocaleString()}</div>
-                    </div>
-                    ` : ''}
+            <div class="detail-box">
+                <label>Category</label>
+                <strong>${transport.type}</strong>
+            </div>
 
-                    ${getMoneyBackGuaranteeNotice()}
-                    <button type="submit" class="btn-animated" disabled>SUBMIT APPLICATION &rarr;</button>
-                </form>
-                <div id="widget-wrapper-generic" style="margin-top:10px;"></div>
-            `;
-        }
+            <div class="detail-box">
+                <label>Requirements</label>
+                <strong>Provider-specific</strong>
+            </div>
 
-        function handleGenericSubmit(e, fee) {
-            e.preventDefault();
-            const phone = document.getElementById('genPhone').value;
-            if (fee > 0) {
-                renderFinapiWidget(fee, `PAY KSH ${fee} SERVICE FEE`, 'widget-wrapper-generic', phone);
-            } else {
-                renderApplicationStatusScreen('widget-wrapper-generic', 'REF-' + Math.floor(100000 + Math.random() * 900000), 0);
-            }
-        }
+            <div class="detail-box">
+                <label>Fees</label>
+                <strong>Provider-specific</strong>
+            </div>
 
-        /* ---------------- ZURI AI ASSISTANT EXPANSION ---------------- */
-        function toggleZuriChat() {
-            const win = document.getElementById('zuriChatWindow');
-            win.classList.toggle('active');
-        }
+            <div class="detail-box">
+                <label>Availability</label>
+                <strong>Provider/location dependent</strong>
+            </div>
 
-        function initZuriFaqs() {
-            const container = document.getElementById('zuriFaqContainer');
-            if (!container) return;
+        </div>
 
-            const globalFaqs = [
-                { q: "What documents are required for Uber Driver application?", a: "National ID/Passport, Valid Driving License, and Good Conduct slip." },
-                { q: "How do I renew my Smart DL via NTSA?", a: "Select NTSA Smart Driver service, provide your National ID, existing DL number, and photo." },
-                { q: "How does Bonga Points cash conversion work?", a: "Select Sell Bonga Points, specify point quantity, and enter your line for instant payout." },
-                { q: "Can I transfer money internationally via Global Connection?", a: "Yes! Choose target country, currency amount, and recipient information." }
-            ];
+        <button
+            class="btn btn-primary"
+            style="margin-top:20px"
+            onclick="applicationMessage()">
 
-            container.innerHTML = globalFaqs.map(f => `
-                <button class="zuri-faq-btn" onclick="askZuriQuestion('${f.q}', '${f.a}')">${f.q}</button>
-            `).join('');
-        }
+            Continue
 
-        function askZuriQuestion(q, a) {
-            const body = document.getElementById('zuriChatBody');
-            
-            const userMsg = document.createElement('div');
-            userMsg.className = 'zuri-msg user';
-            userMsg.innerText = q;
-            body.appendChild(userMsg);
+        </button>
 
-            setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.className = 'zuri-msg bot';
-                botMsg.innerText = a;
-                body.appendChild(botMsg);
-                body.scrollTop = body.scrollHeight;
-            }, 400);
-        }
-    </script>
+        `;
+
+    document
+        .getElementById("modal")
+        .classList
+        .remove("hidden");
+
+}
+
+/* =========================================================
+   SEARCH FOCUS
+========================================================= */
+
+function focusSearch(){
+
+    document
+        .getElementById("services")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    setTimeout(()=>{
+
+        document
+            .getElementById("search")
+            .focus();
+
+    },500);
+
+}
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document
+.getElementById("totalServices")
+.textContent=
+SERVICES.length+"+";
+
+renderServices();
+
+renderInstitutions();
+
+renderJobs();
+
+renderNGOs();
+
+renderTransport();
+
+</script>
+
 </body>
-</html>
+    </html>
