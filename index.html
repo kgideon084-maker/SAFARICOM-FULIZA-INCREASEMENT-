@@ -1,1000 +1,1362 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safaricom Strategic Super Hub Portal</title>
+    <title>Safaricom & Kenyan Financial Services Portal | Unified Directory</title>
     <style>
         :root {
-            --safaricom-green: #26b14c;
-            --safaricom-dark: #1b7f36;
-            --mpesa-red: #e41e26;
-            --light-bg: #f4f7f4;
-            --white: #ffffff;
-            --dark-charcoal: #1e1e1e;
-            --muted-gray: #666666;
-            --blue-accent: #0d47a1;
-            --truecaller-blue: #0087ff;
+            --safaricom-green: #00a651;
+            --safaricom-dark-green: #007a3b;
+            --safaricom-red: #e11b22;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --surface: #ffffff;
+            --border: #cbd5e1;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+            --header-bg: #ffffff;
+            --card-bg: #ffffff;
+            --chat-bg: #f1f5f9;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        [data-theme="dark"] {
+            --text-dark: #f8fafc;
+            --text-muted: #94a3b8;
+            --bg-light: #0f172a;
+            --surface: #1e293b;
+            --border: #334155;
+            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+            --header-bg: #1e293b;
+            --card-bg: #1e293b;
+            --chat-bg: #0f172a;
         }
 
-        body {
-            background-color: var(--light-bg);
-            color: var(--dark-charcoal);
-            line-height: 1.5;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); display: flex; flex-direction: column; min-height: 100vh; font-size: 14px; transition: background-color 0.3s, color 0.3s; }
+
+        .brand-header { background: var(--header-bg); border-bottom: 1px solid var(--border); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 90; box-shadow: var(--shadow); }
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .brand-logo { font-size: 22px; font-weight: 800; color: var(--safaricom-green); letter-spacing: -0.5px; display: flex; align-items: center; gap: 4px; }
+        .brand-badge { background: #e6f7ed; color: var(--safaricom-dark-green); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid #b3e6c8; }
+        .header-nav { display: flex; gap: 16px; align-items: center; font-size: 13px; font-weight: 600; color: var(--text-muted); }
+        .theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text-dark); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+
+        .main-container { flex: 1; max-width: 1300px; width: 100%; margin: 24px auto; padding: 0 20px; }
+        
+        .greeting-banner { background: linear-gradient(135deg, var(--safaricom-green), var(--safaricom-dark-green)); color: #ffffff; padding: 28px; border-radius: var(--radius-md); margin-bottom: 24px; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .greeting-content { flex: 1; }
+        .greeting-banner h3 { font-size: 22px; margin-bottom: 6px; }
+        .greeting-banner p { font-size: 14px; opacity: 0.95; }
+
+        .ceo-portrait-card { display: flex; align-items: center; gap: 16px; background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(8px); padding: 12px 18px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.25); flex-shrink: 0; }
+        .ceo-portrait-img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+        .ceo-info { display: flex; flex-direction: column; text-align: left; }
+        .ceo-name { font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.2; }
+        .ceo-title { font-size: 11px; font-weight: 700; color: #e6f7ed; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+        .ceo-badge { background: #ffffff; color: var(--safaricom-dark-green); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 6px; align-self: flex-start; }
+
+        @media (max-width: 768px) {
+            .greeting-banner { flex-direction: column; text-align: center; }
+            .ceo-portrait-card { width: 100%; justify-content: center; }
+            .ceo-info { text-align: left; }
         }
 
-        .brand-top-highlight {
-            background: linear-gradient(90deg, var(--safaricom-green) 70%, var(--mpesa-red) 30%);
-            height: 6px;
-            width: 100%;
+        .search-bar-wrapper { margin: 16px 0 20px 0; display: flex; gap: 12px; }
+        .search-input { flex: 1; padding: 16px 22px; border: 1px solid var(--border); border-radius: 30px; font-size: 15px; outline: none; background: var(--surface); color: var(--text-dark); box-shadow: var(--shadow); }
+        .search-input:focus { border-color: var(--safaricom-green); }
+
+        .category-filter-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 24px; scrollbar-width: none; }
+        .category-filter-scroll::-webkit-scrollbar { display: none; }
+        .filter-chip { padding: 10px 20px; border-radius: 24px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); font-size: 13px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.2s; }
+        .filter-chip.active, .filter-chip:hover { background: var(--safaricom-green); color: #ffffff; border-color: var(--safaricom-green); }
+
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 16px; }
+        @media (max-width: 768px) { 
+            .services-grid { grid-template-columns: 1fr; } 
         }
 
-        /* Navigation Header */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .service-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.25s ease; box-shadow: var(--shadow); position: relative; }
+        .service-card:hover { transform: translateY(-4px); border-color: var(--safaricom-green); }
+        .service-card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+        .service-icon { width: 56px; height: 56px; border-radius: 14px; background: #e6f7ed; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+        .service-badge { background: var(--chat-bg); color: var(--text-muted); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 12px; text-transform: uppercase; }
+
+        .btn-animated { 
+            width: 100%; 
+            background: linear-gradient(135deg, #00d26a 0%, var(--safaricom-green) 50%, var(--safaricom-dark-green) 100%);
+            background-size: 200% 200%; color: #ffffff; border: none; padding: 16px 24px; border-radius: 30px; font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; animation: pulseGlow 2.5s infinite ease-in-out; transition: all 0.3s ease; margin-top: 16px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .btn-animated:hover:not(:disabled) { transform: translateY(-2px) scale(1.01); filter: brightness(1.1); }
+
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.4); } 50% { box-shadow: 0 0 0 12px rgba(0, 166, 81, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0); } }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 16px; }
+        .modal-overlay.active { display: flex; }
+        .modal-box { background: var(--card-bg); border-radius: var(--radius-md); border: 1px solid var(--border); max-width: 850px; width: 100%; max-height: 92vh; overflow-y: auto; padding: 28px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3); position: relative; }
+        .modal-close-btn { position: absolute; top: 18px; right: 18px; background: var(--chat-bg); border: none; font-size: 22px; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; color: var(--text-muted); display:flex; align-items:center; justify-content:center; }
+
+        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+        .form-group { margin-bottom: 14px; text-align: left; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        .form-group label { display: block; font-weight: 700; font-size: 12px; margin-bottom: 6px; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.4px; }
+        .form-group input, .form-group select { width: 100%; padding: 13px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; outline: none; background: var(--surface); color: var(--text-dark); }
+        .form-group input:focus, .form-group select:focus { border-color: var(--safaricom-green); }
+
+        .upload-box { border: 2px dashed var(--safaricom-green); border-radius: var(--radius-sm); padding: 16px; text-align: center; background: rgba(0, 166, 81, 0.04); cursor: pointer; margin-top: 4px; }
+        .upload-box input[type="file"] { display: none; }
+        .upload-box label { cursor: pointer; color: var(--safaricom-dark-green); font-size: 13px; font-weight: 700; }
+
+        .tier-card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 14px 0; }
+        @media (max-width: 500px) { .tier-card-grid { grid-template-columns: 1fr; } }
+        .tier-card { border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 16px; background: var(--surface); cursor: pointer; transition: all 0.2s ease; text-align: left; position: relative; }
+        .tier-card:hover { border-color: var(--safaricom-green); background: #f0fdf4; }
+        .tier-card.selected { border-color: var(--safaricom-green); background: #e6f7ed; }
+        .tier-card.selected::after { content: "✓ Selected"; position: absolute; top: 12px; right: 12px; font-size: 10px; font-weight: 800; color: var(--safaricom-dark-green); background: #ffffff; padding: 3px 8px; border-radius: 12px; border: 1px solid var(--safaricom-green); }
+
+        .till-grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-height: 240px; overflow-y: auto; border: 1px solid var(--border); padding: 12px; border-radius: var(--radius-sm); background: var(--chat-bg); margin-top: 6px; }
+        @media (max-width: 600px) { .till-grid-container { grid-template-columns: repeat(2, 1fr); } }
+        .till-option-card { background: var(--surface); border: 1px solid var(--border); padding: 10px 12px; border-radius: var(--radius-sm); cursor: pointer; text-align: center; font-weight: 700; font-size: 13px; color: var(--text-dark); transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .till-option-card:hover { border-color: var(--safaricom-green); background: rgba(0, 166, 81, 0.05); }
+        .till-option-card.selected { border-color: var(--safaricom-green); background: #e6f7ed; color: var(--safaricom-dark-green); box-shadow: 0 0 0 2px var(--safaricom-green); }
+
+        .guarantee-note { background: #fff8f8; border: 1px solid #fecaca; border-left: 4px solid var(--safaricom-red); padding: 12px 16px; border-radius: var(--radius-sm); font-size: 12px; color: #7f1d1d; margin: 14px 0; }
+        .success-note { background: #f0fdf4; border: 1px solid #b3e6c8; border-left: 4px solid var(--safaricom-green); padding: 12px 16px; border-radius: var(--radius-sm); font-size: 12px; color: #064e3b; margin: 14px 0; }
+
+        .loading-view { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; }
+        .spinner { width: 54px; height: 54px; border: 5px solid var(--border); border-top: 5px solid var(--safaricom-green); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .school-preview-card { border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin: 14px 0; background: var(--surface); }
+        .school-preview-img { width: 100%; height: 220px; object-fit: cover; background: #e2e8f0; }
+        .school-preview-info { padding: 14px; }
+
+        .analytics-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 16px; }
+        .analytics-header { font-size: 13px; font-weight: 700; color: var(--safaricom-dark-green); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .history-table-wrapper { overflow-x: auto; margin-bottom: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+        .history-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: center; }
+        .history-table th { background: var(--chat-bg); color: var(--text-dark); padding: 10px 8px; font-weight: 700; border-bottom: 1px solid var(--border); white-space: nowrap; }
+        .history-table td { padding: 9px 8px; border-bottom: 1px solid var(--border); color: var(--text-dark); }
+        .history-table tr:last-child td { border-bottom: none; }
+        .history-table tr:hover { background: rgba(0, 166, 81, 0.04); }
+        .highlight-2026 { background: #e6f7ed; font-weight: 800; color: var(--safaricom-dark-green) !important; }
+
+        .calc-card { background: var(--chat-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin-top: 12px; }
+        .calc-output-box { background: var(--surface); border: 1px solid var(--safaricom-green); border-radius: var(--radius-sm); padding: 14px; text-align: center; margin-top: 12px; }
+        .calc-highlight { font-size: 24px; font-weight: 800; color: var(--safaricom-dark-green); }
+        .calc-subtext { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+        .zuri-float-btn { position: fixed; bottom: 24px; right: 24px; width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--safaricom-green), var(--safaricom-dark-green)); color: #fff; font-size: 28px; border: none; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,0.3); z-index: 999; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
+        .zuri-float-btn:hover { transform: scale(1.08); }
+        .zuri-chat-window { position: fixed; bottom: 98px; right: 24px; width: 380px; height: 530px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 1000; display: none; flex-direction: column; overflow: hidden; }
+        .zuri-chat-window.active { display: flex; }
+        .zuri-chat-header { background: var(--safaricom-green); color: #fff; padding: 14px 18px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+        .zuri-chat-body { flex: 1; padding: 14px; overflow-y: auto; background: var(--chat-bg); font-size: 13px; display: flex; flex-direction: column; gap: 12px; }
+        .zuri-msg { padding: 12px 16px; border-radius: 14px; max-width: 85%; word-wrap: break-word; line-height: 1.4; }
+        .zuri-msg.bot { background: var(--surface); color: var(--text-dark); border: 1px solid var(--border); align-self: flex-start; }
+        .zuri-msg.user { background: var(--safaricom-green); color: #fff; align-self: flex-end; }
+        .zuri-typing { align-self: flex-start; background: var(--surface); border: 1px solid var(--border); padding: 10px 14px; border-radius: 14px; font-style: italic; color: var(--safaricom-dark-green); display: flex; align-items: center; gap: 8px; font-weight: 600; }
+        
+        .zuri-faq-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+        .zuri-faq-btn { background: var(--surface); border: 1px solid var(--safaricom-green); color: var(--safaricom-dark-green); padding: 10px 14px; border-radius: 8px; text-align: left; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .zuri-faq-btn:hover { background: var(--safaricom-green); color: #ffffff; }
+
+        footer { background: #0f172a; color: #94a3b8; padding: 40px 20px 20px; margin-top: auto; font-size: 12px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 24px; }
+        .footer-col h4 { color: #ffffff; font-size: 14px; margin-bottom: 12px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a { color: #94a3b8; text-decoration: none; }
+
+        /* FINAPI WIDGET GREEN BUTTON OVERRIDE */
+        .finapi-widget button, #finapi-container button{
+          background:#00a651!important;
+          border-radius:25px!important;
+          font-weight:700!important;
+          font-size:16px!important;
+          padding:14px!important;
+          width:100%!important;
+          border:none!important;
+        }
+        .finapi-widget button:hover, #finapi-container button:hover{
+          background:#008541!important;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="brand-header">
+        <div class="logo-container">
+            <div class="brand-logo"><span style="color:var(--safaricom-red);">S</span>Safaricom</div>
+            <span class="brand-badge">Financial & Education Services Portal</span>
+        </div>
+        <nav class="header-nav">
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <div class="greeting-banner">
+            <div class="greeting-content">
+                <h3 id="greetingText">Welcome to Safaricom Financial & Education Portal</h3>
+                <p>Access official loans, scholarships across 47 Kenyan counties and foreign destinations, HELB processing, and public utilities.</p>
+            </div>
+            
+            <div class="ceo-portrait-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Peter_Ndegwa_at_WEF_2024.png" alt="Peter Ndegwa - CEO Safaricom PLC" class="ceo-portrait-img">
+                <div class="ceo-info">
+                    <span class="ceo-name">Peter Ndegwa</span>
+                    <span class="ceo-title">CEO, Safaricom PLC</span>
+                    <span class="ceo-badge">Official Portal Leader</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-bar-wrapper">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search facilities (Fuliza Boost, Scholarships, HELB, NYOTA Funds, KPLC)..." oninput="renderServicesGrid()">
+        </div>
+
+        <div class="category-filter-scroll" id="filterContainer">
+            <button class="filter-chip active" onclick="setCategoryFilter('all', this)">All Facilities</button>
+            <button class="filter-chip" onclick="setCategoryFilter('loans', this)">Loans & Overdrafts</button>
+            <button class="filter-chip" onclick="setCategoryFilter('education', this)">Scholarships & Education</button>
+            <button class="filter-chip" onclick="setCategoryFilter('youth', this)">Youth Programs</button>
+            <button class="filter-chip" onclick="setCategoryFilter('investments', this)">Investments & Savings</button>
+            <button class="filter-chip" onclick="setCategoryFilter('payments', this)">Payments & Tills</button>
+            <button class="filter-chip" onclick="setCategoryFilter('utilities', this)">Utilities & Power</button>
+        </div>
+
+        <div class="services-grid" id="servicesGrid"></div>
+    </main>
+
+    <button class="zuri-float-btn" onclick="toggleZuriChat()">🤖</button>
+    <div class="zuri-chat-window" id="zuriChatWindow">
+        <div class="zuri-chat-header">
+            <span>🟢 Zuri Smart Portal AI</span>
+            <button style="background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer;" onclick="toggleZuriChat()">&times;</button>
+        </div>
+        <div class="zuri-chat-body" id="zuriChatBody">
+            <div class="zuri-msg bot">Hello! I am Zuri, your dedicated Safaricom Assistant. Tap any of the 20 questions below for an instant, helpful response!</div>
+            <div class="zuri-faq-list" id="zuriFaqContainer"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-box">
+            <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+            <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
+                <div class="service-icon" id="modalIcon">📱</div>
+                <div>
+                    <span class="service-badge" id="modalCategory">Category</span>
+                    <h2 id="modalTitle" style="font-size: 20px; color: var(--text-dark); font-weight:800;">Service Title</h2>
+                    <div style="font-size: 12px; color: var(--text-muted);" id="modalProvider">Provider</div>
+                </div>
+            </div>
+
+            <div id="modalDynamicBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>Financial Facilities</h4>
+                <ul>
+                    <li><a href="#" onclick="triggerModalById('fuliza')">Fuliza Limit Boost</a></li>
+                    <li><a href="#" onclick="triggerModalById('nyota')">NYOTA Youth Empowerment Grants</a></li>
+                    <li><a href="#" onclick="triggerModalById('ziidi')">Ziidi MMF Savings</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Education & Grants</h4>
+                <ul>
+                    <li><a href="#" onclick="triggerModalById('scholarships')">Safaricom Global & Local Scholarships</a></li>
+                    <li><a href="#" onclick="triggerModalById('helb')">HELB Loan Application & Clearance</a></li>
+                    <li><a href="#" onclick="triggerModalById('mpesa_till')">Lipa Na M-PESA Merchant Till</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Guarantee & Security</h4>
+                <ul>
+                    <li>🔒 256-Bit SSL Secured</li>
+                    <li>🛡️ 100% Money-Back Guaranteed</li>
+                    <li>⚡ Instant Mobile Authorization</li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid #334155; padding-top: 16px;">
+            <p>© 2026 Safaricom & Kenyan Financial Directory. Authorized Service Portal.</p>
+        </div>
+    </footer>
+
+    <script>
+        const FINAPI_KEY = "sk_test_a1f9663668ca4e5fbb5644142039967b";
+
+        let currentFilter = 'all';
+        let activeServiceObj = null;
+        let selectedNyotaGrant = null;
+        let selectedTillNumber = null;
+
+        const kenyanCounties = [
+            "Mombasa", "Kwale", "Kilifi", "Tana River", "Lamu", "Taita-Taveta", "Garissa", "Wajir", "Mandera", "Marsabit",
+            "Isiolo", "Meru", "Tharaka-Nithi", "Embu", "Kitui", "Machakos", "Makueni", "Nyandarua", "Nyeri", "Kirinyaga",
+            "Murang'a", "Kiambu", "Turkana", "West Pokot", "Samburu", "Trans-Nzoia", "Uasin Gishu", "Elgeyo-Marakwet", "Nandi",
+            "Baringo", "Laikipia", "Nakuru", "Narok", "Kajiado", "Kericho", "Bomet", "Kakamega", "Vihiga", "Bungoma", "Busia",
+            "Siaya", "Kisumu", "Homa Bay", "Migori", "Kisii", "Nyamira", "Nairobi"
+        ];
+
+        const maskedTillNumbers = Array.from({ length: 45 }, (_, i) => {
+            const num = 567801 + i;
+            return `${num.toString().substring(0, 4)}***`;
+        });
+
+        const foreignCountriesWithSchools = [
+            { country: "United States", school: "Harvard University / MIT", img: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80" },
+            { country: "United Kingdom", school: "University of Oxford / Cambridge", img: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80" },
+            { country: "Canada", school: "University of Toronto", img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80" },
+            { country: "Australia", school: "University of Melbourne", img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80" },
+            { country: "Germany", school: "Technical University of Munich", img: "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=600&q=80" },
+            { country: "China", school: "Tsinghua University", img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" },
+            { country: "Japan", school: "University of Tokyo", img: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=600&q=80" },
+            { country: "South Africa", school: "University of Cape Town", img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        const historicalShareYields = [
+            { year: "2016", scom: "8.2%", kcb: "7.8%", absa: "7.4%" },
+            { year: "2017", scom: "8.9%", kcb: "8.1%", absa: "7.9%" },
+            { year: "2018", scom: "9.4%", kcb: "8.7%", absa: "8.3%" },
+            { year: "2019", scom: "9.8%", kcb: "9.2%", absa: "8.8%" },
+            { year: "2020", scom: "8.1%", kcb: "7.5%", absa: "7.1%" },
+            { year: "2021", scom: "10.2%", kcb: "9.6%", absa: "9.1%" },
+            { year: "2022", scom: "11.0%", kcb: "10.4%", absa: "9.8%" },
+            { year: "2023", scom: "12.4%", kcb: "11.8%", absa: "11.2%" },
+            { year: "2024", scom: "13.6%", kcb: "12.9%", absa: "12.5%" },
+            { year: "2025", scom: "15.1%", kcb: "14.2%", absa: "13.8%" },
+            { year: "2026 (Peak)", scom: "18.5%", kcb: "17.2%", absa: "16.8%" }
+        ];
+
+        const servicesData = [
+            {
+                id: 'fuliza',
+                title: 'Fuliza Limit Boost',
+                provider: 'Safaricom PLC & NCBA / KCB',
+                category: 'loans',
+                categoryLabel: 'Loans & Overdrafts',
+                icon: '⚡',
+                desc: 'Instant overdraft expansion. Every verified line receives an immediate +KSh 67,000 limit boost for a processing fee of KSh 500.'
+            },
+            {
+                id: 'nyota',
+                title: 'NYOTA Youth Funds',
+                provider: 'National Youth Empowerment Program',
+                category: 'youth',
+                categoryLabel: 'Youth Programs',
+                icon: '🌟',
+                desc: 'Government youth empowerment grants & capital allocation ranging from KSh 22,000 to KSh 400,000.'
+            },
+            {
+                id: 'scholarships',
+                title: 'Safaricom Global & County Scholarships',
+                provider: 'Safaricom Foundation & Global Partners',
+                category: 'education',
+                categoryLabel: 'Scholarships & Education',
+                icon: '🌍',
+                desc: 'Full local scholarships across all 47 Kenyan counties and international study programs with visa & passport connection.'
+            },
+            {
+                id: 'helb',
+                title: 'HELB Portal & Loan Application',
+                provider: 'Higher Education Loans Board',
+                category: 'education',
+                categoryLabel: 'Education & Grants',
+                icon: '🎓',
+                desc: 'Official portal for undergraduate, TVET, upkeep loan applications, compliance clearance certificates, and disbursement tracking.'
+            },
+            {
+                id: 'mpesa_till',
+                title: 'Lipa Na M-PESA Till Request',
+                provider: 'Safaricom Merchant Services',
+                category: 'payments',
+                categoryLabel: 'Payments & Tills',
+                icon: '💼',
+                desc: 'Register dedicated Buy Goods Till numbers for your business with instant line allocation.'
+            },
+            {
+                id: 'kplc',
+                title: 'KPLC Tokens & Electricity Pay',
+                provider: 'Kenya Power & Lighting Co.',
+                category: 'utilities',
+                categoryLabel: 'Utilities & Power',
+                icon: '💡',
+                desc: 'Instant prepaid token purchase and postpaid bill settlement via direct Safaricom STK Push.'
+            },
+            {
+                id: 'ziidi',
+                title: 'Ziidi MMF Savings',
+                provider: 'Safaricom / Licensed CMA Managers',
+                category: 'investments',
+                categoryLabel: 'Investments & Savings',
+                icon: '📈',
+                desc: 'High-yield Money Market Fund with record performance across Safaricom, KCB, and ABSA equities.'
+            }
+        ];
+
+        const zuriFaqs20 = [
+            { q: "1. How fast does the KSh 67,000 Fuliza Boost activate?", a: "🌟 Great news! Your KSh 67,000 limit boost reflects on your M-PESA menu immediately after system verification!" },
+            { q: "2. Can I apply for the NYOTA Youth Grant without collateral?", a: "✨ Absolutely! NYOTA Youth Grants require no collateral, enabling you to build your dreams effortlessly." },
+            { q: "3. Are all 47 Kenyan Counties eligible for scholarships?", a: "🇰🇪 Yes! Students in all 47 counties are fully supported with guaranteed processing." },
+            { q: "4. Does the foreign scholarship cover passport costs?", a: "✈️ Yes! The foreign package covers complete passport guidance and visa connectivity." },
+            { q: "5. How are KPLC tokens delivered?", a: "💡 Tokens are delivered directly to your phone via SMS within seconds of your purchase." },
+            { q: "6. Is Ziidi MMF compound interest paid daily?", a: "📈 Yes! Your wealth grows continuously with daily compounded earnings." },
+            { q: "7. How quick is Lipa Na M-PESA Till allocation?", a: "💼 Your dedicated Merchant Till is generated and sent via SMS in under 5 minutes!" },
+            { q: "8. Can TVET students apply for HELB loans?", a: "🎓 Yes, both University and TVET students are fully eligible for HELB allocations." },
+            { q: "9. How do I get my HELB Compliance Certificate?", a: "📜 Your official digital clearance certificate is issued instantly upon details validation." },
+            { q: "10. Is my STK Push payment secure?", a: "🔒 100% Secure! All payments are processed via end-to-end 256-bit SSL encrypted FinAPI." },
+            { q: "11. What if I don't receive my STK Push prompt?", a: "📱 Ensure your phone screen is unlocked and your Safaricom SIM is active, then tap retry." },
+            { q: "12. Can I choose my own school for local scholarships?", a: "🏛️ Yes, you can specify your preferred institution in any of the 47 counties." },
+            { q: "13. What is the maximum grant amount for NYOTA Funds?", a: "🌟 Empowering youth up to KSh 400,000 direct capital for business growth!" },
+            { q: "14. How do I check my KPLC meter owner details?", a: "💡 Simply enter your meter number, and our system will verify your registered name instantly." },
+            { q: "15. How long does scholarship verification take?", a: "⚡ Verification completes in just 6 seconds, giving you your official reporting date!" },
+            { q: "16. Can I boost multiple active Safaricom SIM lines?", a: "📱 Yes, every individual active line can be boosted independently!" },
+            { q: "17. Is Ziidi Money Market Fund licensed in Kenya?", a: "🛡️ Fully regulated by the Capital Markets Authority (CMA) for your total peace of mind." },
+            { q: "18. What documents are needed for HELB clearance?", a: "📄 Just your National ID Number, KRA PIN, and registered mobile line." },
+            { q: "19. Can I pay KPLC bills for someone else?", a: "💡 Yes, you can settle any valid meter or postpaid account number in Kenya." },
+            { q: "20. How do I start any application on this portal?", a: "🚀 Simply tap any of the large action buttons on the service cards above to begin!" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderServicesGrid();
+            updateGreeting();
+            initZuriFaqs();
+        });
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeBtn = document.getElementById('themeBtn');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                themeBtn.innerText = '🌙 Dark Mode';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeBtn.innerText = '☀️ Light Mode';
+            }
         }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            let g = "Good Morning";
+            if (hour >= 12 && hour < 17) g = "Good Afternoon";
+            else if (hour >= 17) g = "Good Evening";
+            document.getElementById('greetingText').innerText = `${g}, Welcome to Safaricom Financial & Education Portal`;
         }
 
-        .brand-logo-combo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        function setCategoryFilter(cat, btn) {
+            currentFilter = cat;
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            renderServicesGrid();
         }
 
-        .logo-symbol {
-            background: linear-gradient(135deg, var(--safaricom-green), var(--safaricom-dark));
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 800;
-            font-size: 1.5rem;
-            box-shadow: 0 3px 6px rgba(38,177,76,0.3);
+        function renderServicesGrid() {
+            const grid = document.getElementById('servicesGrid');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            grid.innerHTML = '';
+
+            const filtered = servicesData.filter(item => {
+                const matchesCat = (currentFilter === 'all') || (item.category === currentFilter);
+                const matchesSearch = item.title.toLowerCase().includes(searchVal) || item.desc.toLowerCase().includes(searchVal);
+                return matchesCat && matchesSearch;
+            });
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                card.innerHTML = `
+                    <div>
+                        <div class="service-card-header">
+                            <div class="service-icon">${item.icon}</div>
+                            <div>
+                                <span class="service-badge">${item.categoryLabel}</span>
+                                <h3 style="font-size: 16px; color: var(--text-dark); margin-top:3px; font-weight:800;">${item.title}</h3>
+                            </div>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">${item.desc}</p>
+                    </div>
+                    <button class="btn-animated" onclick="triggerModalById('${item.id}')">Apply & Access ${item.title} &rarr;</button>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        .brand-titles h1 {
-            font-size: 1.4rem;
-            color: var(--safaricom-dark);
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        function getMoneyBackGuaranteeNotice() {
+            return `
+                <div class="guarantee-note">
+                    <strong>🛡️ 100% Full Refund Guarantee:</strong> Should your application or service request fail to process successfully for any reason, your paid fee will be automatically and fully refunded back to your M-PESA account immediately with zero deductions.
+                </div>
+            `;
         }
 
-        .brand-titles p {
-            font-size: 0.72rem;
-            color: var(--muted-gray);
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 0.5px;
+        function triggerModalById(id) {
+            const item = servicesData.find(s => s.id === id);
+            if (!item) return;
+            activeServiceObj = item;
+
+            document.getElementById('modalIcon').innerText = item.icon;
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalCategory').innerText = item.categoryLabel;
+            document.getElementById('modalProvider').innerText = `Official Provider: ${item.provider}`;
+
+            const container = document.getElementById('modalDynamicBody');
+            container.innerHTML = '';
+
+            if (id === 'fuliza') renderFulizaStep1(container);
+            else if (id === 'nyota') renderNyotaStep1(container);
+            else if (id === 'scholarships') renderScholarshipsPortal(container);
+            else if (id === 'helb') renderEnhancedHelbPortal(container);
+            else if (id === 'mpesa_till') renderTillForm(container);
+            else if (id === 'kplc') renderKplcForm(container);
+            else if (id === 'ziidi') renderZiidiForm(container);
+
+            document.getElementById('serviceModal').classList.add('active');
         }
 
-        .system-badge {
-            font-size: 0.72rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 20px;
-            background-color: var(--light-bg);
-            color: var(--muted-gray);
+        function closeModal() {
+            document.getElementById('serviceModal').classList.remove('active');
         }
 
-        .system-badge.green {
-            background-color: #e8f5e9;
-            color: var(--safaricom-dark);
+        function run6SecLoader(targetTitle, callback) {
+            const container = document.getElementById('modalDynamicBody');
+            container.innerHTML = `
+                <div class="loading-view">
+                    <div class="spinner"></div>
+                    <h3 style="font-size:17px; margin-bottom:8px; font-weight:800;">${targetTitle}</h3>
+                    <p style="font-size:13px; color:var(--text-muted);">Please wait while Safaricom Secure Gateway verifies your credentials... (6 Seconds)</p>
+                </div>
+            `;
+            setTimeout(() => {
+                callback();
+            }, 6000);
         }
 
-        .system-badge.blue {
-            background-color: #e3f2fd;
-            color: var(--blue-accent);
+        function renderFulizaStep1(container) {
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">FULIZA LIMIT EVALUATION & CREDENTIAL VERIFICATION</div>
+                <form onsubmit="event.preventDefault(); run6SecLoader('Evaluating Line History & Processing Boost', renderFulizaStep2)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Safaricom Line Number *</label>
+                            <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>National ID Number *</label>
+                            <input type="text" required placeholder="e.g. 29384930">
+                        </div>
+                        <div class="form-group">
+                            <label>Full Registered M-PESA Name *</label>
+                            <input type="text" required placeholder="Full Name as on ID">
+                        </div>
+                        <div class="form-group">
+                            <label>KRA PIN Number (Optional)</label>
+                            <input type="text" placeholder="e.g. A019283748Z">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Current Fuliza Limit (KSh) *</label>
+                            <input type="number" required placeholder="Enter current limit (e.g. 0, 500, 2000)" min="0">
+                        </div>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <button type="submit" class="btn-animated">VERIFY & CALCULATE BOOST &rarr;</button>
+                </form>
+            `;
         }
 
-        /* Executive Leadership Banner */
-        .executive-hero {
-            background: linear-gradient(rgba(27, 127, 54, 0.92), rgba(15, 74, 31, 0.96)), url('https://unsplash.com');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 35px 20px;
+        function renderFulizaStep2() {
+            const phoneVal = document.getElementById('userPhone') ? document.getElementById('userPhone').value : '';
+            const container = document.getElementById('modalDynamicBody');
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">BOOST APPROVAL CONFIRMED</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Your line credentials have been verified. You are approved for an instant overdraft expansion of <strong>+KSh 67,000</strong>.</p>
+
+                <div class="tier-card selected" style="margin-bottom:16px;">
+                    <div class="tier-title" style="font-size:18px; color:var(--safaricom-dark-green); font-weight:800;">🚀 +KSh 67,000 Limit Boost</div>
+                    <div class="tier-sub" style="font-size:12px; margin-top:4px;">Instant overdraft activation on your M-PESA account</div>
+                    <div class="tier-fee" style="font-weight:800; margin-top:6px; font-size:14px; color:var(--safaricom-red);">Processing Fee: KSh 500</div>
+                </div>
+
+                <div class="success-note">
+                    <strong>✅ Guaranteed Boost:</strong> Authorizing the KSh 500 processing fee will update your Fuliza balance immediately.
+                </div>
+
+                ${getMoneyBackGuaranteeNotice()}
+
+                <div id="widget-wrapper-fuliza"></div>
+            `;
+
+            renderFinapiWidget(500, 'PAY TO FULIZA BOOST 2026', 'widget-wrapper-fuliza', phoneVal);
         }
 
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            align-items: center;
+        function renderNyotaStep1(container) {
+            selectedNyotaGrant = null;
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">STEP 1 OF 2: APPLICANT IDENTIFICATION & VERIFICATION</div>
+                <form onsubmit="event.preventDefault(); run6SecLoader('Validating Youth Empowerment Credentials', renderNyotaStep2)">
+                    <div class="form-grid">
+                        <div class="form-group"><label>Full Legal Name *</label><input type="text" required placeholder="As per National ID"></div>
+                        <div class="form-group"><label>National ID Number *</label><input type="text" required placeholder="National ID"></div>
+                        <div class="form-group"><label>KRA PIN Number *</label><input type="text" required placeholder="KRA PIN"></div>
+                        <div class="form-group"><label>Sub-County / Location *</label><input type="text" required placeholder="e.g. Westlands, Nairobi"></div>
+                        <div class="form-group full-width"><label>M-PESA Phone Number *</label><input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX"></div>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <button type="submit" class="btn-animated">CONTINUE TO GRANT SELECTION &rarr;</button>
+                </form>
+            `;
         }
 
-        .ceo-profile {
-            flex: 1;
-            min-width: 260px;
-            text-align: center;
+        function renderNyotaStep2() {
+            const container = document.getElementById('modalDynamicBody');
+            selectedNyotaGrant = null;
+
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">STEP 2 OF 2: SELECT YOUR NYOTA GRANT TIER (UP TO KSH 400,000)</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Select your preferred funding tier. The payment authorization button will appear immediately after selection.</p>
+
+                <div class="tier-card-grid">
+                    <div class="tier-card" onclick="selectNyotaTier(this, 22000, 150)">
+                        <div class="tier-title" style="font-weight:800;">KSh 22,000 Grant</div>
+                        <div class="tier-fee">Processing Fee: KSh 150</div>
+                    </div>
+                    <div class="tier-card" onclick="selectNyotaTier(this, 50000, 250)">
+                        <div class="tier-title" style="font-weight:800;">KSh 50,000 Grant</div>
+                        <div class="tier-fee">Processing Fee: KSh 250</div>
+                    </div>
+                    <div class="tier-card" onclick="selectNyotaTier(this, 120000, 450)">
+                        <div class="tier-title" style="font-weight:800;">KSh 120,000 Grant</div>
+                        <div class="tier-fee">Processing Fee: KSh 450</div>
+                    </div>
+                    <div class="tier-card" onclick="selectNyotaTier(this, 250000, 750)">
+                        <div class="tier-title" style="font-weight:800;">KSh 250,000 Grant</div>
+                        <div class="tier-fee">Processing Fee: KSh 750</div>
+                    </div>
+                    <div class="tier-card" onclick="selectNyotaTier(this, 400000, 1200)" style="grid-column: 1 / -1;">
+                        <div class="tier-title" style="color:var(--safaricom-dark-green); font-size:16px; font-weight:800;">🌟 KSh 400,000 Maximum Capital Grant</div>
+                        <div class="tier-fee">Processing Fee: KSh 1,200</div>
+                    </div>
+                </div>
+
+                ${getMoneyBackGuaranteeNotice()}
+
+                <div id="nyotaActionArea" style="margin-top: 16px;">
+                    <p style="font-size: 13px; color: var(--safaricom-red); text-align: center; font-weight:700;">⚠️ Tap on one of the grant tiers above to activate payment.</p>
+                </div>
+            `;
         }
 
-        .ceo-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid var(--white);
-            background-color: #e0e0e0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            margin: 0 auto 12px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+        function selectNyotaTier(element, grantAmount, fee) {
+            document.querySelectorAll('.tier-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedNyotaGrant = { grantAmount, fee };
+            const phoneVal = document.getElementById('userPhone') ? document.getElementById('userPhone').value : '';
+
+            const actionArea = document.getElementById('nyotaActionArea');
+            actionArea.innerHTML = `
+                <div class="success-note">
+                    Selected Grant: <strong>KSh ${grantAmount.toLocaleString()} Capital Grant</strong> (Fee: KSh ${fee})
+                </div>
+                <div id="widget-wrapper-nyota"></div>
+            `;
+
+            renderFinapiWidget(fee, `PAY KSH ${fee} FOR GRANT`, 'widget-wrapper-nyota', phoneVal);
         }
 
-        .ceo-details h2 {
-            font-size: 1.4rem;
-            margin-bottom: 2px;
+        function renderScholarshipsPortal(container) {
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">SCHOLARSHIP CATEGORY SELECTION</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Choose between a domestic scholarship across 47 Kenyan counties or an International Foreign Scholarship.</p>
+                
+                <div class="tier-card-grid">
+                    <div class="tier-card" onclick="run6SecLoader('Loading Kenyan 47-County Scholarship Portal', renderLocalScholarshipForm)">
+                        <div class="tier-title" style="font-weight:800;">🇰🇪 Kenyan 47-County Scholarship</div>
+                        <div class="tier-sub" style="font-size:12px; margin-top:4px;">Secondary & University Institutions</div>
+                        <div class="tier-fee" style="margin-top:8px;">Processing Fee: KSh 2,300</div>
+                    </div>
+                    <div class="tier-card" onclick="run6SecLoader('Loading Foreign Country Scholarship Portal', renderForeignScholarshipForm)">
+                        <div class="tier-title" style="font-weight:800;">✈️ Foreign Country Scholarship</div>
+                        <div class="tier-sub" style="font-size:12px; margin-top:4px;">Includes Passport Application & Visa Connection</div>
+                        <div class="tier-fee" style="margin-top:8px;">Package Fee: KSh 25,000</div>
+                    </div>
+                </div>
+
+                ${getMoneyBackGuaranteeNotice()}
+            `;
         }
 
-        .ceo-details .title {
-            font-size: 0.82rem;
-            color: #a3e2b2;
-            text-transform: uppercase;
-            font-weight: bold;
+        function renderLocalScholarshipForm() {
+            const container = document.getElementById('modalDynamicBody');
+            let countyOptions = kenyanCounties.map(c => `<option value="${c}">${c} County</option>`).join('');
+
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">KENYAN COUNTY SCHOLARSHIP APPLICATION (KSh 2,300)</div>
+                <form onsubmit="handleScholarshipSubmit(event, 2300, 'Kenyan County School')">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Student Full Legal Name *</label>
+                            <input type="text" required placeholder="e.g. Samuel Kamau">
+                        </div>
+                        <div class="form-group">
+                            <label>National ID / Birth Cert No. *</label>
+                            <input type="text" required placeholder="ID or Birth Certificate">
+                        </div>
+                        <div class="form-group">
+                            <label>Target Home County (47 Counties) *</label>
+                            <select required id="localCountySelect" onchange="updateLocalSchoolPreview(this.value)">
+                                <option value="">-- Select County --</option>
+                                ${countyOptions}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Target Institution Name *</label>
+                            <input type="text" id="localSchoolInput" required placeholder="Enter school/college name">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Upload Student Academic Records (KCPE/KCSE Slip) *</label>
+                            <div class="upload-box">
+                                <label for="file_local">📁 Upload Certificates & Transcripts (PDF/JPG)</label>
+                                <input type="file" id="file_local" required onchange="showFileName(this, 'lbl_local')">
+                                <div id="lbl_local" style="font-size:11px; margin-top:4px; color:var(--text-muted);">No file chosen</div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Safaricom Phone Number for Fee Payment *</label>
+                            <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                        </div>
+                    </div>
+
+                    <div id="localSchoolPreview" class="school-preview-card" style="display:none;">
+                        <img id="localPreviewImg" class="school-preview-img" src="" alt="School Preview">
+                        <div class="school-preview-info">
+                            <strong id="localPreviewTitle" style="color:var(--safaricom-dark-green);">Campus Preview</strong>
+                            <p style="font-size:12px; color:var(--text-muted);">Verified institution campus structure in selected county.</p>
+                        </div>
+                    </div>
+
+                    ${getMoneyBackGuaranteeNotice()}
+
+                    <button type="submit" class="btn-animated">VERIFY & UPLOAD DOCUMENTS &rarr;</button>
+                </form>
+            `;
         }
 
-        .ceo-message {
-            flex: 2.5;
-            min-width: 320px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 12px;
-            backdrop-filter: blur(5px);
-            border-left: 5px solid var(--safaricom-green);
+        function updateLocalSchoolPreview(county) {
+            if (!county) return;
+            const preview = document.getElementById('localSchoolPreview');
+            const img = document.getElementById('localPreviewImg');
+            const title = document.getElementById('localPreviewTitle');
+            preview.style.display = 'block';
+            title.innerText = `${county} County Model Academy & College Campus`;
+            img.src = `https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80`;
         }
 
-        .ceo-message p {
-            font-style: italic;
-            font-size: 0.98rem;
-            margin-bottom: 8px;
+        function renderForeignScholarshipForm() {
+            const container = document.getElementById('modalDynamicBody');
+            let foreignOptions = foreignCountriesWithSchools.map((item, index) => `<option value="${index}">${item.country} - ${item.school}</option>`).join('');
+
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">FOREIGN COUNTRY SCHOLARSHIP & PASSPORT CONNECTION (KSh 25,000)</div>
+                <form onsubmit="handleScholarshipSubmit(event, 25000, 'Foreign International Institution')">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Student Full Name *</label>
+                            <input type="text" required placeholder="e.g. Faith Chebet">
+                        </div>
+                        <div class="form-group">
+                            <label>National ID Number *</label>
+                            <input type="text" required placeholder="National ID Number">
+                        </div>
+                        <div class="form-group">
+                            <label>Select Destination Foreign Country *</label>
+                            <select id="foreignSelect" required onchange="updateForeignSchoolPreview(this.value)">
+                                <option value="">-- Select Country & Institution --</option>
+                                ${foreignOptions}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Passport Application Status *</label>
+                            <select required>
+                                <option value="need_new">Requires New Passport Application (Included)</option>
+                                <option value="has_passport">Already Have Valid Passport</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Upload Credentials Package (Transcripts, ID, Photo) *</label>
+                            <div class="upload-box">
+                                <label for="file_foreign">📁 Upload Required Documents Package (ZIP/PDF)</label>
+                                <input type="file" id="file_foreign" required onchange="showFileName(this, 'lbl_foreign')">
+                                <div id="lbl_foreign" style="font-size:11px; margin-top:4px; color:var(--text-muted);">No file chosen</div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Safaricom Line for KSh 25,000 Fee Payment *</label>
+                            <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                        </div>
+                    </div>
+
+                    <div id="foreignSchoolPreview" class="school-preview-card" style="display:none;">
+                        <img id="foreignPreviewImg" class="school-preview-img" src="" alt="Foreign Campus Image">
+                        <div class="school-preview-info">
+                            <strong id="foreignPreviewTitle" style="color:var(--safaricom-dark-green);">Foreign University Preview</strong>
+                            <p style="font-size:12px; color:var(--text-muted);">Official International Partner Campus.</p>
+                        </div>
+                    </div>
+
+                    ${getMoneyBackGuaranteeNotice()}
+
+                    <button type="submit" class="btn-animated">SUBMIT APPLICATION & UPLOAD &rarr;</button>
+                </form>
+            `;
         }
 
-        /* Responsive Dashboard Super Grid */
-        .super-grid {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 25px;
+        function updateForeignSchoolPreview(val) {
+            if (val === '') return;
+            const selected = foreignCountriesWithSchools[val];
+            const preview = document.getElementById('foreignSchoolPreview');
+            const img = document.getElementById('foreignPreviewImg');
+            const title = document.getElementById('foreignPreviewTitle');
+            preview.style.display = 'block';
+            title.innerText = `${selected.school} (${selected.country})`;
+            img.src = selected.img;
         }
 
-        .module-card {
-            background-color: var(--white);
-            border-radius: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.05);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        function showFileName(input, targetId) {
+            if (input.files && input.files[0]) {
+                document.getElementById(targetId).innerText = `Selected: ${input.files[0].name}`;
+            }
         }
 
-        .module-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        function handleScholarshipSubmit(e, fee, type) {
+            e.preventDefault();
+            const phoneVal = document.getElementById('userPhone') ? document.getElementById('userPhone').value : '';
+            run6SecLoader(`Finalizing ${type} Document Verification`, () => {
+                const today = new Date();
+                today.setDate(today.getDate() + 21);
+                const reportingDate = today.toDateString();
+                
+                const container = document.getElementById('modalDynamicBody');
+                container.innerHTML = `
+                    <div class="success-note">
+                        <h4 style="font-size:15px; margin-bottom:6px; font-weight:800;">✅ Credentials Verified & Documents Uploaded!</h4>
+                        <p style="font-size:13px; margin-bottom:8px;">Your official reporting date to the institution is scheduled for: <strong>${reportingDate}</strong>.</p>
+                        <p style="font-size:12px;">Authorize payment below to initiate M-PESA STK Push and receive admission confirmation via SMS.</p>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <div id="widget-wrapper-schol"></div>
+                `;
+
+                renderFinapiWidget(fee, `PAY KSH ${fee} FOR SCHOLARSHIP`, 'widget-wrapper-schol', phoneVal);
+            });
         }
 
-        .module-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--light-bg);
-            padding-bottom: 12px;
+        function renderEnhancedHelbPortal(container) {
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">HELB SMART PORTAL SERVICES</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Select your requested HELB service:</p>
+
+                <div class="tier-card-grid">
+                    <div class="tier-card" onclick="run6SecLoader('Loading HELB Loan Application', renderHelbLoanForm)">
+                        <div class="tier-title" style="font-weight:800;">🎓 New Loan / Upkeep Application</div>
+                        <div class="tier-sub" style="font-size:12px; margin-top:4px;">First Time & Subsequent Funding</div>
+                        <div class="tier-fee" style="margin-top:8px;">Processing Fee: KSh 250</div>
+                    </div>
+                    <div class="tier-card" onclick="run6SecLoader('Loading HELB Compliance Portal', renderHelbClearanceForm)">
+                        <div class="tier-title" style="font-weight:800;">📜 Compliance & Clearance Certificate</div>
+                        <div class="tier-sub" style="font-size:12px; margin-top:4px;">Job & Tender Clearance Certificate</div>
+                        <div class="tier-fee" style="margin-top:8px;">Processing Fee: KSh 300</div>
+                    </div>
+                </div>
+
+                ${getMoneyBackGuaranteeNotice()}
+            `;
         }
 
-        .module-header h3 {
-            color: var(--safaricom-dark);
-            font-size: 1.2rem;
-            font-weight: 700;
+        function renderHelbLoanForm() {
+            const container = document.getElementById('modalDynamicBody');
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">HELB LOAN APPLICATION FORM (KSh 250)</div>
+                <form onsubmit="handleFormSubmit(event, 250)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Student Full Name *</label>
+                            <input type="text" placeholder="e.g. Mary Wambui" required>
+                        </div>
+                        <div class="form-group">
+                            <label>National ID Number *</label>
+                            <input type="text" placeholder="National ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label>KCSE Index & Year *</label>
+                            <input type="text" placeholder="12345678/2023" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Institution Category *</label>
+                            <select required>
+                                <option value="Public University">Public University</option>
+                                <option value="Private University">Private University</option>
+                                <option value="TVET / Polytechnic">TVET / National Polytechnic</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Upload KCSE Result Slip & Admission Letter *</label>
+                            <div class="upload-box">
+                                <label for="file_helb">📁 Upload Transcripts (PDF)</label>
+                                <input type="file" id="file_helb" required onchange="showFileName(this, 'lbl_helb')">
+                                <div id="lbl_helb" style="font-size:11px; margin-top:4px; color:var(--text-muted);">No file chosen</div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>M-PESA Phone Number for KSh 250 Fee *</label>
+                            <input type="tel" id="userPhone" placeholder="07XXXXXXXX" pattern="^(07|01|254)[0-9]{8}$" required>
+                        </div>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <button type="submit" class="btn-animated">SUBMIT & PROCEED TO PAYMENT &rarr;</button>
+                </form>
+            `;
         }
 
-        .system-badge.red {
-            background-color: #ffebee;
-            color: var(--mpesa-red);
+        function renderHelbClearanceForm() {
+            const container = document.getElementById('modalDynamicBody');
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">HELB CLEARANCE CERTIFICATE REQUEST (KSh 300)</div>
+                <form onsubmit="handleFormSubmit(event, 300)">
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Applicant Full Legal Name *</label>
+                            <input type="text" placeholder="e.g. John Gitau" required>
+                        </div>
+                        <div class="form-group">
+                            <label>National ID Number *</label>
+                            <input type="text" placeholder="e.g. 29384930" required>
+                        </div>
+                        <div class="form-group">
+                            <label>KRA PIN Number *</label>
+                            <input type="text" placeholder="e.g. A019283748Z" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>M-PESA Phone Number for KSh 300 Fee *</label>
+                            <input type="tel" id="userPhone" placeholder="07XXXXXXXX" pattern="^(07|01|254)[0-9]{8}$" required>
+                        </div>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <button type="submit" class="btn-animated">GENERATE CERTIFICATE & PROCEED &rarr;</button>
+                </form>
+            `;
         }
 
-        /* Service Feature Graphic Banner */
-        .service-banner-frame {
-            width: 100%;
-            height: 140px;
-            border-radius: 10px;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
-            padding: 15px;
-            margin-bottom: 15px;
+        function renderTillForm(container) {
+            selectedTillNumber = null;
+            let tillCards = maskedTillNumbers.map((till) => `
+                <div class="till-option-card" onclick="selectTillNumber(this, '${till}')">
+                    <span>🛒 ${till}</span>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 6px;">LIPA NA M-PESA BUY GOODS TILL REGISTRATION (KSh 200)</div>
+                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Fill in mandatory business KYC details and select an available masked Till number to activate.</p>
+
+                <form onsubmit="handleTillSubmit(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Business Type *</label>
+                            <select required>
+                                <option value="sole_prop">Sole Proprietorship / Individual Trader</option>
+                                <option value="llc">Limited Liability Company (LLC)</option>
+                                <option value="partnership">Partnership / Group Enterprise</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Registered Business Name *</label>
+                            <input type="text" required placeholder="e.g. Mama Mboga / Enterprise Ltd">
+                        </div>
+                        <div class="form-group">
+                            <label>Owner / Director Full Legal Name *</label>
+                            <input type="text" required placeholder="As per National ID">
+                        </div>
+                        <div class="form-group">
+                            <label>National ID Number *</label>
+                            <input type="text" required placeholder="Owner ID Number">
+                        </div>
+                        <div class="form-group">
+                            <label>Personal / Business KRA PIN *</label>
+                            <input type="text" required placeholder="e.g. A012345678Z">
+                        </div>
+                        <div class="form-group">
+                            <label>County & Physical Location *</label>
+                            <input type="text" required placeholder="e.g. Nairobi, Kilimani Mall, Shop 4">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Upload National ID Copy (Front & Back PDF/Image) *</label>
+                            <div class="upload-box">
+                                <label for="file_till_id">📁 Upload National ID Document</label>
+                                <input type="file" id="file_till_id" required onchange="showFileName(this, 'lbl_till_id')">
+                                <div id="lbl_till_id" style="font-size:11px; margin-top:4px; color:var(--text-muted);">No file chosen</div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Safaricom Line for M-PESA Till Nominated Account *</label>
+                            <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 10px; margin-bottom: 6px;">
+                        <label style="font-weight: 700; font-size: 12px; color: var(--text-dark); text-transform: uppercase;">SELECT PREFERRED AVAILABLE MASKED TILL NUMBER *</label>
+                        <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Tap one of the 45 available reserved lines below to bind to your application:</p>
+                        
+                        <div class="till-grid-container">
+                            ${tillCards}
+                        </div>
+                    </div>
+
+                    <div id="tillSelectionStatus" style="margin-top: 10px;">
+                        <p style="font-size: 12px; color: var(--safaricom-red); text-align: center; font-weight:700;">⚠️ Please click on a masked Till Number above to select it before proceeding.</p>
+                    </div>
+
+                    ${getMoneyBackGuaranteeNotice()}
+
+                    <div id="widget-wrapper-till" style="margin-top:16px;"></div>
+                </form>
+            `;
         }
 
-        .banner-caption h4 {
-            color: var(--white);
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        function selectTillNumber(element, tillVal) {
+            document.querySelectorAll('.till-option-card').forEach(c => c.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedTillNumber = tillVal;
+            const phoneVal = document.getElementById('userPhone') ? document.getElementById('userPhone').value : '';
+
+            const status = document.getElementById('tillSelectionStatus');
+            status.innerHTML = `
+                <div class="success-note" style="margin: 8px 0;">
+                    <strong>✅ Selected Till Number:</strong> ${tillVal} (Reserved for line binding)
+                </div>
+                <div id="widget-wrapper-till-btn"></div>
+            `;
+
+            renderFinapiWidget(200, 'REGISTER TILL & PAY KSH 200', 'widget-wrapper-till-btn', phoneVal);
         }
 
-        .corporate-pitch {
-            font-size: 0.9rem;
-            color: #444;
-            margin-bottom: 15px;
-            text-align: justify;
+        function handleTillSubmit(e) {
+            e.preventDefault();
+            if (!selectedTillNumber) {
+                alert("Please select a masked Till number from the available list.");
+                return;
+            }
         }
 
-        /* Truecaller Proof Message Box Styling */
-        .truecaller-proof-box {
-            background-color: #f0f8ff;
-            border: 1.5px solid #cce5ff;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            box-shadow: 0 2px 8px rgba(0,135,255,0.05);
+        function renderKplcForm(container) {
+            container.innerHTML = `
+                <div style="font-size: 12px; font-weight: 800; color: var(--safaricom-dark-green); margin-bottom: 10px;">KPLC UTILITIES & POWER BILL PAYMENT</div>
+                <form onsubmit="handleFormSubmit(event, document.getElementById('kplcAmount').value)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>KPLC Meter / Account Number *</label>
+                            <input type="text" id="kplcAccountNo" required placeholder="e.g. 1428394029" oninput="verifyKplcAccount(this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Registered KPLC Account Name *</label>
+                            <input type="text" id="kplcAccountName" required placeholder="Name on KPLC Bill">
+                        </div>
+                        <div class="form-group">
+                            <label>Account / Meter Type *</label>
+                            <select required>
+                                <option value="Prepaid">Prepaid Meter (Tokens)</option>
+                                <option value="Postpaid">Postpaid Account Bill</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>County / Location *</label>
+                            <input type="text" required placeholder="e.g. Nairobi, Kiambu">
+                        </div>
+                        <div class="form-group">
+                            <label>National ID of Account Owner *</label>
+                            <input type="text" required placeholder="ID Number">
+                        </div>
+                        <div class="form-group">
+                            <label>Amount (KSh) *</label>
+                            <input type="number" id="kplcAmount" value="500" required min="50">
+                        </div>
+                        <div class="form-group">
+                            <label>Safaricom Line for STK Push *</label>
+                            <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Secondary Phone for Token Backup SMS *</label>
+                            <input type="tel" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                        </div>
+                    </div>
+                    
+                    <div id="kplcVerifyNotice" class="success-note" style="display:none; margin-top:4px;">
+                        <strong>💡 Meter Verified:</strong> Active KPLC connection recognized. Tokens will be dispatched instantly via SMS.
+                    </div>
+
+                    ${getMoneyBackGuaranteeNotice()}
+
+                    <button type="submit" class="btn-animated">PROCEED TO PAY KPLC BILL &rarr;</button>
+                </form>
+            `;
         }
 
-        .truecaller-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.72rem;
-            font-weight: bold;
-            color: var(--truecaller-blue);
-            text-transform: uppercase;
+        function verifyKplcAccount(val) {
+            const notice = document.getElementById('kplcVerifyNotice');
+            if (val.length >= 8) {
+                notice.style.display = 'block';
+            } else {
+                notice.style.display = 'none';
+            }
         }
 
-        .truecaller-body {
-            background-color: var(--white);
-            border-left: 4px solid var(--truecaller-blue);
-            padding: 8px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 0.78rem;
-            color: #222;
+        function renderZiidiForm(container) {
+            let tableRows = historicalShareYields.map(row => {
+                const is2026 = row.year.includes("2026");
+                const rowClass = is2026 ? 'class="highlight-2026"' : '';
+                return `
+                    <tr ${rowClass}>
+                        <td><strong>${row.year}</strong></td>
+                        <td>${row.scom}</td>
+                        <td>${row.kcb}</td>
+                        <td>${row.absa}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="analytics-container">
+                    <div class="analytics-header">
+                        <span>📊 Shares & Yield Performance History (2016 – 2026)</span>
+                        <span style="font-size:10px; background:#e6f7ed; padding:3px 8px; border-radius:10px; font-weight:800;">Peak 2026 Yields</span>
+                    </div>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+                        Historical percentage yields for Safaricom (SCOM), KCB Group, and ABSA Bank underlying portfolios:
+                    </p>
+                    
+                    <div class="history-table-wrapper">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Safaricom (SCOM)</th>
+                                    <th>KCB Group</th>
+                                    <th>ABSA Bank</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${tableRows}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="calc-card">
+                        <div style="font-weight:800; font-size:13px; color:var(--text-dark); margin-bottom:10px;">🧮 Dynamic Return Yield Calculator</div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Capital Investment (KSh 200 - 500,000)</label>
+                                <input type="number" id="ziidiCalcInput" value="200" min="200" max="500000" oninput="calculateZiidiReturns()">
+                            </div>
+                            <div class="form-group">
+                                <label>Target Holding Period</label>
+                                <select id="ziidiPeriodSelect" onchange="calculateZiidiReturns()">
+                                    <option value="1">1 Month</option>
+                                    <option value="3">3 Months</option>
+                                    <option value="6">6 Months</option>
+                                    <option value="12" selected>1 Year (12 Months)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="calc-output-box">
+                            <div style="font-size:11px; color:var(--text-muted); font-weight:700;">ESTIMATED TOTAL RETURN</div>
+                            <div class="calc-highlight" id="calcTotalReturn">KSh 350</div>
+                            <div class="calc-subtext" id="calcNetProfit">+KSh 150 net earnings (75.0% projected total return)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <form onsubmit="handleFormSubmit(event, document.getElementById('ziidiAmount').value)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Deposit Amount (KSh) [Min: 200] *</label>
+                            <input type="number" id="ziidiAmount" value="200" min="200" max="500000" required oninput="syncAmountToCalc(this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Investor Full Legal Name *</label>
+                            <input type="text" required placeholder="Full Name">
+                        </div>
+                        <div class="form-group">
+                            <label>National ID Number *</label>
+                            <input type="text" required placeholder="National ID Number">
+                        </div>
+                        <div class="form-group">
+                            <label>KRA PIN Number *</label>
+                            <input type="text" required placeholder="KRA PIN Number">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Safaricom Line for Deposit STK Push *</label>
+                            <input type="tel" id="userPhone" pattern="^(07|01|254)[0-9]{8}$" required placeholder="07XXXXXXXX">
+                        </div>
+                    </div>
+                    ${getMoneyBackGuaranteeNotice()}
+                    <button type="submit" class="btn-animated">PROCEED TO DEPOSIT CAPITAL &rarr;</button>
+                </form>
+            `;
+
+            calculateZiidiReturns();
         }
 
-        /* Form Controls Setup */
-        .input-wrapper {
-            margin-bottom: 14px;
+        function syncAmountToCalc(val) {
+            const calcInput = document.getElementById('ziidiCalcInput');
+            if (calcInput) {
+                calcInput.value = val;
+                calculateZiidiReturns();
+            }
         }
 
-        .input-wrapper label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--muted-gray);
-            margin-bottom: 5px;
-            text-transform: uppercase;
+        function calculateZiidiReturns() {
+            const input = document.getElementById('ziidiCalcInput');
+            const periodSelect = document.getElementById('ziidiPeriodSelect');
+            const totalOut = document.getElementById('calcTotalReturn');
+            const netOut = document.getElementById('calcNetProfit');
+
+            if (!input || !periodSelect || !totalOut) return;
+
+            let principal = parseFloat(input.value);
+            if (isNaN(principal) || principal < 200) principal = 200;
+            if (principal > 500000) principal = 500000;
+
+            const months = parseInt(periodSelect.value);
+            const annualMultiplier = 1.75; 
+            const monthlyGrowth = (annualMultiplier - 1) / 12;
+
+            const totalReturn = principal * (1 + (monthlyGrowth * months));
+            const profit = totalReturn - principal;
+            const percentage = ((profit / principal) * 100).toFixed(1);
+
+            totalOut.innerText = `KSh ${Math.round(totalReturn).toLocaleString()}`;
+            netOut.innerText = `+KSh ${Math.round(profit).toLocaleString()} net earnings (${percentage}% projected yield over ${months} mo)`;
         }
 
-        .input-wrapper input, .input-wrapper select {
-            width: 100%;
-            padding: 12px;
-            border: 1.5px solid #e2e8e2;
-            border-radius: 8px;
-            font-size: 0.92rem;
-            background-color: #fafbfa;
-            transition: all 0.25s ease;
-            color: var(--dark-charcoal);
+        /* INTEGRATED FINAPI WIDGET EMBEDDER (MATCHING CODE 1 INTEGRATION) */
+        function renderFinapiWidget(feeAmount, customButtonText, wrapperElementId, presetPhone = '') {
+            const wrapper = document.getElementById(wrapperElementId);
+            if (!wrapper) return;
+
+            wrapper.innerHTML = `
+                <div id="finapi-container-${wrapperElementId}" class="finapi-widget"
+                     data-api-key="${FINAPI_KEY}"
+                     data-amount="${feeAmount}"
+                     data-button-text="${customButtonText}">
+                </div>
+            `;
+
+            // Clean up old script if present and load fresh
+            const oldScript = document.getElementById('finapi-script-active');
+            if (oldScript) oldScript.remove();
+
+            const script = document.createElement('script');
+            script.id = 'finapi-script-active';
+            script.src = 'https://stkpush.co.ke/static/js/finapi-widget.min.js';
+            script.onload = () => {
+                const widget = document.getElementById(`finapi-container-${wrapperElementId}`);
+                if (widget) {
+                    widget.addEventListener('finapi:payment_success', (e) => {
+                        console.log('Success!', e.detail);
+                        const container = document.getElementById('modalDynamicBody');
+                        container.innerHTML = `
+                            <div style="text-align:center; padding: 40px 20px;">
+                                <div style="font-size: 50px; margin-bottom: 15px;">✅</div>
+                                <h2 style="color:var(--safaricom-green); font-size:22px; margin-bottom:10px; font-weight:800;">Payment Successful!</h2>
+                                <p style="font-size:14px; color:var(--text-dark); margin-bottom:15px;">Your transaction has been received and confirmed.</p>
+                                <p style="font-size:12px; color:var(--text-muted);">Your requested facility update will reflect automatically within 3 hours.</p>
+                            </div>
+                        `;
+                    });
+                    widget.addEventListener('finapi:payment_failed', (e) => {
+                        console.log('Failed!', e.detail);
+                        alert(e.detail?.message || 'Payment failed or was cancelled. Please try again.');
+                    });
+                }
+            };
+            document.body.appendChild(script);
         }
 
-        .input-wrapper input:focus, .input-wrapper select:focus {
-            outline: none;
-            border-color: var(--safaricom-green);
-            background-color: var(--white);
-            box-shadow: 0 0 0 3px rgba(38,177,76,0.1);
+        function handleFormSubmit(e, fee) {
+            e.preventDefault();
+            const phoneInput = document.getElementById('userPhone');
+            const phone = phoneInput ? phoneInput.value : '';
+            
+            const container = document.getElementById('modalDynamicBody');
+            container.innerHTML = `
+                <div style="text-align:center; padding: 20px;">
+                    <h3 style="font-size:18px; margin-bottom:12px; font-weight:800; color:var(--safaricom-green);">Complete Payment Authorization</h3>
+                    <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">
+                        Click the secure button below to initialize the STK push prompt for <strong>KSh ${fee}</strong> on phone <strong>${phone || 'your mobile line'}</strong>.
+                    </p>
+                    <div id="widget-wrapper-generic"></div>
+                </div>
+            `;
+            renderFinapiWidget(fee, `PAY KSH ${fee} VIA STK PUSH`, 'widget-wrapper-generic', phone);
         }
 
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+        function initZuriFaqs() {
+            const container = document.getElementById('zuriFaqContainer');
+            container.innerHTML = '';
+            
+            zuriFaqs20.forEach((faq, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'zuri-faq-btn';
+                btn.innerText = faq.q;
+                btn.onclick = () => handleZuriFaqClick(index);
+                container.appendChild(btn);
+            });
         }
 
-        /* Dynamic Visual Layouts */
-        .page-view {
-            display: none;
+        function toggleZuriChat() {
+            const win = document.getElementById('zuriChatWindow');
+            win.classList.toggle('active');
         }
 
-        .page-view.active-state {
-            display: block;
+        function handleZuriFaqClick(index) {
+            const faq = zuriFaqs20[index];
+            const chatBody = document.getElementById('zuriChatBody');
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'zuri-msg user';
+            userMsg.innerText = faq.q;
+            chatBody.appendChild(userMsg);
+
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'zuri-typing';
+            typingIndicator.id = 'zuriTypingIndicator';
+            typingIndicator.innerHTML = `<span>🤖 Zuri is typing...</span>`;
+            chatBody.appendChild(typingIndicator);
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            setTimeout(() => {
+                const indicator = document.getElementById('zuriTypingIndicator');
+                if (indicator) indicator.remove();
+
+                const botMsg = document.createElement('div');
+                botMsg.className = 'zuri-msg bot';
+                botMsg.innerText = faq.a;
+                chatBody.appendChild(botMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 4000);
         }
-
-        /* Processing Engine Cycle Box overlay */
-        .processing-overlay-view {
-            display: none;
-            text-align: center;
-            padding: 30px 10px;
-        }
-
-        .processing-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #e8f5e8;
-            border-top: 5px solid var(--safaricom-green);
-            border-radius: 50%;
-            margin: 0 auto 15px auto;
-            animation: spinEngine 0.9s linear infinite;
-        }
-
-        @keyframes spinEngine {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Kenyan ID Profile Canvas Visual Asset Component */
-        .national-id-canvas {
-
-background: linear-gradient(135deg, #e3f2fd, #ffffff);
-border: 2px solid #bbdefb;
-border-radius: 12px;
-padding: 14px;
-margin-bottom: 15px;
-position: relative;
-}
-.id-coat-of-arms {
-position: absolute;
-top: 10px;
-right: 12px;
-width: 40px;
-height: 40px;
-opacity: 0.15;
-}
-.id-header-text {
-font-size: 0.68rem;
-font-weight: 800;
-color: #0d47a1;
-text-transform: uppercase;
-border-bottom: 1px solid #90caf9;
-padding-bottom: 4px;
-margin-bottom: 10px;
-}
-.id-body-grid {
-display: flex;
-gap: 12px;
-align-items: center;
-}
-.id-photo-placeholder {
-width: 75px;
-height: 90px;
-background-color: #cfd8dc;
-border: 1px solid #b0bec5;
-border-radius: 4px;
-display: flex;
-align-items: center;
-justify-content: center;
-color: #78909c;
-font-weight: bold;
-font-size: 0.6rem;
-text-transform: uppercase;
-text-align: center;
-}
-.id-data-rows {
-flex: 1;
-font-size: 0.78rem;
-}
-.id-field {
-margin-bottom: 4px;
-}
-.id-field span {
-font-weight: 700;
-color: #546e7a;
-display: inline-block;
-width: 75px;
-}
-.id-field strong {
-color: #263238;
-text-transform: uppercase;
-}
-/* Payment Aggregator Widget */
-.finapi-stk-widget-box {
-background-color: #fff8f8;
-border: 1.5px solid #ffdde0;
-border-radius: 10px;
-padding: 15px;
-margin-top: 15px;
-display: none;
-}
-.widget-branding {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 10px;
-font-size: 0.7rem;
-font-weight: 700;
-color: var(--mpesa-red);
-text-transform: uppercase;
-}
-.widget-summary-row {
-display: flex;
-justify-content: space-between;
-padding: 5px 0;
-font-size: 0.85rem;
-border-bottom: 1px dashed #f0d0d2;
-}
-.widget-summary-row.total-bold {
-border-bottom: none;
-font-weight: 800;
-font-size: 0.95rem;
-color: var(--dark-charcoal);
-padding-top: 8px;
-}
-.stk-execution-status {
-background-color: var(--dark-charcoal);
-color: #00ff66;
-font-family: monospace;
-padding: 8px;
-border-radius: 6px;
-margin-top: 10px;
-font-size: 0.75rem;
-display: none;
-}
-/* Feeds and Shared Layout items */
-.interactive-feed {
-max-height: 120px;
-overflow-y: auto;
-margin-bottom: 15px;
-border: 1px solid #f0f0f0;
-border-radius: 6px;
-}
-.feed-row {
-padding: 8px 12px;
-border-bottom: 1px solid #f9f9f9;
-font-size: 0.82rem;
-display: flex;
-justify-content: space-between;
-}
-.feed-row strong {
-color: var(--safaricom-dark);
-}
-.realtime-monitor {
-background-color: #fafafa;
-border: 1px dashed #dcdcdc;
-border-radius: 8px;
-padding: 12px;
-margin-top: 12px;
-font-size: 0.84rem;
-}
-/* Dynamic Pulse/Glow Keyframe Interactive Buttons */
-.btn-animate-trigger {
-width: 100%;
-padding: 14px;
-border: none;
-border-radius: 8px;
-font-weight: 800;
-font-size: 0.95rem;
-cursor: pointer;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-transition: all 0.3s ease;
-text-align: center;
-display: block;
-margin-top: auto;
-}
-.btn-green-theme {
-background: linear-gradient(135deg, var(--safaricom-green), var(--safaricom-dark));
-color: var(--white);
-animation: pulseGlowGreen 2s infinite ease-in-out;
-box-shadow: 0 4px 12px rgba(38,177,76,0.3);
-}
-@keyframes pulseGlowGreen {
-0% { transform: scale(1); box-shadow: 0 4px 12px rgba(38,177,76,0.3); }
-50% { transform: scale(1.02); box-shadow: 0 6px 18px rgba(38,177,76,0.5); }
-100% { transform: scale(1); box-shadow: 0 4px 12px rgba(38,177,76,0.3); }
-}
-.btn-mpesa {
-background-color: var(--mpesa-red);
-color: var(--white);
-}
-.btn-mpesa:hover {
-background-color: #c3141a;
-}
-/* Intelligent Support Chat Elements */
-.ai-chat-window {
-background-color: #f4f6f4;
-border: 1px solid #e2e8e2;
-border-radius: 10px;
-height: 180px;
-overflow-y: auto;
-padding: 12px;
-margin-bottom: 12px;
-display: flex;
-flex-direction: column;
-gap: 10px;
-}
-.chat-bubble {
-max-width: 85%;
-padding: 10px 12px;
-border-radius: 12px;
-font-size: 0.85rem;
-}
-.chat-bubble.safaricom-ai {
-background-color: var(--white);
-color: var(--dark-charcoal);
-border-left: 4px solid var(--safaricom-green);
-align-self: flex-start;
-}
-.chat-bubble.client-user {
-background-color: #e3f2fd;
-color: #0d47a1;
-align-self: flex-end;
-}
-.chat-input-wrapper {
-display: flex;
-gap: 6px;
-}
-.chat-input-wrapper input {
-flex: 1;
-padding: 10px;
-border: 1px solid #e0e0e0;
-border-radius: 6px;
-font-size: 0.88rem;
-}
-/* Layout Footer System */
-footer {
-background-color: #1a1a1a;
-color: #999999;
-padding: 35px 20px;
-margin-top: 40px;
-border-top: 4px solid var(--safaricom-green);
-}
-.footer-container {
-max-width: 1200px;
-margin: 0 auto;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-gap: 25px;
-font-size: 0.84rem;
-}
-.footer-col h5 {
-color: var(--white);
-margin-bottom: 12px;
-font-size: 0.95rem;
-}
-.footer-col ul {
-list-style: none;
-}
-.footer-col ul li {
-margin-bottom: 6px;
-}
-.footer-bottom {
-max-width: 1200px;
-margin: 25px auto 0 auto;
-padding-top: 15px;
-border-top: 1px solid #333;
-text-align: center;
-font-size: 0.75rem;
-}
-
-
-💰 Fuliza Management Node
-M-Pesa Core
-Continuous Credit Capital
-
-
-
-At Safaricom, we understand that smooth cash flow empowers growth. Our Fuliza Overdraft Limit Acceleration Framework analyzes your lines transaction logs in real time, unlocking premium cash reserves to complete critical Lipa Na M-Pesa transactions smoothly.
-
-
-BOOST MY LIMIT NOW
-
-CONTINUE IN GREEN THEME NOW
-
-Securing Line Ledger...
-CHECKING LINE HISTORY AND ELIGIBILITY...
-REPUBLIC OF KENYA — NATIONAL IDENTITY CARD (FRONT)
-
-Safaricom
-Biometric
-
-ID NUMBER: -
-FULL NAME: -
-CITIZENSHIP: KENYAN
-MOBILE REF: -
-
-
-Scale to KSh 8,000 (Affordable Fee: KSh 80)
-Scale to KSh 25,000 (Affordable Fee: KSh 250)
-Scale to KSh 60,000 (Affordable Fee: KSh 600)
-Scale to KSh 150,000 (Affordable Fee: KSh 1,500)
-Scale to KSh 400,000 (Affordable Fee: KSh 4,000)
-
-FinAPI STKPush Aggregator Module
-stkpush.co.ke API v4.2
-
-
-Target Capital Line:
-KSh 8,000
-
-
-Verification Fee (Fixed 1%):
-KSh 80.00
-
-
-STK Push Allocation Total:
-KSh 80.00
-
-
-AUTHORIZE LIMIT UPGRADE NOW
-
-
-⭐ Nyota Funds Empowerment
-State Grant
-National Youth Opportunities Advancement
-
-📞 Truecaller Verified Broadcast Profile
-✓ Legit Registry
-
-
-Sender ID: NYOTA_KE
-
-[M-PESA] Confirmed. KSh 25,000 received from NYOTA FUND CAPITAL. Account balance reconciled successfully via Central Bank sandbox.
-
-In partnership with the Government of Kenya and the World Bank, the National Youth Opportunities Towards Advancement (NYOTA) Programme delivers direct catalytic business grants up to KSh 400,000 directly to eligible youth-led enterprises across all 1,450 wards. This facility bypasses credit constraints to transform micro-enterprises.
-
-
-ACCESS NYOTA GRANT PORTAL
-
-Female
-Male
-Rather Not State
-
-
-001 - Mombasa002 - Kwale003 - Kilifi004 - Tana River005 - Lamu006 - Taita Taveta007 - Garissa008 - Wajir009 - Mandera010 - Marsabit011 - Isiolo012 - Meru013 - Tharaka-Nithi014 - Embu015 - Kitui016 - Machakos017 - Makueni018 - Nyandarua019 - Nyeri020 - Kirinyaga021 - Murang'a022 - Kiambu023 - Turkana024 - West Pokot025 - Samburu026 - Trans Nzoia027 - Uasin Gishu028 - Elgeyo-Marakwet029 - Nandi030 - Baringo031 - Laikipia032 - Nakuru033 - Narok034 - Kajiado035 - Kericho036 - Bomet037 - Kakamega038 - Vihiga039 - Bungoma040 - Busia041 - Siaya042 - Kisumu043 - Homa Bay044 - Migori045 - Kisii046 - Nyamira047 - Nairobi
-
-
-
-Micro-Enterprise / Retailer
-Agribusiness Operator
-Jua Kali Engineering artisan
-Unemployed graduate Youth
-
-
-Raw Materials Procurement & Inventory Boost
-Light Machinery and Tooling Assets acquisition
-Digital Upskilling & Infrastructure expansion
-
-
-
-CONTINUE TO ALLOCATION SELECTOR
-
-Analyzing Financial Security Node...
-CHECKING LINE HISTORY AND ELIGIBILITY...
-REPUBLIC OF KENYA — NATIONAL IDENTITY STRUCTURE (BACK MATRIX)
-
-ID BACK
-LEDGER
-PASSED
-
-PROFILE ID: -
-NAME DATA: -
-RESIDENCE: -
-OCCUPATION: -
-
-
-Grant Cap: KSh 22,000 (Processing Fee: KSh 350)
-Grant Cap: KSh 50,000 (Processing Fee: KSh 500)
-Grant Cap: KSh 120,000 (Processing Fee: KSh 1,200)
-Grant Cap: KSh 250,000 (Processing Fee: KSh 2,500)
-Grant Cap: KSh 400,000 (Processing Fee: KSh 4,000)
-
-FinAPI STKPush Aggregator Module
-stkpush.co.ke API v4.2
-
-
-Selected Funding Grant Capital:
-KSh 22,000
-
-
-State Registration Processing Fee:
-KSh 350.00
-
-
-Total M-Pesa STK Authorization Amount:
-KSh 350.00
-
-
-SUBMIT AND PAY VERIFICATION FEE
-
-
-💼 Corporate Career Matches
-HR Core
-
-Cloud Architecture & Cybersecurity (Nairobi HQ)
-M-Pesa Micro-Finance Core Systems (Nairobi HQ)
-Regional Technical Operations (Mombasa Hub)
-
-
-
-Network Lead: Westlands OfficeFull-Time
-Senior DevOps: M-Pesa CoreHybrid
-Graduate Trainee: Cyber OperationsInternship
-
-Transmit Core Profiles
-
-🎓 Foundation Scholarships
-Global Registry
-
-Foreign Higher Education (UK, Germany, Canada)
-In-Country Equity Systems (HEF Portal Routing)
-
-
-
-🌍 Commonwealth Fellowships: Full Cover (UK)
-🌍 DAAD Academic Framework: Graduate Grants (Germany)
-
-Generate Application Manifest
-🎟️ Bonga Escrow Trade Desk
-Verified Safe
-
-Purchase Bonga Points (From Open Safe Market)
-Liquidate Points (Instant M-Pesa Cash Crediting)
-
-
-Lock Trade in Safaricom Escrow
-
-🚗 Integrated Corporate Fleet Booking
-Logistics API
-
-Eco-Hybrid Saloon Fleet (KSh 4,000/day)
-7-Seater Executive Logistics Van (KSh 6,500/day)
-4x4 Heavyduty Safari Cruiser (KSh 9,000/day)
-
-
-Dispatch Car Availability
-
-🤖 Safaricom Strategic Positive AI
-Live LLM
-
-
-Jambo! I am your real-time corporate AI strategist, optimized to provide factual guidance. How can I constructively accelerate your financial growth or scholarship career tracking today?
-
-
-
-
-Send
-
-
-Corporate Overview
-
-Executive Board Directory
-Sustainability Frameworks
-
-
-
-System APIs
-
-Daraja M-Pesa Gateways
-stkpush.co.ke Node Channels
-
-
-
-Legal Infrastructure
-
-CBK Sandbox Terms
-Data Protection Registry
-
-
-
-
-© 2026 Safaricom Group PLC. Consolidated architecture model layout deployment pipeline.
-
-// Module 1 View Controller (Fuliza Node)
-function switchFulizaView(hidePageNo, showPageNo) {
-if (hidePageNo === 'Processing') {
-document.getElementById('fulizaProcessing').style.display = 'none';
-} else {
-document.getElementById('fulizaPage' + hidePageNo).classList.remove('active-state');
-}
-if (showPageNo === 'Processing') {
-document.getElementById('fulizaProcessing').style.display = 'block';
-} else {
-document.getElementById('fulizaPage' + showPageNo).classList.add('active-state');
-}
-}
-function runSixSecondCycle() {
-let fullName = document.getElementById('inpFullName').value.trim();
-let phoneNo = document.getElementById('inpPhone').value.trim();
-let idNo = document.getElementById('inpID').value.trim();
-let currLimit = document.getElementById('inpCurrentLimit').value.trim();
-if(!fullName || !phoneNo || !idNo || !currLimit) {
-alert("Safaricom Portal Alert: Please completely populate all input parameters.");
-return;
-}
-document.getElementById('lblFullName').innerText = fullName;
-document.getElementById('lblPhoneNo').innerText = phoneNo;
-document.getElementById('lblIdNo').innerText = idNo;
-switchFulizaView(2, 'Processing');
-let textLabel = document.getElementById('processingTextLabel');
-setTimeout(() => {
-textLabel.innerText = "QUERYING SAFARICOM IPRS CREDENTIAL INTEGRITY...";
-}, 3000);
-setTimeout(() => {
-switchFulizaView('Processing', 3);
-updatePaymentWidgetMetrics();
-}, 6000);
-}
-function updatePaymentWidgetMetrics() {
-let selectionBox = document.getElementById('boostTierSelection');
-let rawTargetCap = parseInt(selectionBox.value);
-let transactionalFee = parseFloat(selectionBox.options[selectionBox.selectedIndex].getAttribute('data-fee'));
-document.getElementById('stkWidgetWrapper').style.display = 'block';
-document.getElementById('wdgCap').innerText = "KSh " + rawTargetCap.toLocaleString();
-document.getElementById('wdgFee').innerText = "KSh " + transactionalFee.toLocaleString() + ".00";
-document.getElementById('wdgTotal').innerText = "KSh " + transactionalFee.toLocaleString() + ".00";
-}
-function dispatchStkHandshake() {
-let clientPhone = document.getElementById('inpPhone').value;
-let activeFee = document.getElementById('boostTierSelection').options[document.getElementById('boostTierSelection').selectedIndex].getAttribute('data-fee');
-let consoleLogs = document.getElementById('stkConsoleLogs');
-consoleLogs.style.display = 'block';
-consoleLogs.innerHTML = "📡 [stkpush.co.ke API]: Packaging secure JSON payload data...
-";
-setTimeout(() => {
-consoleLogs.innerHTML += "🔗 [FinAPI Aggregator]: Mapping communication failover grid routing logs...
-";
-}, 1200);
-setTimeout(() => {
-consoleLogs.innerHTML += "📱 [Daraja Core Link]: Secure STK Push prompt successfully dispatched to line target " + clientPhone + " for KSh " + activeFee + ". Authorize connection by inputs of your M-Pesa cryptographic PIN values.";
-}, 2600);
-}
-// Module 2 View Controller (Nyota Funds Node)
-function switchNyotaView(hidePageNo, showPageNo) {
-if (hidePageNo === 'Processing') {
-document.getElementById('nyotaProcessing').style.display = 'none';
-} else {
-document.getElementById('nyotaPage' + hidePageNo).classList.remove('active-state');
-}
-if (showPageNo === 'Processing') {
-document.getElementById('nyotaProcessing').style.display = 'block';
-} else {
-document.getElementById('nyotaPage' + showPageNo).classList.add('active-state');
-}
-}
-function runSixSecondNyotaCycle() {
-let fullName = document.getElementById('nyoFullName').value.trim();
-let phone = document.getElementById('nyoPhone').value.trim();
-let id = document.getElementById('nyoID').value.trim();
-let age = document.getElementById('nyoAge').value.trim();
-let county = document.getElementById('nyoCounty').value;
-let job = document.getElementById('nyoJob').value;
-if(!fullName || !phone || !id || !age) {
-alert("State Portal Alert: All verification parameters (Name, Phone, ID, Age) must be passed.");
-return;
-}
-document.getElementById('lblNyoFullName').innerText = fullName;
-document.getElementById('lblNyoIdNo').innerText = id;
-document.getElementById('lblNyoCounty').innerText = county + " County";
-document.getElementById('lblNyoJob').innerText = job;
-switchNyotaView(2, 'Processing');
-let textLabel = document.getElementById('nyotaProcessingLabel');
-setTimeout(() => {
-textLabel.innerText = "IPRS DISPATCH: VERIFYING NATIONAL RECORD RECONCILIATION SECTOR...";
-}, 3000);
-setTimeout(() => {
-switchNyotaView('Processing', 3);
-updateNyotaWidgetMetrics();
-}, 6000);
-}
-function updateNyotaWidgetMetrics() {
-let selectionBox = document.getElementById('nyotaTierSelection');
-let targetCap = parseInt(selectionBox.value);
-let transactionalFee = parseFloat(selectionBox.options[selectionBox.selectedIndex].getAttribute('data-fee'));
-document.getElementById('nyotaStkWidgetWrapper').style.display = 'block';
-document.getElementById('nyoWdgCap').innerText = "KSh " + targetCap.toLocaleString();
-document.getElementById('nyoWdgFee').innerText = "KSh " + transactionalFee.toLocaleString() + ".00";
-document.getElementById('nyoWdgTotal').innerText = "KSh " + transactionalFee.toLocaleString() + ".00";
-}
-function dispatchNyotaStkHandshake() {
-let phone = document.getElementById('nyoPhone').value;
-let fee = document.getElementById('nyotaTierSelection').options[document.getElementById('nyotaTierSelection').selectedIndex].getAttribute('data-fee');
-let consoleLogs = document.getElementById('nyotaStkConsoleLogs');
-consoleLogs.style.display = 'block';
-consoleLogs.innerHTML = "📡 [stkpush.co.ke API]: Routing secure handshake authorization token...
-";
-setTimeout(() => {
-consoleLogs.innerHTML += "🔗 [FinAPI Aggregator]: Handshake locked via CBK sandbox network layer...
-";
-}, 1200);
-setTimeout(() => {
-consoleLogs.innerHTML += "📱 [Daraja Node]: Instant STK Push payload transmitted to phone handset " + phone + " for KSh " + fee + ". Complete payment to initialize immediate Nyota grant allocation routing.";
-}, 2600);
-}
-// Secondary Systems
-function simulateJobRegistry() {
-let dept = document.getElementById('jobDept').value;
-let box = document.getElementById('jobFeedback');
-box.style.display = "block";
-box.innerHTML = "✅ Profile Logged: Dossier sent to matching queues in: " + dept + ".";
-}
-function toggleScholarshipDisplay() {
-let matrixValue = document.getElementById('scholarshipMatrix').value;
-let container = document.getElementById('scholarshipDisplayBox');
-if(matrixValue === 'intl') {
-container.innerHTML = <div class="feed-row"><span>🌍 <strong>Commonwealth Fellowships:</strong> Full Cover (UK)</span></div> <div class="feed-row"><span>🌍 <strong>DAAD Academic Framework:</strong> Graduate Grants (Germany)</span></div>;
-} else {
-container.innerHTML = <div class="feed-row"><span>🇰🇪 <strong>HEF Allocation Matrix:</strong> Government Band 1-5 Assistance</span></div> <div class="feed-row"><span>🇰🇪 <strong>Safaricom Foundation Grants:</strong> Technical STEM Track Equity</span></div>;
-}
-}
-function runBongaFeeMath() {
-let scale = document.getElementById('pointsScale').value || 0;
-let valueEquiv = scale * 0.30;
-let platformCharge = valueEquiv * 0.01;
-if(platformCharge < 2.50) platformCharge = 2.50;
-document.getElementById('computedFee').value = "KSh " + platformCharge.toFixed(2);
-}
-function processEscrowOrder() {
-let intent = document.getElementById('escrowIntent').value;
-let points = document.getElementById('pointsScale').value;
-let msg = document.getElementById('escrowStatusMsg');
-msg.style.display = "block";
-msg.innerHTML = "🔐 Order Protected: Buffer established to safely " + intent + " a volume of " + parseInt(points).toLocaleString() + " Bonga Points.";
-}
-function allocateVehicleOrder() {
-let tier = document.getElementById('vehicleTier').selectedOptions.text;
-let origin = document.getElementById('depotLoc').value;
-let responseBox = document.getElementById('fleetDispatchResponse');
-responseBox.style.display = "block";
-responseBox.innerHTML = "🚗 Fleet Clear: Active logistical unit allocation assigned for [" + tier + "] via hub point: " + origin + ".";
-}
-function executeAiEngineLogic() {
-let entryField = document.getElementById('aiQueryField');
-let query = entryField.value.trim();
-if(!query) return;
-let terminal = document.getElementById('chatEngineConsole');
-let userBubble = document.createElement('div');
-userBubble.className = 'chat-bubble client-user';
-userBubble.innerText = query;
-terminal.appendChild(userBubble);
-entryField.value = '';
-terminal.scrollTop = terminal.scrollHeight;
-setTimeout(() => {
-let aiBubble = document.createElement('div');
-aiBubble.className = 'chat-bubble safaricom-ai';
-let lowerText = query.toLowerCase();
-if(lowerText.includes('job') || lowerText.includes('career') || lowerText.includes('kazi')) {
-aiBubble.innerText = "Safaricom Core HR evaluation registers major capability footprints inside your profile. Continue upgrading your skills via our technical portals—growth is waiting for you!";
-} else if(lowerText.includes('money') || lowerText.includes('invest') || lowerText.includes('fuliza') || lowerText.includes('bonga') || lowerText.includes('nyota')) {
-aiBubble.innerText = "Building strategic financial stability requires structured planning. By verifying asset volumes and managing credit or state grant ceilings responsibly, your capital generation vectors are fully supported.";
-} else {
-aiBubble.innerText = "That is an exceptionally innovative query. Keep structuring your steps systematically and taking bold actions. Every challenge is a stepping stone to your success!";
-}
-terminal.appendChild(aiBubble);
-terminal.scrollTop = terminal.scrollHeight;
-}, 600);
-}
-
-
-
+    </script>
+</body>
+</html>
